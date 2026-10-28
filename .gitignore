@@ -1,0 +1,12 @@
+# Visual Studio temporary files
+[Oo]bj/
+[Bb]in/
+.vs/
+*.user
+*.suo
+*.cache
+*.aps
+_ReSharper.*
+*.bak
+*.mdf_log
+*.ldf
