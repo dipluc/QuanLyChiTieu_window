@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LTWIN_N05_QLCT.Forms.HeThong;
 
 namespace LTWIN_N05_QLCT
 {
@@ -16,7 +17,7 @@ namespace LTWIN_N05_QLCT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new frmDangNhap());
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
-using DuLieu; // Thêm namespace của tầng DuLieu để gọi KetNoiCSDL
+using DuLieu;
 
 namespace GUI
 {
@@ -12,12 +12,9 @@ namespace GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // 1. Kiểm tra kết nối CSDL trước khi mở ứng dụng
             if (KetNoiCSDL.KiemTraKetNoi())
             {
-                // 2. Nếu kết nối thành công, mở Form Đăng nhập (hoặc frmMain tạm thời)
-                // Sau này khi làm frmDangNhap, bạn thay frmMain bằng frmDangNhap ở đây
-                Application.Run(new frmMain());
+                // DuLieu la tang ket noi CSDL. Vui long chay project GUI (LTWIN_N05_QLCT) de mo frmDangNhap.
             }
         }
     }
