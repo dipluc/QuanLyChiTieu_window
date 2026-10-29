@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NghiepVu
+namespace LTWIN_N05_QLCT.Forms.BaoCao
 {
-    public partial class Form1 : Form
+    public partial class frmBaoCaoThang : Form
     {
-        public Form1()
+        public frmBaoCaoThang()
         {
             InitializeComponent();
         }

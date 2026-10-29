@@ -80,16 +80,18 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlThanhTieuDe.Controls.Add(this.btnDong);
             this.pnlThanhTieuDe.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlThanhTieuDe.Location = new System.Drawing.Point(0, 0);
+            this.pnlThanhTieuDe.Margin = new System.Windows.Forms.Padding(4);
             this.pnlThanhTieuDe.Name = "pnlThanhTieuDe";
-            this.pnlThanhTieuDe.Size = new System.Drawing.Size(1000, 36);
+            this.pnlThanhTieuDe.Size = new System.Drawing.Size(1333, 44);
             this.pnlThanhTieuDe.TabIndex = 0;
             // 
             // picTieuDeIcon
             // 
-            this.picTieuDeIcon.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_XanhDuong;
-            this.picTieuDeIcon.Location = new System.Drawing.Point(12, 8);
+            this.picTieuDeIcon.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
+            this.picTieuDeIcon.Location = new System.Drawing.Point(16, 10);
+            this.picTieuDeIcon.Margin = new System.Windows.Forms.Padding(4);
             this.picTieuDeIcon.Name = "picTieuDeIcon";
-            this.picTieuDeIcon.Size = new System.Drawing.Size(20, 20);
+            this.picTieuDeIcon.Size = new System.Drawing.Size(27, 25);
             this.picTieuDeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picTieuDeIcon.TabIndex = 4;
             this.picTieuDeIcon.TabStop = false;
@@ -99,9 +101,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblQuanLyChiTieuDangNhap.AutoSize = true;
             this.lblQuanLyChiTieuDangNhap.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuanLyChiTieuDangNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblQuanLyChiTieuDangNhap.Location = new System.Drawing.Point(36, 9);
+            this.lblQuanLyChiTieuDangNhap.Location = new System.Drawing.Point(48, 11);
+            this.lblQuanLyChiTieuDangNhap.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuanLyChiTieuDangNhap.Name = "lblQuanLyChiTieuDangNhap";
-            this.lblQuanLyChiTieuDangNhap.Size = new System.Drawing.Size(186, 17);
+            this.lblQuanLyChiTieuDangNhap.Size = new System.Drawing.Size(227, 21);
             this.lblQuanLyChiTieuDangNhap.TabIndex = 3;
             this.lblQuanLyChiTieuDangNhap.Text = "Quản Lý Chi Tiêu — Đăng nhập";
             // 
@@ -111,9 +114,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnThuNho.FlatAppearance.BorderSize = 0;
             this.btnThuNho.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThuNho.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThuNho_XamDam;
-            this.btnThuNho.Location = new System.Drawing.Point(880, 0);
+            this.btnThuNho.Location = new System.Drawing.Point(1173, 0);
+            this.btnThuNho.Margin = new System.Windows.Forms.Padding(4);
             this.btnThuNho.Name = "btnThuNho";
-            this.btnThuNho.Size = new System.Drawing.Size(40, 36);
+            this.btnThuNho.Size = new System.Drawing.Size(53, 44);
             this.btnThuNho.TabIndex = 2;
             this.btnThuNho.UseVisualStyleBackColor = true;
             // 
@@ -123,9 +127,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnPhongTo.FlatAppearance.BorderSize = 0;
             this.btnPhongTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPhongTo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoPhongTo_XamDam;
-            this.btnPhongTo.Location = new System.Drawing.Point(920, 0);
+            this.btnPhongTo.Location = new System.Drawing.Point(1227, 0);
+            this.btnPhongTo.Margin = new System.Windows.Forms.Padding(4);
             this.btnPhongTo.Name = "btnPhongTo";
-            this.btnPhongTo.Size = new System.Drawing.Size(40, 36);
+            this.btnPhongTo.Size = new System.Drawing.Size(53, 44);
             this.btnPhongTo.TabIndex = 1;
             this.btnPhongTo.UseVisualStyleBackColor = true;
             // 
@@ -135,9 +140,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnDong.FlatAppearance.BorderSize = 0;
             this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDong.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoDongCuaSo_XamDam;
-            this.btnDong.Location = new System.Drawing.Point(960, 0);
+            this.btnDong.Location = new System.Drawing.Point(1280, 0);
+            this.btnDong.Margin = new System.Windows.Forms.Padding(4);
             this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(40, 36);
+            this.btnDong.Size = new System.Drawing.Size(53, 44);
             this.btnDong.TabIndex = 0;
             this.btnDong.UseVisualStyleBackColor = true;
             // 
@@ -148,16 +154,19 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlGioiThieuUngDung.Controls.Add(this.lblQuanLyChiTieu);
             this.pnlGioiThieuUngDung.Controls.Add(this.lblChuDongHomNayAnTam);
             this.pnlGioiThieuUngDung.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlGioiThieuUngDung.Location = new System.Drawing.Point(0, 36);
+            this.pnlGioiThieuUngDung.Location = new System.Drawing.Point(0, 44);
+            this.pnlGioiThieuUngDung.Margin = new System.Windows.Forms.Padding(4);
             this.pnlGioiThieuUngDung.Name = "pnlGioiThieuUngDung";
-            this.pnlGioiThieuUngDung.Size = new System.Drawing.Size(375, 544);
+            this.pnlGioiThieuUngDung.Size = new System.Drawing.Size(500, 670);
             this.pnlGioiThieuUngDung.TabIndex = 1;
             // 
             // picLogo
             // 
-            this.picLogo.Location = new System.Drawing.Point(42, 60);
+            this.picLogo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_Trang;
+            this.picLogo.Location = new System.Drawing.Point(56, 74);
+            this.picLogo.Margin = new System.Windows.Forms.Padding(4);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(48, 48);
+            this.picLogo.Size = new System.Drawing.Size(64, 59);
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
@@ -166,9 +175,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblQuanLyChiTieu.AutoSize = true;
             this.lblQuanLyChiTieu.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuanLyChiTieu.ForeColor = System.Drawing.Color.White;
-            this.lblQuanLyChiTieu.Location = new System.Drawing.Point(100, 68);
+            this.lblQuanLyChiTieu.Location = new System.Drawing.Point(133, 84);
+            this.lblQuanLyChiTieu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuanLyChiTieu.Name = "lblQuanLyChiTieu";
-            this.lblQuanLyChiTieu.Size = new System.Drawing.Size(189, 30);
+            this.lblQuanLyChiTieu.Size = new System.Drawing.Size(229, 37);
             this.lblQuanLyChiTieu.TabIndex = 1;
             this.lblQuanLyChiTieu.Text = "Quản Lý Chi Tiêu";
             // 
@@ -177,9 +187,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblChuDongHomNayAnTam.AutoSize = true;
             this.lblChuDongHomNayAnTam.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChuDongHomNayAnTam.ForeColor = System.Drawing.Color.White;
-            this.lblChuDongHomNayAnTam.Location = new System.Drawing.Point(42, 145);
+            this.lblChuDongHomNayAnTam.Location = new System.Drawing.Point(56, 178);
+            this.lblChuDongHomNayAnTam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblChuDongHomNayAnTam.Name = "lblChuDongHomNayAnTam";
-            this.lblChuDongHomNayAnTam.Size = new System.Drawing.Size(201, 56);
+            this.lblChuDongHomNayAnTam.Size = new System.Drawing.Size(243, 70);
             this.lblChuDongHomNayAnTam.TabIndex = 2;
             this.lblChuDongHomNayAnTam.Text = "Chủ động hôm nay,\r\nan tâm ngày mai.";
             // 
@@ -189,9 +200,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlKhuVucPhai.Controls.Add(this.pnlTheDangNhap);
             this.pnlKhuVucPhai.Controls.Add(this.lblQuanLyChiTieuPhienBan);
             this.pnlKhuVucPhai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlKhuVucPhai.Location = new System.Drawing.Point(375, 36);
+            this.pnlKhuVucPhai.Location = new System.Drawing.Point(500, 44);
+            this.pnlKhuVucPhai.Margin = new System.Windows.Forms.Padding(4);
             this.pnlKhuVucPhai.Name = "pnlKhuVucPhai";
-            this.pnlKhuVucPhai.Size = new System.Drawing.Size(625, 544);
+            this.pnlKhuVucPhai.Size = new System.Drawing.Size(833, 670);
             this.pnlKhuVucPhai.TabIndex = 2;
             // 
             // pnlTheDangNhap
@@ -202,9 +214,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlTheDangNhap.Controls.Add(this.pnlThongTinTaiKhoan);
             this.pnlTheDangNhap.Controls.Add(this.btnDangNhap);
             this.pnlTheDangNhap.Controls.Add(this.btnDangKy);
-            this.pnlTheDangNhap.Location = new System.Drawing.Point(125, 35);
+            this.pnlTheDangNhap.Location = new System.Drawing.Point(167, 43);
+            this.pnlTheDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTheDangNhap.Name = "pnlTheDangNhap";
-            this.pnlTheDangNhap.Size = new System.Drawing.Size(375, 435);
+            this.pnlTheDangNhap.Size = new System.Drawing.Size(500, 535);
             this.pnlTheDangNhap.TabIndex = 0;
             // 
             // lblChaoMungBanTroLai
@@ -212,9 +225,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblChaoMungBanTroLai.AutoSize = true;
             this.lblChaoMungBanTroLai.Font = new System.Drawing.Font("Segoe UI", 15.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChaoMungBanTroLai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblChaoMungBanTroLai.Location = new System.Drawing.Point(28, 28);
+            this.lblChaoMungBanTroLai.Location = new System.Drawing.Point(37, 34);
+            this.lblChaoMungBanTroLai.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblChaoMungBanTroLai.Name = "lblChaoMungBanTroLai";
-            this.lblChaoMungBanTroLai.Size = new System.Drawing.Size(232, 30);
+            this.lblChaoMungBanTroLai.Size = new System.Drawing.Size(288, 36);
             this.lblChaoMungBanTroLai.TabIndex = 0;
             this.lblChaoMungBanTroLai.Text = "Chào mừng bạn trở lại";
             // 
@@ -223,9 +237,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblDangNhapDeQuanLyTaiChinh.AutoSize = true;
             this.lblDangNhapDeQuanLyTaiChinh.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDangNhapDeQuanLyTaiChinh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblDangNhapDeQuanLyTaiChinh.Location = new System.Drawing.Point(29, 64);
+            this.lblDangNhapDeQuanLyTaiChinh.Location = new System.Drawing.Point(39, 79);
+            this.lblDangNhapDeQuanLyTaiChinh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDangNhapDeQuanLyTaiChinh.Name = "lblDangNhapDeQuanLyTaiChinh";
-            this.lblDangNhapDeQuanLyTaiChinh.Size = new System.Drawing.Size(268, 17);
+            this.lblDangNhapDeQuanLyTaiChinh.Size = new System.Drawing.Size(344, 21);
             this.lblDangNhapDeQuanLyTaiChinh.TabIndex = 1;
             this.lblDangNhapDeQuanLyTaiChinh.Text = "Đăng nhập để quản lý tài chính cá nhân của bạn.";
             // 
@@ -237,9 +252,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlThongTinTaiKhoan.Controls.Add(this.pnlBorderMatKhau);
             this.pnlThongTinTaiKhoan.Controls.Add(this.chkGhiNho);
             this.pnlThongTinTaiKhoan.Controls.Add(this.lnkQuenMatKhau);
-            this.pnlThongTinTaiKhoan.Location = new System.Drawing.Point(28, 95);
+            this.pnlThongTinTaiKhoan.Location = new System.Drawing.Point(37, 117);
+            this.pnlThongTinTaiKhoan.Margin = new System.Windows.Forms.Padding(4);
             this.pnlThongTinTaiKhoan.Name = "pnlThongTinTaiKhoan";
-            this.pnlThongTinTaiKhoan.Size = new System.Drawing.Size(318, 202);
+            this.pnlThongTinTaiKhoan.Size = new System.Drawing.Size(424, 249);
             this.pnlThongTinTaiKhoan.TabIndex = 2;
             // 
             // lblTenDangNhap
@@ -247,9 +263,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblTenDangNhap.AutoSize = true;
             this.lblTenDangNhap.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenDangNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblTenDangNhap.Location = new System.Drawing.Point(0, 4);
+            this.lblTenDangNhap.Location = new System.Drawing.Point(0, 5);
+            this.lblTenDangNhap.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTenDangNhap.Name = "lblTenDangNhap";
-            this.lblTenDangNhap.Size = new System.Drawing.Size(100, 17);
+            this.lblTenDangNhap.Size = new System.Drawing.Size(123, 21);
             this.lblTenDangNhap.TabIndex = 0;
             this.lblTenDangNhap.Text = "Tên đăng nhập";
             // 
@@ -258,17 +275,19 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlBorderTenDangNhap.BackColor = System.Drawing.Color.White;
             this.pnlBorderTenDangNhap.Controls.Add(this.picIconUser);
             this.pnlBorderTenDangNhap.Controls.Add(this.txtTenDangNhap);
-            this.pnlBorderTenDangNhap.Location = new System.Drawing.Point(0, 26);
+            this.pnlBorderTenDangNhap.Location = new System.Drawing.Point(0, 32);
+            this.pnlBorderTenDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBorderTenDangNhap.Name = "pnlBorderTenDangNhap";
-            this.pnlBorderTenDangNhap.Size = new System.Drawing.Size(318, 40);
+            this.pnlBorderTenDangNhap.Size = new System.Drawing.Size(424, 49);
             this.pnlBorderTenDangNhap.TabIndex = 1;
             // 
             // picIconUser
             // 
             this.picIconUser.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTaiKhoan_Xam;
-            this.picIconUser.Location = new System.Drawing.Point(10, 10);
+            this.picIconUser.Location = new System.Drawing.Point(13, 12);
+            this.picIconUser.Margin = new System.Windows.Forms.Padding(4);
             this.picIconUser.Name = "picIconUser";
-            this.picIconUser.Size = new System.Drawing.Size(20, 20);
+            this.picIconUser.Size = new System.Drawing.Size(27, 25);
             this.picIconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIconUser.TabIndex = 0;
             this.picIconUser.TabStop = false;
@@ -278,9 +297,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtTenDangNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenDangNhap.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenDangNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtTenDangNhap.Location = new System.Drawing.Point(38, 11);
+            this.txtTenDangNhap.Location = new System.Drawing.Point(51, 14);
+            this.txtTenDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.txtTenDangNhap.Name = "txtTenDangNhap";
-            this.txtTenDangNhap.Size = new System.Drawing.Size(268, 18);
+            this.txtTenDangNhap.Size = new System.Drawing.Size(357, 23);
             this.txtTenDangNhap.TabIndex = 1;
             this.txtTenDangNhap.Text = "minhanh";
             // 
@@ -289,9 +309,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblMatKhau.AutoSize = true;
             this.lblMatKhau.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblMatKhau.Location = new System.Drawing.Point(0, 76);
+            this.lblMatKhau.Location = new System.Drawing.Point(0, 94);
+            this.lblMatKhau.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMatKhau.Name = "lblMatKhau";
-            this.lblMatKhau.Size = new System.Drawing.Size(66, 17);
+            this.lblMatKhau.Size = new System.Drawing.Size(82, 21);
             this.lblMatKhau.TabIndex = 2;
             this.lblMatKhau.Text = "Mật khẩu";
             // 
@@ -301,17 +322,19 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlBorderMatKhau.Controls.Add(this.picIconLock);
             this.pnlBorderMatKhau.Controls.Add(this.txtMatKhau);
             this.pnlBorderMatKhau.Controls.Add(this.btnHienMatKhau);
-            this.pnlBorderMatKhau.Location = new System.Drawing.Point(0, 98);
+            this.pnlBorderMatKhau.Location = new System.Drawing.Point(0, 121);
+            this.pnlBorderMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.pnlBorderMatKhau.Name = "pnlBorderMatKhau";
-            this.pnlBorderMatKhau.Size = new System.Drawing.Size(318, 40);
+            this.pnlBorderMatKhau.Size = new System.Drawing.Size(424, 49);
             this.pnlBorderMatKhau.TabIndex = 3;
             // 
             // picIconLock
             // 
             this.picIconLock.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoMatKhau_Xam;
-            this.picIconLock.Location = new System.Drawing.Point(10, 10);
+            this.picIconLock.Location = new System.Drawing.Point(13, 12);
+            this.picIconLock.Margin = new System.Windows.Forms.Padding(4);
             this.picIconLock.Name = "picIconLock";
-            this.picIconLock.Size = new System.Drawing.Size(20, 20);
+            this.picIconLock.Size = new System.Drawing.Size(27, 25);
             this.picIconLock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIconLock.TabIndex = 0;
             this.picIconLock.TabStop = false;
@@ -321,12 +344,13 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtMatKhau.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMatKhau.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtMatKhau.Location = new System.Drawing.Point(38, 11);
+            this.txtMatKhau.Location = new System.Drawing.Point(51, 14);
+            this.txtMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(236, 18);
+            this.txtMatKhau.Size = new System.Drawing.Size(315, 23);
             this.txtMatKhau.TabIndex = 1;
-            this.txtMatKhau.UseSystemPasswordChar = true;
             this.txtMatKhau.Text = "12345678";
+            this.txtMatKhau.UseSystemPasswordChar = true;
             // 
             // btnHienMatKhau
             // 
@@ -334,9 +358,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnHienMatKhau.FlatAppearance.BorderSize = 0;
             this.btnHienMatKhau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHienMatKhau.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoHienMatKhau_Xam;
-            this.btnHienMatKhau.Location = new System.Drawing.Point(280, 5);
+            this.btnHienMatKhau.Location = new System.Drawing.Point(373, 6);
+            this.btnHienMatKhau.Margin = new System.Windows.Forms.Padding(4);
             this.btnHienMatKhau.Name = "btnHienMatKhau";
-            this.btnHienMatKhau.Size = new System.Drawing.Size(30, 30);
+            this.btnHienMatKhau.Size = new System.Drawing.Size(40, 37);
             this.btnHienMatKhau.TabIndex = 2;
             this.btnHienMatKhau.UseVisualStyleBackColor = true;
             // 
@@ -348,9 +373,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.chkGhiNho.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkGhiNho.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkGhiNho.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.chkGhiNho.Location = new System.Drawing.Point(2, 160);
+            this.chkGhiNho.Location = new System.Drawing.Point(3, 197);
+            this.chkGhiNho.Margin = new System.Windows.Forms.Padding(4);
             this.chkGhiNho.Name = "chkGhiNho";
-            this.chkGhiNho.Size = new System.Drawing.Size(126, 19);
+            this.chkGhiNho.Size = new System.Drawing.Size(157, 24);
             this.chkGhiNho.TabIndex = 4;
             this.chkGhiNho.Text = "Ghi nhớ đăng nhập";
             this.chkGhiNho.UseVisualStyleBackColor = true;
@@ -362,9 +388,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lnkQuenMatKhau.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkQuenMatKhau.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkQuenMatKhau.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.lnkQuenMatKhau.Location = new System.Drawing.Point(228, 161);
+            this.lnkQuenMatKhau.Location = new System.Drawing.Point(304, 198);
+            this.lnkQuenMatKhau.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkQuenMatKhau.Name = "lnkQuenMatKhau";
-            this.lnkQuenMatKhau.Size = new System.Drawing.Size(89, 15);
+            this.lnkQuenMatKhau.Size = new System.Drawing.Size(109, 20);
             this.lnkQuenMatKhau.TabIndex = 5;
             this.lnkQuenMatKhau.TabStop = true;
             this.lnkQuenMatKhau.Text = "Quên mật khẩu";
@@ -378,9 +405,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnDangNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDangNhap.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangNhap.ForeColor = System.Drawing.Color.White;
-            this.btnDangNhap.Location = new System.Drawing.Point(28, 312);
+            this.btnDangNhap.Location = new System.Drawing.Point(37, 384);
+            this.btnDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnDangNhap.Name = "btnDangNhap";
-            this.btnDangNhap.Size = new System.Drawing.Size(318, 42);
+            this.btnDangNhap.Size = new System.Drawing.Size(424, 52);
             this.btnDangNhap.TabIndex = 3;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.UseVisualStyleBackColor = false;
@@ -393,9 +421,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDangKy.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangKy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.btnDangKy.Location = new System.Drawing.Point(28, 366);
+            this.btnDangKy.Location = new System.Drawing.Point(37, 450);
+            this.btnDangKy.Margin = new System.Windows.Forms.Padding(4);
             this.btnDangKy.Name = "btnDangKy";
-            this.btnDangKy.Size = new System.Drawing.Size(318, 42);
+            this.btnDangKy.Size = new System.Drawing.Size(424, 52);
             this.btnDangKy.TabIndex = 4;
             this.btnDangKy.Text = "Đăng ký";
             this.btnDangKy.UseVisualStyleBackColor = false;
@@ -405,22 +434,24 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblQuanLyChiTieuPhienBan.AutoSize = true;
             this.lblQuanLyChiTieuPhienBan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuanLyChiTieuPhienBan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.lblQuanLyChiTieuPhienBan.Location = new System.Drawing.Point(220, 492);
+            this.lblQuanLyChiTieuPhienBan.Location = new System.Drawing.Point(293, 606);
+            this.lblQuanLyChiTieuPhienBan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuanLyChiTieuPhienBan.Name = "lblQuanLyChiTieuPhienBan";
-            this.lblQuanLyChiTieuPhienBan.Size = new System.Drawing.Size(175, 15);
+            this.lblQuanLyChiTieuPhienBan.Size = new System.Drawing.Size(220, 20);
             this.lblQuanLyChiTieuPhienBan.TabIndex = 1;
             this.lblQuanLyChiTieuPhienBan.Text = "Quản Lý Chi Tiêu • Phiên bản 1.0";
             // 
             // frmDangNhap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1000, 580);
+            this.ClientSize = new System.Drawing.Size(1333, 714);
             this.Controls.Add(this.pnlKhuVucPhai);
             this.Controls.Add(this.pnlGioiThieuUngDung);
             this.Controls.Add(this.pnlThanhTieuDe);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lý Chi Tiêu — Đăng nhập";

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MoHinh
+namespace LTWIN_N05_QLCT.Forms.NghiepVu
 {
-    public partial class Form1 : Form
+    public partial class frmMucTieuTietKiem : Form
     {
-        public Form1()
+        public frmMucTieuTietKiem()
         {
             InitializeComponent();
         }

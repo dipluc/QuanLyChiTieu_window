@@ -17,7 +17,16 @@ namespace LTWIN_N05_QLCT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDangNhap());
+
+            using (var login = new frmDangNhap())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    string ten = string.IsNullOrEmpty(login.TenDangNhapDaNhap) ? "minhanh" : login.TenDangNhapDaNhap;
+                    string hoTen = !string.IsNullOrEmpty(login.HoTenDaNhap) ? login.HoTenDaNhap : ((ten.ToLower() == "minhanh") ? "Nguyễn Minh Anh" : ten);
+                    Application.Run(new Forms.Chinh.frmMain(ten, hoTen));
+                }
+            }
         }
     }
 }

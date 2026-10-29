@@ -1,6 +1,6 @@
-﻿namespace LTWIN_N05_QLCT
+﻿namespace LTWIN_N05_QLCT.Forms.QuanTri
 {
-    partial class frmMain
+    partial class frmNguoiDung
     {
         /// <summary>
         /// Required designer variable.
@@ -31,10 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Text = "frmNguoiDung";
         }
 
         #endregion
     }
 }
-

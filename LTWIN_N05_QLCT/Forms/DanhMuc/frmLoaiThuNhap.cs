@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LTWIN_N05_QLCT
+namespace LTWIN_N05_QLCT.Forms.DanhMuc
 {
-    public partial class frmMain : Form
+    public partial class frmLoaiThuNhap : Form
     {
-        public frmMain()
+        public frmLoaiThuNhap()
         {
             InitializeComponent();
         }
