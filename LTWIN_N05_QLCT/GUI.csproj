@@ -171,7 +171,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\QLChiTieu.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\QLChiTieu_log.ldf">
+      <DependentUpon>QLChiTieu.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

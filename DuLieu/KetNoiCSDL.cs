@@ -12,19 +12,53 @@ namespace DuLieu
         public static string LayChuoiKetNoi()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            // 1. Kiểm tra nếu có DataDirectory
+            string dataDir = AppDomain.CurrentDomain.GetData("DataDirectory") as string;
+            if (!string.IsNullOrEmpty(dataDir))
+            {
+                string pData1 = Path.Combine(dataDir, "Database", "QLChiTieu.mdf");
+                if (File.Exists(pData1)) return TaoChuoiKetNoi(pData1);
+                string pData2 = Path.Combine(dataDir, "QLChiTieu.mdf");
+                if (File.Exists(pData2)) return TaoChuoiKetNoi(pData2);
+            }
+
+            // 2. Tìm ngược lên các thư mục cha (khi debug/chạy trong Visual Studio hoặc kiểm thử)
+            string[] searchRoots = new string[] { baseDir, Directory.GetCurrentDirectory() };
+            foreach (var root in searchRoots)
+            {
+                if (string.IsNullOrEmpty(root)) continue;
+                try
+                {
+                    DirectoryInfo cur = new DirectoryInfo(root);
+                    while (cur != null)
+                    {
+                        string pProject = Path.Combine(cur.FullName, "LTWIN_N05_QLCT", "Database", "QLChiTieu.mdf");
+                        if (File.Exists(pProject)) return TaoChuoiKetNoi(pProject);
+
+                        string pDb = Path.Combine(cur.FullName, "Database", "QLChiTieu.mdf");
+                        if (File.Exists(pDb)) return TaoChuoiKetNoi(pDb);
+
+                        cur = cur.Parent;
+                    }
+                }
+                catch { }
+            }
+
+            // 3. Kiểm tra các vị trí mặc định thông dụng
             string[] possiblePaths = new string[]
             {
-                Path.Combine(baseDir, "Database", "QLChiTieu.mdf"),
-                Path.Combine(baseDir, "QLChiTieu.mdf"),
                 Path.GetFullPath(Path.Combine(baseDir, @"..\..\Database\QLChiTieu.mdf")),
-                Path.GetFullPath(Path.Combine(baseDir, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf"))
+                Path.GetFullPath(Path.Combine(baseDir, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf")),
+                Path.Combine(baseDir, "Database", "QLChiTieu.mdf"),
+                Path.Combine(baseDir, "QLChiTieu.mdf")
             };
 
             foreach (var p in possiblePaths)
             {
                 if (File.Exists(p))
                 {
-                    return string.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={0};Integrated Security=True;Connect Timeout=30", p);
+                    return TaoChuoiKetNoi(p);
                 }
             }
 
@@ -39,6 +73,11 @@ namespace DuLieu
             catch { }
 
             return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\QLChiTieu.mdf;Integrated Security=True;Connect Timeout=30";
+        }
+
+        private static string TaoChuoiKetNoi(string duongDanMdf)
+        {
+            return string.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={0};Integrated Security=True;Connect Timeout=30", duongDanMdf);
         }
 
         // Mở kết nối
