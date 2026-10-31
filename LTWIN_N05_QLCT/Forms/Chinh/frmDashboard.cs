@@ -16,5 +16,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         {
             InitializeComponent();
         }
+
+        private void frmDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

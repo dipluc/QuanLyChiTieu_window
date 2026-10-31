@@ -28,10 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frmDashboard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.Name = "frmDashboard";
             this.Text = "frmDashboard";
+            this.Load += new System.EventHandler(this.frmDashboard_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -137,6 +137,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             {
                 lblTrangThai.Text = string.Format("Xem dữ liệu {0:MM/yyyy}", dtpThang.Value);
             };
+
+            Shown += (s, e) => MoDashboard();
         }
 
         // Cập nhật thông tin người dùng trên toàn giao diện
@@ -303,6 +305,14 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             {
                 // Thiếu icon không làm gián đoạn ứng dụng
             }
+        }
+
+        //Mo dasshboard
+        private void MoDashboard()
+        {
+            var frm = new frmDashboard();
+            MoFormCon(frm, "Tổng quan");
+            lblTrangThai.Text = "Đang xem: Tổng quan";
         }
     }
 }
