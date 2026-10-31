@@ -508,5 +508,35 @@ namespace NghiepVu
                 return false;
             }
         }
+
+
+        //Luu dang nhap
+        public static KetQuaDangNhap KhoiPhucSession(string tenDangNhap)
+        {
+            try
+            {
+                var nd = NguoiDungDL.LayTheoTenDangNhap(tenDangNhap);
+
+                if (nd == null || !nd.TrangThai)
+                    return new KetQuaDangNhap { ThanhCong = false };
+
+                PhienDangNhap.ThietLapPhien(nd);
+
+                return new KetQuaDangNhap
+                {
+                    ThanhCong = true,
+                    MaND = nd.MaND,
+                    TenDangNhap = nd.TenDangNhap,
+                    HoTen = nd.HoTen,
+                    Email = nd.Email,
+                    QuyenHan = nd.QuyenHan,
+                    NguoiDung = nd
+                };
+            }
+            catch
+            {
+                return new KetQuaDangNhap { ThanhCong = false };
+            }
+        }
     }
 }

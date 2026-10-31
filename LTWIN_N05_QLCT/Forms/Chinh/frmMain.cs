@@ -1,9 +1,10 @@
+using LTWIN_N05_QLCT.Forms.HeThong;
+using LTWIN_N05_QLCT.TienIch;
+using NghiepVu.TienIch;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using LTWIN_N05_QLCT.Forms.HeThong;
-using NghiepVu.TienIch;
 
 namespace LTWIN_N05_QLCT.Forms.Chinh
 {
@@ -106,6 +107,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             };
 
             // Sự kiện hệ thống
+            btnTrangChu.Click += (s, e) => MoDashboard();
             mnuDangNhap.Click += (s, e) => MoFormDangNhap();
             mnuDangKy.Click += (s, e) => MoFormDangKy();
             mnuDoiMatKhau.Click += (s, e) => MoFormDoiMatKhau();
@@ -249,6 +251,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
+                PhienDangNhap.XoaPhien();
+                GhiNhoDangNhap.Xoa();
                 Hide();
                 using (var f = new frmDangNhap())
                 {

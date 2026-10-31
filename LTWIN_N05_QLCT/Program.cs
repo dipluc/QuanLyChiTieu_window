@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LTWIN_N05_QLCT.Forms.HeThong;
+using NghiepVu;
+using LTWIN_N05_QLCT.TienIch;
 
 namespace LTWIN_N05_QLCT
 {
@@ -17,6 +19,25 @@ namespace LTWIN_N05_QLCT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+
+            //Khoi phuc session dang nhap
+            string tenDaNho = GhiNhoDangNhap.Doc();
+
+            if (!string.IsNullOrEmpty(tenDaNho))
+            {
+                var phien = TaiKhoanNV.KhoiPhucSession(tenDaNho);
+
+                if (phien.ThanhCong)
+                {
+                    Application.Run(
+                        new Forms.Chinh.frmMain(phien.TenDangNhap, phien.HoTen));
+                    return;
+                }
+
+                GhiNhoDangNhap.Xoa();
+            }
+
 
             using (var login = new frmDangNhap())
             {

@@ -1,10 +1,11 @@
+using LTWIN_N05_QLCT.TienIch;
+using NghiepVu;
+using NghiepVu.TienIch;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using NghiepVu;
-using NghiepVu.TienIch;
 
 namespace LTWIN_N05_QLCT.Forms.HeThong
 {
@@ -142,7 +143,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
                 }
 
                 HoTenDaNhap = !string.IsNullOrEmpty(kq.HoTen) ? kq.HoTen : ten;
-                GhiTenGhiNho(chkGhiNho.Checked ? ten : null);
+                if (chkGhiNho.Checked)
+                    GhiNhoDangNhap.Luu(ten);
+                else
+                    GhiNhoDangNhap.Xoa();
                 DialogResult = DialogResult.OK; // Program.cs sẽ mở frmMain
                 Close();
             }
