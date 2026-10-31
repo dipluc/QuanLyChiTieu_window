@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="DuLieu/DuLieu.csproj" Id="7edd3cc8-8762-4d88-84b4-e809a1f42c0a" />
+  <Project Path="LTWIN_N05_QLCT/GUI.csproj" Id="99542051-d627-400b-a3f6-2d1d604323d6" />
+  <Project Path="MoHinh/MoHinh.csproj" Id="7fccb03a-8bec-4728-b513-ee2cc5b4b0c6" />
+  <Project Path="NghiepVu/NghiepVu.csproj" Id="bc9fd97a-b114-4d09-b0c9-baf5fb30b06c" />
+</Solution>
