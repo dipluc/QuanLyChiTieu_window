@@ -294,7 +294,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(398, 23);
             this.txtHoTen.TabIndex = 0;
-            this.txtHoTen.Text = "Trần Ngọc Linh";
+            this.txtHoTen.Text = "";
             // 
             // lblTenDangNhap
             // 
@@ -336,7 +336,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtTenDangNhap.Name = "txtTenDangNhap";
             this.txtTenDangNhap.Size = new System.Drawing.Size(366, 23);
             this.txtTenDangNhap.TabIndex = 1;
-            this.txtTenDangNhap.Text = "ngoclinh";
+            this.txtTenDangNhap.Text = "";
             // 
             // lblEmail
             // 
@@ -367,7 +367,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(398, 23);
             this.txtEmail.TabIndex = 0;
-            this.txtEmail.Text = "ngoclinh@gmail.com";
+            this.txtEmail.Text = "";
             // 
             // lblMatKhau
             // 
@@ -411,7 +411,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtMatKhau.Size = new System.Drawing.Size(324, 23);
             this.txtMatKhau.TabIndex = 1;
             this.txtMatKhau.UseSystemPasswordChar = true;
-            this.txtMatKhau.Text = "MatKhau123!";
+            this.txtMatKhau.Text = "";
             // 
             // btnHienMatKhau
             // 
@@ -495,7 +495,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtNhapLaiMatKhau.Size = new System.Drawing.Size(324, 23);
             this.txtNhapLaiMatKhau.TabIndex = 1;
             this.txtNhapLaiMatKhau.UseSystemPasswordChar = true;
-            this.txtNhapLaiMatKhau.Text = "MatKhau123!";
+            this.txtNhapLaiMatKhau.Text = "";
             // 
             // btnHienNhapLaiMatKhau
             // 

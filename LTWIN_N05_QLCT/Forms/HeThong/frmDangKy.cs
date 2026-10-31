@@ -156,6 +156,13 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
                 return;
             }
 
+            if (!Regex.IsMatch(ten, @"^[a-zA-Z0-9_.]+$"))
+            {
+                DatLoi("Tên đăng nhập chỉ gồm chữ cái không dấu, số, dấu gạch dưới hoặc chấm.", false, true, false, false, false);
+                txtTenDangNhap.Focus();
+                return;
+            }
+
             if (email.Length > 0 && !Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 DatLoi("Định dạng email không hợp lệ.", false, false, true, false, false);
@@ -170,9 +177,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
                 return;
             }
 
-            if (matKhau.Length < 6)
+            // Kiểm tra quy tắc nghiệp vụ BR08: tối thiểu 8 ký tự, cả chữ và số
+            if (!BaoMat.KiemTraDoManhMatKhau(matKhau, out string loiMatKhau))
             {
-                DatLoi("Mật khẩu phải có tối thiểu 6 ký tự.", false, false, false, true, false);
+                DatLoi(loiMatKhau, false, false, false, true, false);
                 txtMatKhau.Focus();
                 return;
             }
@@ -199,8 +207,18 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
                 string thongBao;
                 if (!GoiDangKy(hoTen, ten, email, matKhau, out thongBao))
                 {
-                    DatLoi(thongBao, false, true, false, false, false);
-                    txtTenDangNhap.Focus();
+                    // Phân loại đúng ô cần bôi đỏ theo thông điệp lỗi thực tế
+                    bool loiTen = thongBao != null && (thongBao.IndexOf("tên đăng nhập", StringComparison.OrdinalIgnoreCase) >= 0);
+                    bool loiMK = thongBao != null && (thongBao.IndexOf("mật khẩu", StringComparison.OrdinalIgnoreCase) >= 0);
+                    bool loiMail = thongBao != null && (thongBao.IndexOf("email", StringComparison.OrdinalIgnoreCase) >= 0);
+
+                    if (!loiTen && !loiMK && !loiMail) loiTen = true; // Mặc định nếu không rõ
+
+                    DatLoi(thongBao, false, loiTen, loiMail, loiMK, false);
+
+                    if (loiTen) txtTenDangNhap.Focus();
+                    else if (loiMK) txtMatKhau.Focus();
+                    else if (loiMail) txtEmail.Focus();
                     return;
                 }
 
@@ -226,22 +244,22 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             return kq.ThanhCong;
         }
 
-        // ---------------- Đánh giá độ mạnh mật khẩu ----------------
+        // ---------------- Đánh giá độ mạnh mật khẩu theo BR08 ----------------
         private void CapNhatDoManhMatKhau()
         {
             string pass = txtMatKhau.Text;
             if (string.IsNullOrEmpty(pass))
             {
                 _doManh = 0;
-                lblDoManhMatKhau.Text = "Độ mạnh: Tối thiểu 6 ký tự.";
+                lblDoManhMatKhau.Text = "Độ mạnh: Tối thiểu 8 ký tự, gồm cả chữ và số (BR08).";
                 lblDoManhMatKhau.ForeColor = Color.FromArgb(100, 116, 139);
             }
             else
             {
                 int diem = 0;
-                if (pass.Length >= 6) diem++;
                 if (pass.Length >= 8) diem++;
-                if (Regex.IsMatch(pass, @"[A-Z]") && Regex.IsMatch(pass, @"[a-z]") && Regex.IsMatch(pass, @"[0-9]")) diem++;
+                if (Regex.IsMatch(pass, @"[a-zA-Z]") && Regex.IsMatch(pass, @"[0-9]")) diem++;
+                if (pass.Length >= 10 && Regex.IsMatch(pass, @"[A-Z]") && Regex.IsMatch(pass, @"[a-z]")) diem++;
                 if (Regex.IsMatch(pass, @"[^a-zA-Z0-9]")) diem++;
 
                 if (diem < 1) diem = 1;
@@ -250,11 +268,11 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
                 switch (_doManh)
                 {
                     case 1:
-                        lblDoManhMatKhau.Text = "Yếu — tối thiểu 6 ký tự.";
+                        lblDoManhMatKhau.Text = "Yếu — cần tối thiểu 8 ký tự gồm cả chữ và số.";
                         lblDoManhMatKhau.ForeColor = MauDo;
                         break;
                     case 2:
-                        lblDoManhMatKhau.Text = "Trung bình — nên kết hợp chữ hoa và số.";
+                        lblDoManhMatKhau.Text = "Trung bình — nên kết hợp thêm chữ hoa.";
                         lblDoManhMatKhau.ForeColor = Color.FromArgb(217, 119, 6);
                         break;
                     case 3:
