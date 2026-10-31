@@ -25,6 +25,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private string _tenDangNhap = "minhanh";
         private string _hoTen = "Nguyễn Minh Anh";
+        private string _email = "";
         private string _viDangChon = "Vietcombank";
 
         public frmMain()
@@ -37,7 +38,16 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         {
             if (!string.IsNullOrEmpty(tenDangNhap)) _tenDangNhap = tenDangNhap;
             if (!string.IsNullOrEmpty(hoTen)) _hoTen = hoTen;
+            if (PhienDangNhap.DaDangNhap && !string.IsNullOrEmpty(PhienDangNhap.Email))
+            {
+                _email = PhienDangNhap.Email;
+            }
             lblNguoiDung.Text = "Đăng nhập: " + _hoTen;
+        }
+
+        public frmMain(string tenDangNhap, string hoTen, string email) : this(tenDangNhap, hoTen)
+        {
+            if (!string.IsNullOrEmpty(email)) _email = email;
         }
 
         private void KhoiTao()
@@ -51,6 +61,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 {
                     _hoTen = PhienDangNhap.HoTen;
                     _tenDangNhap = PhienDangNhap.TenDangNhap;
+                    _email = PhienDangNhap.Email;
                     lblNguoiDung.Text = "Đăng nhập: " + _hoTen;
                     lblNguoiDungHienTai.Text = _hoTen;
                 }
@@ -146,11 +157,20 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         // Cập nhật thông tin người dùng trên toàn giao diện
         public void CapNhatThongTinNguoiDung(string hoTen)
         {
+            CapNhatThongTinNguoiDung(hoTen, null);
+        }
+
+        public void CapNhatThongTinNguoiDung(string hoTen, string email)
+        {
             if (!string.IsNullOrEmpty(hoTen))
             {
                 _hoTen = hoTen;
                 lblNguoiDung.Text = "Đăng nhập: " + _hoTen;
                 lblNguoiDungHienTai.Text = _hoTen;
+            }
+            if (!string.IsNullOrEmpty(email))
+            {
+                _email = email;
             }
         }
 
@@ -215,8 +235,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private void MoFormThongTinCaNhan()
         {
-            var f = new frmThongTinCaNhan(_tenDangNhap, _hoTen);
+            string emailHienTai = !string.IsNullOrEmpty(_email) ? _email : (PhienDangNhap.DaDangNhap ? PhienDangNhap.Email : "");
+            var f = new frmThongTinCaNhan(_tenDangNhap, _hoTen, emailHienTai);
             f.OnThongTinDaCapNhat += CapNhatThongTinNguoiDung;
+            f.OnThongTinChiTietDaCapNhat += (hoTenMoi, emailMoi) => CapNhatThongTinNguoiDung(hoTenMoi, emailMoi);
             MoFormCon(f, "Thông tin cá nhân", true);
             lblTrangThai.Text = "Đang xem: Thông tin cá nhân";
         }

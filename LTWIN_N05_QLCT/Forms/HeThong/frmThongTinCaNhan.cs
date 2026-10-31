@@ -18,17 +18,19 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
 
         private string _tenDangNhapGoc = "minhanh";
         private string _hoTenGoc = "Nguyễn Minh Anh";
-        private string _emailGoc = "minhanh.nguyen@example.com";
+        private string _emailGoc = "";
 
         public string HoTenMoi { get; private set; }
         public string EmailMoi { get; private set; }
 
         public event Action<string> OnThongTinDaCapNhat;
+        public event Action<string, string> OnThongTinChiTietDaCapNhat;
 
         public frmThongTinCaNhan()
         {
             InitializeComponent();
             KhoiTao();
+            TaiDuLieuTuHeThong();
         }
 
         public frmThongTinCaNhan(string tenDangNhap, string hoTen, string email = "") : this()
@@ -42,6 +44,54 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             txtEmail.Text = _emailGoc;
             HoTenMoi = _hoTenGoc;
             EmailMoi = _emailGoc;
+
+            // Nếu chưa có email, nạp trực tiếp từ CSDL / Phiên đăng nhập
+            if (string.IsNullOrEmpty(email))
+            {
+                TaiDuLieuTuHeThong();
+            }
+        }
+
+        public void TaiDuLieuTuHeThong()
+        {
+            try
+            {
+                string tenDN = !string.IsNullOrWhiteSpace(_tenDangNhapGoc) ? _tenDangNhapGoc : PhienDangNhap.TenDangNhap;
+                if (!string.IsNullOrWhiteSpace(tenDN))
+                {
+                    var user = TaiKhoanNV.LayThongTin(tenDN);
+                    if (user != null && user.ThanhCong)
+                    {
+                        _tenDangNhapGoc = user.TenDangNhap;
+                        _hoTenGoc = user.HoTen ?? "";
+                        _emailGoc = user.Email ?? "";
+
+                        txtTenDangNhap.Text = _tenDangNhapGoc;
+                        txtHoTen.Text = _hoTenGoc;
+                        txtEmail.Text = _emailGoc;
+                        HoTenMoi = _hoTenGoc;
+                        EmailMoi = _emailGoc;
+                        return;
+                    }
+                }
+
+                if (PhienDangNhap.DaDangNhap)
+                {
+                    if (!string.IsNullOrEmpty(PhienDangNhap.TenDangNhap)) _tenDangNhapGoc = PhienDangNhap.TenDangNhap;
+                    if (!string.IsNullOrEmpty(PhienDangNhap.HoTen)) _hoTenGoc = PhienDangNhap.HoTen;
+                    _emailGoc = PhienDangNhap.Email ?? "";
+
+                    txtTenDangNhap.Text = _tenDangNhapGoc;
+                    txtHoTen.Text = _hoTenGoc;
+                    txtEmail.Text = _emailGoc;
+                    HoTenMoi = _hoTenGoc;
+                    EmailMoi = _emailGoc;
+                }
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi nạp dữ liệu tại frmThongTinCaNhan.TaiDuLieuTuHeThong", ex);
+            }
         }
 
         private void KhoiTao()
@@ -141,7 +191,8 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             }
 
             // Gọi BLL cập nhật thông tin
-            var kq = TaiKhoanNV.CapNhatThongTin(txtTenDangNhap.Text, hoTen, email);
+            string tenDN = !string.IsNullOrWhiteSpace(txtTenDangNhap.Text) ? txtTenDangNhap.Text.Trim() : _tenDangNhapGoc;
+            var kq = TaiKhoanNV.CapNhatThongTin(tenDN, hoTen, email);
             if (kq.ThanhCong)
             {
                 _hoTenGoc = hoTen;
@@ -150,20 +201,28 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
                 EmailMoi = email;
 
                 HienThongBao("✓ Cập nhật thông tin cá nhân thành công!", false);
+                pnlBorderHoTen.Invalidate();
+                pnlBorderEmail.Invalidate();
 
                 // Kích hoạt sự kiện thông báo cho frmMain
                 OnThongTinDaCapNhat?.Invoke(hoTen);
+                OnThongTinChiTietDaCapNhat?.Invoke(hoTen, email);
 
                 // Cập nhật trực tiếp lên frmMain cha nếu form được nhúng
                 var frmCha = FindForm() as frmMain ?? ParentForm as frmMain;
                 if (frmCha != null)
                 {
-                    frmCha.CapNhatThongTinNguoiDung(hoTen);
+                    frmCha.CapNhatThongTinNguoiDung(hoTen, email);
                 }
             }
             else
             {
                 HienThongBao(kq.ThongBao, true);
+                if (kq.ThongBao != null && kq.ThongBao.ToLower().Contains("email"))
+                {
+                    DatMauVienLoi(pnlBorderEmail, true);
+                    txtEmail.Focus();
+                }
             }
         }
 

@@ -202,7 +202,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(610, 23);
             this.txtEmail.TabIndex = 0;
-            this.txtEmail.Text = "minhanh.nguyen@example.com";
+            this.txtEmail.Text = "";
             // 
             // pnlPhanCach
             // 
