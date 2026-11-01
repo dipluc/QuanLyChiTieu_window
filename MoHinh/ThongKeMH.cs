@@ -9,6 +9,7 @@ namespace MoHinh
         public decimal TongChi { get; set; }
         public decimal ChenhLech => TongThu - TongChi;
         public decimal TyLeTietKiem => TongThu > 0 ? Math.Round((TongThu - TongChi) * 100m / TongThu, 1) : 0;
+        public decimal TyLeChi => TongThu > 0 ? Math.Round((TongChi) * 100m / TongThu, 1) : 0;
         public int SoGiaoDichThu { get; set; }
         public int SoGiaoDichChi { get; set; }
 

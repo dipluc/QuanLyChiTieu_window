@@ -189,54 +189,54 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // btnTrangChu
             // 
             this.btnTrangChu.Name = "btnTrangChu";
-            this.btnTrangChu.Size = new System.Drawing.Size(224, 26);
+            this.btnTrangChu.Size = new System.Drawing.Size(218, 26);
             this.btnTrangChu.Text = "Trang chủ";
             // 
             // mnuDangNhap
             // 
             this.mnuDangNhap.Name = "mnuDangNhap";
-            this.mnuDangNhap.Size = new System.Drawing.Size(224, 26);
+            this.mnuDangNhap.Size = new System.Drawing.Size(218, 26);
             this.mnuDangNhap.Text = "Đăng nhập";
             // 
             // mnuDangKy
             // 
             this.mnuDangKy.Name = "mnuDangKy";
-            this.mnuDangKy.Size = new System.Drawing.Size(224, 26);
+            this.mnuDangKy.Size = new System.Drawing.Size(218, 26);
             this.mnuDangKy.Text = "Đăng ký";
             // 
             // mnuDoiMatKhau
             // 
             this.mnuDoiMatKhau.Name = "mnuDoiMatKhau";
-            this.mnuDoiMatKhau.Size = new System.Drawing.Size(224, 26);
+            this.mnuDoiMatKhau.Size = new System.Drawing.Size(218, 26);
             this.mnuDoiMatKhau.Text = "Đổi mật khẩu";
             // 
             // mnuThongTinCaNhan
             // 
             this.mnuThongTinCaNhan.Name = "mnuThongTinCaNhan";
-            this.mnuThongTinCaNhan.Size = new System.Drawing.Size(224, 26);
+            this.mnuThongTinCaNhan.Size = new System.Drawing.Size(218, 26);
             this.mnuThongTinCaNhan.Text = "Thông tin cá nhân";
             // 
             // mnuPhanQuyen
             // 
             this.mnuPhanQuyen.Name = "mnuPhanQuyen";
-            this.mnuPhanQuyen.Size = new System.Drawing.Size(224, 26);
+            this.mnuPhanQuyen.Size = new System.Drawing.Size(218, 26);
             this.mnuPhanQuyen.Text = "Phân quyền";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(215, 6);
             // 
             // mnuDangXuat
             // 
             this.mnuDangXuat.Name = "mnuDangXuat";
-            this.mnuDangXuat.Size = new System.Drawing.Size(224, 26);
+            this.mnuDangXuat.Size = new System.Drawing.Size(218, 26);
             this.mnuDangXuat.Text = "Đăng xuất";
             // 
             // mnuThoat
             // 
             this.mnuThoat.Name = "mnuThoat";
-            this.mnuThoat.Size = new System.Drawing.Size(224, 26);
+            this.mnuThoat.Size = new System.Drawing.Size(218, 26);
             this.mnuThoat.Text = "Thoát";
             // 
             // mnuDanhMuc
