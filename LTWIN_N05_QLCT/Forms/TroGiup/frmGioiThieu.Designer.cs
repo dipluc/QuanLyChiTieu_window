@@ -1,4 +1,4 @@
-﻿namespace LTWIN_N05_QLCT.Forms.TroGiup
+namespace LTWIN_N05_QLCT.Forms.TroGiup
 {
     partial class frmGioiThieu
     {
@@ -62,7 +62,7 @@
             this.pnlGioiThieu.Controls.Add(this.btnDongGioiThieu);
             this.pnlGioiThieu.Location = new System.Drawing.Point(24, 60);
             this.pnlGioiThieu.Name = "pnlGioiThieu";
-            this.pnlGioiThieu.Size = new System.Drawing.Size(650, 345);
+            this.pnlGioiThieu.Size = new System.Drawing.Size(650, 395);
             this.pnlGioiThieu.TabIndex = 1;
             // 
             // lblTenUngDung
@@ -106,76 +106,75 @@
             this.pnlPhanCach1.Size = new System.Drawing.Size(594, 1);
             this.pnlPhanCach1.TabIndex = 3;
             // 
+            // lblGiangVienHuongDan
+            // 
+            this.lblGiangVienHuongDan.AutoSize = true;
+            this.lblGiangVienHuongDan.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGiangVienHuongDan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.lblGiangVienHuongDan.Location = new System.Drawing.Point(28, 144);
+            this.lblGiangVienHuongDan.Name = "lblGiangVienHuongDan";
+            this.lblGiangVienHuongDan.Size = new System.Drawing.Size(161, 21);
+            this.lblGiangVienHuongDan.TabIndex = 4;
+            this.lblGiangVienHuongDan.Text = "Giảng viên hướng dẫn:";
+            // 
+            // lblTenGiangVien
+            // 
+            this.lblTenGiangVien.AutoSize = true;
+            this.lblTenGiangVien.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenGiangVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblTenGiangVien.Location = new System.Drawing.Point(195, 144);
+            this.lblTenGiangVien.Name = "lblTenGiangVien";
+            this.lblTenGiangVien.Size = new System.Drawing.Size(165, 21);
+            this.lblTenGiangVien.TabIndex = 5;
+            this.lblTenGiangVien.Text = "Bùi Thị Hoàng Anh";
+            // 
             // lblNhomThucHien
             // 
             this.lblNhomThucHien.AutoSize = true;
-            this.lblNhomThucHien.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNhomThucHien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblNhomThucHien.Location = new System.Drawing.Point(28, 144);
+            this.lblNhomThucHien.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNhomThucHien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.lblNhomThucHien.Location = new System.Drawing.Point(28, 178);
             this.lblNhomThucHien.Name = "lblNhomThucHien";
-            this.lblNhomThucHien.Size = new System.Drawing.Size(140, 23);
-            this.lblNhomThucHien.TabIndex = 4;
-            this.lblNhomThucHien.Text = "Nhóm thực hiện";
+            this.lblNhomThucHien.Size = new System.Drawing.Size(148, 21);
+            this.lblNhomThucHien.TabIndex = 6;
+            this.lblNhomThucHien.Text = "Sinh viên thực hiện:";
             // 
             // lblThanhVienNhom
             // 
             this.lblThanhVienNhom.AutoSize = true;
-            this.lblThanhVienNhom.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThanhVienNhom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblThanhVienNhom.Location = new System.Drawing.Point(28, 174);
+            this.lblThanhVienNhom.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThanhVienNhom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblThanhVienNhom.Location = new System.Drawing.Point(195, 178);
             this.lblThanhVienNhom.Name = "lblThanhVienNhom";
-            this.lblThanhVienNhom.Size = new System.Drawing.Size(130, 21);
-            this.lblThanhVienNhom.TabIndex = 5;
-            this.lblThanhVienNhom.Text = "Thành viên nhóm";
+            this.lblThanhVienNhom.Size = new System.Drawing.Size(70, 21);
+            this.lblThanhVienNhom.TabIndex = 7;
+            this.lblThanhVienNhom.Text = "Nhóm 5";
             // 
             // lblDanhSachThanhVien
             // 
             this.lblDanhSachThanhVien.AutoSize = true;
             this.lblDanhSachThanhVien.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDanhSachThanhVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblDanhSachThanhVien.Location = new System.Drawing.Point(180, 174);
+            this.lblDanhSachThanhVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.lblDanhSachThanhVien.Location = new System.Drawing.Point(195, 208);
             this.lblDanhSachThanhVien.Name = "lblDanhSachThanhVien";
-            this.lblDanhSachThanhVien.Size = new System.Drawing.Size(109, 21);
-            this.lblDanhSachThanhVien.TabIndex = 6;
-            this.lblDanhSachThanhVien.Text = "Chưa cập nhật";
-            // 
-            // lblGiangVienHuongDan
-            // 
-            this.lblGiangVienHuongDan.AutoSize = true;
-            this.lblGiangVienHuongDan.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGiangVienHuongDan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblGiangVienHuongDan.Location = new System.Drawing.Point(28, 204);
-            this.lblGiangVienHuongDan.Name = "lblGiangVienHuongDan";
-            this.lblGiangVienHuongDan.Size = new System.Drawing.Size(161, 21);
-            this.lblGiangVienHuongDan.TabIndex = 7;
-            this.lblGiangVienHuongDan.Text = "Giảng viên hướng dẫn";
-            // 
-            // lblTenGiangVien
-            // 
-            this.lblTenGiangVien.AutoSize = true;
-            this.lblTenGiangVien.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenGiangVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblTenGiangVien.Location = new System.Drawing.Point(180, 204);
-            this.lblTenGiangVien.Name = "lblTenGiangVien";
-            this.lblTenGiangVien.Size = new System.Drawing.Size(109, 21);
-            this.lblTenGiangVien.TabIndex = 8;
-            this.lblTenGiangVien.Text = "Chưa cập nhật";
+            this.lblDanhSachThanhVien.Size = new System.Drawing.Size(320, 84);
+            this.lblDanhSachThanhVien.TabIndex = 8;
+            this.lblDanhSachThanhVien.Text = "1.  231A010165 — Nguyễn Văn Thanh Diệp\r\n2.  231A290050 — Huỳnh Khải Đông\r\n3.  231A290140 — Võ Đức Bình\r\n4.  231A290014 — Thái Bình Xuyên";
             // 
             // lblThongTinNhomVaGiangVien
             // 
             this.lblThongTinNhomVaGiangVien.AutoSize = true;
-            this.lblThongTinNhomVaGiangVien.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongTinNhomVaGiangVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblThongTinNhomVaGiangVien.Location = new System.Drawing.Point(28, 234);
             this.lblThongTinNhomVaGiangVien.Name = "lblThongTinNhomVaGiangVien";
-            this.lblThongTinNhomVaGiangVien.Size = new System.Drawing.Size(375, 20);
+            this.lblThongTinNhomVaGiangVien.Size = new System.Drawing.Size(0, 20);
             this.lblThongTinNhomVaGiangVien.TabIndex = 9;
-            this.lblThongTinNhomVaGiangVien.Text = "Thông tin nhóm và giảng viên hướng dẫn sẽ được bổ sung.";
+            this.lblThongTinNhomVaGiangVien.Text = "";
+            this.lblThongTinNhomVaGiangVien.Visible = false;
             // 
             // pnlPhanCach2
             // 
             this.pnlPhanCach2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
-            this.pnlPhanCach2.Location = new System.Drawing.Point(28, 268);
+            this.pnlPhanCach2.Location = new System.Drawing.Point(28, 316);
             this.pnlPhanCach2.Name = "pnlPhanCach2";
             this.pnlPhanCach2.Size = new System.Drawing.Size(594, 1);
             this.pnlPhanCach2.TabIndex = 10;
@@ -188,7 +187,7 @@
             this.btnDongGioiThieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDongGioiThieu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDongGioiThieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnDongGioiThieu.Location = new System.Drawing.Point(540, 288);
+            this.btnDongGioiThieu.Location = new System.Drawing.Point(540, 336);
             this.btnDongGioiThieu.Name = "btnDongGioiThieu";
             this.btnDongGioiThieu.Size = new System.Drawing.Size(82, 34);
             this.btnDongGioiThieu.TabIndex = 11;
