@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TaiKhoanNV.cs" />
+    <Compile Include="KiemTraHeThongNV.cs" />
     <Compile Include="ThongKeNV.cs" />
     <Compile Include="TienIch\BaoMat.cs" />
     <Compile Include="TienIch\GhiNhoDangNhap.cs" />

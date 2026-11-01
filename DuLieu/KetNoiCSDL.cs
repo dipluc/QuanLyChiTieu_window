@@ -13,6 +13,24 @@ namespace DuLieu
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
+            // Cấu hình của file EXE là nguồn chính, kể cả khi debugger đổi working directory.
+            var configured = ConfigurationManager.ConnectionStrings["Conn_QLChiTieu"];
+            if (configured != null && !string.IsNullOrWhiteSpace(configured.ConnectionString))
+            {
+                var settings = new SqlConnectionStringBuilder(configured.ConnectionString);
+                if (!string.IsNullOrWhiteSpace(settings.AttachDBFilename))
+                {
+                    string directory = AppDomain.CurrentDomain.GetData("DataDirectory") as string;
+                    if (string.IsNullOrEmpty(directory)) directory = baseDir;
+                    string path = settings.AttachDBFilename.Replace("|DataDirectory|", directory);
+                    if (!Path.IsPathRooted(path)) path = Path.Combine(baseDir, path);
+                    settings.AttachDBFilename = Path.GetFullPath(path);
+                    if (!File.Exists(settings.AttachDBFilename))
+                        throw new FileNotFoundException("Không tìm thấy tệp cơ sở dữ liệu đã cấu hình.", settings.AttachDBFilename);
+                }
+                return settings.ConnectionString;
+            }
+
             // 1. Kiểm tra nếu có DataDirectory
             string dataDir = AppDomain.CurrentDomain.GetData("DataDirectory") as string;
             if (!string.IsNullOrEmpty(dataDir))
@@ -62,33 +80,51 @@ namespace DuLieu
                 }
             }
 
-            try
-            {
-                var connSetting = ConfigurationManager.ConnectionStrings["Conn_QLChiTieu"];
-                if (connSetting != null && !string.IsNullOrEmpty(connSetting.ConnectionString))
-                {
-                    return connSetting.ConnectionString;
-                }
-            }
-            catch { }
-
-            return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\QLChiTieu.mdf;Integrated Security=True;Connect Timeout=30";
+            throw new FileNotFoundException("Không tìm thấy QLChiTieu.mdf. Hãy kiểm tra cấu hình Conn_QLChiTieu và thư mục Database.");
         }
 
         private static string TaoChuoiKetNoi(string duongDanMdf)
         {
-            return string.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={0};Integrated Security=True;Connect Timeout=30", duongDanMdf);
+            return new SqlConnectionStringBuilder
+            {
+                DataSource = @"(LocalDB)\MSSQLLocalDB",
+                InitialCatalog = "QLChiTieu",
+                AttachDBFilename = duongDanMdf,
+                IntegratedSecurity = true,
+                ConnectTimeout = 30
+            }.ConnectionString;
         }
 
         // Mở kết nối
         public static SqlConnection LayKetNoi()
         {
-            var conn = new SqlConnection(LayChuoiKetNoi());
-            if (conn.State == ConnectionState.Closed)
+            var settings = new SqlConnectionStringBuilder(LayChuoiKetNoi());
+            const string localDbPrefix = @"(LocalDB)\";
+            string instance = settings.DataSource.StartsWith(localDbPrefix, StringComparison.OrdinalIgnoreCase)
+                ? settings.DataSource.Substring(localDbPrefix.Length) : null;
+            for (int attempt = 0; ; attempt++)
             {
-                conn.Open();
+                if (instance != null)
+                    settings.DataSource = LocalDb.LayDiaChi(instance, attempt > 0);
+                var conn = new SqlConnection(settings.ConnectionString);
+                try
+                {
+                    conn.Open();
+                    return conn;
+                }
+                catch (SqlException)
+                {
+                    SqlConnection.ClearPool(conn);
+                    conn.Dispose();
+                    // Chỉ thử lại thao tác MỞ kết nối khi pipe đổi. Không chạy lại INSERT/UPDATE.
+                    if (instance == null || attempt > 0) throw;
+                }
+                catch
+                {
+                    conn.Dispose();
+                    throw;
+                }
             }
-            return conn;
         }
 
         // Kiểm tra kết nối nhanh

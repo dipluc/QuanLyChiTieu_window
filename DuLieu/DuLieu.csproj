@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KetNoiCSDL.cs" />
+    <Compile Include="LocalDb.cs" />
     <Compile Include="NguoiDungDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThongKeDL.cs" />

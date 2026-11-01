@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Diagnostics;
 
 namespace NghiepVu.TienIch
 {
@@ -28,12 +29,13 @@ namespace NghiepVu.TienIch
                 lock (_lockObj)
                 {
                     string noiDung = string.Format(
-                        "[{0:yyyy-MM-dd HH:mm:ss}] [ERROR] {1}{2}Exception: {3}{2}StackTrace: {4}{2}--------------------------------------------------{2}",
+                        "[{0:yyyy-MM-dd HH:mm:ss}] [ERROR] {1}{2}Exception: {3}{2}Process: {4}{2}--------------------------------------------------{2}",
                         DateTime.Now,
                         tieuDe,
                         Environment.NewLine,
-                        ex?.Message,
-                        ex?.StackTrace
+                        ex?.ToString(),
+                        string.Format("{0}-bit; Debugger={1}; BaseDirectory={2}",
+                            IntPtr.Size * 8, Debugger.IsAttached, AppDomain.CurrentDomain.BaseDirectory)
                     );
 
                     File.AppendAllText(_duongDanTepLog, noiDung);
