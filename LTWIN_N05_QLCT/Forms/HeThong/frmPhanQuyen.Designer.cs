@@ -54,7 +54,7 @@
             this.pnlMoTa.Controls.Add(this.lblMoTa);
             this.pnlMoTa.Location = new System.Drawing.Point(24, 64);
             this.pnlMoTa.Name = "pnlMoTa";
-            this.pnlMoTa.Size = new System.Drawing.Size(952, 64);
+            this.pnlMoTa.Size = new System.Drawing.Size(952, 81);
             this.pnlMoTa.TabIndex = 1;
             // 
             // lblMoTa
@@ -62,7 +62,7 @@
             this.lblMoTa.AutoSize = true;
             this.lblMoTa.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMoTa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblMoTa.Location = new System.Drawing.Point(-12, 0);
+            this.lblMoTa.Location = new System.Drawing.Point(41, 1);
             this.lblMoTa.Name = "lblMoTa";
             this.lblMoTa.Size = new System.Drawing.Size(611, 63);
             this.lblMoTa.TabIndex = 2;
