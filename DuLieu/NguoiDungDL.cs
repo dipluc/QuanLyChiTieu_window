@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -102,6 +102,15 @@ namespace DuLieu
             int rows = KetNoiCSDL.ThucThiLenh(sql,
                 new SqlParameter("@QuyenHan", quyenHan),
                 new SqlParameter("@MaND", maND));
+            return rows > 0;
+        }
+
+        // Xóa người dùng. Nếu đã có dữ liệu liên quan (ví, thu, chi...) SQL Server ném SqlException 547,
+        // NguoiDungNV.Xoa bắt lỗi này để báo "đang được sử dụng".
+        public static bool XoaNguoiDung(int maND)
+        {
+            string sql = "DELETE FROM NguoiDung WHERE MaND = @MaND";
+            int rows = KetNoiCSDL.ThucThiLenh(sql, new SqlParameter("@MaND", maND));
             return rows > 0;
         }
 

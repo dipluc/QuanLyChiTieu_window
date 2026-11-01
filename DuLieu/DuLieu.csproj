@@ -48,11 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GiaoDichDinhKyDL.cs" />
     <Compile Include="KetNoiCSDL.cs" />
+    <Compile Include="LoaiChiDL.cs" />
+    <Compile Include="LoaiThuDL.cs" />
     <Compile Include="LocalDb.cs" />
+    <Compile Include="MucTieuDL.cs" />
     <Compile Include="NguoiDungDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThongKeDL.cs" />
+    <Compile Include="ViTienDL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoHinh\MoHinh.csproj">

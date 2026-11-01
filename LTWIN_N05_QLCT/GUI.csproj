@@ -94,6 +94,24 @@
     <Compile Include="Forms\Chinh\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\frmLoaiChiTieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\frmLoaiChiTieu.Designer.cs">
+      <DependentUpon>frmLoaiChiTieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\frmLoaiThuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\frmLoaiThuNhap.Designer.cs">
+      <DependentUpon>frmLoaiThuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\frmViTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\frmViTien.Designer.cs">
+      <DependentUpon>frmViTien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\HeThong\frmDangKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,12 +130,32 @@
     <Compile Include="Forms\HeThong\frmDoiMatKhau.Designer.cs">
       <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\HeThong\frmPhanQuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HeThong\frmPhanQuyen.Designer.cs" />
     <Compile Include="Forms\HeThong\frmThongTinCaNhan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\HeThong\frmThongTinCaNhan.Designer.cs">
       <DependentUpon>frmThongTinCaNhan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NghiepVu\frmGiaoDichDinhKy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmGiaoDichDinhKy.Designer.cs">
+      <DependentUpon>frmGiaoDichDinhKy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmMucTieuTietKiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmMucTieuTietKiem.Designer.cs">
+      <DependentUpon>frmMucTieuTietKiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmNguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmNguoiDung.Designer.cs" />
     <Compile Include="Forms\TroGiup\frmGioiThieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +185,7 @@
     <EmbeddedResource Include="Forms\HeThong\frmDoiMatKhau.resx">
       <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HeThong\frmPhanQuyen.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -204,9 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Forms\BaoCao\" />
-    <Folder Include="Forms\DanhMuc\" />
-    <Folder Include="Forms\NghiepVu\" />
-    <Folder Include="Forms\QuanTri\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Chỉ tạo database đầu tiên. Build lại không ghi đè dữ liệu người dùng bằng bản mẫu. -->
@@ -215,9 +251,7 @@
       <_SeedDatabase Condition="!Exists('$(TargetDir)Database\QLChiTieu.mdf') And !Exists('$(TargetDir)Database\QLChiTieu_log.ldf')">true</_SeedDatabase>
     </PropertyGroup>
     <MakeDir Directories="$(TargetDir)Database" Condition="'$(_SeedDatabase)' == 'true'" />
-    <Copy SourceFiles="Database\QLChiTieu.mdf;Database\QLChiTieu_log.ldf"
-          DestinationFolder="$(TargetDir)Database" Condition="'$(_SeedDatabase)' == 'true'" />
-    <Error Text="Database trong thư mục output thiếu MDF hoặc LDF. Hãy khôi phục đúng cặp tệp trước khi chạy."
-           Condition="!Exists('$(TargetDir)Database\QLChiTieu.mdf') Or !Exists('$(TargetDir)Database\QLChiTieu_log.ldf')" />
+    <Copy SourceFiles="Database\QLChiTieu.mdf;Database\QLChiTieu_log.ldf" DestinationFolder="$(TargetDir)Database" Condition="'$(_SeedDatabase)' == 'true'" />
+    <Error Text="Database trong thư mục output thiếu MDF hoặc LDF. Hãy khôi phục đúng cặp tệp trước khi chạy." Condition="!Exists('$(TargetDir)Database\QLChiTieu.mdf') Or !Exists('$(TargetDir)Database\QLChiTieu_log.ldf')" />
   </Target>
 </Project>

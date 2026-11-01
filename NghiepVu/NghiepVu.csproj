@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GiaoDichDinhKyNV.cs" />
+    <Compile Include="LoaiChiNV.cs" />
+    <Compile Include="LoaiThuNV.cs" />
+    <Compile Include="MucTieuNV.cs" />
+    <Compile Include="NguoiDungNV.cs" />
+    <Compile Include="PhanQuyenNV.cs" />
     <Compile Include="TaiKhoanNV.cs" />
     <Compile Include="KiemTraHeThongNV.cs" />
     <Compile Include="ThongKeNV.cs" />
@@ -54,6 +60,7 @@
     <Compile Include="TienIch\NhatKyLoi.cs" />
     <Compile Include="TienIch\PhienDangNhap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViTienNV.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DuLieu\DuLieu.csproj">

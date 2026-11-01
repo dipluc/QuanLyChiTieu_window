@@ -12,119 +12,44 @@ namespace DuLieu
         public static string LayChuoiKetNoi()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-
-            // Cấu hình của file EXE là nguồn chính, kể cả khi debugger đổi working directory.
-            var configured = ConfigurationManager.ConnectionStrings["Conn_QLChiTieu"];
-            if (configured != null && !string.IsNullOrWhiteSpace(configured.ConnectionString))
-            {
-                var settings = new SqlConnectionStringBuilder(configured.ConnectionString);
-                if (!string.IsNullOrWhiteSpace(settings.AttachDBFilename))
-                {
-                    string directory = AppDomain.CurrentDomain.GetData("DataDirectory") as string;
-                    if (string.IsNullOrEmpty(directory)) directory = baseDir;
-                    string path = settings.AttachDBFilename.Replace("|DataDirectory|", directory);
-                    if (!Path.IsPathRooted(path)) path = Path.Combine(baseDir, path);
-                    settings.AttachDBFilename = Path.GetFullPath(path);
-                    if (!File.Exists(settings.AttachDBFilename))
-                        throw new FileNotFoundException("Không tìm thấy tệp cơ sở dữ liệu đã cấu hình.", settings.AttachDBFilename);
-                }
-                return settings.ConnectionString;
-            }
-
-            // 1. Kiểm tra nếu có DataDirectory
-            string dataDir = AppDomain.CurrentDomain.GetData("DataDirectory") as string;
-            if (!string.IsNullOrEmpty(dataDir))
-            {
-                string pData1 = Path.Combine(dataDir, "Database", "QLChiTieu.mdf");
-                if (File.Exists(pData1)) return TaoChuoiKetNoi(pData1);
-                string pData2 = Path.Combine(dataDir, "QLChiTieu.mdf");
-                if (File.Exists(pData2)) return TaoChuoiKetNoi(pData2);
-            }
-
-            // 2. Tìm ngược lên các thư mục cha (khi debug/chạy trong Visual Studio hoặc kiểm thử)
-            string[] searchRoots = new string[] { baseDir, Directory.GetCurrentDirectory() };
-            foreach (var root in searchRoots)
-            {
-                if (string.IsNullOrEmpty(root)) continue;
-                try
-                {
-                    DirectoryInfo cur = new DirectoryInfo(root);
-                    while (cur != null)
-                    {
-                        string pProject = Path.Combine(cur.FullName, "LTWIN_N05_QLCT", "Database", "QLChiTieu.mdf");
-                        if (File.Exists(pProject)) return TaoChuoiKetNoi(pProject);
-
-                        string pDb = Path.Combine(cur.FullName, "Database", "QLChiTieu.mdf");
-                        if (File.Exists(pDb)) return TaoChuoiKetNoi(pDb);
-
-                        cur = cur.Parent;
-                    }
-                }
-                catch { }
-            }
-
-            // 3. Kiểm tra các vị trí mặc định thông dụng
             string[] possiblePaths = new string[]
             {
-                Path.GetFullPath(Path.Combine(baseDir, @"..\..\Database\QLChiTieu.mdf")),
-                Path.GetFullPath(Path.Combine(baseDir, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf")),
                 Path.Combine(baseDir, "Database", "QLChiTieu.mdf"),
-                Path.Combine(baseDir, "QLChiTieu.mdf")
+                Path.Combine(baseDir, "QLChiTieu.mdf"),
+                Path.GetFullPath(Path.Combine(baseDir, @"..\..\Database\QLChiTieu.mdf")),
+                Path.GetFullPath(Path.Combine(baseDir, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf"))
             };
 
             foreach (var p in possiblePaths)
             {
                 if (File.Exists(p))
                 {
-                    return TaoChuoiKetNoi(p);
+                    return string.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={0};Integrated Security=True;Connect Timeout=30", p);
                 }
             }
 
-            throw new FileNotFoundException("Không tìm thấy QLChiTieu.mdf. Hãy kiểm tra cấu hình Conn_QLChiTieu và thư mục Database.");
-        }
-
-        private static string TaoChuoiKetNoi(string duongDanMdf)
-        {
-            return new SqlConnectionStringBuilder
+            try
             {
-                DataSource = @"(LocalDB)\MSSQLLocalDB",
-                InitialCatalog = "QLChiTieu",
-                AttachDBFilename = duongDanMdf,
-                IntegratedSecurity = true,
-                ConnectTimeout = 30
-            }.ConnectionString;
+                var connSetting = ConfigurationManager.ConnectionStrings["Conn_QLChiTieu"];
+                if (connSetting != null && !string.IsNullOrEmpty(connSetting.ConnectionString))
+                {
+                    return connSetting.ConnectionString;
+                }
+            }
+            catch { }
+
+            return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\QLChiTieu.mdf;Integrated Security=True;Connect Timeout=30";
         }
 
         // Mở kết nối
         public static SqlConnection LayKetNoi()
         {
-            var settings = new SqlConnectionStringBuilder(LayChuoiKetNoi());
-            const string localDbPrefix = @"(LocalDB)\";
-            string instance = settings.DataSource.StartsWith(localDbPrefix, StringComparison.OrdinalIgnoreCase)
-                ? settings.DataSource.Substring(localDbPrefix.Length) : null;
-            for (int attempt = 0; ; attempt++)
+            var conn = new SqlConnection(LayChuoiKetNoi());
+            if (conn.State == ConnectionState.Closed)
             {
-                if (instance != null)
-                    settings.DataSource = LocalDb.LayDiaChi(instance, attempt > 0);
-                var conn = new SqlConnection(settings.ConnectionString);
-                try
-                {
-                    conn.Open();
-                    return conn;
-                }
-                catch (SqlException)
-                {
-                    SqlConnection.ClearPool(conn);
-                    conn.Dispose();
-                    // Chỉ thử lại thao tác MỞ kết nối khi pipe đổi. Không chạy lại INSERT/UPDATE.
-                    if (instance == null || attempt > 0) throw;
-                }
-                catch
-                {
-                    conn.Dispose();
-                    throw;
-                }
+                conn.Open();
             }
+            return conn;
         }
 
         // Kiểm tra kết nối nhanh
