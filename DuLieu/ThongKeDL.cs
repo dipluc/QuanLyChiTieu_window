@@ -13,10 +13,7 @@ namespace DuLieu
 {
     public static class ThongKeDL
     {
-        public static ThongKeMH LayTongQuan(
-            int maND,
-            DateTime tuNgay,
-            DateTime denNgay)
+        public static ThongKeMH LayTongQuan(int maND, DateTime tuNgay, DateTime denNgay)
         {
             string sql = @"
             SELECT
@@ -174,6 +171,51 @@ namespace DuLieu
                 });
             }
             return danhSach;
+        }
+
+
+        //Tong so du vi
+        public static decimal LayTongSoDuVi(int maND)
+        {
+            const string sql = @"
+                SELECT ISNULL(SUM(SoDuHienTai), 0)
+                FROM vw_SoDuVi
+                Where MaND = @MaND;
+            ";
+
+            object ketQua = KetNoiCSDL.LayMotGiaTri(
+                sql,
+                new SqlParameter("@MaND", maND) // Chặn tan cong database bang SqlParameter
+                );
+            return ketQua == null || ketQua == DBNull.Value
+                ? 0m //Tra ve 0
+                : Convert.ToDecimal(ketQua); // Tra ve kq
+        }
+
+        //Chi theo loai
+        public static DataTable LayChiTheoLoai(int maND, DateTime tuNgay, DateTime denNgay) { 
+            const string sql = @"
+                SELECT
+                    lc.MaLoaiChi,
+                    lc.TenLoaiChi,
+                    SUM(ct.SoTien) AS TongChi
+                FROM ChiTieu ct
+                INNER JOIN LoaiChi lc
+                    ON ct.MaLoaiChi = lc.MaLoaiChi
+                    AND ct.MaND = lc.MaND
+                WHERE ct.MaND = @MaND
+                    AND ct.NgayChi >= @TuNgay
+                    AND ct.NgayChi < @DenNgay
+                GROUP BY lc.MaLoaiChi, lc.TenLoaiChi
+                HAVING SUM(ct.SoTien) > 0
+                ORDER BY TongChi DESC, lc.MaLoaiChi ASC";
+
+            return KetNoiCSDL.DocDuLieu(
+                sql, 
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay)
+                );
         }
     }
 }

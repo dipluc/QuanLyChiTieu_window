@@ -165,6 +165,15 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             dtpThang.ValueChanged += (s, e) =>
             {
                 lblTrangThai.Text = string.Format("Xem dữ liệu {0:MM/yyyy}", dtpThang.Value);
+
+                foreach (Control control in pnlNoiDung.Controls)
+                {
+                    if(control is frmDashboard dashboard)
+                    {
+                        dashboard.capNhatThang(dtpThang.Value);
+                        break;
+                    }
+                }
             };
 
             // Mở Dashboard mặc định khi form hiển thị
@@ -229,6 +238,15 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private void LamMoiDuLieu()
         {
+            foreach (Control control in pnlNoiDung.Controls)
+            {
+                if (control is frmDashboard dashboard)
+                {
+                    dashboard.capNhatThang(dtpThang.Value);
+                    break;
+                }
+            }
+
             lblTrangThai.Text = "Dữ liệu đã được làm mới lúc " + DateTime.Now.ToString("HH:mm:ss");
         }
 
@@ -279,6 +297,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private void MoFormViTien()
         {
             MoChucNang(new frmViTien(), "Danh mục ví tiền");
+            btnLamMoi.Hide();
+            dtpThang.Hide();
+            lblThang.Hide();
         }
 
         private void MoFormLoaiChiTieu()
@@ -339,9 +360,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private void MoDashboard()
         {
-            var frm = new frmDashboard();
+            var frm = new frmDashboard(dtpThang.Value);
             MoFormCon(frm, "Tổng quan");
-            lblTrangThai.Text = "Đang xem: Tổng quan";
+            lblTrangThai.Text = $"Đang xem: Tổng quan {dtpThang.Value:MM/yyyy}";
         }
 
         private void DangXuat()
