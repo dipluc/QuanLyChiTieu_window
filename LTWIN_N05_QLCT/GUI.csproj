@@ -172,6 +172,45 @@
     <Compile Include="Forms\TroGiup\frmHuongDan.Designer.cs">
       <DependentUpon>frmHuongDan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Models.cs" />
+    <Compile Include="Services\DataService.cs" />
+    <Compile Include="Forms\IDongBoThang.cs" />
+    <Compile Include="Forms\NghiepVu\frmQuanLyThuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmQuanLyThuNhap.Designer.cs">
+      <DependentUpon>frmQuanLyThuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmQuanLyChiTieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmQuanLyChiTieu.Designer.cs">
+      <DependentUpon>frmQuanLyChiTieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmNganSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmNganSach.Designer.cs">
+      <DependentUpon>frmNganSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmChuyenTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmChuyenTien.Designer.cs">
+      <DependentUpon>frmChuyenTien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmTimKiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmTimKiem.Designer.cs">
+      <DependentUpon>frmTimKiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmCauHinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmCauHinh.Designer.cs">
+      <DependentUpon>frmCauHinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Chinh\frmDashboard.resx">
@@ -267,6 +306,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Forms\BaoCao\" />
+    <Folder Include="Forms\DanhMuc\" />
+    <Folder Include="Forms\NghiepVu\" />
+    <Folder Include="Forms\QuanTri\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Chỉ tạo database đầu tiên. Build lại không ghi đè dữ liệu người dùng bằng bản mẫu. -->

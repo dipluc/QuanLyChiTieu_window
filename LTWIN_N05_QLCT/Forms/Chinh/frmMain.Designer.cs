@@ -25,7 +25,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnDong = new System.Windows.Forms.Button();
             this.mnuChinh = new System.Windows.Forms.MenuStrip();
             this.mnuHeThong = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnTrangChu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDangNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDangKy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDoiMatKhau = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,8 +41,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuThuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuChiTieu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNganSach = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMucTieuTietKiem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuGiaoDichDinhKy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCao = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCaoThuChi = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCaoNganSach = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +70,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblViDangChon = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPhanCach2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNgayHienTai = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnTrangChu = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlThanhTieuDe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).BeginInit();
             this.mnuChinh.SuspendLayout();
@@ -186,57 +184,51 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuHeThong.Size = new System.Drawing.Size(88, 25);
             this.mnuHeThong.Text = "Hệ thống";
             // 
-            // btnTrangChu
-            // 
-            this.btnTrangChu.Name = "btnTrangChu";
-            this.btnTrangChu.Size = new System.Drawing.Size(218, 26);
-            this.btnTrangChu.Text = "Trang chủ";
-            // 
             // mnuDangNhap
             // 
             this.mnuDangNhap.Name = "mnuDangNhap";
-            this.mnuDangNhap.Size = new System.Drawing.Size(218, 26);
+            this.mnuDangNhap.Size = new System.Drawing.Size(224, 26);
             this.mnuDangNhap.Text = "Đăng nhập";
             // 
             // mnuDangKy
             // 
             this.mnuDangKy.Name = "mnuDangKy";
-            this.mnuDangKy.Size = new System.Drawing.Size(218, 26);
+            this.mnuDangKy.Size = new System.Drawing.Size(224, 26);
             this.mnuDangKy.Text = "Đăng ký";
             // 
             // mnuDoiMatKhau
             // 
             this.mnuDoiMatKhau.Name = "mnuDoiMatKhau";
-            this.mnuDoiMatKhau.Size = new System.Drawing.Size(218, 26);
+            this.mnuDoiMatKhau.Size = new System.Drawing.Size(224, 26);
             this.mnuDoiMatKhau.Text = "Đổi mật khẩu";
             // 
             // mnuThongTinCaNhan
             // 
             this.mnuThongTinCaNhan.Name = "mnuThongTinCaNhan";
-            this.mnuThongTinCaNhan.Size = new System.Drawing.Size(218, 26);
+            this.mnuThongTinCaNhan.Size = new System.Drawing.Size(224, 26);
             this.mnuThongTinCaNhan.Text = "Thông tin cá nhân";
             // 
             // mnuPhanQuyen
             // 
             this.mnuPhanQuyen.Name = "mnuPhanQuyen";
-            this.mnuPhanQuyen.Size = new System.Drawing.Size(218, 26);
+            this.mnuPhanQuyen.Size = new System.Drawing.Size(224, 26);
             this.mnuPhanQuyen.Text = "Phân quyền";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(215, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // mnuDangXuat
             // 
             this.mnuDangXuat.Name = "mnuDangXuat";
-            this.mnuDangXuat.Size = new System.Drawing.Size(218, 26);
+            this.mnuDangXuat.Size = new System.Drawing.Size(224, 26);
             this.mnuDangXuat.Text = "Đăng xuất";
             // 
             // mnuThoat
             // 
             this.mnuThoat.Name = "mnuThoat";
-            this.mnuThoat.Size = new System.Drawing.Size(218, 26);
+            this.mnuThoat.Size = new System.Drawing.Size(224, 26);
             this.mnuThoat.Text = "Thoát";
             // 
             // mnuDanhMuc
@@ -273,9 +265,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuNghiepVu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuThuNhap,
             this.mnuChiTieu,
-            this.mnuNganSach,
-            this.mnuMucTieuTietKiem,
-            this.mnuGiaoDichDinhKy});
+            this.mnuNganSach});
             this.mnuNghiepVu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.mnuNghiepVu.Name = "mnuNghiepVu";
             this.mnuNghiepVu.Size = new System.Drawing.Size(96, 25);
@@ -298,18 +288,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuNganSach.Name = "mnuNganSach";
             this.mnuNganSach.Size = new System.Drawing.Size(222, 26);
             this.mnuNganSach.Text = "Quản lý ngân sách";
-            // 
-            // mnuMucTieuTietKiem
-            // 
-            this.mnuMucTieuTietKiem.Name = "mnuMucTieuTietKiem";
-            this.mnuMucTieuTietKiem.Size = new System.Drawing.Size(222, 26);
-            this.mnuMucTieuTietKiem.Text = "Mục tiêu tiết kiệm";
-            // 
-            // mnuGiaoDichDinhKy
-            // 
-            this.mnuGiaoDichDinhKy.Name = "mnuGiaoDichDinhKy";
-            this.mnuGiaoDichDinhKy.Size = new System.Drawing.Size(222, 26);
-            this.mnuGiaoDichDinhKy.Text = "Giao dịch định kỳ";
             // 
             // mnuBaoCao
             // 
@@ -621,6 +599,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblNgayHienTai.Size = new System.Drawing.Size(152, 20);
             this.lblNgayHienTai.Text = "Hôm nay: 29/10/2026";
             // 
+            // btnTrangChu
+            // 
+            this.btnTrangChu.Name = "btnTrangChu";
+            this.btnTrangChu.Size = new System.Drawing.Size(224, 26);
+            this.btnTrangChu.Text = "Trang chủ";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -661,7 +645,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.MenuStrip mnuChinh;
         private System.Windows.Forms.ToolStripMenuItem mnuHeThong;
-        private System.Windows.Forms.ToolStripMenuItem btnTrangChu;
         private System.Windows.Forms.ToolStripMenuItem mnuDangNhap;
         private System.Windows.Forms.ToolStripMenuItem mnuDangKy;
         private System.Windows.Forms.ToolStripMenuItem mnuDoiMatKhau;
@@ -678,8 +661,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private System.Windows.Forms.ToolStripMenuItem mnuThuNhap;
         private System.Windows.Forms.ToolStripMenuItem mnuChiTieu;
         private System.Windows.Forms.ToolStripMenuItem mnuNganSach;
-        private System.Windows.Forms.ToolStripMenuItem mnuMucTieuTietKiem;
-        private System.Windows.Forms.ToolStripMenuItem mnuGiaoDichDinhKy;
         private System.Windows.Forms.ToolStripMenuItem mnuBaoCao;
         private System.Windows.Forms.ToolStripMenuItem mnuBaoCaoThuChi;
         private System.Windows.Forms.ToolStripMenuItem mnuBaoCaoNganSach;
@@ -709,5 +690,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         public System.Windows.Forms.ToolStripStatusLabel lblViDangChon;
         private System.Windows.Forms.ToolStripStatusLabel lblPhanCach2;
         private System.Windows.Forms.ToolStripStatusLabel lblNgayHienTai;
+        private System.Windows.Forms.ToolStripMenuItem btnTrangChu;
     }
 }
