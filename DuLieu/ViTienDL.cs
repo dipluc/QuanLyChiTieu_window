@@ -7,7 +7,6 @@ namespace DuLieu
 {
     public static class ViTienDL
     {
-        // Danh sách ví của một người dùng, kèm số dư hiện tại (view vw_SoDuVi)
         public static DataTable LayDanhSach(int maND)
         {
             string sql = @"SELECT MaVi, TenVi, LoaiVi, SoDuBanDau, SoDuHienTai, GhiChu, TrangThai
@@ -26,7 +25,6 @@ namespace DuLieu
             return ChuyenDoiDongThanhMH(dt.Rows[0]);
         }
 
-        // Kiểm tra trùng tên ví trong cùng một người dùng (loaiTruMaVi = 0 khi thêm mới)
         public static bool KiemTraTonTaiTenVi(int maND, string tenVi, int loaiTruMaVi = 0)
         {
             string sql = "SELECT COUNT(1) FROM ViTien WHERE MaND = @MaND AND TenVi = @TenVi AND MaVi <> @MaVi";
@@ -68,7 +66,6 @@ namespace DuLieu
             return rows > 0;
         }
 
-        // Đếm số bản ghi đang tham chiếu tới ví (thu, chi, chuyển tiền, giao dịch định kỳ)
         public static int DemBanGhiLienQuan(int maVi)
         {
             string sql = @"SELECT (SELECT COUNT(1) FROM ThuNhap WHERE MaVi = @MaVi)

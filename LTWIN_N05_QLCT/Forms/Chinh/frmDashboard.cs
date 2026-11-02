@@ -337,7 +337,14 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
             if (tongChi == 0)
             {
-                chartChiTheoLoai.Titles.Add("Chưa có khoản chi");
+                int viTri = series.Points.AddXY("Chưa có khoản chi", 1);
+
+                series.Points[viTri].Color = Color.LightGray;
+                series.Points[viTri].BorderWidth = 0;
+                series.Points[viTri].ToolTip = "Chưa có khoản chi";
+
+                series.IsValueShownAsLabel = false;
+                series["PieLabelStyle"] = "Disabled";
             }
         }
     }

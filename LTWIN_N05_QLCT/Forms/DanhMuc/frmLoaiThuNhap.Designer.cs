@@ -18,21 +18,27 @@
         private void InitializeComponent()
         {
             this.lblTieuDe = new System.Windows.Forms.Label();
-            this.pnlThongTin = new System.Windows.Forms.Panel();
-            this.lblMaLoaiThu = new System.Windows.Forms.Label();
-            this.txtMaLoaiThu = new System.Windows.Forms.TextBox();
-            this.lblTenLoaiThu = new System.Windows.Forms.Label();
-            this.txtTenLoaiThu = new System.Windows.Forms.TextBox();
-            this.chkTrangThai = new System.Windows.Forms.CheckBox();
-            this.lblGhiChu = new System.Windows.Forms.Label();
-            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.pnlDanhSach = new System.Windows.Forms.Panel();
+            this.lblThongKe = new System.Windows.Forms.Label();
             this.dgvLoaiThu = new System.Windows.Forms.DataGridView();
-            this.btnThem = new System.Windows.Forms.Button();
+            this.lblDanhSachTieuDe = new System.Windows.Forms.Label();
+            this.pnlThongTin = new System.Windows.Forms.Panel();
+            this.lblLuuY = new System.Windows.Forms.Label();
+            this.btnNgungSuDung = new System.Windows.Forms.Button();
+            this.btnMoi = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnBoQua = new System.Windows.Forms.Button();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.lblTrangThaiGiaTri = new System.Windows.Forms.Label();
+            this.lblTrangThaiTieuDe = new System.Windows.Forms.Label();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.lblGhiChu = new System.Windows.Forms.Label();
+            this.txtTenLoaiThu = new System.Windows.Forms.TextBox();
+            this.lblTenLoaiThu = new System.Windows.Forms.Label();
+            this.lblDangChon = new System.Windows.Forms.Label();
+            this.lblThongTinTieuDe = new System.Windows.Forms.Label();
+            this.lblThongBao = new System.Windows.Forms.Label();
             this.btnDong = new System.Windows.Forms.Button();
+            this.pnlDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiThu)).BeginInit();
             this.pnlThongTin.SuspendLayout();
             this.SuspendLayout();
@@ -43,243 +49,281 @@
             this.lblTieuDe.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTieuDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.lblTieuDe.Location = new System.Drawing.Point(24, 20);
-            this.lblTieuDe.Text = "Quản lý loại thu nhập";
             this.lblTieuDe.Name = "lblTieuDe";
-            this.lblTieuDe.TabIndex = 0;
+            this.lblTieuDe.Size = new System.Drawing.Size(170, 32);
+            this.lblTieuDe.TabIndex = 5;
+            this.lblTieuDe.Text = "Loại thu nhập";
             // 
-            // pnlThongTin
+            // pnlDanhSach
             // 
-            this.pnlThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlThongTin.BackColor = System.Drawing.Color.White;
-            this.pnlThongTin.Location = new System.Drawing.Point(24, 60);
-            this.pnlThongTin.Size = new System.Drawing.Size(812, 175);
-            this.pnlThongTin.Name = "pnlThongTin";
-            this.pnlThongTin.TabIndex = 1;
-            this.pnlThongTin.Controls.Add(this.txtGhiChu);
-            this.pnlThongTin.Controls.Add(this.lblGhiChu);
-            this.pnlThongTin.Controls.Add(this.chkTrangThai);
-            this.pnlThongTin.Controls.Add(this.txtTenLoaiThu);
-            this.pnlThongTin.Controls.Add(this.lblTenLoaiThu);
-            this.pnlThongTin.Controls.Add(this.txtMaLoaiThu);
-            this.pnlThongTin.Controls.Add(this.lblMaLoaiThu);
+            this.pnlDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlDanhSach.BackColor = System.Drawing.Color.White;
+            this.pnlDanhSach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDanhSach.Controls.Add(this.lblThongKe);
+            this.pnlDanhSach.Controls.Add(this.dgvLoaiThu);
+            this.pnlDanhSach.Controls.Add(this.lblDanhSachTieuDe);
+            this.pnlDanhSach.Location = new System.Drawing.Point(24, 60);
+            this.pnlDanhSach.Name = "pnlDanhSach";
+            this.pnlDanhSach.Size = new System.Drawing.Size(730, 525);
+            this.pnlDanhSach.TabIndex = 1;
             // 
-            // lblMaLoaiThu
+            // lblThongKe
             // 
-            this.lblMaLoaiThu.AutoSize = true;
-            this.lblMaLoaiThu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaLoaiThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblMaLoaiThu.Location = new System.Drawing.Point(20, 24);
-            this.lblMaLoaiThu.Text = "Mã loại thu";
-            this.lblMaLoaiThu.Name = "lblMaLoaiThu";
-            this.lblMaLoaiThu.TabIndex = 2;
-            // 
-            // txtMaLoaiThu
-            // 
-            this.txtMaLoaiThu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaLoaiThu.Location = new System.Drawing.Point(140, 20);
-            this.txtMaLoaiThu.Size = new System.Drawing.Size(250, 25);
-            this.txtMaLoaiThu.ReadOnly = true;
-            this.txtMaLoaiThu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtMaLoaiThu.Name = "txtMaLoaiThu";
-            this.txtMaLoaiThu.TabIndex = 3;
-            // 
-            // lblTenLoaiThu
-            // 
-            this.lblTenLoaiThu.AutoSize = true;
-            this.lblTenLoaiThu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenLoaiThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblTenLoaiThu.Location = new System.Drawing.Point(420, 24);
-            this.lblTenLoaiThu.Text = "Tên loại thu";
-            this.lblTenLoaiThu.Name = "lblTenLoaiThu";
-            this.lblTenLoaiThu.TabIndex = 4;
-            // 
-            // txtTenLoaiThu
-            // 
-            this.txtTenLoaiThu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenLoaiThu.Location = new System.Drawing.Point(540, 20);
-            this.txtTenLoaiThu.Size = new System.Drawing.Size(252, 25);
-            this.txtTenLoaiThu.MaxLength = 100;
-            this.txtTenLoaiThu.Name = "txtTenLoaiThu";
-            this.txtTenLoaiThu.TabIndex = 5;
-            this.txtTenLoaiThu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
-            // 
-            // chkTrangThai
-            // 
-            this.chkTrangThai.AutoSize = true;
-            this.chkTrangThai.Checked = true;
-            this.chkTrangThai.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTrangThai.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.chkTrangThai.Location = new System.Drawing.Point(140, 68);
-            this.chkTrangThai.Text = "Đang sử dụng";
-            this.chkTrangThai.UseVisualStyleBackColor = true;
-            this.chkTrangThai.Name = "chkTrangThai";
-            this.chkTrangThai.TabIndex = 6;
-            this.chkTrangThai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
-            // 
-            // lblGhiChu
-            // 
-            this.lblGhiChu.AutoSize = true;
-            this.lblGhiChu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGhiChu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblGhiChu.Location = new System.Drawing.Point(20, 110);
-            this.lblGhiChu.Text = "Ghi chú";
-            this.lblGhiChu.Name = "lblGhiChu";
-            this.lblGhiChu.TabIndex = 7;
-            // 
-            // txtGhiChu
-            // 
-            this.txtGhiChu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGhiChu.Location = new System.Drawing.Point(140, 106);
-            this.txtGhiChu.Size = new System.Drawing.Size(652, 25);
-            this.txtGhiChu.MaxLength = 200;
-            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.TabIndex = 8;
-            this.txtGhiChu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
+            this.lblThongKe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblThongKe.AutoSize = true;
+            this.lblThongKe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.lblThongKe.Location = new System.Drawing.Point(16, 490);
+            this.lblThongKe.Name = "lblThongKe";
+            this.lblThongKe.Size = new System.Drawing.Size(403, 23);
+            this.lblThongKe.TabIndex = 0;
+            this.lblThongKe.Text = "6 loại thu nhập • 5 đang sử dụng, 1 ngừng sử dụng";
             // 
             // dgvLoaiThu
             // 
             this.dgvLoaiThu.AllowUserToAddRows = false;
             this.dgvLoaiThu.AllowUserToDeleteRows = false;
             this.dgvLoaiThu.AllowUserToResizeRows = false;
-            this.dgvLoaiThu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvLoaiThu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLoaiThu.BackgroundColor = System.Drawing.Color.White;
             this.dgvLoaiThu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvLoaiThu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLoaiThu.EnableHeadersVisualStyles = false;
-            this.dgvLoaiThu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.dgvLoaiThu.Location = new System.Drawing.Point(24, 255);
+            this.dgvLoaiThu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.dgvLoaiThu.Location = new System.Drawing.Point(16, 50);
             this.dgvLoaiThu.MultiSelect = false;
+            this.dgvLoaiThu.Name = "dgvLoaiThu";
             this.dgvLoaiThu.ReadOnly = true;
             this.dgvLoaiThu.RowHeadersVisible = false;
+            this.dgvLoaiThu.RowHeadersWidth = 51;
             this.dgvLoaiThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLoaiThu.Size = new System.Drawing.Size(812, 280);
-            this.dgvLoaiThu.Name = "dgvLoaiThu";
-            this.dgvLoaiThu.TabIndex = 2;
+            this.dgvLoaiThu.Size = new System.Drawing.Size(698, 425);
+            this.dgvLoaiThu.TabIndex = 1;
             this.dgvLoaiThu.SelectionChanged += new System.EventHandler(this.dgvLoaiThu_SelectionChanged);
             // 
-            // btnThem
+            // lblDanhSachTieuDe
             // 
-            this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.btnThem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnThem.FlatAppearance.BorderSize = 0;
-            this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThem.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThem.ForeColor = System.Drawing.Color.White;
-            this.btnThem.Location = new System.Drawing.Point(24, 552);
-            this.btnThem.Size = new System.Drawing.Size(100, 38);
-            this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = false;
-            this.btnThem.Name = "btnThem";
-            this.btnThem.TabIndex = 3;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            this.lblDanhSachTieuDe.AutoSize = true;
+            this.lblDanhSachTieuDe.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDanhSachTieuDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblDanhSachTieuDe.Location = new System.Drawing.Point(16, 14);
+            this.lblDanhSachTieuDe.Name = "lblDanhSachTieuDe";
+            this.lblDanhSachTieuDe.Size = new System.Drawing.Size(224, 25);
+            this.lblDanhSachTieuDe.TabIndex = 2;
+            this.lblDanhSachTieuDe.Text = "Danh sách loại thu nhập";
+            // 
+            // pnlThongTin
+            // 
+            this.pnlThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlThongTin.BackColor = System.Drawing.Color.White;
+            this.pnlThongTin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlThongTin.Controls.Add(this.lblLuuY);
+            this.pnlThongTin.Controls.Add(this.btnNgungSuDung);
+            this.pnlThongTin.Controls.Add(this.btnMoi);
+            this.pnlThongTin.Controls.Add(this.btnSua);
+            this.pnlThongTin.Controls.Add(this.btnThem);
+            this.pnlThongTin.Controls.Add(this.lblTrangThaiGiaTri);
+            this.pnlThongTin.Controls.Add(this.lblTrangThaiTieuDe);
+            this.pnlThongTin.Controls.Add(this.txtGhiChu);
+            this.pnlThongTin.Controls.Add(this.lblGhiChu);
+            this.pnlThongTin.Controls.Add(this.txtTenLoaiThu);
+            this.pnlThongTin.Controls.Add(this.lblTenLoaiThu);
+            this.pnlThongTin.Controls.Add(this.lblDangChon);
+            this.pnlThongTin.Controls.Add(this.lblThongTinTieuDe);
+            this.pnlThongTin.Location = new System.Drawing.Point(770, 60);
+            this.pnlThongTin.Name = "pnlThongTin";
+            this.pnlThongTin.Size = new System.Drawing.Size(380, 525);
+            this.pnlThongTin.TabIndex = 2;
+            // 
+            // lblLuuY
+            // 
+            this.lblLuuY.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.lblLuuY.Location = new System.Drawing.Point(16, 465);
+            this.lblLuuY.Name = "lblLuuY";
+            this.lblLuuY.Size = new System.Drawing.Size(345, 45);
+            this.lblLuuY.TabIndex = 0;
+            this.lblLuuY.Text = "Loại đã dùng trong giao dịch chỉ được ngừng sử dụng, không xóa lịch sử.";
+            // 
+            // btnNgungSuDung
+            // 
+            this.btnNgungSuDung.BackColor = System.Drawing.Color.White;
+            this.btnNgungSuDung.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNgungSuDung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNgungSuDung.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnNgungSuDung.Location = new System.Drawing.Point(16, 415);
+            this.btnNgungSuDung.Name = "btnNgungSuDung";
+            this.btnNgungSuDung.Size = new System.Drawing.Size(345, 38);
+            this.btnNgungSuDung.TabIndex = 6;
+            this.btnNgungSuDung.Text = "Ngừng sử dụng";
+            this.btnNgungSuDung.UseVisualStyleBackColor = false;
+            this.btnNgungSuDung.Click += new System.EventHandler(this.btnNgungSuDung_Click);
+            // 
+            // btnMoi
+            // 
+            this.btnMoi.BackColor = System.Drawing.Color.White;
+            this.btnMoi.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnMoi.Location = new System.Drawing.Point(281, 365);
+            this.btnMoi.Name = "btnMoi";
+            this.btnMoi.Size = new System.Drawing.Size(80, 38);
+            this.btnMoi.TabIndex = 5;
+            this.btnMoi.Text = "Mới";
+            this.btnMoi.UseVisualStyleBackColor = false;
+            this.btnMoi.Click += new System.EventHandler(this.btnMoi_Click);
             // 
             // btnSua
             // 
-            this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSua.BackColor = System.Drawing.Color.White;
             this.btnSua.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSua.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSua.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnSua.Location = new System.Drawing.Point(134, 552);
-            this.btnSua.Size = new System.Drawing.Size(100, 38);
+            this.btnSua.Location = new System.Drawing.Point(185, 365);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(85, 38);
+            this.btnSua.TabIndex = 4;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
-            this.btnSua.Name = "btnSua";
-            this.btnSua.TabIndex = 4;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
-            // btnXoa
+            // btnThem
             // 
-            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXoa.BackColor = System.Drawing.Color.White;
-            this.btnXoa.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnXoa.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnXoa.Location = new System.Drawing.Point(244, 552);
-            this.btnXoa.Size = new System.Drawing.Size(100, 38);
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = false;
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.TabIndex = 5;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btnThem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThem.ForeColor = System.Drawing.Color.White;
+            this.btnThem.Location = new System.Drawing.Point(16, 365);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(158, 38);
+            this.btnThem.TabIndex = 3;
+            this.btnThem.Text = "Thêm";
+            this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // btnLuu
+            // lblTrangThaiGiaTri
             // 
-            this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLuu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.btnLuu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLuu.FlatAppearance.BorderSize = 0;
-            this.btnLuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLuu.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuu.ForeColor = System.Drawing.Color.White;
-            this.btnLuu.Location = new System.Drawing.Point(354, 552);
-            this.btnLuu.Size = new System.Drawing.Size(100, 38);
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = false;
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.TabIndex = 6;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            this.lblTrangThaiGiaTri.AutoSize = true;
+            this.lblTrangThaiGiaTri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblTrangThaiGiaTri.Location = new System.Drawing.Point(95, 325);
+            this.lblTrangThaiGiaTri.Name = "lblTrangThaiGiaTri";
+            this.lblTrangThaiGiaTri.Size = new System.Drawing.Size(118, 23);
+            this.lblTrangThaiGiaTri.TabIndex = 7;
+            this.lblTrangThaiGiaTri.Text = "Đang sử dụng";
             // 
-            // btnBoQua
+            // lblTrangThaiTieuDe
             // 
-            this.btnBoQua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBoQua.BackColor = System.Drawing.Color.White;
-            this.btnBoQua.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBoQua.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.btnBoQua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBoQua.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBoQua.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnBoQua.Location = new System.Drawing.Point(464, 552);
-            this.btnBoQua.Size = new System.Drawing.Size(100, 38);
-            this.btnBoQua.Text = "Bỏ qua";
-            this.btnBoQua.UseVisualStyleBackColor = false;
-            this.btnBoQua.Name = "btnBoQua";
-            this.btnBoQua.TabIndex = 7;
-            this.btnBoQua.Click += new System.EventHandler(this.btnBoQua_Click);
+            this.lblTrangThaiTieuDe.AutoSize = true;
+            this.lblTrangThaiTieuDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.lblTrangThaiTieuDe.Location = new System.Drawing.Point(16, 325);
+            this.lblTrangThaiTieuDe.Name = "lblTrangThaiTieuDe";
+            this.lblTrangThaiTieuDe.Size = new System.Drawing.Size(91, 23);
+            this.lblTrangThaiTieuDe.TabIndex = 8;
+            this.lblTrangThaiTieuDe.Text = "Trạng thái:";
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(16, 175);
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(345, 125);
+            this.txtGhiChu.TabIndex = 2;
+            this.txtGhiChu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
+            // 
+            // lblGhiChu
+            // 
+            this.lblGhiChu.AutoSize = true;
+            this.lblGhiChu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblGhiChu.Location = new System.Drawing.Point(16, 150);
+            this.lblGhiChu.Name = "lblGhiChu";
+            this.lblGhiChu.Size = new System.Drawing.Size(69, 23);
+            this.lblGhiChu.TabIndex = 9;
+            this.lblGhiChu.Text = "Ghi chú";
+            // 
+            // txtTenLoaiThu
+            // 
+            this.txtTenLoaiThu.Location = new System.Drawing.Point(16, 105);
+            this.txtTenLoaiThu.Name = "txtTenLoaiThu";
+            this.txtTenLoaiThu.Size = new System.Drawing.Size(345, 30);
+            this.txtTenLoaiThu.TabIndex = 1;
+            this.txtTenLoaiThu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_KeyDown);
+            // 
+            // lblTenLoaiThu
+            // 
+            this.lblTenLoaiThu.AutoSize = true;
+            this.lblTenLoaiThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblTenLoaiThu.Location = new System.Drawing.Point(16, 80);
+            this.lblTenLoaiThu.Name = "lblTenLoaiThu";
+            this.lblTenLoaiThu.Size = new System.Drawing.Size(99, 23);
+            this.lblTenLoaiThu.TabIndex = 10;
+            this.lblTenLoaiThu.Text = "Tên loại thu";
+            // 
+            // lblDangChon
+            // 
+            this.lblDangChon.AutoSize = true;
+            this.lblDangChon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.lblDangChon.Location = new System.Drawing.Point(16, 45);
+            this.lblDangChon.Name = "lblDangChon";
+            this.lblDangChon.Size = new System.Drawing.Size(151, 23);
+            this.lblDangChon.TabIndex = 11;
+            this.lblDangChon.Text = "Đang chọn: Lương";
+            // 
+            // lblThongTinTieuDe
+            // 
+            this.lblThongTinTieuDe.AutoSize = true;
+            this.lblThongTinTieuDe.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongTinTieuDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblThongTinTieuDe.Location = new System.Drawing.Point(80, 0);
+            this.lblThongTinTieuDe.Name = "lblThongTinTieuDe";
+            this.lblThongTinTieuDe.Size = new System.Drawing.Size(221, 25);
+            this.lblThongTinTieuDe.TabIndex = 12;
+            this.lblThongTinTieuDe.Text = "Thông tin loại thu nhập";
+            // 
+            // lblThongBao
+            // 
+            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblThongBao.Location = new System.Drawing.Point(24, 595);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(0, 23);
+            this.lblThongBao.TabIndex = 4;
+            this.lblThongBao.Visible = false;
             // 
             // btnDong
             // 
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.BackColor = System.Drawing.Color.White;
             this.btnDong.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDong.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
             this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDong.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnDong.Location = new System.Drawing.Point(736, 552);
+            this.btnDong.Location = new System.Drawing.Point(1050, 595);
+            this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(100, 38);
+            this.btnDong.TabIndex = 3;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = false;
-            this.btnDong.Name = "btnDong";
-            this.btnDong.TabIndex = 8;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // frmLoaiThuNhap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(860, 604);
+            this.ClientSize = new System.Drawing.Size(1175, 645);
             this.Controls.Add(this.btnDong);
-            this.Controls.Add(this.btnBoQua);
-            this.Controls.Add(this.btnLuu);
-            this.Controls.Add(this.btnXoa);
-            this.Controls.Add(this.btnSua);
-            this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.dgvLoaiThu);
+            this.Controls.Add(this.lblThongBao);
             this.Controls.Add(this.pnlThongTin);
+            this.Controls.Add(this.pnlDanhSach);
             this.Controls.Add(this.lblTieuDe);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLoaiThuNhap";
             this.Text = "Loại thu nhập";
             this.Load += new System.EventHandler(this.frmLoaiThuNhap_Load);
+            this.pnlDanhSach.ResumeLayout(false);
+            this.pnlDanhSach.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiThu)).EndInit();
             this.pnlThongTin.ResumeLayout(false);
             this.pnlThongTin.PerformLayout();
@@ -291,20 +335,25 @@
         #endregion
 
         private System.Windows.Forms.Label lblTieuDe;
+        private System.Windows.Forms.Panel pnlDanhSach;
+        private System.Windows.Forms.Label lblDanhSachTieuDe;
+        private System.Windows.Forms.DataGridView dgvLoaiThu;
+        private System.Windows.Forms.Label lblThongKe;
         private System.Windows.Forms.Panel pnlThongTin;
-        private System.Windows.Forms.Label lblMaLoaiThu;
-        private System.Windows.Forms.TextBox txtMaLoaiThu;
+        private System.Windows.Forms.Label lblThongTinTieuDe;
+        private System.Windows.Forms.Label lblDangChon;
         private System.Windows.Forms.Label lblTenLoaiThu;
         private System.Windows.Forms.TextBox txtTenLoaiThu;
-        private System.Windows.Forms.CheckBox chkTrangThai;
         private System.Windows.Forms.Label lblGhiChu;
         private System.Windows.Forms.TextBox txtGhiChu;
-        private System.Windows.Forms.DataGridView dgvLoaiThu;
+        private System.Windows.Forms.Label lblTrangThaiTieuDe;
+        private System.Windows.Forms.Label lblTrangThaiGiaTri;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnLuu;
-        private System.Windows.Forms.Button btnBoQua;
+        private System.Windows.Forms.Button btnMoi;
+        private System.Windows.Forms.Button btnNgungSuDung;
+        private System.Windows.Forms.Label lblLuuY;
+        private System.Windows.Forms.Label lblThongBao;
         private System.Windows.Forms.Button btnDong;
     }
 }

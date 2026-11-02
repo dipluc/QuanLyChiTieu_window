@@ -12,7 +12,8 @@ namespace NghiepVu
         public bool ThanhCong { get; set; }
         public string ThongBao { get; set; }
         public int MaLoaiChi { get; set; }
-        public bool DangDuocSuDung { get; set; }   // true khi không xóa được vì đã phát sinh dữ liệu liên quan
+        public int MaNhom { get; set; }
+        public bool DangDuocSuDung { get; set; }
         public DataTable DuLieu { get; set; }
     }
 
@@ -27,7 +28,6 @@ namespace NghiepVu
             return new KetQuaLoaiChi { ThanhCong = false, ThongBao = thongBao };
         }
 
-        // Trả về thông báo lỗi nếu dữ liệu không hợp lệ, null nếu hợp lệ
         private static string KiemTraDuLieu(LoaiChiMH lc)
         {
             if (lc == null) return "Dữ liệu loại chi không hợp lệ.";
@@ -77,8 +77,72 @@ namespace NghiepVu
             }
         }
 
+        public static KetQuaLoaiChi LayDanhSachTheoNhom(int maNhom)
+        {
+            if (!PhienDangNhap.DaDangNhap) return Loi(LoiPhien);
+            try
+            {
+                // Gọi hàm tương ứng từ tầng dữ liệu (hoặc dùng hàm lọc bảng nếu DL trả về toàn bộ)
+                DataTable dt = LoaiChiDL.LayDanhSach(PhienDangNhap.MaND);
+                if (dt != null && dt.Columns.Contains("MaNhom"))
+                {
+                    DataView dv = new DataView(dt);
+                    dv.RowFilter = $"MaNhom = {maNhom}";
+                    dt = dv.ToTable();
+                }
+                return new KetQuaLoaiChi { ThanhCong = true, DuLieu = dt };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại LoaiChiNV.LayDanhSachTheoNhom", ex);
+                return Loi("Lỗi khi tải danh sách loại chi theo nhóm: " + ex.Message);
+            }
+        }
+
         // ==========================================
-        // 2. THÊM
+        // 2. QUẢN LÝ NHÓM CHI (THÊM / SỬA)
+        // ==========================================
+        public static KetQuaLoaiChi ThemNhomChi(string tenNhom, string ghiChu, bool trangThai)
+        {
+            if (!PhienDangNhap.DaDangNhap) return Loi(LoiPhien);
+            if (string.IsNullOrWhiteSpace(tenNhom)) return Loi("Tên nhóm chi không được để trống.");
+
+            try
+            {
+                int maMoi = LoaiChiDL.ThemNhomChi(PhienDangNhap.MaND, tenNhom.Trim(), string.IsNullOrWhiteSpace(ghiChu) ? null : ghiChu.Trim(), trangThai);
+                if (maMoi <= 0) return Loi("Không thể thêm nhóm chi vào cơ sở dữ liệu.");
+
+                return new KetQuaLoaiChi { ThanhCong = true, ThongBao = "Thêm nhóm chi thành công!", MaNhom = maMoi };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại LoaiChiNV.ThemNhomChi", ex);
+                return Loi("Lỗi khi lưu nhóm chi: " + ex.Message);
+            }
+        }
+
+        public static KetQuaLoaiChi SuaNhomChi(int maNhom, string tenNhom, string ghiChu, bool trangThai)
+        {
+            if (!PhienDangNhap.DaDangNhap) return Loi(LoiPhien);
+            if (maNhom <= 0) return Loi("Bạn chưa chọn nhóm chi cần sửa.");
+            if (string.IsNullOrWhiteSpace(tenNhom)) return Loi("Tên nhóm chi không được để trống.");
+
+            try
+            {
+                bool thanhCong = LoaiChiDL.SuaNhomChi(maNhom, PhienDangNhap.MaND, tenNhom.Trim(), string.IsNullOrWhiteSpace(ghiChu) ? null : ghiChu.Trim(), trangThai);
+                if (!thanhCong) return Loi("Không tìm thấy nhóm chi cần cập nhật.");
+
+                return new KetQuaLoaiChi { ThanhCong = true, ThongBao = "Cập nhật nhóm chi thành công!", MaNhom = maNhom };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại LoaiChiNV.SuaNhomChi", ex);
+                return Loi("Lỗi khi cập nhật nhóm chi: " + ex.Message);
+            }
+        }
+
+        // ==========================================
+        // 3. THÊM / SỬA / XÓA LOẠI CHI
         // ==========================================
         public static KetQuaLoaiChi Them(LoaiChiMH lc)
         {
@@ -110,9 +174,6 @@ namespace NghiepVu
             }
         }
 
-        // ==========================================
-        // 3. SỬA
-        // ==========================================
         public static KetQuaLoaiChi CapNhat(LoaiChiMH lc)
         {
             if (!PhienDangNhap.DaDangNhap) return Loi(LoiPhien);
@@ -144,9 +205,6 @@ namespace NghiepVu
             }
         }
 
-        // ==========================================
-        // 4. XÓA / NGỪNG SỬ DỤNG
-        // ==========================================
         public static KetQuaLoaiChi Xoa(int maLoaiChi)
         {
             if (!PhienDangNhap.DaDangNhap) return Loi(LoiPhien);
@@ -162,7 +220,6 @@ namespace NghiepVu
             }
             catch (SqlException ex) when (ex.Number == 547)
             {
-                // Vi phạm khóa ngoại: loại chi đã có khoản chi, ngân sách hoặc giao dịch định kỳ
                 return new KetQuaLoaiChi
                 {
                     ThanhCong = false,

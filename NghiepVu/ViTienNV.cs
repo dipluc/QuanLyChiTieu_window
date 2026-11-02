@@ -7,7 +7,6 @@ using NghiepVu.TienIch;
 
 namespace NghiepVu
 {
-    // Kết quả chung cho các thao tác thêm / sửa / xóa
     public class KetQuaThaoTac
     {
         public bool ThanhCong { get; set; }
@@ -20,7 +19,6 @@ namespace NghiepVu
         private static readonly string[] _maLoaiVi = { "TienMat", "NganHang", "ViDienTu", "TheTinDung" };
         private static readonly string[] _tenLoaiVi = { "Tiền mặt", "Ngân hàng", "Ví điện tử", "Thẻ tín dụng" };
 
-        // Danh sách loại ví (giá trị lưu CSDL, tên hiển thị) - khớp ràng buộc CK_ViTien_LoaiVi
         public static List<KeyValuePair<string, string>> LayDanhSachLoaiVi()
         {
             var ds = new List<KeyValuePair<string, string>>();
@@ -37,7 +35,6 @@ namespace NghiepVu
             return i >= 0 ? _tenLoaiVi[i] : maLoaiVi;
         }
 
-        // Danh sách ví của người dùng đang đăng nhập
         public static DataTable LayDanhSach(out string thongBaoLoi)
         {
             thongBaoLoi = null;
@@ -55,7 +52,8 @@ namespace NghiepVu
 
         public static KetQuaThaoTac Them(string tenVi, string loaiVi, decimal soDuBanDau, string ghiChu, bool trangThai)
         {
-            var kt = KiemTraDuLieu(tenVi, loaiVi, soDuBanDau);
+            // Ví mới: số dư ban đầu không được âm
+            var kt = KiemTraDuLieu(tenVi, loaiVi, soDuBanDau, false);
             if (kt != null) return kt;
 
             try
@@ -86,12 +84,76 @@ namespace NghiepVu
             }
         }
 
+        // Sửa ví theo SỐ DƯ BAN ĐẦU do người dùng nhập
         public static KetQuaThaoTac Sua(int maVi, string tenVi, string loaiVi, decimal soDuBanDau, string ghiChu, bool trangThai)
+        {
+            return LuuCapNhat(maVi, tenVi, loaiVi, soDuBanDau, ghiChu, trangThai, string.Empty);
+        }
+
+        // Sửa ví theo SỐ DƯ HIỆN TẠI người dùng muốn có.
+        // Số dư hiện tại = số dư ban đầu + biến động giao dịch (thu - chi + chuyển đến - chuyển đi),
+        // nên số dư ban đầu mới = số dư hiện tại muốn có - biến động giao dịch.
+        public static KetQuaThaoTac SuaTheoSoDuHienTai(int maVi, string tenVi, string loaiVi, decimal soDuHienTaiMoi, string ghiChu, bool trangThai)
         {
             if (maVi <= 0)
                 return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Bạn chưa chọn ví nào." };
 
-            var kt = KiemTraDuLieu(tenVi, loaiVi, soDuBanDau);
+            try
+            {
+                ViTienMH hienCo = ViTienDL.LayTheoMaVi(maVi, PhienDangNhap.MaND);
+                if (hienCo == null)
+                    return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Không tìm thấy ví để cập nhật." };
+
+                decimal bienDong = hienCo.SoDuHienTai - hienCo.SoDuBanDau;
+                decimal soDuBanDauMoi = soDuHienTaiMoi - bienDong;
+                string ghiThem = " Số dư ban đầu được điều chỉnh thành " + soDuBanDauMoi.ToString("N0") + ".";
+
+                return LuuCapNhat(maVi, tenVi, loaiVi, soDuBanDauMoi, ghiChu, trangThai, ghiThem);
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại ViTienNV.SuaTheoSoDuHienTai", ex);
+                return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Lỗi cập nhật dữ liệu: " + ex.Message };
+            }
+        }
+
+        // Chỉ đổi trạng thái sử dụng, giữ nguyên mọi thông tin khác của ví
+        public static KetQuaThaoTac DatTrangThai(int maVi, bool trangThai)
+        {
+            if (maVi <= 0)
+                return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Bạn chưa chọn ví nào." };
+
+            try
+            {
+                ViTienMH hienCo = ViTienDL.LayTheoMaVi(maVi, PhienDangNhap.MaND);
+                if (hienCo == null)
+                    return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Không tìm thấy ví để cập nhật." };
+
+                var kq = LuuCapNhat(maVi, hienCo.TenVi, hienCo.LoaiVi, hienCo.SoDuBanDau, hienCo.GhiChu, trangThai, string.Empty);
+                if (kq.ThanhCong)
+                {
+                    kq.ThongBao = trangThai
+                        ? "Đã chuyển ví sang trạng thái đang sử dụng."
+                        : "Đã chuyển ví sang trạng thái ngừng sử dụng.";
+                }
+                return kq;
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại ViTienNV.DatTrangThai", ex);
+                return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Lỗi cập nhật dữ liệu: " + ex.Message };
+            }
+        }
+
+        // Lõi cập nhật ví (ghi đầy đủ các cột, gồm cả TrangThai).
+        // Số dư ban đầu của ví đang sửa được phép âm: đó là mức điều chỉnh để số dư hiện tại khớp thực tế.
+        private static KetQuaThaoTac LuuCapNhat(int maVi, string tenVi, string loaiVi, decimal soDuBanDau,
+            string ghiChu, bool trangThai, string ghiThem)
+        {
+            if (maVi <= 0)
+                return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Bạn chưa chọn ví nào." };
+
+            var kt = KiemTraDuLieu(tenVi, loaiVi, soDuBanDau, true);
             if (kt != null) return kt;
 
             try
@@ -100,7 +162,6 @@ namespace NghiepVu
                 if (ViTienDL.KiemTraTonTaiTenVi(PhienDangNhap.MaND, tenVi, maVi))
                     return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Tên ví này đã được dùng cho ví khác." };
 
-                // Phải còn ít nhất một ví đang sử dụng để ghi nhận giao dịch
                 if (!trangThai)
                 {
                     ViTienMH hienTai = ViTienDL.LayTheoMaVi(maVi, PhienDangNhap.MaND);
@@ -119,7 +180,7 @@ namespace NghiepVu
                     TrangThai = trangThai
                 };
                 if (ViTienDL.CapNhat(vi))
-                    return new KetQuaThaoTac { ThanhCong = true, ThongBao = "Cập nhật ví tiền thành công!", Ma = maVi };
+                    return new KetQuaThaoTac { ThanhCong = true, ThongBao = "Cập nhật ví tiền thành công!" + ghiThem, Ma = maVi };
 
                 return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Không tìm thấy ví để cập nhật." };
             }
@@ -130,44 +191,13 @@ namespace NghiepVu
             }
         }
 
-        public static KetQuaThaoTac Xoa(int maVi)
-        {
-            if (maVi <= 0)
-                return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Bạn chưa chọn ví nào." };
-
-            try
-            {
-                if (ViTienDL.DemBanGhiLienQuan(maVi) > 0)
-                    return new KetQuaThaoTac
-                    {
-                        ThanhCong = false,
-                        ThongBao = "Ví này đã phát sinh giao dịch nên không thể xóa.\nBạn có thể bỏ chọn \"Đang sử dụng\" rồi bấm Sửa để ngưng dùng ví."
-                    };
-
-                ViTienMH hienTai = ViTienDL.LayTheoMaVi(maVi, PhienDangNhap.MaND);
-                if (hienTai != null && hienTai.TrangThai && ViTienDL.DemViDangSuDung(PhienDangNhap.MaND) <= 1)
-                    return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Bạn phải giữ lại ít nhất một ví đang sử dụng." };
-
-                if (ViTienDL.Xoa(maVi, PhienDangNhap.MaND))
-                    return new KetQuaThaoTac { ThanhCong = true, ThongBao = "Đã xóa ví tiền.", Ma = maVi };
-
-                return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Không tìm thấy ví để xóa." };
-            }
-            catch (Exception ex)
-            {
-                NhatKyLoi.GhiLog("Lỗi tại ViTienNV.Xoa", ex);
-                return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Lỗi khi xóa dữ liệu: " + ex.Message };
-            }
-        }
-
-        // Trả về null nếu hợp lệ, ngược lại trả về kết quả lỗi
-        private static KetQuaThaoTac KiemTraDuLieu(string tenVi, string loaiVi, decimal soDuBanDau)
+        private static KetQuaThaoTac KiemTraDuLieu(string tenVi, string loaiVi, decimal soDuBanDau, bool choPhepSoDuAm)
         {
             if (string.IsNullOrWhiteSpace(tenVi))
                 return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Bạn phải nhập tên ví." };
             if (Array.IndexOf(_maLoaiVi, loaiVi) < 0)
                 return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Bạn phải chọn loại ví." };
-            if (soDuBanDau < 0)
+            if (!choPhepSoDuAm && soDuBanDau < 0)
                 return new KetQuaThaoTac { ThanhCong = false, ThongBao = "Số dư ban đầu không được âm." };
             return null;
         }
