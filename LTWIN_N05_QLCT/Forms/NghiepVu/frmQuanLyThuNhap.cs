@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -25,6 +25,8 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             else
                 dtpNgay.Value = dtpTuNgay.Value;
 
+
+            lblThang.Text = "Bạn đang xem tháng: " +_thangHienTai.ToString("MM/yyyy");
             LoadData();
             UpdateCoCauThuNhap();
         }
@@ -36,24 +38,34 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void frmQuanLyThuNhap_Load(object sender, EventArgs e)
         {
-            cboLoaiThu.Items.Clear();
-            cboLoaiThu.Items.AddRange(DataService.DanhSachLoaiThu);
-            if (cboLoaiThu.Items.Count > 0) cboLoaiThu.SelectedIndex = 0;
+            try
+            {
 
-            cboLocLoaiThu.Items.Clear();
-            cboLocLoaiThu.Items.Add("Tất cả");
-            cboLocLoaiThu.Items.AddRange(DataService.DanhSachLoaiThu);
-            cboLocLoaiThu.SelectedIndex = 0;
+                cboLoaiThu.Items.Clear();
+                cboLoaiThu.Items.AddRange(DataService.DanhSachLoaiThu);
+                if (cboLoaiThu.Items.Count > 0) cboLoaiThu.SelectedIndex = 0;
 
-            LoadWallets();
+                cboLocLoaiThu.Items.Clear();
+                cboLocLoaiThu.Items.Add("Tất cả");
+                cboLocLoaiThu.Items.AddRange(DataService.DanhSachLoaiThu);
+                cboLocLoaiThu.SelectedIndex = 0;
 
-            var now = DateTime.Today;
-            dtpTuNgay.Value = new DateTime(now.Year, now.Month, 1);
-            dtpDenNgay.Value = now;
+                LoadWallets();
 
-            txtSoTien.Leave += (s, ev) => FormatTextBoxMoney(txtSoTien);
+                var now = DateTime.Today;
+                dtpTuNgay.Value = new DateTime(now.Year, now.Month, 1);
+                dtpDenNgay.Value = now;
 
-            LoadData();
+                txtSoTien.Leave += (s, ev) => FormatTextBoxMoney(txtSoTien);
+
+                LoadData();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể thực hiện thao tác dữ liệu: " + ex.Message,
+                    "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void LoadWallets()
@@ -106,8 +118,8 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
             lblCoCauThuNhapThang10.Text = string.Format("Cơ cấu thu nhập tháng {0}", thang);
 
-            var allData = DataService.LoadData();
-            var thangThuNhap = allData.DanhSachThuNhap.Where(x => x.Ngay.Month == thang && x.Ngay.Year == nam).ToList();
+            var dauThang = new DateTime(nam, thang, 1);
+            var thangThuNhap = DataService.GetThuNhap(dauThang, dauThang.AddMonths(1).AddDays(-1));
             decimal tongThang = thangThuNhap.Sum(x => x.SoTien);
 
             decimal luong = thangThuNhap.Where(x => x.LoaiThu == "Lương").Sum(x => x.SoTien);
@@ -155,71 +167,101 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            decimal soTien;
-            string viId;
-            if (!ValidateInput(out soTien, out viId)) return;
-
-            var item = new ThuNhap
+            try
             {
-                Ngay = dtpNgay.Value,
-                LoaiThu = cboLoaiThu.SelectedItem != null ? cboLoaiThu.SelectedItem.ToString() : "Lương",
-                ViId = viId,
-                SoTien = soTien,
-                GhiChu = txtGhiChu.Text.Trim()
-            };
 
-            DataService.ThemThuNhap(item);
-            MessageBox.Show("Thêm khoản thu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadWallets();
-            LoadData();
-            ResetInput();
+                decimal soTien;
+                string viId;
+                if (!ValidateInput(out soTien, out viId)) return;
+
+                var item = new ThuNhap
+                {
+                    Ngay = dtpNgay.Value,
+                    LoaiThu = cboLoaiThu.SelectedItem != null ? cboLoaiThu.SelectedItem.ToString() : "Lương",
+                    ViId = viId,
+                    SoTien = soTien,
+                    GhiChu = txtGhiChu.Text.Trim()
+                };
+
+                DataService.ThemThuNhap(item);
+                MessageBox.Show("Thêm khoản thu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadWallets();
+                LoadData();
+                ResetInput();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể thực hiện thao tác dữ liệu: " + ex.Message,
+                    "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_selectedId))
+            try
             {
-                MessageBox.Show("Vui lòng chọn khoản thu cần sửa từ danh sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+
+                if (string.IsNullOrEmpty(_selectedId))
+                {
+                    MessageBox.Show("Vui lòng chọn khoản thu cần sửa từ danh sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                decimal soTien;
+                string viId;
+                if (!ValidateInput(out soTien, out viId)) return;
+
+                var item = new ThuNhap
+                {
+                    Id = _selectedId,
+                    Ngay = dtpNgay.Value,
+                    LoaiThu = cboLoaiThu.SelectedItem != null ? cboLoaiThu.SelectedItem.ToString() : "Lương",
+                    ViId = viId,
+                    SoTien = soTien,
+                    GhiChu = txtGhiChu.Text.Trim()
+                };
+
+                DataService.SuaThuNhap(item);
+                MessageBox.Show("Cập nhật khoản thu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadWallets();
+                LoadData();
+                ResetInput();
+
             }
-
-            decimal soTien;
-            string viId;
-            if (!ValidateInput(out soTien, out viId)) return;
-
-            var item = new ThuNhap
+            catch (Exception ex)
             {
-                Id = _selectedId,
-                Ngay = dtpNgay.Value,
-                LoaiThu = cboLoaiThu.SelectedItem != null ? cboLoaiThu.SelectedItem.ToString() : "Lương",
-                ViId = viId,
-                SoTien = soTien,
-                GhiChu = txtGhiChu.Text.Trim()
-            };
-
-            DataService.SuaThuNhap(item);
-            MessageBox.Show("Cập nhật khoản thu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadWallets();
-            LoadData();
-            ResetInput();
+                MessageBox.Show("Không thể thực hiện thao tác dữ liệu: " + ex.Message,
+                    "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_selectedId))
+            try
             {
-                MessageBox.Show("Vui lòng chọn khoản thu cần xóa từ danh sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            var dr = MessageBox.Show("Bạn có chắc chắn muốn xóa khoản thu này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
+                if (string.IsNullOrEmpty(_selectedId))
+                {
+                    MessageBox.Show("Vui lòng chọn khoản thu cần xóa từ danh sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var dr = MessageBox.Show("Bạn có chắc chắn muốn xóa khoản thu này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    DataService.XoaThuNhap(_selectedId);
+                    MessageBox.Show("Đã xóa khoản thu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadWallets();
+                    LoadData();
+                    ResetInput();
+                }
+
+            }
+            catch (Exception ex)
             {
-                DataService.XoaThuNhap(_selectedId);
-                MessageBox.Show("Đã xóa khoản thu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadWallets();
-                LoadData();
-                ResetInput();
+                MessageBox.Show("Không thể thực hiện thao tác dữ liệu: " + ex.Message,
+                    "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

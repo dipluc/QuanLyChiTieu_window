@@ -45,11 +45,16 @@ namespace DuLieu
         public static SqlConnection LayKetNoi()
         {
             var conn = new SqlConnection(LayChuoiKetNoi());
-            if (conn.State == ConnectionState.Closed)
+            try
             {
                 conn.Open();
+                return conn;
             }
-            return conn;
+            catch
+            {
+                conn.Dispose();
+                throw;
+            }
         }
 
         // Kiểm tra kết nối nhanh

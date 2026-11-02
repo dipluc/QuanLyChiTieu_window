@@ -1,4 +1,4 @@
-using LTWIN_N05_QLCT.Forms.HeThong;
+﻿using LTWIN_N05_QLCT.Forms.HeThong;
 using LTWIN_N05_QLCT.Services;
 using LTWIN_N05_QLCT.TienIch;
 using NghiepVu.TienIch;
@@ -135,12 +135,29 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             btnTimKiem.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Tìm kiếm giao dịch");
             btnLamMoi.Click += (s, e) => LamMoiDuLieu();
 
+            // Menu danh mục
+            mnuDanhMucVi.Click += (s, e) => MoFormCon(new Forms.DanhMuc.frmViTien(), "Danh mục ví tiền");
+            mnuDanhMucNhomChi.Click += (s, e) => MoFormCon(new Forms.DanhMuc.frmLoaiChiTieu(), "Danh mục nhóm chi");
+            mnuDanhMucNguonThu.Click += (s, e) => MoFormCon(new Forms.DanhMuc.frmLoaiThuNhap(), "Danh mục nguồn thu");
+
             // Menu nghiệp vụ & báo cáo
             mnuThuNhap.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyThuNhap(), "Quản lý thu nhập");
             mnuChiTieu.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyChiTieu(), "Quản lý chi tiêu");
             mnuNganSach.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmNganSach(), "Ngân sách");
             mnuBaoCaoThuChi.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Báo cáo thu - chi");
             mnuBaoCaoNganSach.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmNganSach(), "Báo cáo theo dõi ngân sách");
+
+            // Giữ các trang báo cáo hiện có và nối lại các form được khôi phục.
+            var mnuBaoCaoThang = new ToolStripMenuItem("Báo cáo tháng", null,
+                (s, e) => MoFormCon(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true));
+            mnuBaoCaoThang.Name = "mnuBaoCaoThang";
+            mnuBaoCao.DropDownItems.Insert(2, mnuBaoCaoThang);
+            mnuBieuDo.Click += (s, e) => MoFormCon(new Forms.BaoCao.frmBieuDo(), "Biểu đồ", true);
+            mnuXuatBaoCao.Click += (s, e) => MoFormXuatBaoCao();
+            mnuNhanhBaoCaoThang.Click += (s, e) => MoFormCon(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true);
+            mnuNhanhBieuDo.Click += (s, e) => MoFormCon(new Forms.BaoCao.frmBieuDo(), "Biểu đồ", true);
+            mnuNhanhXuatBaoCao.Click += (s, e) => MoFormXuatBaoCao();
+            btnBaoCao.ContextMenuStrip = cmsBaoCao;
 
             // Bổ sung menu nghiệp vụ: Chuyển tiền & Tìm kiếm
             var mnuChuyenTienExtra = new ToolStripMenuItem("Chuyển tiền giữa các ví", null, (s, e) => MoFormCon(new Forms.NghiepVu.frmChuyenTien(), "Chuyển tiền giữa các ví"));
@@ -153,6 +170,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             var mnuCauHinhExtra = new ToolStripMenuItem("Cấu hình ứng dụng", null, (s, e) => MoFormCon(new Forms.QuanTri.frmCauHinh(), "Cấu hình ứng dụng"));
             mnuQuanTri.DropDownItems.Insert(0, mnuCauHinhExtra);
             mnuSaoLuuDuLieu.Click += (s, e) => MoFormCon(new Forms.QuanTri.frmCauHinh(), "Cấu hình ứng dụng");
+            mnuPhucHoiDuLieu.Click += (s, e) => MoFormCon(new Forms.QuanTri.frmSaoLuu(), "Sao lưu và phục hồi", true);
 
             // Menu trợ giúp
             mnuHuongDan.Click += (s, e) => MoFormHuongDan();
@@ -227,7 +245,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private void LamMoiDuLieu()
         {
-            DataService.ReloadData();
             DongBoThangFormConHienTai();
             lblTrangThai.Text = "Dữ liệu đã được làm mới lúc " + DateTime.Now.ToString("HH:mm:ss");
         }
@@ -276,6 +293,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             f.OnThongTinChiTietDaCapNhat += (hoTenMoi, emailMoi) => CapNhatThongTinNguoiDung(hoTenMoi, emailMoi);
             MoFormCon(f, "Thông tin cá nhân", true);
             lblTrangThai.Text = "Đang xem: Thông tin cá nhân";
+        }
+
+        public void MoFormXuatBaoCao(bool xuatPdf = false)
+        {
+            MoFormCon(new Forms.BaoCao.frmXuatBaoCao(xuatPdf), "Xuất báo cáo", true);
         }
 
         private void MoFormHuongDan()

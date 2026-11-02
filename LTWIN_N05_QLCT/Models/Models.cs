@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace LTWIN_N05_QLCT.Models
@@ -14,7 +14,7 @@ namespace LTWIN_N05_QLCT.Models
 
         public ThuNhap()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = null;
             Ngay = DateTime.Today;
             LoaiThu = "Lương";
             ViId = "";
@@ -33,7 +33,7 @@ namespace LTWIN_N05_QLCT.Models
 
         public ChiTieu()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = null;
             Ngay = DateTime.Today;
             LoaiChi = "Ăn uống";
             ViId = "";
@@ -51,7 +51,7 @@ namespace LTWIN_N05_QLCT.Models
 
         public NganSachItem()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = null;
             LoaiChi = "";
         }
     }
@@ -67,7 +67,7 @@ namespace LTWIN_N05_QLCT.Models
 
         public ChuyenTienRecord()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = null;
             Ngay = DateTime.Today;
             ViNguonId = "";
             ViDichId = "";
@@ -84,7 +84,7 @@ namespace LTWIN_N05_QLCT.Models
 
         public Vi()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = null;
             Ten = "";
         }
     }
@@ -104,25 +104,4 @@ namespace LTWIN_N05_QLCT.Models
         }
     }
 
-    public class AppData
-    {
-        public List<ThuNhap> DanhSachThuNhap { get; set; }
-        public List<ChiTieu> DanhSachChiTieu { get; set; }
-        public List<NganSachItem> DanhSachNganSach { get; set; }
-        public List<ChuyenTienRecord> DanhSachChuyenTien { get; set; }
-        public List<Vi> DanhSachVi { get; set; }
-        public CauHinhApp CauHinh { get; set; }
-        public string NguoiDung { get; set; }
-
-        public AppData()
-        {
-            DanhSachThuNhap = new List<ThuNhap>();
-            DanhSachChiTieu = new List<ChiTieu>();
-            DanhSachNganSach = new List<NganSachItem>();
-            DanhSachChuyenTien = new List<ChuyenTienRecord>();
-            DanhSachVi = new List<Vi>();
-            CauHinh = new CauHinhApp();
-            NguoiDung = "Nguyễn Minh Anh";
-        }
-    }
 }

@@ -201,7 +201,7 @@
             this.lblpnlThuChi.Size = new System.Drawing.Size(380, 24);
             this.lblpnlThuChi.Name = "lblpnlThuChi";
             this.lblpnlThuChi.TabIndex = 14;
-            this.lblpnlThuChi.Text = "Thu – Chi 6 tháng gần nhất";
+            this.lblpnlThuChi.Text = "Thu – Chi 12 tháng gần nhất";
             this.lblpnlThuChi.AutoSize = false;
             this.lblpnlThuChi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblpnlThuChi.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);

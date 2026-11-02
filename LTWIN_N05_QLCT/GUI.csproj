@@ -75,6 +75,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.104.2" />
+    <PackageReference Include="PDFsharp-GDI" Version="6.2.4" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData">
@@ -82,6 +84,36 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BaoCao\frmBieuDo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaoCao\frmBieuDo.Designer.cs">
+      <DependentUpon>frmBieuDo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaoCao\frmBaoCaoThang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaoCao\frmBaoCaoThang.Designer.cs">
+      <DependentUpon>frmBaoCaoThang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaoCao\frmXuatBaoCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaoCao\frmXuatBaoCao.Designer.cs">
+      <DependentUpon>frmXuatBaoCao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmSaoLuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmSaoLuu.Designer.cs">
+      <DependentUpon>frmSaoLuu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmXacNhanPhucHoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmXacNhanPhucHoi.Designer.cs">
+      <DependentUpon>frmXacNhanPhucHoi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Chinh\frmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +206,7 @@
     </Compile>
     <Compile Include="Models\Models.cs" />
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\XuatBieuDoService.cs" />
     <Compile Include="Forms\IDongBoThang.cs" />
     <Compile Include="Forms\NghiepVu\frmQuanLyThuNhap.cs">
       <SubType>Form</SubType>
@@ -246,6 +279,9 @@
     <EmbeddedResource Include="Forms\NghiepVu\frmMucTieuTietKiem.resx">
       <DependentUpon>frmMucTieuTietKiem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NghiepVu\frmQuanLyThuNhap.resx">
+      <DependentUpon>frmQuanLyThuNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\QuanTri\frmNguoiDung.resx">
       <DependentUpon>frmNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,18 +335,18 @@
       <Project>{7fccb03a-8bec-4728-b513-ee2cc5b4b0c6}</Project>
       <Name>MoHinh</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DuLieu\DuLieu.csproj">
+      <Project>{7edd3cc8-8762-4d88-84b4-e809a1f42c0a}</Project>
+      <Name>DuLieu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NghiepVu\NghiepVu.csproj">
       <Project>{bc9fd97a-b114-4d09-b0c9-baf5fb30b06c}</Project>
       <Name>NghiepVu</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\BaoCao\" />
-    <Folder Include="Forms\DanhMuc\" />
-    <Folder Include="Forms\NghiepVu\" />
-    <Folder Include="Forms\QuanTri\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\tools\LegacyNuGet.targets" Condition="'$(MSBuildRuntimeType)' == 'Core'" />
   <!-- Chỉ tạo database đầu tiên. Build lại không ghi đè dữ liệu người dùng bằng bản mẫu. -->
   <Target Name="SeedDatabase" AfterTargets="Build">
     <PropertyGroup>

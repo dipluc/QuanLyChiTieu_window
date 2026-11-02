@@ -110,10 +110,12 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
             // ===== pnlMain =====
             this.pnlMain.BackColor = System.Drawing.Color.FromArgb(244, 246, 248);
-            this.pnlMain.Controls.Add(this.pnlNhapChiTieu);
             this.pnlMain.Controls.Add(this.pnlRight);
+            this.pnlMain.Controls.Add(this.pnlNhapChiTieu);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 52);
+            this.pnlMain.AutoScroll = true;
+            this.pnlMain.AutoScrollMinSize = new System.Drawing.Size(1036, 524);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Padding = new System.Windows.Forms.Padding(12);
             this.pnlMain.Size = new System.Drawing.Size(1060, 548);
@@ -141,6 +143,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.pnlNhapChiTieu.Controls.Add(this.lblChonMotDongDeSuaHoac);
             this.pnlNhapChiTieu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlNhapChiTieu.Location = new System.Drawing.Point(12, 12);
+            this.pnlNhapChiTieu.AutoScroll = true;
             this.pnlNhapChiTieu.Name = "pnlNhapChiTieu";
             this.pnlNhapChiTieu.Size = new System.Drawing.Size(250, 524);
             this.pnlNhapChiTieu.TabIndex = 0;
@@ -289,9 +292,10 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
             // ===== pnlRight =====
             this.pnlRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlRight.Controls.Add(this.pnlTongChi);
-            this.pnlRight.Controls.Add(this.lblSoGiaoDich);
             this.pnlRight.Controls.Add(this.dgvChiTieu);
+            this.pnlRight.Controls.Add(this.lblSoGiaoDich);
+            this.pnlRight.Controls.Add(this.pnlTongChi);
+            this.pnlRight.Controls.Add(this.lblKyLoc0110202625);
             this.pnlRight.Controls.Add(this.pnlBoLoc);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(262, 12);
@@ -314,7 +318,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.pnlBoLoc.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBoLoc.Location = new System.Drawing.Point(12, 0);
             this.pnlBoLoc.Name = "pnlBoLoc";
-            this.pnlBoLoc.Size = new System.Drawing.Size(774, 42);
+            this.pnlBoLoc.Size = new System.Drawing.Size(774, 54);
             this.pnlBoLoc.TabIndex = 0;
 
             this.lblTuNgay.AutoSize = true;
@@ -387,9 +391,6 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             // ===== dgvChiTieu =====
             this.dgvChiTieu.AllowUserToAddRows = false;
             this.dgvChiTieu.AllowUserToDeleteRows = false;
-            this.dgvChiTieu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvChiTieu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvChiTieu.BackgroundColor = System.Drawing.Color.White;
             this.dgvChiTieu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -410,14 +411,15 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             dgvRowStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvChiTieu.DefaultCellStyle = dgvRowStyle;
             this.dgvChiTieu.EnableHeadersVisualStyles = false;
-            this.dgvChiTieu.Location = new System.Drawing.Point(12, 42);
+            this.dgvChiTieu.Location = new System.Drawing.Point(12, 54);
             this.dgvChiTieu.MultiSelect = false;
+            this.dgvChiTieu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChiTieu.Name = "dgvChiTieu";
             this.dgvChiTieu.ReadOnly = true;
             this.dgvChiTieu.RowHeadersVisible = false;
             this.dgvChiTieu.RowTemplate.Height = 28;
             this.dgvChiTieu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChiTieu.Size = new System.Drawing.Size(774, 400);
+            this.dgvChiTieu.Size = new System.Drawing.Size(774, 369);
             this.dgvChiTieu.TabIndex = 1;
 
             this.colNgay.DataPropertyName = "Ngay";
@@ -446,25 +448,26 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.colGhiChu.Name = "colGhiChu";
 
             // ===== lblSoGiaoDich =====
-            this.lblSoGiaoDich.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSoGiaoDich.AutoSize = true;
+            this.lblSoGiaoDich.AutoSize = false;
             this.lblSoGiaoDich.Font = new System.Drawing.Font("Segoe UI", 7.5F);
             this.lblSoGiaoDich.ForeColor = System.Drawing.Color.Gray;
-            this.lblSoGiaoDich.Location = new System.Drawing.Point(14, 450);
+            this.lblSoGiaoDich.Location = new System.Drawing.Point(12, 423);
+            this.lblSoGiaoDich.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblSoGiaoDich.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSoGiaoDich.Name = "lblSoGiaoDich";
-            this.lblSoGiaoDich.Size = new System.Drawing.Size(211, 12);
+            this.lblSoGiaoDich.Size = new System.Drawing.Size(774, 28);
             this.lblSoGiaoDich.TabIndex = 2;
             this.lblSoGiaoDich.Text = "Chỉ đọc • Số giao dịch: 10 • Hiển thị toàn bộ kết quả";
 
             // ===== pnlTongChi =====
-            this.pnlTongChi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTongChi.BackColor = System.Drawing.Color.White;
             this.pnlTongChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTongChi.Controls.Add(this.lblTongChiTrongKyLoc);
             this.pnlTongChi.Controls.Add(this.lblTongChi);
-            this.pnlTongChi.Location = new System.Drawing.Point(490, 450);
+            this.pnlTongChi.Location = new System.Drawing.Point(12, 451);
+            this.pnlTongChi.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlTongChi.Name = "pnlTongChi";
-            this.pnlTongChi.Size = new System.Drawing.Size(296, 45);
+            this.pnlTongChi.Size = new System.Drawing.Size(774, 45);
             this.pnlTongChi.TabIndex = 3;
 
             this.lblTongChiTrongKyLoc.AutoSize = true;
@@ -480,20 +483,21 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.lblTongChi.AutoSize = true;
             this.lblTongChi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblTongChi.ForeColor = System.Drawing.Color.FromArgb(198, 40, 40);
-            this.lblTongChi.Location = new System.Drawing.Point(145, 10);
+            this.lblTongChi.Location = new System.Drawing.Point(623, 10);
             this.lblTongChi.Name = "lblTongChi";
             this.lblTongChi.Size = new System.Drawing.Size(142, 21);
             this.lblTongChi.TabIndex = 1;
             this.lblTongChi.Text = "16.680.000 đ";
             this.lblTongChi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
-            this.lblKyLoc0110202625.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblKyLoc0110202625.AutoSize = true;
+            this.lblKyLoc0110202625.AutoSize = false;
             this.lblKyLoc0110202625.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblKyLoc0110202625.ForeColor = System.Drawing.Color.Gray;
-            this.lblKyLoc0110202625.Location = new System.Drawing.Point(500, 502);
+            this.lblKyLoc0110202625.Location = new System.Drawing.Point(12, 496);
+            this.lblKyLoc0110202625.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblKyLoc0110202625.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblKyLoc0110202625.Name = "lblKyLoc0110202625";
-            this.lblKyLoc0110202625.Size = new System.Drawing.Size(286, 13);
+            this.lblKyLoc0110202625.Size = new System.Drawing.Size(774, 28);
             this.lblKyLoc0110202625.TabIndex = 4;
             this.lblKyLoc0110202625.Text = "Kỳ lọc: 01/10/2026 - 25/10/2026 • Tất cả các ví";
 

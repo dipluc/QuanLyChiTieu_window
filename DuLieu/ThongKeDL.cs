@@ -13,6 +13,29 @@ namespace DuLieu
 {
     public static class ThongKeDL
     {
+        // Gộp thu và chi trước khi tổng hợp để không nhân đôi giao dịch khi JOIN.
+        public static DataTable LayThuChiTheoThang(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            const string sql = @"
+                SELECT DATEFROMPARTS(YEAR(Ngay), MONTH(Ngay), 1) AS Thang,
+                       SUM(Thu) AS TongThu, SUM(Chi) AS TongChi
+                FROM (
+                    SELECT NgayThu AS Ngay, SoTien AS Thu, CAST(0 AS decimal(18,2)) AS Chi
+                    FROM ThuNhap
+                    WHERE MaND = @MaND AND NgayThu >= @TuNgay AND NgayThu < @DenNgay
+                    UNION ALL
+                    SELECT NgayChi, CAST(0 AS decimal(18,2)), SoTien
+                    FROM ChiTieu
+                    WHERE MaND = @MaND AND NgayChi >= @TuNgay AND NgayChi < @DenNgay
+                ) gd
+                GROUP BY YEAR(Ngay), MONTH(Ngay)
+                ORDER BY Thang";
+            return KetNoiCSDL.DocDuLieu(sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay));
+        }
+
         public static ThongKeMH LayTongQuan(int maND, DateTime tuNgay, DateTime denNgay)
         {
             string sql = @"
@@ -190,6 +213,26 @@ namespace DuLieu
             return ketQua == null || ketQua == DBNull.Value
                 ? 0m //Tra ve 0
                 : Convert.ToDecimal(ketQua); // Tra ve kq
+        }
+
+        // Tổng chi từng ngày; ngày kết thúc không nằm trong khoảng truy vấn.
+        public static DataTable LayChiTheoNgay(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            const string sql = @"
+                SELECT CAST(NgayChi AS date) AS Ngay,
+                       SUM(SoTien) AS TongChi
+                FROM ChiTieu
+                WHERE MaND = @MaND
+                  AND NgayChi >= @TuNgay
+                  AND NgayChi < @DenNgay
+                GROUP BY CAST(NgayChi AS date)
+                ORDER BY Ngay";
+
+            return KetNoiCSDL.DocDuLieu(
+                sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay));
         }
 
         //Chi theo loai

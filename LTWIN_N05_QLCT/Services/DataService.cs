@@ -1,328 +1,255 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Xml.Serialization;
+using DuLieu;
+using NghiepVu.TienIch;
 using LTWIN_N05_QLCT.Models;
 
 namespace LTWIN_N05_QLCT.Services
 {
+    // Mọi dữ liệu được đọc/ghi trực tiếp trên cùng LocalDB với báo cáo.
     public static class DataService
     {
-        private static readonly string DataFolder = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "QuanLyChiTieu", "Data");
-
-        private static readonly string DataFile = Path.Combine(DataFolder, "appdata.xml");
-
-        private static AppData _cache;
-
-        public static AppData LoadData()
+        private static int MaND
         {
-            if (_cache != null) return _cache;
+            get
+            {
+                if (!PhienDangNhap.DaDangNhap || PhienDangNhap.MaND <= 0)
+                    throw new InvalidOperationException("Vui lòng đăng nhập trước khi truy cập dữ liệu.");
+                return PhienDangNhap.MaND;
+            }
+        }
 
-            if (!Directory.Exists(DataFolder))
-                Directory.CreateDirectory(DataFolder);
+        private static SqlParameter P(string name, object value)
+        {
+            return new SqlParameter(name, value ?? DBNull.Value);
+        }
 
-            if (File.Exists(DataFile))
+        private static DataTable Doc(string sql, params SqlParameter[] parameters)
+        {
+            var args = new List<SqlParameter>(parameters) { P("@MaND", MaND) };
+            return KetNoiCSDL.DocDuLieu(sql, args.ToArray());
+        }
+
+        private static T GiaoDich<T>(Func<SqlConnection, SqlTransaction, int, T> action)
+        {
+            int maND = MaND;
+            using (var conn = KetNoiCSDL.LayKetNoi())
+            using (var tx = conn.BeginTransaction(IsolationLevel.Serializable))
             {
                 try
                 {
-                    var serializer = new XmlSerializer(typeof(AppData));
-                    using (var reader = new StreamReader(DataFile))
-                    {
-                        _cache = (AppData)serializer.Deserialize(reader);
-                    }
+                    T result = action(conn, tx, maND);
+                    tx.Commit();
+                    return result;
                 }
-                catch
-                {
-                    _cache = CreateDefaultData();
-                }
+                catch { tx.Rollback(); throw; }
             }
-            else
+        }
+
+        private static SqlCommand Lenh(SqlConnection conn, SqlTransaction tx, string sql, int maND, params SqlParameter[] args)
+        {
+            var cmd = new SqlCommand(sql, conn, tx);
+            cmd.Parameters.Add(P("@MaND", maND));
+            cmd.Parameters.AddRange(args);
+            return cmd;
+        }
+
+        private static int MaSo(string id)
+        {
+            int result;
+            if (!int.TryParse(id, out result) || result <= 0)
+                throw new ArgumentException("Mã dữ liệu không hợp lệ.");
+            return result;
+        }
+
+        private static int LayMaLoai(SqlConnection conn, SqlTransaction tx, int maND, string ten, bool thu)
+        {
+            string table = thu ? "LoaiThu" : "LoaiChi";
+            string key = thu ? "MaLoaiThu" : "MaLoaiChi";
+            string name = thu ? "TenLoaiThu" : "TenLoaiChi";
+            using (var cmd = Lenh(conn, tx, "SELECT " + key + " FROM " + table +
+                " WHERE MaND=@MaND AND " + name + "=@Ten AND TrangThai=1", maND, P("@Ten", ten)))
             {
-                _cache = CreateDefaultData();
-                SaveData();
+                object id = cmd.ExecuteScalar();
+                if (id == null) throw new InvalidOperationException("Danh mục không tồn tại hoặc đã ngừng sử dụng.");
+                return Convert.ToInt32(id);
             }
-
-            if (_cache == null) _cache = CreateDefaultData();
-            return _cache;
         }
 
-        public static void SaveData()
+        private static void KiemTraVi(SqlConnection conn, SqlTransaction tx, int maND, int maVi)
         {
-            if (_cache == null) return;
-
-            try
+            using (var cmd = Lenh(conn, tx,
+                "SELECT COUNT(*) FROM ViTien WHERE MaND=@MaND AND MaVi=@Vi AND TrangThai=1", maND, P("@Vi", maVi)))
             {
-                if (!Directory.Exists(DataFolder))
-                    Directory.CreateDirectory(DataFolder);
-
-                var serializer = new XmlSerializer(typeof(AppData));
-                using (var writer = new StreamWriter(DataFile))
-                {
-                    serializer.Serialize(writer, _cache);
-                }
+                if (Convert.ToInt32(cmd.ExecuteScalar()) != 1)
+                    throw new InvalidOperationException("Ví không tồn tại, đã ngừng sử dụng hoặc không thuộc tài khoản này.");
             }
-            catch { }
         }
 
-        public static void ReloadData()
+        public static string[] DanhSachLoaiChi
         {
-            _cache = null;
-            LoadData();
+            get { return Doc("SELECT TenLoaiChi FROM LoaiChi WHERE MaND=@MaND AND TrangThai=1 ORDER BY TenLoaiChi")
+                .AsEnumerable().Select(r => r.Field<string>("TenLoaiChi")).ToArray(); }
         }
-
-        private static AppData CreateDefaultData()
+        public static string[] DanhSachLoaiThu
         {
-            var data = new AppData();
-
-            data.DanhSachVi.Add(new Vi { Id = "vietcombank", Ten = "Vietcombank", SoDu = 42000000 });
-            data.DanhSachVi.Add(new Vi { Id = "tienmat", Ten = "Tiền mặt", SoDu = 5000000 });
-            data.DanhSachVi.Add(new Vi { Id = "momo", Ten = "MoMo", SoDu = 1250000 });
-
-            int currentMonth = DateTime.Today.Month;
-            int currentYear = DateTime.Today.Year;
-
-            data.DanhSachNganSach.Add(new NganSachItem { Thang = currentMonth, Nam = currentYear, LoaiChi = "Nhà ở", HanMuc = 7000000 });
-            data.DanhSachNganSach.Add(new NganSachItem { Thang = currentMonth, Nam = currentYear, LoaiChi = "Ăn uống", HanMuc = 5000000 });
-            data.DanhSachNganSach.Add(new NganSachItem { Thang = currentMonth, Nam = currentYear, LoaiChi = "Di chuyển", HanMuc = 2000000 });
-            data.DanhSachNganSach.Add(new NganSachItem { Thang = currentMonth, Nam = currentYear, LoaiChi = "Mua sắm", HanMuc = 2000000 });
-            data.DanhSachNganSach.Add(new NganSachItem { Thang = currentMonth, Nam = currentYear, LoaiChi = "Khác", HanMuc = 3000000 });
-
-            return data;
+            get { return Doc("SELECT TenLoaiThu FROM LoaiThu WHERE MaND=@MaND AND TrangThai=1 ORDER BY TenLoaiThu")
+                .AsEnumerable().Select(r => r.Field<string>("TenLoaiThu")).ToArray(); }
         }
 
-        // ===== THU NHẬP =====
+        private static DataTable DocThuChi(bool thu, DateTime? tuNgay, DateTime? denNgay, string loai)
+        {
+            string table = thu ? "ThuNhap" : "ChiTieu";
+            string key = thu ? "MaThu" : "MaChi";
+            string date = thu ? "NgayThu" : "NgayChi";
+            string category = thu ? "LoaiThu" : "LoaiChi";
+            string catKey = thu ? "MaLoaiThu" : "MaLoaiChi";
+            string catName = thu ? "TenLoaiThu" : "TenLoaiChi";
+            return Doc("SELECT t." + key + " AS Id,t." + date + " AS Ngay,t.MaVi,t.SoTien,t.GhiChu,l." + catName +
+                " AS Loai FROM " + table + " t JOIN " + category + " l ON t." + catKey + "=l." + catKey +
+                " AND t.MaND=l.MaND WHERE t.MaND=@MaND AND (@Tu IS NULL OR t." + date + ">=@Tu)" +
+                " AND (@Den IS NULL OR t." + date + "<@Den) AND (@Loai IS NULL OR l." + catName + "=@Loai) ORDER BY t." + date + " DESC,t." + key + " DESC",
+                new SqlParameter("@Tu", SqlDbType.DateTime2) { Value = (object)tuNgay ?? DBNull.Value },
+                new SqlParameter("@Den", SqlDbType.DateTime2) { Value = denNgay.HasValue ? (object)denNgay.Value.Date.AddDays(1) : DBNull.Value },
+                new SqlParameter("@Loai", SqlDbType.NVarChar, 100) { Value = string.IsNullOrEmpty(loai) || loai == "Tất cả" ? (object)DBNull.Value : loai });
+        }
+
         public static List<ThuNhap> GetThuNhap(DateTime? tuNgay = null, DateTime? denNgay = null, string loaiThu = null)
         {
-            var data = LoadData();
-            var query = data.DanhSachThuNhap.AsEnumerable();
-
-            if (tuNgay.HasValue) query = query.Where(x => x.Ngay >= tuNgay.Value);
-            if (denNgay.HasValue) query = query.Where(x => x.Ngay <= denNgay.Value);
-            if (!string.IsNullOrEmpty(loaiThu) && loaiThu != "Tất cả")
-                query = query.Where(x => x.LoaiThu == loaiThu);
-
-            return query.OrderByDescending(x => x.Ngay).ToList();
+            return DocThuChi(true, tuNgay, denNgay, loaiThu).AsEnumerable().Select(r => new ThuNhap {
+                Id=r["Id"].ToString(), Ngay=Convert.ToDateTime(r["Ngay"]), LoaiThu=r["Loai"].ToString(),
+                ViId=r["MaVi"].ToString(), SoTien=Convert.ToDecimal(r["SoTien"]), GhiChu=r["GhiChu"].ToString()
+            }).ToList();
         }
-
-        public static void ThemThuNhap(ThuNhap thuNhap)
-        {
-            var data = LoadData();
-            data.DanhSachThuNhap.Add(thuNhap);
-
-            var vi = data.DanhSachVi.FirstOrDefault(v => v.Id == thuNhap.ViId);
-            if (vi != null) vi.SoDu += thuNhap.SoTien;
-
-            SaveData();
-        }
-
-        public static void SuaThuNhap(ThuNhap thuNhap)
-        {
-            var data = LoadData();
-            var existing = data.DanhSachThuNhap.FirstOrDefault(x => x.Id == thuNhap.Id);
-            if (existing != null)
-            {
-                var viCu = data.DanhSachVi.FirstOrDefault(v => v.Id == existing.ViId);
-                if (viCu != null) viCu.SoDu -= existing.SoTien;
-
-                existing.Ngay = thuNhap.Ngay;
-                existing.LoaiThu = thuNhap.LoaiThu;
-                existing.ViId = thuNhap.ViId;
-                existing.SoTien = thuNhap.SoTien;
-                existing.GhiChu = thuNhap.GhiChu;
-
-                var viMoi = data.DanhSachVi.FirstOrDefault(v => v.Id == thuNhap.ViId);
-                if (viMoi != null) viMoi.SoDu += thuNhap.SoTien;
-
-                SaveData();
-            }
-        }
-
-        public static void XoaThuNhap(string id)
-        {
-            var data = LoadData();
-            var thuNhap = data.DanhSachThuNhap.FirstOrDefault(x => x.Id == id);
-            if (thuNhap != null)
-            {
-                var vi = data.DanhSachVi.FirstOrDefault(v => v.Id == thuNhap.ViId);
-                if (vi != null) vi.SoDu -= thuNhap.SoTien;
-
-                data.DanhSachThuNhap.Remove(thuNhap);
-                SaveData();
-            }
-        }
-
-        // ===== CHI TIÊU =====
         public static List<ChiTieu> GetChiTieu(DateTime? tuNgay = null, DateTime? denNgay = null, string loaiChi = null)
         {
-            var data = LoadData();
-            var query = data.DanhSachChiTieu.AsEnumerable();
-
-            if (tuNgay.HasValue) query = query.Where(x => x.Ngay >= tuNgay.Value);
-            if (denNgay.HasValue) query = query.Where(x => x.Ngay <= denNgay.Value);
-            if (!string.IsNullOrEmpty(loaiChi) && loaiChi != "Tất cả")
-                query = query.Where(x => x.LoaiChi == loaiChi);
-
-            return query.OrderByDescending(x => x.Ngay).ToList();
+            return DocThuChi(false, tuNgay, denNgay, loaiChi).AsEnumerable().Select(r => new ChiTieu {
+                Id=r["Id"].ToString(), Ngay=Convert.ToDateTime(r["Ngay"]), LoaiChi=r["Loai"].ToString(),
+                ViId=r["MaVi"].ToString(), SoTien=Convert.ToDecimal(r["SoTien"]), GhiChu=r["GhiChu"].ToString()
+            }).ToList();
         }
 
-        public static void ThemChiTieu(ChiTieu chiTieu)
+        private static string LuuThuChi(bool thu, string id, DateTime ngay, string loai, string viId, decimal soTien, string ghiChu)
         {
-            var data = LoadData();
-            data.DanhSachChiTieu.Add(chiTieu);
-
-            var vi = data.DanhSachVi.FirstOrDefault(v => v.Id == chiTieu.ViId);
-            if (vi != null) vi.SoDu -= chiTieu.SoTien;
-
-            SaveData();
-        }
-
-        public static void SuaChiTieu(ChiTieu chiTieu)
-        {
-            var data = LoadData();
-            var existing = data.DanhSachChiTieu.FirstOrDefault(x => x.Id == chiTieu.Id);
-            if (existing != null)
-            {
-                var viCu = data.DanhSachVi.FirstOrDefault(v => v.Id == existing.ViId);
-                if (viCu != null) viCu.SoDu += existing.SoTien;
-
-                existing.Ngay = chiTieu.Ngay;
-                existing.LoaiChi = chiTieu.LoaiChi;
-                existing.ViId = chiTieu.ViId;
-                existing.SoTien = chiTieu.SoTien;
-                existing.GhiChu = chiTieu.GhiChu;
-
-                var viMoi = data.DanhSachVi.FirstOrDefault(v => v.Id == chiTieu.ViId);
-                if (viMoi != null) viMoi.SoDu -= chiTieu.SoTien;
-
-                SaveData();
-            }
-        }
-
-        public static void XoaChiTieu(string id)
-        {
-            var data = LoadData();
-            var chiTieu = data.DanhSachChiTieu.FirstOrDefault(x => x.Id == id);
-            if (chiTieu != null)
-            {
-                var vi = data.DanhSachVi.FirstOrDefault(v => v.Id == chiTieu.ViId);
-                if (vi != null) vi.SoDu += chiTieu.SoTien;
-
-                data.DanhSachChiTieu.Remove(chiTieu);
-                SaveData();
-            }
-        }
-
-        // ===== NGÂN SÁCH =====
-        public static List<NganSachItem> GetNganSach(int thang, int nam)
-        {
-            var data = LoadData();
-            return data.DanhSachNganSach
-                .Where(x => x.Thang == thang && x.Nam == nam)
-                .ToList();
-        }
-
-        public static void LuuNganSach(NganSachItem item)
-        {
-            var data = LoadData();
-            var existing = data.DanhSachNganSach.FirstOrDefault(x =>
-                x.Thang == item.Thang && x.Nam == item.Nam && x.LoaiChi == item.LoaiChi);
-
-            if (existing != null)
-            {
-                existing.HanMuc = item.HanMuc;
-            }
-            else
-            {
-                data.DanhSachNganSach.Add(item);
-            }
-            SaveData();
-        }
-
-        public static void SaoChepNganSach(int thangNguon, int namNguon, int thangDich, int namDich)
-        {
-            var data = LoadData();
-            var nguon = data.DanhSachNganSach.Where(x => x.Thang == thangNguon && x.Nam == namNguon).ToList();
-
-            data.DanhSachNganSach.RemoveAll(x => x.Thang == thangDich && x.Nam == namDich);
-
-            foreach (var item in nguon)
-            {
-                data.DanhSachNganSach.Add(new NganSachItem
+            if (soTien <= 0) throw new ArgumentException("Số tiền phải lớn hơn 0.");
+            return GiaoDich((conn, tx, maND) => {
+                int maVi = MaSo(viId);
+                KiemTraVi(conn, tx, maND, maVi);
+                int maLoai = LayMaLoai(conn, tx, maND, loai, thu);
+                string table = thu ? "ThuNhap" : "ChiTieu";
+                string key = thu ? "MaThu" : "MaChi";
+                string date = thu ? "NgayThu" : "NgayChi";
+                string cat = thu ? "MaLoaiThu" : "MaLoaiChi";
+                string sql = id == null
+                    ? "INSERT INTO " + table + " (MaND,MaVi," + cat + "," + date + ",SoTien,GhiChu) OUTPUT INSERTED." + key + " VALUES (@MaND,@Vi,@Loai,@Ngay,@Tien,@GhiChu)"
+                    : "UPDATE " + table + " SET MaVi=@Vi," + cat + "=@Loai," + date + "=@Ngay,SoTien=@Tien,GhiChu=@GhiChu OUTPUT INSERTED." + key + " WHERE " + key + "=@Id AND MaND=@MaND";
+                using (var cmd = Lenh(conn, tx, sql, maND, P("@Vi",maVi), P("@Loai",maLoai), P("@Ngay",ngay), P("@Tien",soTien), P("@GhiChu",ghiChu), P("@Id",id == null ? 0 : MaSo(id))))
                 {
-                    Thang = thangDich,
-                    Nam = namDich,
-                    LoaiChi = item.LoaiChi,
-                    HanMuc = item.HanMuc
-                });
-            }
-            SaveData();
+                    object result = cmd.ExecuteScalar();
+                    if (result == null) throw new InvalidOperationException("Không tìm thấy giao dịch để cập nhật.");
+                    return result.ToString();
+                }
+            });
         }
-
-        public static decimal GetTongChiTheoLoai(string loaiChi, int thang, int nam)
+        public static void ThemThuNhap(ThuNhap x) { x.Id=LuuThuChi(true,null,x.Ngay,x.LoaiThu,x.ViId,x.SoTien,x.GhiChu); }
+        public static void SuaThuNhap(ThuNhap x) { LuuThuChi(true,x.Id,x.Ngay,x.LoaiThu,x.ViId,x.SoTien,x.GhiChu); }
+        public static void ThemChiTieu(ChiTieu x) { x.Id=LuuThuChi(false,null,x.Ngay,x.LoaiChi,x.ViId,x.SoTien,x.GhiChu); }
+        public static void SuaChiTieu(ChiTieu x) { LuuThuChi(false,x.Id,x.Ngay,x.LoaiChi,x.ViId,x.SoTien,x.GhiChu); }
+        private static void XoaThuChi(bool thu, string id)
         {
-            var data = LoadData();
-            return data.DanhSachChiTieu
-                .Where(x => x.LoaiChi == loaiChi && x.Ngay.Month == thang && x.Ngay.Year == nam)
-                .Sum(x => x.SoTien);
+            GiaoDich((conn,tx,maND) => {
+                using (var cmd=Lenh(conn,tx,"DELETE FROM " + (thu ? "ThuNhap WHERE MaThu" : "ChiTieu WHERE MaChi") + "=@Id AND MaND=@MaND",maND,P("@Id",MaSo(id))))
+                {
+                    if (cmd.ExecuteNonQuery()!=1) throw new InvalidOperationException("Không tìm thấy giao dịch để xóa.");
+                }
+                return true;
+            });
         }
+        public static void XoaThuNhap(string id) { XoaThuChi(true,id); }
+        public static void XoaChiTieu(string id) { XoaThuChi(false,id); }
 
-        // ===== CHUYỂN TIỀN =====
-        public static List<ChuyenTienRecord> GetChuyenTien(DateTime? tuNgay = null, DateTime? denNgay = null)
-        {
-            var data = LoadData();
-            var query = data.DanhSachChuyenTien.AsEnumerable();
-
-            if (tuNgay.HasValue) query = query.Where(x => x.Ngay >= tuNgay.Value);
-            if (denNgay.HasValue) query = query.Where(x => x.Ngay <= denNgay.Value);
-
-            return query.OrderByDescending(x => x.Ngay).ToList();
-        }
-
-        public static bool ChuyenTien(ChuyenTienRecord record)
-        {
-            var data = LoadData();
-            var viNguon = data.DanhSachVi.FirstOrDefault(v => v.Id == record.ViNguonId);
-            var viDich = data.DanhSachVi.FirstOrDefault(v => v.Id == record.ViDichId);
-
-            if (viNguon == null || viDich == null) return false;
-            if (viNguon.SoDu < record.SoTien) return false;
-
-            viNguon.SoDu -= record.SoTien;
-            viDich.SoDu += record.SoTien;
-            data.DanhSachChuyenTien.Add(record);
-
-            SaveData();
-            return true;
-        }
-
-        // ===== VÍ =====
         public static List<Vi> GetDanhSachVi()
         {
-            return LoadData().DanhSachVi;
+            return Doc("SELECT MaVi,TenVi,SoDuHienTai FROM vw_SoDuVi WHERE MaND=@MaND ORDER BY MaVi")
+                .AsEnumerable().Select(r => new Vi { Id=r["MaVi"].ToString(),Ten=r["TenVi"].ToString(),SoDu=Convert.ToDecimal(r["SoDuHienTai"]) }).ToList();
         }
+        public static Vi GetVi(string id) { return GetDanhSachVi().FirstOrDefault(v => v.Id==id); }
 
-        public static Vi GetVi(string id)
+        public static List<NganSachItem> GetNganSach(int thang, int nam)
         {
-            return LoadData().DanhSachVi.FirstOrDefault(v => v.Id == id);
+            return Doc(@"SELECT n.MaNS,n.Thang,n.Nam,n.HanMuc,l.TenLoaiChi FROM NganSach n
+                JOIN LoaiChi l ON n.MaLoaiChi=l.MaLoaiChi AND n.MaND=l.MaND
+                WHERE n.MaND=@MaND AND n.Thang=@Thang AND n.Nam=@Nam", P("@Thang",thang),P("@Nam",nam))
+                .AsEnumerable().Select(r => new NganSachItem { Id=r["MaNS"].ToString(),Thang=Convert.ToInt32(r["Thang"]),Nam=Convert.ToInt32(r["Nam"]),LoaiChi=r["TenLoaiChi"].ToString(),HanMuc=Convert.ToDecimal(r["HanMuc"]) }).ToList();
+        }
+        public static void LuuNganSach(NganSachItem item)
+        {
+            new DateTime(item.Nam,item.Thang,1);
+            if (item.HanMuc < 0) throw new ArgumentException("Hạn mức không được âm.");
+            GiaoDich((conn,tx,maND) => {
+                int loai=LayMaLoai(conn,tx,maND,item.LoaiChi,false);
+                using(var cmd=Lenh(conn,tx,@"UPDATE NganSach SET HanMuc=@Tien WHERE MaND=@MaND AND MaLoaiChi=@Loai AND Thang=@Thang AND Nam=@Nam;
+                    IF @@ROWCOUNT=0 INSERT INTO NganSach(MaND,MaLoaiChi,Thang,Nam,HanMuc) VALUES(@MaND,@Loai,@Thang,@Nam,@Tien);",maND,P("@Loai",loai),P("@Thang",item.Thang),P("@Nam",item.Nam),P("@Tien",item.HanMuc))) cmd.ExecuteNonQuery();
+                return true;
+            });
+        }
+        public static void SaoChepNganSach(int thangNguon,int namNguon,int thangDich,int namDich)
+        {
+            new DateTime(namNguon,thangNguon,1); new DateTime(namDich,thangDich,1);
+            if(thangNguon==thangDich && namNguon==namDich) return;
+            GiaoDich((conn,tx,maND) => {
+                using(var cmd=Lenh(conn,tx,@"DELETE FROM NganSach WHERE MaND=@MaND AND Thang=@TD AND Nam=@ND;
+                    INSERT INTO NganSach(MaND,MaLoaiChi,Thang,Nam,HanMuc)
+                    SELECT MaND,MaLoaiChi,@TD,@ND,HanMuc FROM NganSach WHERE MaND=@MaND AND Thang=@TN AND Nam=@NN;",maND,P("@TD",thangDich),P("@ND",namDich),P("@TN",thangNguon),P("@NN",namNguon))) cmd.ExecuteNonQuery();
+                return true;
+            });
+        }
+        public static decimal GetTongChiTheoLoai(string loaiChi,int thang,int nam)
+        {
+            DateTime start=new DateTime(nam,thang,1);
+            return GetChiTieu(start,start.AddMonths(1).AddDays(-1),loaiChi).Sum(x=>x.SoTien);
         }
 
-        // ===== CẤU HÌNH =====
+        public static List<ChuyenTienRecord> GetChuyenTien(DateTime? tuNgay=null, DateTime? denNgay=null)
+        {
+            return Doc("SELECT MaCT,NgayChuyen,ViNguon,ViDich,SoTien,GhiChu FROM ChuyenTien WHERE MaND=@MaND ORDER BY NgayChuyen DESC,MaCT DESC")
+                .AsEnumerable().Select(r=>new ChuyenTienRecord { Id=r["MaCT"].ToString(),Ngay=Convert.ToDateTime(r["NgayChuyen"]),ViNguonId=r["ViNguon"].ToString(),ViDichId=r["ViDich"].ToString(),SoTien=Convert.ToDecimal(r["SoTien"]),GhiChu=r["GhiChu"].ToString() })
+                .Where(x=>(!tuNgay.HasValue || x.Ngay>=tuNgay.Value) && (!denNgay.HasValue || x.Ngay<denNgay.Value.Date.AddDays(1))).ToList();
+        }
+        public static bool ChuyenTien(ChuyenTienRecord record)
+        {
+            if(record.SoTien<=0 || record.ViNguonId==record.ViDichId) throw new ArgumentException("Ví nguồn, ví đích hoặc số tiền không hợp lệ.");
+            return GiaoDich((conn,tx,maND)=> {
+                int nguon=MaSo(record.ViNguonId), dich=MaSo(record.ViDichId);
+                KiemTraVi(conn,tx,maND,nguon); KiemTraVi(conn,tx,maND,dich);
+                using(var cmd=Lenh(conn,tx,"SELECT SoDuHienTai FROM vw_SoDuVi WHERE MaND=@MaND AND MaVi=@Vi",maND,P("@Vi",nguon)))
+                    if(Convert.ToDecimal(cmd.ExecuteScalar())<record.SoTien) return false;
+                using(var cmd=Lenh(conn,tx,@"INSERT INTO ChuyenTien(MaND,ViNguon,ViDich,NgayChuyen,SoTien,GhiChu)
+                    OUTPUT INSERTED.MaCT VALUES(@MaND,@Nguon,@Dich,@Ngay,@Tien,@GhiChu)",maND,P("@Nguon",nguon),P("@Dich",dich),P("@Ngay",record.Ngay),P("@Tien",record.SoTien),P("@GhiChu",record.GhiChu))) record.Id=cmd.ExecuteScalar().ToString();
+                return true;
+            });
+        }
+
         public static CauHinhApp GetCauHinh()
         {
-            return LoadData().CauHinh;
+            var dt=Doc("SELECT ThuMucSaoLuu,NguongCanhBao,TuDongSaoLuu FROM CauHinh WHERE MaND=@MaND");
+            if(dt.Rows.Count==0) return new CauHinhApp { TuDongSaoLuuKhiThoat=false };
+            var r=dt.Rows[0];
+            return new CauHinhApp { ThuMucSaoLuu=r["ThuMucSaoLuu"].ToString(),NguongCanhBao=Convert.ToInt32(r["NguongCanhBao"]),TuDongSaoLuuKhiThoat=Convert.ToBoolean(r["TuDongSaoLuu"]) };
         }
-
-        public static void LuuCauHinh(CauHinhApp cauHinh)
+        public static void LuuCauHinh(CauHinhApp cfg)
         {
-            var data = LoadData();
-            data.CauHinh = cauHinh;
-            SaveData();
+            if(cfg.NguongCanhBao<0 || cfg.NguongCanhBao>100) throw new ArgumentException("Ngưỡng cảnh báo phải từ 0 đến 100.");
+            GiaoDich((conn,tx,maND)=> {
+                using(var cmd=Lenh(conn,tx,@"UPDATE CauHinh SET ThuMucSaoLuu=@Path,NguongCanhBao=@Nguong,TuDongSaoLuu=@Auto WHERE MaND=@MaND;
+                    IF @@ROWCOUNT=0 INSERT INTO CauHinh(MaND,ThuMucSaoLuu,NguongCanhBao,TuDongSaoLuu) VALUES(@MaND,@Path,@Nguong,@Auto);",maND,P("@Path",cfg.ThuMucSaoLuu),P("@Nguong",cfg.NguongCanhBao),P("@Auto",cfg.TuDongSaoLuuKhiThoat))) cmd.ExecuteNonQuery();
+                return true;
+            });
         }
 
-        // ===== TÌM KIẾM =====
         public static List<object[]> TimKiemGiaoDich(
             string tuKhoa = null,
             string loaiGiaoDich = null,
@@ -333,12 +260,14 @@ namespace LTWIN_N05_QLCT.Services
             string loaiThuChi = null,
             string viId = null)
         {
-            var data = LoadData();
+            var thuNhap = GetThuNhap(tuNgay, denNgay);
+            var chiTieu = GetChiTieu(tuNgay, denNgay);
+            var danhSachVi = GetDanhSachVi();
             var results = new List<object[]>();
 
             if (loaiGiaoDich == null || loaiGiaoDich == "Tất cả" || loaiGiaoDich == "Thu")
             {
-                foreach (var tn in data.DanhSachThuNhap)
+                foreach (var tn in thuNhap)
                 {
                     if (tuNgay.HasValue && tn.Ngay < tuNgay.Value) continue;
                     if (denNgay.HasValue && tn.Ngay > denNgay.Value) continue;
@@ -348,14 +277,14 @@ namespace LTWIN_N05_QLCT.Services
                     if (!string.IsNullOrEmpty(loaiThuChi) && loaiThuChi != "Tất cả" && tn.LoaiThu != loaiThuChi) continue;
                     if (!string.IsNullOrEmpty(tuKhoa) && tn.GhiChu.IndexOf(tuKhoa, StringComparison.OrdinalIgnoreCase) < 0) continue;
 
-                    var vi = data.DanhSachVi.FirstOrDefault(v => v.Id == tn.ViId);
+                    var vi = danhSachVi.FirstOrDefault(v => v.Id == tn.ViId);
                     results.Add(new object[] { tn.Ngay, "Thu", tn.LoaiThu, vi != null ? vi.Ten : "", tn.SoTien, tn.GhiChu });
                 }
             }
 
             if (loaiGiaoDich == null || loaiGiaoDich == "Tất cả" || loaiGiaoDich == "Chi")
             {
-                foreach (var ct in data.DanhSachChiTieu)
+                foreach (var ct in chiTieu)
                 {
                     if (tuNgay.HasValue && ct.Ngay < tuNgay.Value) continue;
                     if (denNgay.HasValue && ct.Ngay > denNgay.Value) continue;
@@ -365,7 +294,7 @@ namespace LTWIN_N05_QLCT.Services
                     if (!string.IsNullOrEmpty(loaiThuChi) && loaiThuChi != "Tất cả" && ct.LoaiChi != loaiThuChi) continue;
                     if (!string.IsNullOrEmpty(tuKhoa) && ct.GhiChu.IndexOf(tuKhoa, StringComparison.OrdinalIgnoreCase) < 0) continue;
 
-                    var vi = data.DanhSachVi.FirstOrDefault(v => v.Id == ct.ViId);
+                    var vi = danhSachVi.FirstOrDefault(v => v.Id == ct.ViId);
                     results.Add(new object[] { ct.Ngay, "Chi", ct.LoaiChi, vi != null ? vi.Ten : "", ct.SoTien, ct.GhiChu });
                 }
             }
@@ -373,12 +302,6 @@ namespace LTWIN_N05_QLCT.Services
             return results.OrderByDescending(r => (DateTime)r[0]).ToList();
         }
 
-        public static string GetNguoiDung()
-        {
-            return LoadData().NguoiDung;
-        }
-
-        public static readonly string[] DanhSachLoaiChi = new string[] { "Ăn uống", "Di chuyển", "Mua sắm", "Nhà ở", "Khác", "Sức khỏe", "Y tế" };
-        public static readonly string[] DanhSachLoaiThu = new string[] { "Lương", "Thưởng", "Thu nhập khác" };
+        public static string GetNguoiDung() { return PhienDangNhap.HoTen; }
     }
 }

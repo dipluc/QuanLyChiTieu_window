@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- dotnet MSBuild không tự giải quyết PackageReference cho project WinForms cũ.
+       Visual Studio dùng cơ chế NuGet sẵn có, chỉ CLI cần cầu nối này. -->
+  <ItemGroup>
+    <_LegacyNuGetTask Include="$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk\tools\net*\Microsoft.NET.Build.Tasks.dll"
+                      Exclude="$(MSBuildToolsPath)\Sdks\Microsoft.NET.Sdk\tools\net472\Microsoft.NET.Build.Tasks.dll" />
+  </ItemGroup>
+  <UsingTask TaskName="Microsoft.NET.Build.Tasks.ResolvePackageAssets" AssemblyFile="@(_LegacyNuGetTask)" />
+  <Target Name="ResolveLegacyNuGetAssets" BeforeTargets="ResolveAssemblyReferences">
+    <ResolvePackageAssets ProjectAssetsFile="$(MSBuildProjectExtensionsPath)project.assets.json"
+                          ProjectAssetsCacheFile="$(IntermediateOutputPath)legacy.assets.cache"
+                          ProjectPath="$(MSBuildProjectFullPath)" TargetFramework="net48"
+                          DotNetAppHostExecutableNameWithoutExtension="apphost"
+                          DefaultImplicitPackages="Microsoft.NETCore.App;NETStandard.Library"
+                          MarkPackageReferencesAsExternallyResolved="true">
+      <Output TaskParameter="CompileTimeAssemblies" ItemName="_LegacyCompileAssets" />
+      <Output TaskParameter="RuntimeAssemblies" ItemName="_LegacyRuntimeAssets" />
+      <Output TaskParameter="FrameworkAssemblies" ItemName="_LegacyFrameworkAssets" />
+    </ResolvePackageAssets>
+    <ItemGroup>
+      <Reference Include="@(_LegacyCompileAssets);@(_LegacyFrameworkAssets)" />
+      <ReferenceCopyLocalPaths Include="@(_LegacyRuntimeAssets)" />
+    </ItemGroup>
+  </Target>
+</Project>

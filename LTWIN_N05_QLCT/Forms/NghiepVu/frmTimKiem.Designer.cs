@@ -21,6 +21,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             System.Windows.Forms.DataGridViewCellStyle dgvRowStyle = new System.Windows.Forms.DataGridViewCellStyle();
 
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.tlpBoCuc = new System.Windows.Forms.TableLayoutPanel();
             this.lblTimKiemGiaoDich = new System.Windows.Forms.Label();
 
             this.pnlBoLoc = new System.Windows.Forms.Panel();
@@ -63,6 +64,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.lblChenhLechThuChi16900 = new System.Windows.Forms.Label();
 
             this.pnlMain.SuspendLayout();
+            this.tlpBoCuc.SuspendLayout();
             this.pnlBoLoc.SuspendLayout();
             this.pnlKetQua.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKetQua)).BeginInit();
@@ -71,29 +73,44 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
             // ===== pnlMain =====
             this.pnlMain.BackColor = System.Drawing.Color.FromArgb(244, 246, 248);
-            this.pnlMain.Controls.Add(this.pnlTongKet);
-            this.pnlMain.Controls.Add(this.pnlKetQua);
-            this.pnlMain.Controls.Add(this.pnlBoLoc);
-            this.pnlMain.Controls.Add(this.lblTimKiemGiaoDich);
+            this.pnlMain.Controls.Add(this.tlpBoCuc);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.AutoScroll = true;
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
             this.pnlMain.Size = new System.Drawing.Size(1060, 600);
             this.pnlMain.TabIndex = 0;
 
-            this.lblTimKiemGiaoDich.AutoSize = true;
+            this.tlpBoCuc.ColumnCount = 1;
+            this.tlpBoCuc.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpBoCuc.RowCount = 4;
+            this.tlpBoCuc.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tlpBoCuc.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.tlpBoCuc.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpBoCuc.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tlpBoCuc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpBoCuc.Location = new System.Drawing.Point(16, 12);
+            this.tlpBoCuc.MinimumSize = new System.Drawing.Size(1028, 576);
+            this.tlpBoCuc.Name = "tlpBoCuc";
+            this.tlpBoCuc.Size = new System.Drawing.Size(1028, 576);
+            this.tlpBoCuc.Controls.Add(this.lblTimKiemGiaoDich, 0, 0);
+            this.tlpBoCuc.Controls.Add(this.pnlBoLoc, 0, 1);
+            this.tlpBoCuc.Controls.Add(this.pnlKetQua, 0, 2);
+            this.tlpBoCuc.Controls.Add(this.pnlTongKet, 0, 3);
+
+            this.lblTimKiemGiaoDich.AutoSize = false;
             this.lblTimKiemGiaoDich.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Bold);
             this.lblTimKiemGiaoDich.ForeColor = System.Drawing.Color.FromArgb(26, 35, 126);
-            this.lblTimKiemGiaoDich.Location = new System.Drawing.Point(16, 10);
+            this.lblTimKiemGiaoDich.Location = new System.Drawing.Point(16, 12);
+            this.lblTimKiemGiaoDich.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTimKiemGiaoDich.Margin = new System.Windows.Forms.Padding(0);
             this.lblTimKiemGiaoDich.Name = "lblTimKiemGiaoDich";
-            this.lblTimKiemGiaoDich.Size = new System.Drawing.Size(176, 25);
+            this.lblTimKiemGiaoDich.Size = new System.Drawing.Size(1028, 36);
             this.lblTimKiemGiaoDich.TabIndex = 0;
             this.lblTimKiemGiaoDich.Text = "Tìm kiếm giao dịch";
 
             // ===== pnlBoLoc =====
-            this.pnlBoLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlBoLoc.BackColor = System.Drawing.Color.White;
             this.pnlBoLoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBoLoc.Controls.Add(this.lblTuKhoa);
@@ -115,7 +132,9 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.pnlBoLoc.Controls.Add(this.btnTim);
             this.pnlBoLoc.Controls.Add(this.btnXoaLoc);
             this.pnlBoLoc.Controls.Add(this.lblLoaiGiaoDichTatCaThu);
-            this.pnlBoLoc.Location = new System.Drawing.Point(16, 42);
+            this.pnlBoLoc.Location = new System.Drawing.Point(16, 48);
+            this.pnlBoLoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBoLoc.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.pnlBoLoc.Name = "pnlBoLoc";
             this.pnlBoLoc.Size = new System.Drawing.Size(1028, 120);
             this.pnlBoLoc.TabIndex = 1;
@@ -269,16 +288,15 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.lblLoaiGiaoDichTatCaThu.Text = "Loại giao dịch: Tất cả / Thu / Chi • Từ khóa để trống: không giới hạn ghi chú • Khoảng tiền tính theo giá trị giao dịch.";
 
             // ===== pnlKetQua =====
-            this.pnlKetQua.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlKetQua.BackColor = System.Drawing.Color.White;
             this.pnlKetQua.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlKetQua.Controls.Add(this.lblKetQuaTimKiem5Giao);
             this.pnlKetQua.Controls.Add(this.btnXuatExcel);
             this.pnlKetQua.Controls.Add(this.dgvKetQua);
             this.pnlKetQua.Controls.Add(this.lblHienThi155Chi);
-            this.pnlKetQua.Location = new System.Drawing.Point(16, 170);
+            this.pnlKetQua.Location = new System.Drawing.Point(16, 176);
+            this.pnlKetQua.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlKetQua.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.pnlKetQua.Name = "pnlKetQua";
             this.pnlKetQua.Size = new System.Drawing.Size(1028, 360);
             this.pnlKetQua.TabIndex = 2;
@@ -378,14 +396,15 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.lblHienThi155Chi.Text = "Hiển thị 0 giao dịch • Chỉ đọc";
 
             // ===== pnlTongKet =====
-            this.pnlTongKet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTongKet.BackColor = System.Drawing.Color.Transparent;
             this.pnlTongKet.Controls.Add(this.lblTongThu25000000);
             this.pnlTongKet.Controls.Add(this.lblTongChi8100000);
             this.pnlTongKet.Controls.Add(this.lblChenhLechThuChi16900);
-            this.pnlTongKet.Location = new System.Drawing.Point(350, 540);
+            this.pnlTongKet.Location = new System.Drawing.Point(16, 544);
+            this.pnlTongKet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTongKet.Margin = new System.Windows.Forms.Padding(0);
             this.pnlTongKet.Name = "pnlTongKet";
-            this.pnlTongKet.Size = new System.Drawing.Size(694, 30);
+            this.pnlTongKet.Size = new System.Drawing.Size(1028, 44);
             this.pnlTongKet.TabIndex = 3;
 
             this.lblTongThu25000000.AutoSize = true;
@@ -424,6 +443,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.Name = "frmTimKiem";
             this.Text = "Quản Lý Chi Tiêu — Tìm kiếm giao dịch";
 
+            this.tlpBoCuc.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
             this.pnlBoLoc.ResumeLayout(false);
@@ -438,6 +458,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         #endregion
 
+        private System.Windows.Forms.TableLayoutPanel tlpBoCuc;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Label lblTimKiemGiaoDich;
 
