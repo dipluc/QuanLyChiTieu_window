@@ -2,38 +2,219 @@
 {
     partial class frmSaoLuu
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem lvSaoLuuItem0 = new System.Windows.Forms.ListViewItem(new string[] { "ChiTieu_26-10-2026_0830.bak", "26/10/2026 08:30", "4,8 MB", "Thủ công" });
+            System.Windows.Forms.ListViewItem lvSaoLuuItem1 = new System.Windows.Forms.ListViewItem(new string[] { "ChiTieu_25-10-2026_2130.bak", "25/10/2026 21:30", "4,8 MB", "Tự động" });
+            System.Windows.Forms.ListViewItem lvSaoLuuItem2 = new System.Windows.Forms.ListViewItem(new string[] { "ChiTieu_24-10-2026_2200.bak", "24/10/2026 22:00", "4,7 MB", "Tự động" });
+            System.Windows.Forms.ListViewItem lvSaoLuuItem3 = new System.Windows.Forms.ListViewItem(new string[] { "ChiTieu_23-10-2026_2145.bak", "23/10/2026 21:45", "4,7 MB", "Tự động" });
+            System.Windows.Forms.ListViewItem lvSaoLuuItem4 = new System.Windows.Forms.ListViewItem(new string[] { "ChiTieu_20-10-2026_0900.bak", "20/10/2026 09:00", "4,6 MB", "Thủ công" });
+            this.lblTieuDe = new System.Windows.Forms.Label();
+            this.lblMoTa = new System.Windows.Forms.Label();
+            this.pnlThuMuc = new System.Windows.Forms.Panel();
+            this.lblThuMuc = new System.Windows.Forms.Label();
+            this.txtThuMucSaoLuu = new System.Windows.Forms.TextBox();
+            this.btnDuyet = new System.Windows.Forms.Button();
+            this.btnSaoLuu = new System.Windows.Forms.Button();
+            this.pnlDanhSach = new System.Windows.Forms.Panel();
+            this.lblDanhSach = new System.Windows.Forms.Label();
+            this.lblSoLuong = new System.Windows.Forms.Label();
+            this.lvSaoLuu = new System.Windows.Forms.ListView();
+            this.lvSaoLuuCol0 = new System.Windows.Forms.ColumnHeader();
+            this.lvSaoLuuCol1 = new System.Windows.Forms.ColumnHeader();
+            this.lvSaoLuuCol2 = new System.Windows.Forms.ColumnHeader();
+            this.lvSaoLuuCol3 = new System.Windows.Forms.ColumnHeader();
+            this.lblDaChon = new System.Windows.Forms.Label();
+            this.btnPhucHoi = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            this.pnlThuMuc.SuspendLayout();
+            this.pnlDanhSach.SuspendLayout();
+            this.lblTieuDe.Location = new System.Drawing.Point(20, 14);
+            this.lblTieuDe.Size = new System.Drawing.Size(500, 30);
+            this.lblTieuDe.Name = "lblTieuDe";
+            this.lblTieuDe.TabIndex = 0;
+            this.lblTieuDe.Text = "Sao lưu và phục hồi";
+            this.lblTieuDe.AutoSize = false;
+            this.lblTieuDe.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.lblTieuDe.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.lblMoTa.Location = new System.Drawing.Point(800, 18);
+            this.lblMoTa.Size = new System.Drawing.Size(380, 24);
+            this.lblMoTa.Name = "lblMoTa";
+            this.lblMoTa.TabIndex = 1;
+            this.lblMoTa.Text = "Bảo vệ dữ liệu chi tiêu của bạn";
+            this.lblMoTa.AutoSize = false;
+            this.lblMoTa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
+            this.lblMoTa.ForeColor = System.Drawing.Color.FromArgb(115, 131, 153);
+            this.lblMoTa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblMoTa.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.pnlThuMuc.Location = new System.Drawing.Point(20, 60);
+            this.pnlThuMuc.Size = new System.Drawing.Size(1160, 86);
+            this.pnlThuMuc.Name = "pnlThuMuc";
+            this.pnlThuMuc.TabIndex = 2;
+            this.pnlThuMuc.BackColor = System.Drawing.Color.White;
+            this.pnlThuMuc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlThuMuc.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.lblThuMuc.Location = new System.Drawing.Point(12, 8);
+            this.lblThuMuc.Size = new System.Drawing.Size(500, 22);
+            this.lblThuMuc.Name = "lblThuMuc";
+            this.lblThuMuc.TabIndex = 3;
+            this.lblThuMuc.Text = "Thư mục sao lưu";
+            this.lblThuMuc.AutoSize = false;
+            this.lblThuMuc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblThuMuc.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.txtThuMucSaoLuu.Location = new System.Drawing.Point(12, 40);
+            this.txtThuMucSaoLuu.Size = new System.Drawing.Size(870, 27);
+            this.txtThuMucSaoLuu.Name = "txtThuMucSaoLuu";
+            this.txtThuMucSaoLuu.TabIndex = 4;
+            this.txtThuMucSaoLuu.Text = "D:\\QuanLyChiTieu\\SaoLuu";
+            this.txtThuMucSaoLuu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.btnDuyet.Location = new System.Drawing.Point(895, 38);
+            this.btnDuyet.Size = new System.Drawing.Size(90, 30);
+            this.btnDuyet.Name = "btnDuyet";
+            this.btnDuyet.TabIndex = 5;
+            this.btnDuyet.Text = "Duyệt...";
+            this.btnDuyet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDuyet.BackColor = System.Drawing.Color.White;
+            this.btnDuyet.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.btnDuyet.UseVisualStyleBackColor = false;
+            this.btnDuyet.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(223, 229, 238);
+            this.btnDuyet.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.btnSaoLuu.Location = new System.Drawing.Point(997, 38);
+            this.btnSaoLuu.Size = new System.Drawing.Size(145, 30);
+            this.btnSaoLuu.Name = "btnSaoLuu";
+            this.btnSaoLuu.TabIndex = 6;
+            this.btnSaoLuu.Text = "Sao lưu ngay";
+            this.btnSaoLuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaoLuu.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
+            this.btnSaoLuu.ForeColor = System.Drawing.Color.White;
+            this.btnSaoLuu.UseVisualStyleBackColor = false;
+            this.btnSaoLuu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(21, 101, 192);
+            this.btnSaoLuu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.pnlDanhSach.Location = new System.Drawing.Point(20, 162);
+            this.pnlDanhSach.Size = new System.Drawing.Size(1160, 468);
+            this.pnlDanhSach.Name = "pnlDanhSach";
+            this.pnlDanhSach.TabIndex = 7;
+            this.pnlDanhSach.BackColor = System.Drawing.Color.White;
+            this.pnlDanhSach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDanhSach.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.lblDanhSach.Location = new System.Drawing.Point(12, 10);
+            this.lblDanhSach.Size = new System.Drawing.Size(500, 26);
+            this.lblDanhSach.Name = "lblDanhSach";
+            this.lblDanhSach.TabIndex = 8;
+            this.lblDanhSach.Text = "Các bản sao lưu hiện có";
+            this.lblDanhSach.AutoSize = false;
+            this.lblDanhSach.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblDanhSach.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.lblSoLuong.Location = new System.Drawing.Point(800, 12);
+            this.lblSoLuong.Size = new System.Drawing.Size(340, 24);
+            this.lblSoLuong.Name = "lblSoLuong";
+            this.lblSoLuong.TabIndex = 9;
+            this.lblSoLuong.Text = "5 bản sao lưu • Dữ liệu minh họa";
+            this.lblSoLuong.AutoSize = false;
+            this.lblSoLuong.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular);
+            this.lblSoLuong.ForeColor = System.Drawing.Color.FromArgb(115, 131, 153);
+            this.lblSoLuong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSoLuong.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.lvSaoLuu.Location = new System.Drawing.Point(12, 47);
+            this.lvSaoLuu.Size = new System.Drawing.Size(1130, 354);
+            this.lvSaoLuu.Name = "lvSaoLuu";
+            this.lvSaoLuu.TabIndex = 10;
+            this.lvSaoLuu.View = System.Windows.Forms.View.Details;
+            this.lvSaoLuu.FullRowSelect = true;
+            this.lvSaoLuu.GridLines = true;
+            this.lvSaoLuu.HideSelection = false;
+            this.lvSaoLuu.MultiSelect = false;
+            this.lvSaoLuu.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvSaoLuu.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvSaoLuu.UseCompatibleStateImageBehavior = false;
+            this.lvSaoLuuCol0.Text = "Tên tệp sao lưu";
+            this.lvSaoLuuCol0.Width = 470;
+            this.lvSaoLuuCol1.Text = "Ngày tạo";
+            this.lvSaoLuuCol1.Width = 290;
+            this.lvSaoLuuCol2.Text = "Dung lượng";
+            this.lvSaoLuuCol2.Width = 170;
+            this.lvSaoLuuCol3.Text = "Hình thức";
+            this.lvSaoLuuCol3.Width = 180;
+            this.lvSaoLuu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.lvSaoLuuCol0, this.lvSaoLuuCol1, this.lvSaoLuuCol2, this.lvSaoLuuCol3 });
+            lvSaoLuuItem0.BackColor = System.Drawing.Color.FromArgb(246, 249, 253);
+            lvSaoLuuItem2.BackColor = System.Drawing.Color.FromArgb(246, 249, 253);
+            lvSaoLuuItem4.BackColor = System.Drawing.Color.FromArgb(246, 249, 253);
+            this.lvSaoLuu.Items.AddRange(new System.Windows.Forms.ListViewItem[] { lvSaoLuuItem0, lvSaoLuuItem1, lvSaoLuuItem2, lvSaoLuuItem3, lvSaoLuuItem4 });
+            this.lvSaoLuu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.lblDaChon.Location = new System.Drawing.Point(12, 422);
+            this.lblDaChon.Size = new System.Drawing.Size(850, 26);
+            this.lblDaChon.Name = "lblDaChon";
+            this.lblDaChon.TabIndex = 11;
+            this.lblDaChon.Text = "Đã chọn: ChiTieu_26-10-2026_0830.bak";
+            this.lblDaChon.AutoSize = false;
+            this.lblDaChon.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular);
+            this.lblDaChon.ForeColor = System.Drawing.Color.FromArgb(115, 131, 153);
+            this.lblDaChon.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            this.btnPhucHoi.Location = new System.Drawing.Point(1020, 417);
+            this.btnPhucHoi.Size = new System.Drawing.Size(120, 32);
+            this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.TabIndex = 12;
+            this.btnPhucHoi.Text = "Phục hồi";
+            this.btnPhucHoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPhucHoi.BackColor = System.Drawing.Color.White;
+            this.btnPhucHoi.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.btnPhucHoi.UseVisualStyleBackColor = false;
+            this.btnPhucHoi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(223, 229, 238);
+            this.btnPhucHoi.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            this.Controls.Add(this.lblTieuDe);
+            this.Controls.Add(this.lblMoTa);
+            this.Controls.Add(this.pnlThuMuc);
+            this.pnlThuMuc.Controls.Add(this.lblThuMuc);
+            this.pnlThuMuc.Controls.Add(this.txtThuMucSaoLuu);
+            this.pnlThuMuc.Controls.Add(this.btnDuyet);
+            this.pnlThuMuc.Controls.Add(this.btnSaoLuu);
+            this.Controls.Add(this.pnlDanhSach);
+            this.pnlDanhSach.Controls.Add(this.lblDanhSach);
+            this.pnlDanhSach.Controls.Add(this.lblSoLuong);
+            this.pnlDanhSach.Controls.Add(this.lvSaoLuu);
+            this.pnlDanhSach.Controls.Add(this.lblDaChon);
+            this.pnlDanhSach.Controls.Add(this.btnPhucHoi);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frmSaoLuu";
+            this.ClientSize = new System.Drawing.Size(1200, 650);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BackColor = System.Drawing.Color.FromArgb(245, 247, 251);
+            this.Name = "frmSaoLuu";
+            this.Text = "Sao lưu và phục hồi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.pnlDanhSach.ResumeLayout(false);
+            this.pnlDanhSach.PerformLayout();
+            this.pnlThuMuc.ResumeLayout(false);
+            this.pnlThuMuc.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
-
         #endregion
+
+        private System.Windows.Forms.Label lblTieuDe;
+        private System.Windows.Forms.Label lblMoTa;
+        private System.Windows.Forms.Panel pnlThuMuc;
+        private System.Windows.Forms.Label lblThuMuc;
+        private System.Windows.Forms.TextBox txtThuMucSaoLuu;
+        private System.Windows.Forms.Button btnDuyet;
+        private System.Windows.Forms.Button btnSaoLuu;
+        private System.Windows.Forms.Panel pnlDanhSach;
+        private System.Windows.Forms.Label lblDanhSach;
+        private System.Windows.Forms.Label lblSoLuong;
+        private System.Windows.Forms.ListView lvSaoLuu;
+        private System.Windows.Forms.ColumnHeader lvSaoLuuCol0;
+        private System.Windows.Forms.ColumnHeader lvSaoLuuCol1;
+        private System.Windows.Forms.ColumnHeader lvSaoLuuCol2;
+        private System.Windows.Forms.ColumnHeader lvSaoLuuCol3;
+        private System.Windows.Forms.Label lblDaChon;
+        private System.Windows.Forms.Button btnPhucHoi;
     }
 }

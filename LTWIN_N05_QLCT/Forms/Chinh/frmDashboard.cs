@@ -23,6 +23,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             InitializeComponent();
             Shown += frmDashboard_Shown;
         }
+
         private void frmDashboard_Shown(object sender, EventArgs e)
         {
             NapDuLieuDashboard();
@@ -54,6 +55,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 NapChiTheoLoai(maND, thang, nam);
                 NapGiaoDichGanDay(maND);
                 ThemCanhBaoNganSach(maND, thang, nam);
+                NapThuChi12Thang(maND);
+                NapXepHangVi();
+                NapThuTheoLoai(maND ,thang, nam);
+
+                lblDuLieuDenNgay2610.Text = "Tháng đang xem: " + _thangDangXem.ToString("MM/yyyy");
             }
             catch (Exception ex)
             {
@@ -218,6 +224,56 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             return dong;
         }
 
+        private void NapXepHangVi()
+        {
+            string thongBaoLoi;
+            DataTable dt = ViTienNV.LayDanhSach(out thongBaoLoi);
+
+            if (!string.IsNullOrEmpty(thongBaoLoi))
+            {
+                lblXepHangVi.Text = "Không thể tải danh sách ví";
+                return;
+            }
+
+            DataRow[] danhSach = dt.Select(
+                "", "SoDuHienTai DESC, MaVi ASC");
+
+            var tenVi = new List<string>();
+
+            foreach (DataRow row in danhSach)
+            {
+                tenVi.Add(row["TenVi"].ToString());
+            }
+
+            lblXepHangVi.Text = tenVi.Count > 0 ? string.Join(" • ", tenVi)
+                : "Chưa có ví";
+        }
+
+        // Lấy lương + khác ở mục dashboard thứ 2
+        private void NapThuTheoLoai(int maND, int thang, int nam)
+        {
+            DataTable dt = ThongKeNV.LayThuTheoLoaiThang(
+                maND, thang, nam
+            );
+
+            CultureInfo viVN = CultureInfo.GetCultureInfo("vi-VN");
+            var cacKhoanThu = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string tenLoai = row["TenLoaiThu"].ToString();
+                decimal tongThu = Convert.ToDecimal(row["TongThu"]);
+
+                cacKhoanThu.Add(
+                    tenLoai + " " + tongThu.ToString("N0", viVN) + " đ"
+                );
+            }
+
+            lblLuongThuKhac.Text = cacKhoanThu.Count > 0
+                ? string.Join(" • ", cacKhoanThu)
+                : "Chưa có thu nhập trong tháng";
+        }
+
         private void NapChiTheoLoai(int maND, int thang, int nam)
         {
             DataTable dt =
@@ -346,6 +402,49 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 series.IsValueShownAsLabel = false;
                 series["PieLabelStyle"] = "Disabled";
             }
+        }
+
+
+        private void NapThuChi12Thang(int maND)
+        {
+            Series thu = chartThuChi.Series["Thu"];
+            Series chi = chartThuChi.Series["Chi"];
+
+
+            //Xoa data khi doi thang
+            thu.Points.Clear();
+            chi.Points.Clear();
+
+            thu.ChartType = SeriesChartType.Column;
+            chi.ChartType = SeriesChartType.Column;
+
+            thu.ToolTip = "Thu tháng #AXISLABEL: #VALY{N0} đ";
+            chi.ToolTip = "Thu tháng #AXISLABEL: #VALY{N0} đ";
+
+            DateTime thangCuoi = new DateTime(
+                _thangDangXem.Year, _thangDangXem.Month, 1);
+
+            DateTime thangDau = thangCuoi.AddMonths(-11);
+
+            for(int i = 0; i < 12; i++)
+            {
+                DateTime thang = thangDau.AddMonths(i);
+
+                ThongKeMH thongKe = ThongKeNV.LayTongQuanThang(maND, thang.Month, thang.Year);
+
+                string nhanThang = thang.ToString("MM/yy");
+
+                thu.Points.AddXY(nhanThang, (double)thongKe.TongThu);
+                chi.Points.AddXY(nhanThang, (double)thongKe.TongChi);
+            }
+
+            ChartArea vungVe = chartThuChi.ChartAreas["ChartAreaThuChi"];
+
+            vungVe.AxisX.Interval = 1;
+            vungVe.AxisX.MajorGrid.Enabled = false;
+            vungVe.AxisY.Minimum = 0;
+            vungVe.AxisY.LabelStyle.Format = "#,##0";
+            vungVe.RecalculateAxesScale();
         }
     }
 }

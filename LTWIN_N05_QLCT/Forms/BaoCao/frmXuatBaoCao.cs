@@ -16,5 +16,13 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
         {
             InitializeComponent();
         }
+
+        public frmXuatBaoCao(bool xuatPdf) : this()
+        {
+            rdoPdf.Checked = xuatPdf;
+            rdoExcel.Checked = !xuatPdf;
+            if (xuatPdf)
+                lblTenTepDuKien.Text = "Tên dự kiến: GiaoDich_01102026_26102026.pdf";
+        }
     }
 }

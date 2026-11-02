@@ -141,13 +141,18 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             if (mnuMucTieuTietKiem != null) mnuMucTieuTietKiem.Click += (s, e) => MoFormMucTieuTietKiem();
 
             // ===== Menu Báo cáo =====
-            mnuBaoCaoThuChi.Click += (s, e) => ThaoTacChucNang("Báo cáo thu - chi");
+            mnuBaoCaoThuChi.Click += (s, e) => MoFormBaoCaoThang();
             mnuBaoCaoNganSach.Click += (s, e) => ThaoTacChucNang("Báo cáo theo dõi ngân sách");
+            mnuBieuDo.Click += (s, e) => MoFormBieuDo();
+            mnuXuatBaoCao.Click += (s, e) => MoFormXuatBaoCao();
+            mnuNhanhBaoCaoThang.Click += (s, e) => MoFormBaoCaoThang();
+            mnuNhanhBieuDo.Click += (s, e) => MoFormBieuDo();
+            mnuNhanhXuatBaoCao.Click += (s, e) => MoFormXuatBaoCao();
 
             // ===== Menu Quản trị =====
             if (mnuQuanLyNguoiDung != null) mnuQuanLyNguoiDung.Click += (s, e) => MoFormNguoiDung();
-            if (mnuSaoLuuDuLieu != null) mnuSaoLuuDuLieu.Click += (s, e) => ThaoTacChucNang("Sao lưu dữ liệu");
-            if (mnuPhucHoiDuLieu != null) mnuPhucHoiDuLieu.Click += (s, e) => ThaoTacChucNang("Phục hồi dữ liệu");
+            if (mnuSaoLuuDuLieu != null) mnuSaoLuuDuLieu.Click += (s, e) => MoFormSaoLuu();
+            if (mnuPhucHoiDuLieu != null) mnuPhucHoiDuLieu.Click += (s, e) => MoFormSaoLuu();
 
             // ===== Menu Trợ giúp =====
             mnuHuongDan.Click += (s, e) => MoFormHuongDan();
@@ -157,7 +162,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             btnThuNhap.Click += (s, e) => ThaoTacChucNang("Ghi nhận thu nhập");
             btnChiTieu.Click += (s, e) => ThaoTacChucNang("Ghi nhận chi tiêu");
             btnNganSach.Click += (s, e) => MoFormViTien(); // Hoặc ThaoTacChucNang tùy logic nhóm
-            btnBaoCao.Click += (s, e) => ThaoTacChucNang("Báo cáo tài chính");
+            btnBaoCao.Click += (s, e) => cmsBaoCao.Show(btnBaoCao, new Point(0, btnBaoCao.Height));
             btnTimKiem.Click += (s, e) => ThaoTacChucNang("Tìm kiếm giao dịch");
             btnLamMoi.Click += (s, e) => LamMoiDuLieu();
 
@@ -329,6 +334,26 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private void MoFormMucTieuTietKiem()
         {
             MoChucNang(new Forms.NghiepVu.frmMucTieuTietKiem(), "Mục tiêu tiết kiệm");
+        }
+
+        private void MoFormBaoCaoThang()
+        {
+            MoChucNang(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true);
+        }
+
+        private void MoFormBieuDo()
+        {
+            MoChucNang(new Forms.BaoCao.frmBieuDo(), "Biểu đồ", true);
+        }
+
+        public void MoFormXuatBaoCao(bool xuatPdf = false)
+        {
+            MoChucNang(new Forms.BaoCao.frmXuatBaoCao(xuatPdf), "Xuất báo cáo", true);
+        }
+
+        private void MoFormSaoLuu()
+        {
+            MoChucNang(new Forms.QuanTri.frmSaoLuu(), "Sao lưu và phục hồi", true);
         }
 
         // ==========================================

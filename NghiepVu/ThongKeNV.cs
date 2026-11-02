@@ -25,7 +25,7 @@ namespace NghiepVu
 
         public static DataTable LayGiaoDichGanDay(int maND)
         {
-            return ThongKeDL.LayGiaoDichGanDay(maND, 5);
+            return ThongKeDL.LayGiaoDichGanDay(maND, 10);
         }
 
         //Canh bao ngan sach
@@ -61,6 +61,15 @@ namespace NghiepVu
             return ThongKeDL.LayChiTheoLoai(
                 maND, tuNgay, denNgay
             );
+        }
+
+        // Lấy lương + khác ở mục dashboard thứ 2
+        public static DataTable LayThuTheoLoaiThang(int maND, int thang, int nam)
+        {
+            DateTime tuNgay = new DateTime(nam, thang, 1);
+            DateTime denNgay = tuNgay.AddMonths(1);
+
+            return ThongKeDL.LayThuTheoLoai(maND, tuNgay, denNgay);
         }
     }
 }

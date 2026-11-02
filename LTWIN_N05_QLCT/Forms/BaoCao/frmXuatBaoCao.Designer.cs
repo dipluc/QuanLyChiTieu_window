@@ -2,38 +2,243 @@
 {
     partial class frmXuatBaoCao
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.lblTieuDe = new System.Windows.Forms.Label();
+            this.pnlThietLap = new System.Windows.Forms.Panel();
+            this.lblThietLap = new System.Windows.Forms.Label();
+            this.lblLoaiBaoCao = new System.Windows.Forms.Label();
+            this.cboLoaiBaoCao = new System.Windows.Forms.ComboBox();
+            this.lblLoaiGhiChu = new System.Windows.Forms.Label();
+            this.lblTuNgay = new System.Windows.Forms.Label();
+            this.dtpTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.lblDenNgay = new System.Windows.Forms.Label();
+            this.dtpDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.lblDinhDang = new System.Windows.Forms.Label();
+            this.rdoExcel = new System.Windows.Forms.RadioButton();
+            this.rdoPdf = new System.Windows.Forms.RadioButton();
+            this.lblThuMuc = new System.Windows.Forms.Label();
+            this.txtThuMucLuu = new System.Windows.Forms.TextBox();
+            this.btnDuyet = new System.Windows.Forms.Button();
+            this.chkMoTep = new System.Windows.Forms.CheckBox();
+            this.pnlDuongKe = new System.Windows.Forms.Panel();
+            this.lblTenTepDuKien = new System.Windows.Forms.Label();
+            this.btnXuat = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            this.pnlThietLap.SuspendLayout();
+            this.pnlDuongKe.SuspendLayout();
+            this.lblTieuDe.Location = new System.Drawing.Point(20, 14);
+            this.lblTieuDe.Size = new System.Drawing.Size(500, 30);
+            this.lblTieuDe.Name = "lblTieuDe";
+            this.lblTieuDe.TabIndex = 0;
+            this.lblTieuDe.Text = "Xuất báo cáo";
+            this.lblTieuDe.AutoSize = false;
+            this.lblTieuDe.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.lblTieuDe.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.pnlThietLap.Location = new System.Drawing.Point(20, 60);
+            this.pnlThietLap.Size = new System.Drawing.Size(800, 462);
+            this.pnlThietLap.Name = "pnlThietLap";
+            this.pnlThietLap.TabIndex = 1;
+            this.pnlThietLap.BackColor = System.Drawing.Color.White;
+            this.pnlThietLap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblThietLap.Location = new System.Drawing.Point(20, 16);
+            this.lblThietLap.Size = new System.Drawing.Size(700, 28);
+            this.lblThietLap.Name = "lblThietLap";
+            this.lblThietLap.TabIndex = 2;
+            this.lblThietLap.Text = "Thiết lập báo cáo";
+            this.lblThietLap.AutoSize = false;
+            this.lblThietLap.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblThietLap.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.lblLoaiBaoCao.Location = new System.Drawing.Point(20, 60);
+            this.lblLoaiBaoCao.Size = new System.Drawing.Size(400, 20);
+            this.lblLoaiBaoCao.Name = "lblLoaiBaoCao";
+            this.lblLoaiBaoCao.TabIndex = 3;
+            this.lblLoaiBaoCao.Text = "Loại báo cáo";
+            this.lblLoaiBaoCao.AutoSize = false;
+            this.lblLoaiBaoCao.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblLoaiBaoCao.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.cboLoaiBaoCao.Location = new System.Drawing.Point(20, 86);
+            this.cboLoaiBaoCao.Size = new System.Drawing.Size(360, 28);
+            this.cboLoaiBaoCao.Name = "cboLoaiBaoCao";
+            this.cboLoaiBaoCao.TabIndex = 4;
+            this.cboLoaiBaoCao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLoaiBaoCao.FormattingEnabled = true;
+            this.cboLoaiBaoCao.Items.AddRange(new object[] { "Giao dịch", "Thống kê", "Ngân sách" });
+            this.cboLoaiBaoCao.SelectedIndex = 0;
+            this.lblLoaiGhiChu.Location = new System.Drawing.Point(20, 120);
+            this.lblLoaiGhiChu.Size = new System.Drawing.Size(720, 20);
+            this.lblLoaiGhiChu.Name = "lblLoaiGhiChu";
+            this.lblLoaiGhiChu.TabIndex = 5;
+            this.lblLoaiGhiChu.Text = "Các loại báo cáo: Giao dịch, Thống kê, Ngân sách.";
+            this.lblLoaiGhiChu.AutoSize = false;
+            this.lblLoaiGhiChu.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular);
+            this.lblLoaiGhiChu.ForeColor = System.Drawing.Color.FromArgb(115, 131, 153);
+            this.lblTuNgay.Location = new System.Drawing.Point(20, 156);
+            this.lblTuNgay.Size = new System.Drawing.Size(350, 20);
+            this.lblTuNgay.Name = "lblTuNgay";
+            this.lblTuNgay.TabIndex = 6;
+            this.lblTuNgay.Text = "Từ ngày";
+            this.lblTuNgay.AutoSize = false;
+            this.lblTuNgay.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTuNgay.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.dtpTuNgay.Location = new System.Drawing.Point(20, 182);
+            this.dtpTuNgay.Size = new System.Drawing.Size(366, 28);
+            this.dtpTuNgay.Name = "dtpTuNgay";
+            this.dtpTuNgay.TabIndex = 7;
+            this.dtpTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpTuNgay.Value = new System.DateTime(2026, 10, 1);
+            this.lblDenNgay.Location = new System.Drawing.Point(410, 156);
+            this.lblDenNgay.Size = new System.Drawing.Size(350, 20);
+            this.lblDenNgay.Name = "lblDenNgay";
+            this.lblDenNgay.TabIndex = 8;
+            this.lblDenNgay.Text = "Đến ngày";
+            this.lblDenNgay.AutoSize = false;
+            this.lblDenNgay.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblDenNgay.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.dtpDenNgay.Location = new System.Drawing.Point(410, 182);
+            this.dtpDenNgay.Size = new System.Drawing.Size(366, 28);
+            this.dtpDenNgay.Name = "dtpDenNgay";
+            this.dtpDenNgay.TabIndex = 9;
+            this.dtpDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpDenNgay.Value = new System.DateTime(2026, 10, 26);
+            this.lblDinhDang.Location = new System.Drawing.Point(20, 228);
+            this.lblDinhDang.Size = new System.Drawing.Size(140, 24);
+            this.lblDinhDang.Name = "lblDinhDang";
+            this.lblDinhDang.TabIndex = 10;
+            this.lblDinhDang.Text = "Định dạng tệp";
+            this.lblDinhDang.AutoSize = false;
+            this.lblDinhDang.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblDinhDang.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.rdoExcel.Location = new System.Drawing.Point(170, 228);
+            this.rdoExcel.Size = new System.Drawing.Size(90, 25);
+            this.rdoExcel.Name = "rdoExcel";
+            this.rdoExcel.TabIndex = 11;
+            this.rdoExcel.Text = "Excel";
+            this.rdoExcel.Checked = true;
+            this.rdoExcel.TabStop = true;
+            this.rdoPdf.Location = new System.Drawing.Point(270, 228);
+            this.rdoPdf.Size = new System.Drawing.Size(90, 25);
+            this.rdoPdf.Name = "rdoPdf";
+            this.rdoPdf.TabIndex = 12;
+            this.rdoPdf.Text = "PDF";
+            this.lblThuMuc.Location = new System.Drawing.Point(20, 272);
+            this.lblThuMuc.Size = new System.Drawing.Size(350, 20);
+            this.lblThuMuc.Name = "lblThuMuc";
+            this.lblThuMuc.TabIndex = 13;
+            this.lblThuMuc.Text = "Thư mục lưu";
+            this.lblThuMuc.AutoSize = false;
+            this.lblThuMuc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblThuMuc.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.txtThuMucLuu.Location = new System.Drawing.Point(20, 299);
+            this.txtThuMucLuu.Size = new System.Drawing.Size(660, 27);
+            this.txtThuMucLuu.Name = "txtThuMucLuu";
+            this.txtThuMucLuu.TabIndex = 14;
+            this.txtThuMucLuu.Text = "D:\\QuanLyChiTieu\\BaoCao";
+            this.btnDuyet.Location = new System.Drawing.Point(690, 297);
+            this.btnDuyet.Size = new System.Drawing.Size(85, 30);
+            this.btnDuyet.Name = "btnDuyet";
+            this.btnDuyet.TabIndex = 15;
+            this.btnDuyet.Text = "Duyệt...";
+            this.btnDuyet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDuyet.BackColor = System.Drawing.Color.White;
+            this.btnDuyet.ForeColor = System.Drawing.Color.FromArgb(30, 47, 70);
+            this.btnDuyet.UseVisualStyleBackColor = false;
+            this.btnDuyet.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(223, 229, 238);
+            this.chkMoTep.Location = new System.Drawing.Point(20, 343);
+            this.chkMoTep.Size = new System.Drawing.Size(420, 26);
+            this.chkMoTep.Name = "chkMoTep";
+            this.chkMoTep.TabIndex = 16;
+            this.chkMoTep.Text = "Mở tệp sau khi xuất";
+            this.chkMoTep.Checked = true;
+            this.pnlDuongKe.Location = new System.Drawing.Point(20, 385);
+            this.pnlDuongKe.Size = new System.Drawing.Size(755, 1);
+            this.pnlDuongKe.Name = "pnlDuongKe";
+            this.pnlDuongKe.TabIndex = 17;
+            this.pnlDuongKe.BackColor = System.Drawing.Color.FromArgb(223, 229, 238);
+            this.lblTenTepDuKien.Location = new System.Drawing.Point(20, 405);
+            this.lblTenTepDuKien.Size = new System.Drawing.Size(620, 24);
+            this.lblTenTepDuKien.Name = "lblTenTepDuKien";
+            this.lblTenTepDuKien.TabIndex = 18;
+            this.lblTenTepDuKien.Text = "Tên dự kiến: GiaoDich_01102026_26102026.xlsx";
+            this.lblTenTepDuKien.AutoSize = false;
+            this.lblTenTepDuKien.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular);
+            this.lblTenTepDuKien.ForeColor = System.Drawing.Color.FromArgb(115, 131, 153);
+            this.btnXuat.Location = new System.Drawing.Point(690, 402);
+            this.btnXuat.Size = new System.Drawing.Size(85, 32);
+            this.btnXuat.Name = "btnXuat";
+            this.btnXuat.TabIndex = 19;
+            this.btnXuat.Text = "Xuất";
+            this.btnXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuat.BackColor = System.Drawing.Color.FromArgb(21, 101, 192);
+            this.btnXuat.ForeColor = System.Drawing.Color.White;
+            this.btnXuat.UseVisualStyleBackColor = false;
+            this.btnXuat.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(21, 101, 192);
+            this.Controls.Add(this.lblTieuDe);
+            this.Controls.Add(this.pnlThietLap);
+            this.pnlThietLap.Controls.Add(this.lblThietLap);
+            this.pnlThietLap.Controls.Add(this.lblLoaiBaoCao);
+            this.pnlThietLap.Controls.Add(this.cboLoaiBaoCao);
+            this.pnlThietLap.Controls.Add(this.lblLoaiGhiChu);
+            this.pnlThietLap.Controls.Add(this.lblTuNgay);
+            this.pnlThietLap.Controls.Add(this.dtpTuNgay);
+            this.pnlThietLap.Controls.Add(this.lblDenNgay);
+            this.pnlThietLap.Controls.Add(this.dtpDenNgay);
+            this.pnlThietLap.Controls.Add(this.lblDinhDang);
+            this.pnlThietLap.Controls.Add(this.rdoExcel);
+            this.pnlThietLap.Controls.Add(this.rdoPdf);
+            this.pnlThietLap.Controls.Add(this.lblThuMuc);
+            this.pnlThietLap.Controls.Add(this.txtThuMucLuu);
+            this.pnlThietLap.Controls.Add(this.btnDuyet);
+            this.pnlThietLap.Controls.Add(this.chkMoTep);
+            this.pnlThietLap.Controls.Add(this.pnlDuongKe);
+            this.pnlThietLap.Controls.Add(this.lblTenTepDuKien);
+            this.pnlThietLap.Controls.Add(this.btnXuat);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frmXuatBaoCao";
+            this.ClientSize = new System.Drawing.Size(1200, 650);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BackColor = System.Drawing.Color.FromArgb(245, 247, 251);
+            this.Name = "frmXuatBaoCao";
+            this.Text = "Xuất báo cáo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.pnlDuongKe.ResumeLayout(false);
+            this.pnlDuongKe.PerformLayout();
+            this.pnlThietLap.ResumeLayout(false);
+            this.pnlThietLap.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
-
         #endregion
+
+        private System.Windows.Forms.Label lblTieuDe;
+        private System.Windows.Forms.Panel pnlThietLap;
+        private System.Windows.Forms.Label lblThietLap;
+        private System.Windows.Forms.Label lblLoaiBaoCao;
+        private System.Windows.Forms.ComboBox cboLoaiBaoCao;
+        private System.Windows.Forms.Label lblLoaiGhiChu;
+        private System.Windows.Forms.Label lblTuNgay;
+        private System.Windows.Forms.DateTimePicker dtpTuNgay;
+        private System.Windows.Forms.Label lblDenNgay;
+        private System.Windows.Forms.DateTimePicker dtpDenNgay;
+        private System.Windows.Forms.Label lblDinhDang;
+        private System.Windows.Forms.RadioButton rdoExcel;
+        private System.Windows.Forms.RadioButton rdoPdf;
+        private System.Windows.Forms.Label lblThuMuc;
+        private System.Windows.Forms.TextBox txtThuMucLuu;
+        private System.Windows.Forms.Button btnDuyet;
+        private System.Windows.Forms.CheckBox chkMoTep;
+        private System.Windows.Forms.Panel pnlDuongKe;
+        private System.Windows.Forms.Label lblTenTepDuKien;
+        private System.Windows.Forms.Button btnXuat;
     }
 }

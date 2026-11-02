@@ -217,5 +217,32 @@ namespace DuLieu
                 new SqlParameter("@DenNgay", denNgay)
                 );
         }
+
+        // Lấy lương + khác ở mục dashboard thứ 2
+        public static DataTable LayThuTheoLoai(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            const string sql = @"
+                SELECT
+                    lt.MaLoaiThu,
+                    lt.TenLoaiThu,
+                    SUM(tn.SoTien) AS TongThu
+                FROM ThuNhap tn
+                INNER JOIN LoaiThu lt
+                    ON tn.MaLoaiThu = lt.MaLoaiThu
+                    AND tn.MaND = lt.MaND
+                WHERE tn.MaND = @MaND
+                    AND tn.NgayThu >= @TuNgay
+                    AND tn.NgayThu < @DenNgay
+                GROUP BY lt.MaLoaiThu, lt.TenLoaiThu
+                HAVING SUM(tn.SoTien) > 0
+                ORDER BY TongThu DESC, lt.MaLoaiThu ASC";
+
+            return KetNoiCSDL.DocDuLieu(
+                sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay)
+            );
+        }
     }
 }

@@ -15,6 +15,19 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
         public frmBaoCaoThang()
         {
             InitializeComponent();
+            btnXuat.Click += btnXuat_Click;
+        }
+
+        private void btnXuat_Click(object sender, EventArgs e)
+        {
+            var main = TopLevelControl as Chinh.frmMain;
+            if (main != null)
+                main.MoFormXuatBaoCao();
+            else
+            {
+                using (var form = new frmXuatBaoCao())
+                    form.ShowDialog(this);
+            }
         }
     }
 }

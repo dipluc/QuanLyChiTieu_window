@@ -15,6 +15,15 @@ namespace LTWIN_N05_QLCT.Forms.QuanTri
         public frmSaoLuu()
         {
             InitializeComponent();
+            btnPhucHoi.Click += btnPhucHoi_Click;
+        }
+
+        private void btnPhucHoi_Click(object sender, EventArgs e)
+        {
+            using (var form = new frmXacNhanPhucHoi())
+            {
+                form.ShowDialog(TopLevelControl);
+            }
         }
     }
 }
