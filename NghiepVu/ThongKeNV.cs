@@ -11,10 +11,7 @@ namespace NghiepVu
 {
     public static class ThongKeNV
     {
-        public static ThongKeMH LayTongQuanThang(
-            int maND,
-            int thang,
-            int nam)
+        public static ThongKeMH LayTongQuanThang(int maND,int thang, int nam)
         {
             DateTime tuNgay = new DateTime(nam, thang, 1);
             DateTime denNgay = tuNgay.AddMonths(1);
@@ -44,6 +41,25 @@ namespace NghiepVu
                 maND,
                 thang,
                 nam
+            );
+        }
+
+        //Tong so du vi
+        public static decimal LayTongSoDuVi(int maND)
+        {
+            if (maND <= 0)
+                return 0m;
+            return ThongKeDL.LayTongSoDuVi(maND);
+        }
+
+        //Lay chi theo thang
+        public static DataTable LayChiTheoLoaiThang(int maND, int thang, int nam)
+        {
+            DateTime tuNgay = new DateTime(nam, thang, 1);
+            DateTime denNgay = tuNgay.AddMonths(1);
+
+            return ThongKeDL.LayChiTheoLoai(
+                maND, tuNgay, denNgay
             );
         }
     }

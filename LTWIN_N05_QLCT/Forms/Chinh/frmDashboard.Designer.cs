@@ -17,17 +17,17 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTatCaCacVi = new System.Windows.Forms.Label();
             this.lblDuLieuDenNgay2610 = new System.Windows.Forms.Label();
-            this.lblThang102026 = new System.Windows.Forms.Label();
+            this.lblThang = new System.Windows.Forms.Label();
             this.lblTongQuanTaiChinh = new System.Windows.Forms.Label();
             this.tlpTongQuanTaiChinh = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTheTongHop1 = new System.Windows.Forms.Panel();
@@ -74,6 +74,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.chartThuChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblThuChi6ThangGanNhat = new System.Windows.Forms.Label();
             this.pnlCanhBaoNganSach = new System.Windows.Forms.Panel();
+            this.flpDanhSachNganSach = new System.Windows.Forms.FlowLayoutPanel();
             this.lnkXemNganSach = new System.Windows.Forms.LinkLabel();
             this.lblCanhBaoNganSach = new System.Windows.Forms.Label();
             this.pnlGiaoDichGanDay = new System.Windows.Forms.Panel();
@@ -87,7 +88,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.pnlNhacKhoanDinhKy = new System.Windows.Forms.Panel();
             this.lnkCo2KhoanDinhKyDen = new System.Windows.Forms.LinkLabel();
             this.pnlNhacKhoanDinhKy2 = new System.Windows.Forms.Panel();
-            this.flpDanhSachNganSach = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlHeader.SuspendLayout();
             this.tlpTongQuanTaiChinh.SuspendLayout();
             this.pnlTheTongHop1.SuspendLayout();
@@ -110,7 +110,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlHeader.Controls.Add(this.lblTatCaCacVi);
             this.pnlHeader.Controls.Add(this.lblDuLieuDenNgay2610);
-            this.pnlHeader.Controls.Add(this.lblThang102026);
+            this.pnlHeader.Controls.Add(this.lblThang);
             this.pnlHeader.Controls.Add(this.lblTongQuanTaiChinh);
             this.pnlHeader.Location = new System.Drawing.Point(12, 8);
             this.pnlHeader.Name = "pnlHeader";
@@ -139,15 +139,15 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblDuLieuDenNgay2610.TabIndex = 1;
             this.lblDuLieuDenNgay2610.Text = "Dữ liệu đến ngày 00/00/0000";
             // 
-            // lblThang102026
+            // lblThang
             // 
-            this.lblThang102026.AutoSize = true;
-            this.lblThang102026.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblThang102026.Location = new System.Drawing.Point(166, 4);
-            this.lblThang102026.Name = "lblThang102026";
-            this.lblThang102026.Size = new System.Drawing.Size(108, 20);
-            this.lblThang102026.TabIndex = 2;
-            this.lblThang102026.Text = "Tháng 00/0000";
+            this.lblThang.AutoSize = true;
+            this.lblThang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.lblThang.Location = new System.Drawing.Point(166, 4);
+            this.lblThang.Name = "lblThang";
+            this.lblThang.Size = new System.Drawing.Size(108, 20);
+            this.lblThang.TabIndex = 2;
+            this.lblThang.Text = "Tháng 00/0000";
             // 
             // lblTongQuanTaiChinh
             // 
@@ -211,11 +211,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             // lblTongSoDu
             // 
-            this.lblTongSoDu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTongSoDu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTongSoDu.AutoSize = true;
             this.lblTongSoDu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTongSoDu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.lblTongSoDu.Location = new System.Drawing.Point(111, 24);
+            this.lblTongSoDu.Location = new System.Drawing.Point(9, 24);
             this.lblTongSoDu.Name = "lblTongSoDu";
             this.lblTongSoDu.Size = new System.Drawing.Size(50, 32);
             this.lblTongSoDu.TabIndex = 1;
@@ -258,11 +258,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             // lblTongThuNhap
             // 
-            this.lblTongThuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTongThuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTongThuNhap.AutoSize = true;
             this.lblTongThuNhap.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTongThuNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(128)))), ((int)(((byte)(61)))));
-            this.lblTongThuNhap.Location = new System.Drawing.Point(110, 24);
+            this.lblTongThuNhap.Location = new System.Drawing.Point(9, 24);
             this.lblTongThuNhap.Name = "lblTongThuNhap";
             this.lblTongThuNhap.Size = new System.Drawing.Size(50, 32);
             this.lblTongThuNhap.TabIndex = 1;
@@ -305,11 +305,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             // lblTongChiTieu
             // 
-            this.lblTongChiTieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTongChiTieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTongChiTieu.AutoSize = true;
             this.lblTongChiTieu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTongChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.lblTongChiTieu.Location = new System.Drawing.Point(110, 24);
+            this.lblTongChiTieu.Location = new System.Drawing.Point(9, 24);
             this.lblTongChiTieu.Name = "lblTongChiTieu";
             this.lblTongChiTieu.Size = new System.Drawing.Size(50, 32);
             this.lblTongChiTieu.TabIndex = 1;
@@ -352,11 +352,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             // lblTongConLai
             // 
-            this.lblTongConLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTongConLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTongConLai.AutoSize = true;
             this.lblTongConLai.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTongConLai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.lblTongConLai.Location = new System.Drawing.Point(124, 24);
+            this.lblTongConLai.Location = new System.Drawing.Point(9, 24);
             this.lblTongConLai.Name = "lblTongConLai";
             this.lblTongConLai.Size = new System.Drawing.Size(50, 32);
             this.lblTongConLai.TabIndex = 1;
@@ -596,22 +596,22 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             // chartChiTheoLoai
             // 
-            chartArea1.Name = "ChartAreaChiTheoLoai";
-            this.chartChiTheoLoai.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Font = new System.Drawing.Font("Segoe UI", 8F);
-            legend1.IsTextAutoFit = false;
-            legend1.Name = "LegendChiTheoLoai";
-            this.chartChiTheoLoai.Legends.Add(legend1);
+            chartArea7.Name = "ChartAreaChiTheoLoai";
+            this.chartChiTheoLoai.ChartAreas.Add(chartArea7);
+            legend7.Enabled = false;
+            legend7.Font = new System.Drawing.Font("Segoe UI", 8F);
+            legend7.IsTextAutoFit = false;
+            legend7.Name = "LegendChiTheoLoai";
+            this.chartChiTheoLoai.Legends.Add(legend7);
             this.chartChiTheoLoai.Location = new System.Drawing.Point(8, 31);
             this.chartChiTheoLoai.Name = "chartChiTheoLoai";
-            series1.BorderColor = System.Drawing.Color.White;
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartAreaChiTheoLoai";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "LegendChiTheoLoai";
-            series1.Name = "ChiTheoLoai";
-            this.chartChiTheoLoai.Series.Add(series1);
+            series10.BorderColor = System.Drawing.Color.White;
+            series10.BorderWidth = 3;
+            series10.ChartArea = "ChartAreaChiTheoLoai";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series10.Legend = "LegendChiTheoLoai";
+            series10.Name = "ChiTheoLoai";
+            this.chartChiTheoLoai.Series.Add(series10);
             this.chartChiTheoLoai.Size = new System.Drawing.Size(174, 132);
             this.chartChiTheoLoai.TabIndex = 1;
             // 
@@ -652,25 +652,25 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             // chartThuChi
             // 
-            chartArea2.AxisX.MajorGrid.Enabled = false;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
-            chartArea2.Name = "ChartAreaThuChi";
-            this.chartThuChi.ChartAreas.Add(chartArea2);
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend2.Name = "LegendThuChi";
-            this.chartThuChi.Legends.Add(legend2);
+            chartArea8.AxisX.MajorGrid.Enabled = false;
+            chartArea8.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            chartArea8.Name = "ChartAreaThuChi";
+            this.chartThuChi.ChartAreas.Add(chartArea8);
+            legend8.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend8.Name = "LegendThuChi";
+            this.chartThuChi.Legends.Add(legend8);
             this.chartThuChi.Location = new System.Drawing.Point(8, 28);
             this.chartThuChi.Name = "chartThuChi";
-            series2.ChartArea = "ChartAreaThuChi";
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(133)))), ((int)(((byte)(61)))));
-            series2.Legend = "LegendThuChi";
-            series2.Name = "Thu";
-            series3.ChartArea = "ChartAreaThuChi";
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            series3.Legend = "LegendThuChi";
-            series3.Name = "Chi";
-            this.chartThuChi.Series.Add(series2);
-            this.chartThuChi.Series.Add(series3);
+            series11.ChartArea = "ChartAreaThuChi";
+            series11.Color = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(133)))), ((int)(((byte)(61)))));
+            series11.Legend = "LegendThuChi";
+            series11.Name = "Thu";
+            series12.ChartArea = "ChartAreaThuChi";
+            series12.Color = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            series12.Legend = "LegendThuChi";
+            series12.Name = "Chi";
+            this.chartThuChi.Series.Add(series11);
+            this.chartThuChi.Series.Add(series12);
             this.chartThuChi.Size = new System.Drawing.Size(280, 135);
             this.chartThuChi.TabIndex = 1;
             // 
@@ -698,6 +698,18 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.pnlCanhBaoNganSach.Name = "pnlCanhBaoNganSach";
             this.pnlCanhBaoNganSach.Size = new System.Drawing.Size(352, 362);
             this.pnlCanhBaoNganSach.TabIndex = 3;
+            // 
+            // flpDanhSachNganSach
+            // 
+            this.flpDanhSachNganSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flpDanhSachNganSach.AutoScroll = true;
+            this.flpDanhSachNganSach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpDanhSachNganSach.Location = new System.Drawing.Point(12, 40);
+            this.flpDanhSachNganSach.Name = "flpDanhSachNganSach";
+            this.flpDanhSachNganSach.Size = new System.Drawing.Size(326, 310);
+            this.flpDanhSachNganSach.TabIndex = 18;
             // 
             // lnkXemNganSach
             // 
@@ -798,7 +810,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             this.lnkXemTatCa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkXemTatCa.AutoSize = true;
-            this.lnkXemTatCa.Location = new System.Drawing.Point(652, 8);
+            this.lnkXemTatCa.Location = new System.Drawing.Point(627, 8);
             this.lnkXemTatCa.Name = "lnkXemTatCa";
             this.lnkXemTatCa.Size = new System.Drawing.Size(97, 20);
             this.lnkXemTatCa.TabIndex = 1;
@@ -847,18 +859,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.pnlNhacKhoanDinhKy2.Name = "pnlNhacKhoanDinhKy2";
             this.pnlNhacKhoanDinhKy2.Size = new System.Drawing.Size(1096, 8);
             this.pnlNhacKhoanDinhKy2.TabIndex = 0;
-            // 
-            // flpDanhSachNganSach
-            // 
-            this.flpDanhSachNganSach.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flpDanhSachNganSach.AutoScroll = true;
-            this.flpDanhSachNganSach.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpDanhSachNganSach.Location = new System.Drawing.Point(12, 40);
-            this.flpDanhSachNganSach.Name = "flpDanhSachNganSach";
-            this.flpDanhSachNganSach.Size = new System.Drawing.Size(326, 310);
-            this.flpDanhSachNganSach.TabIndex = 18;
             // 
             // frmDashboard
             // 
@@ -912,7 +912,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblTongQuanTaiChinh;
-        private System.Windows.Forms.Label lblThang102026;
+        private System.Windows.Forms.Label lblThang;
         private System.Windows.Forms.Label lblDuLieuDenNgay2610;
         private System.Windows.Forms.Label lblTatCaCacVi;
         private System.Windows.Forms.TableLayoutPanel tlpTongQuanTaiChinh;

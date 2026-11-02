@@ -11,11 +11,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace LTWIN_N05_QLCT.Forms.Chinh
 {
     public partial class frmDashboard : Form
     {
+        private DateTime _thangDangXem = DateTime.Today; //Dung de chon ngay, set bat dau la today
         public frmDashboard()
         {
             InitializeComponent();
@@ -23,6 +25,17 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         }
         private void frmDashboard_Shown(object sender, EventArgs e)
         {
+            NapDuLieuDashboard();
+        }
+
+        public frmDashboard(DateTime thangDangXem) : this()
+        {
+            _thangDangXem = thangDangXem;
+        }
+
+        public void capNhatThang(DateTime thangDangXem)
+        {
+            _thangDangXem = thangDangXem;
             NapDuLieuDashboard();
         }
 
@@ -34,10 +47,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             try
             {
                 int maND = PhienDangNhap.MaND;
-                int thang = DateTime.Today.Month;
-                int nam = DateTime.Today.Year;
+                int thang = _thangDangXem.Month;
+                int nam = _thangDangXem.Year;
 
                 NapTongQuan(maND, thang, nam);
+                NapChiTheoLoai(maND, thang, nam);
                 NapGiaoDichGanDay(maND);
                 ThemCanhBaoNganSach(maND, thang, nam);
             }
@@ -57,23 +71,22 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             ThongKeMH thongKe =
                 ThongKeNV.LayTongQuanThang(maND, thang, nam);
 
+            decimal tongSoDu = ThongKeNV.LayTongSoDuVi(maND);
+
             CultureInfo viVN = CultureInfo.GetCultureInfo("vi-VN");
 
-            lblTongThuNhap.Text =
-                thongKe.TongThu.ToString("N0", viVN) + " đ";
+            lblTongSoDu.Text = tongSoDu.ToString("N0", viVN) + "đ";
 
-            lblTongChiTieu.Text =
-                thongKe.TongChi.ToString("N0", viVN) + " đ";
+            lblTongThuNhap.Text = thongKe.TongThu.ToString("N0", viVN) + " đ";
 
-            lblTongConLai.Text =
-                thongKe.ChenhLech.ToString("N0", viVN) + " đ";
+            lblTongChiTieu.Text = thongKe.TongChi.ToString("N0", viVN) + "đ";
 
-            lblConLaiTietKiem2.Text =
-                thongKe.TyLeTietKiem.ToString("N1", viVN)
-                + "% thu nhập tháng";
+            lblTongConLai.Text = thongKe.ChenhLech.ToString("N0", viVN) + " đ";
 
-            lblThang102026.Text =
-                $"Tháng {thang:D2}/{nam}";
+            lblConLaiTietKiem2.Text = thongKe.TyLeTietKiem.ToString("N1", viVN) + "% thu nhập tháng";
+            lblChiTieuThang2.Text = thongKe.TyLeChi.ToString("N1", viVN) + "% thu nhập tháng";
+
+            lblThang.Text = $"Tháng {thang:D2}/{nam}";
         }
 
 
@@ -203,6 +216,129 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             dong.Controls.Add(prgTienDo);
 
             return dong;
+        }
+
+        private void NapChiTheoLoai(int maND, int thang, int nam)
+        {
+            DataTable dt =
+                ThongKeNV.LayChiTheoLoaiThang(maND, thang, nam);
+
+            CultureInfo viVN = CultureInfo.GetCultureInfo("vi-VN");
+
+            // Dùng lại 5 dòng label có sẵn làm các vị trí hiển thị.
+            Label[] tenLabels =
+            {
+                lblNhaO, lblAnUong, lblDiChuyen, lblMuaSam, lblKhac
+            };
+
+            Label[] tienLabels ={
+                lblNhaO2, lblAnUong2, lblDiChuyen2,
+                lblMuaSam2, lblKhac2
+            };
+
+            Label[] phanTramLabels ={
+                lblNhaO3, lblAnUong3, lblDiChuyen3,
+                lblMuaSam3, lblKhac3
+            };
+
+            Label[] mauLabels ={
+                lblMauNhaO, lblMauAnUong, lblMauDiChuyen,
+                lblMauMuaSam, lblMauKhac
+            };
+
+            // Chuẩn bị tối đa 5 mục: 4 loại lớn nhất + Khác.
+            var danhSach = new List<KeyValuePair<string, decimal>>();
+
+            decimal tongChi = 0m;
+            decimal tongKhac = 0m;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow row = dt.Rows[i];
+                decimal soTien = Convert.ToDecimal(row["TongChi"]);
+
+                tongChi += soTien;
+
+                if (i < 4)
+                {
+                    danhSach.Add(new KeyValuePair<string, decimal>(
+                        row["TenLoaiChi"].ToString(),
+                        soTien
+                    ));
+                }
+                else
+                {
+                    tongKhac += soTien;
+                }
+            }
+
+            if (tongKhac > 0)
+            {
+                danhSach.Add(
+                    new KeyValuePair<string, decimal>("Khác", tongKhac)
+                );
+            }
+
+            lblTongChiTheoLoai.Text =
+                tongChi.ToString("N0", viVN) + " đ";
+
+            // Xóa dữ liệu cũ khi đổi tháng hoặc làm mới.
+            Series series = chartChiTheoLoai.Series["ChiTheoLoai"];
+            series.Points.Clear();
+            series.ChartType = SeriesChartType.Pie;
+            series.IsValueShownAsLabel = false;
+
+            //Ẩn chữ trên biểu đồ
+            series["PieLabelStyle"] = "Disabled";
+
+            chartChiTheoLoai.Titles.Clear();
+
+            for (int i = 0; i < tenLabels.Length; i++)
+            {
+                bool coDuLieu = i < danhSach.Count;
+
+                tenLabels[i].Visible = coDuLieu;
+                tienLabels[i].Visible = coDuLieu;
+                phanTramLabels[i].Visible = coDuLieu;
+                mauLabels[i].Visible = coDuLieu;
+
+                if (!coDuLieu)
+                    continue;
+
+                string tenLoai = danhSach[i].Key;
+                decimal soTien = danhSach[i].Value;
+                decimal tyLe = tongChi > 0
+                    ? soTien * 100m / tongChi
+                    : 0m;
+
+                tenLabels[i].AutoSize = false;
+                tenLabels[i].Width = 78;
+                tenLabels[i].AutoEllipsis = true;
+                tenLabels[i].Text = tenLoai;
+
+                tienLabels[i].Text =
+                    soTien.ToString("N0", viVN) + " đ";
+
+                phanTramLabels[i].Text =
+                    tyLe.ToString("0.#", viVN) + "%";
+
+                int viTri = series.Points.AddXY(
+                    tenLoai, (double)soTien
+                );
+
+                // Màu biểu đồ trùng với ô màu của dòng tương ứng.
+                series.Points[viTri].Color = mauLabels[i].ForeColor;
+
+                series.Points[viTri].ToolTip =
+                    tenLoai + ": "
+                    + soTien.ToString("N0", viVN) + " đ ("
+                    + tyLe.ToString("0.#", viVN) + "%)";
+            }
+
+            if (tongChi == 0)
+            {
+                chartChiTheoLoai.Titles.Add("Chưa có khoản chi");
+            }
         }
     }
 }
