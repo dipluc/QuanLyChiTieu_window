@@ -180,6 +180,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             Shown += (s, e) => MoDashboard();
         }
 
+        //Ve trang chu
+        public void VeTrangChu()
+        {
+            MoDashboard();
+        }
+
         // Cập nhật thông tin người dùng trên toàn giao diện
         public void CapNhatThongTinNguoiDung(string hoTen)
         {

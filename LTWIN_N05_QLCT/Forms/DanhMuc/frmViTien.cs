@@ -334,7 +334,13 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
 
         private void btnDong_Click(object sender, EventArgs e)
         {
-            Close();
+            var main = this.TopLevelControl as LTWIN_N05_QLCT.Forms.Chinh.frmMain;
+
+            if (main != null)
+            {
+                main.VeTrangChu();
+                Close();
+            }
         }
 
         // ==========================================
