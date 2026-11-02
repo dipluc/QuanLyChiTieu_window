@@ -103,6 +103,81 @@ namespace DuLieu
                 new SqlParameter("@MaND", maND)) > 0;
         }
 
+        // ==========================================
+        // ĐẾN HẠN / XÁC NHẬN / BỎ QUA / TẠM DỪNG
+        // ==========================================
+
+        // Các khoản đang hoạt động đã đến hạn (<= ngày chỉ định) và chưa quá ngày kết thúc
+        public static List<GiaoDichDinhKyMH> LayDenHan(int maND, DateTime den)
+        {
+            string sql = SqlChon +
+                @"WHERE g.MaND = @MaND AND g.TrangThai = 1
+                    AND g.NgayDenHanTiepTheo <= @Den
+                    AND (g.NgayKetThuc IS NULL OR g.NgayDenHanTiepTheo <= g.NgayKetThuc)
+                  ORDER BY g.NgayDenHanTiepTheo ASC, g.MaGDDK ASC";
+            DataTable dt = KetNoiCSDL.DocDuLieu(sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@Den", den.Date));
+            var ds = new List<GiaoDichDinhKyMH>();
+            foreach (DataRow r in dt.Rows) ds.Add(ChuyenDoiDongThanhMH(r));
+            return ds;
+        }
+
+        public static bool DatTrangThai(int maGDDK, int maND, bool hoatDong)
+        {
+            string sql = "UPDATE GiaoDichDinhKy SET TrangThai = @TrangThai WHERE MaGDDK = @MaGDDK AND MaND = @MaND";
+            return KetNoiCSDL.ThucThiLenh(sql,
+                new SqlParameter("@TrangThai", hoatDong),
+                new SqlParameter("@MaGDDK", maGDDK),
+                new SqlParameter("@MaND", maND)) > 0;
+        }
+
+        // Bỏ qua kỳ hiện tại: chỉ dời ngày đến hạn, KHÔNG ghi giao dịch.
+        // Điều kiện "NgayDenHanTiepTheo = @NgayCu" chặn việc xử lý trùng một kỳ.
+        public static bool BoQuaKy(int maGDDK, int maND, DateTime ngayCu, DateTime ngayMoi)
+        {
+            return KetNoiCSDL.ThucThiLenh(SqlDoiKy,
+                new SqlParameter("@NgayMoi", ngayMoi.Date),
+                new SqlParameter("@MaGDDK", maGDDK),
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@NgayCu", ngayCu.Date)) > 0;
+        }
+
+        private const string SqlDoiKy =
+            @"UPDATE GiaoDichDinhKy
+              SET NgayDenHanTiepTheo = @NgayMoi,
+                  TrangThai = CASE WHEN NgayKetThuc IS NOT NULL AND @NgayMoi > NgayKetThuc THEN 0 ELSE TrangThai END
+              WHERE MaGDDK = @MaGDDK AND MaND = @MaND AND NgayDenHanTiepTheo = @NgayCu";
+
+        // Xác nhận kỳ hiện tại: ghi giao dịch thật + dời ngày đến hạn trong CÙNG một transaction.
+        // !!! TÊN BẢNG/CỘT của ThuNhap / ChiTieu bên dưới là GIẢ ĐỊNH - sửa lại cho khớp CSDL của bạn. !!!
+        public static bool XacNhanKy(GiaoDichDinhKyMH gd, int maND, DateTime ngayMoi)
+        {
+            string ghi = gd.LoaiGiaoDich == "Thu"
+                ? @"INSERT INTO ThuNhap (MaND, MaVi, MaLoaiThu, SoTien, NgayThu, GhiChu)
+                    VALUES (@MaND, @MaVi, @MaLoai, @SoTien, @NgayCu, @GhiChu);"
+                : @"INSERT INTO ChiTieu (MaND, MaVi, MaLoaiChi, SoTien, NgayChi, GhiChu)
+                    VALUES (@MaND, @MaVi, @MaLoai, @SoTien, @NgayCu, @GhiChu);";
+
+            string sql = @"SET XACT_ABORT ON;
+                           BEGIN TRAN;
+                           " + SqlDoiKy + @"
+                           IF @@ROWCOUNT = 0 BEGIN ROLLBACK; RETURN; END
+                           " + ghi + @"
+                           COMMIT;";
+
+            int? maLoai = gd.LoaiGiaoDich == "Thu" ? gd.MaLoaiThu : gd.MaLoaiChi;
+            return KetNoiCSDL.ThucThiLenh(sql,
+                new SqlParameter("@NgayMoi", ngayMoi.Date),
+                new SqlParameter("@MaGDDK", gd.MaGDDK),
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@NgayCu", gd.NgayDenHanTiepTheo.Date),
+                new SqlParameter("@MaVi", gd.MaVi),
+                new SqlParameter("@MaLoai", (object)maLoai ?? DBNull.Value),
+                new SqlParameter("@SoTien", gd.SoTien),
+                new SqlParameter("@GhiChu", (object)gd.GhiChu ?? DBNull.Value)) > 0;
+        }
+
         private static SqlParameter[] TaoThamSo(GiaoDichDinhKyMH gd)
         {
             return new[]

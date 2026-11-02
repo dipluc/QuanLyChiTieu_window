@@ -97,21 +97,15 @@
     <Compile Include="Forms\DanhMuc\frmLoaiChiTieu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\frmLoaiChiTieu.Designer.cs">
-      <DependentUpon>frmLoaiChiTieu.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\DanhMuc\frmLoaiChiTieu.Designer.cs" />
     <Compile Include="Forms\DanhMuc\frmLoaiThuNhap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\frmLoaiThuNhap.Designer.cs">
-      <DependentUpon>frmLoaiThuNhap.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\DanhMuc\frmLoaiThuNhap.Designer.cs" />
     <Compile Include="Forms\DanhMuc\frmViTien.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\frmViTien.Designer.cs">
-      <DependentUpon>frmViTien.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\DanhMuc\frmViTien.Designer.cs" />
     <Compile Include="Forms\HeThong\frmDangKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,15 +137,11 @@
     <Compile Include="Forms\NghiepVu\frmGiaoDichDinhKy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NghiepVu\frmGiaoDichDinhKy.Designer.cs">
-      <DependentUpon>frmGiaoDichDinhKy.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\NghiepVu\frmGiaoDichDinhKy.Designer.cs" />
     <Compile Include="Forms\NghiepVu\frmMucTieuTietKiem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NghiepVu\frmMucTieuTietKiem.Designer.cs">
-      <DependentUpon>frmMucTieuTietKiem.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\NghiepVu\frmMucTieuTietKiem.Designer.cs" />
     <Compile Include="Forms\QuanTri\frmNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +166,9 @@
     <EmbeddedResource Include="Forms\Chinh\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\frmLoaiChiTieu.resx" />
+    <EmbeddedResource Include="Forms\DanhMuc\frmLoaiThuNhap.resx" />
+    <EmbeddedResource Include="Forms\DanhMuc\frmViTien.resx" />
     <EmbeddedResource Include="Forms\HeThong\frmDangKy.resx">
       <DependentUpon>frmDangKy.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +179,9 @@
       <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HeThong\frmPhanQuyen.resx" />
+    <EmbeddedResource Include="Forms\NghiepVu\frmGiaoDichDinhKy.resx" />
+    <EmbeddedResource Include="Forms\NghiepVu\frmMucTieuTietKiem.resx" />
+    <EmbeddedResource Include="Forms\QuanTri\frmNguoiDung.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

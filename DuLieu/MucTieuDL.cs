@@ -93,6 +93,33 @@ namespace DuLieu
                 new SqlParameter("@MaND", maND)) > 0;
         }
 
+        // Rút bớt tiền đã tiết kiệm (không cho âm). Đang HoanThanh mà tụt dưới mục tiêu => quay lại DangThucHien
+        public static bool TruTienDaTietKiem(int maMT, int maND, decimal soTien)
+        {
+            string sql = @"UPDATE MucTieu
+                           SET SoTienDaTietKiem = SoTienDaTietKiem - @SoTien,
+                               TrangThai = CASE
+                                   WHEN TrangThai = 'Huy' THEN TrangThai
+                                   WHEN SoTienDaTietKiem - @SoTien >= SoTienMucTieu THEN 'HoanThanh'
+                                   ELSE 'DangThucHien' END
+                           WHERE MaMT = @MaMT AND MaND = @MaND
+                             AND TrangThai <> 'Huy' AND SoTienDaTietKiem >= @SoTien";
+            return KetNoiCSDL.ThucThiLenh(sql,
+                new SqlParameter("@SoTien", soTien),
+                new SqlParameter("@MaMT", maMT),
+                new SqlParameter("@MaND", maND)) > 0;
+        }
+
+        // Hủy mục tiêu: chuyển sang 'Huy' và đưa số đã tiết kiệm về 0 (tiền được hoàn lại cho người dùng)
+        public static bool Huy(int maMT, int maND)
+        {
+            string sql = @"UPDATE MucTieu SET TrangThai = 'Huy', SoTienDaTietKiem = 0
+                           WHERE MaMT = @MaMT AND MaND = @MaND AND TrangThai <> 'Huy'";
+            return KetNoiCSDL.ThucThiLenh(sql,
+                new SqlParameter("@MaMT", maMT),
+                new SqlParameter("@MaND", maND)) > 0;
+        }
+
         public static bool Xoa(int maMT, int maND)
         {
             string sql = "DELETE FROM MucTieu WHERE MaMT = @MaMT AND MaND = @MaND";

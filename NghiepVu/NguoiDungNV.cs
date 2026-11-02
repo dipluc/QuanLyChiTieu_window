@@ -196,5 +196,92 @@ namespace NghiepVu
             bool ok = TaiKhoanNV.KhoaMoKhoa(maND, false, out thongBao);
             return new KetQuaNguoiDung { ThanhCong = ok, ThongBao = thongBao, MaND = maND };
         }
+        // ==========================================
+        // 5. THAO TÁC NHANH TRÊN DANH SÁCH (khóa/mở khóa, đổi quyền, đặt lại mật khẩu)
+        // ==========================================
+        public static KetQuaNguoiDung KhoaMoKhoa(int maND, bool hoatDong)
+        {
+            string loiQuyen = KiemTraQuyenAdmin();
+            if (loiQuyen != null) return Loi(loiQuyen);
+            if (maND <= 0) return Loi("Bạn chưa chọn tài khoản nào.");
+            if (!hoatDong && PhienDangNhap.MaND == maND) return Loi("Bạn không thể khóa chính tài khoản đang đăng nhập.");
+
+            try
+            {
+                string thongBao;
+                if (!TaiKhoanNV.KhoaMoKhoa(maND, hoatDong, out thongBao))
+                    return Loi(thongBao);
+
+                NhatKyLoi.GhiLog($"Admin '{PhienDangNhap.TenDangNhap}' {(hoatDong ? "mở khóa" : "khóa")} người dùng (MaND: {maND}).");
+                return new KetQuaNguoiDung
+                {
+                    ThanhCong = true,
+                    MaND = maND,
+                    ThongBao = string.IsNullOrEmpty(thongBao) ? (hoatDong ? "Đã mở khóa tài khoản." : "Đã khóa tài khoản.") : thongBao
+                };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại NguoiDungNV.KhoaMoKhoa", ex);
+                return Loi("Lỗi khi cập nhật trạng thái: " + ex.Message);
+            }
+        }
+
+        public static KetQuaNguoiDung DoiQuyen(int maND, string quyenMoi)
+        {
+            string loiQuyen = KiemTraQuyenAdmin();
+            if (loiQuyen != null) return Loi(loiQuyen);
+            if (maND <= 0) return Loi("Bạn chưa chọn tài khoản nào.");
+            if (!QuyenHopLe(quyenMoi)) return Loi("Quyền hạn không hợp lệ.");
+
+            try
+            {
+                string thongBao;
+                if (!TaiKhoanNV.DoiQuyenHan(maND, quyenMoi, out thongBao))
+                    return Loi(thongBao);
+
+                if (PhienDangNhap.MaND == maND)
+                    NhatKyLoi.GhiLog($"Admin '{PhienDangNhap.TenDangNhap}' tự đổi quyền của mình sang {quyenMoi}.");
+                else
+                    NhatKyLoi.GhiLog($"Admin '{PhienDangNhap.TenDangNhap}' đổi quyền người dùng (MaND: {maND}) sang {quyenMoi}.");
+                return new KetQuaNguoiDung
+                {
+                    ThanhCong = true,
+                    MaND = maND,
+                    ThongBao = string.IsNullOrEmpty(thongBao) ? "Đã đổi quyền tài khoản." : thongBao
+                };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại NguoiDungNV.DoiQuyen", ex);
+                return Loi("Lỗi khi đổi quyền: " + ex.Message);
+            }
+        }
+
+        public static KetQuaNguoiDung DatLaiMatKhau(int maND, string matKhauMoi)
+        {
+            string loiQuyen = KiemTraQuyenAdmin();
+            if (loiQuyen != null) return Loi(loiQuyen);
+            if (maND <= 0) return Loi("Bạn chưa chọn tài khoản nào.");
+            if (string.IsNullOrEmpty(matKhauMoi)) return Loi("Vui lòng nhập mật khẩu mới.");
+
+            string loiMatKhau;
+            if (!BaoMat.KiemTraDoManhMatKhau(matKhauMoi, out loiMatKhau)) return Loi(loiMatKhau);
+
+            try
+            {
+                if (NguoiDungDL.LayTheoMaND(maND) == null) return Loi("Không tìm thấy người dùng.");
+                if (!NguoiDungDL.CapNhatMatKhau(maND, BaoMat.BamMatKhau(matKhauMoi)))
+                    return Loi("Không thể đặt lại mật khẩu.");
+
+                NhatKyLoi.GhiLog($"Admin '{PhienDangNhap.TenDangNhap}' đặt lại mật khẩu cho người dùng (MaND: {maND}).");
+                return new KetQuaNguoiDung { ThanhCong = true, MaND = maND, ThongBao = "Đã đặt lại mật khẩu." };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại NguoiDungNV.DatLaiMatKhau", ex);
+                return Loi("Lỗi khi đặt lại mật khẩu: " + ex.Message);
+            }
+        }
     }
 }

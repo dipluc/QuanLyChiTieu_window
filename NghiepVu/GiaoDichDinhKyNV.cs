@@ -219,5 +219,95 @@ namespace NghiepVu
                 return new KetQuaGiaoDichDinhKy { ThanhCong = false, ThongBao = "Không thể xóa: " + ex.Message };
             }
         }
+        // ==========================================
+        // ĐẾN HẠN: XÁC NHẬN / BỎ QUA / TẠM DỪNG
+        // ==========================================
+        public static List<GiaoDichDinhKyMH> LayDenHan()
+        {
+            try { return GiaoDichDinhKyDL.LayDenHan(PhienDangNhap.MaND, DateTime.Today); }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại GiaoDichDinhKyNV.LayDenHan", ex);
+                return new List<GiaoDichDinhKyMH>();
+            }
+        }
+
+        // Ghi giao dịch thật theo ngày đến hạn rồi dời sang kỳ kế tiếp
+        public static KetQuaGiaoDichDinhKy XacNhan(IEnumerable<GiaoDichDinhKyMH> ds)
+        {
+            return XuLyKy(ds, true);
+        }
+
+        // Bỏ qua kỳ này: chỉ dời ngày đến hạn, không ghi giao dịch, không xóa lịch
+        public static KetQuaGiaoDichDinhKy BoQua(IEnumerable<GiaoDichDinhKyMH> ds)
+        {
+            return XuLyKy(ds, false);
+        }
+
+        private static KetQuaGiaoDichDinhKy XuLyKy(IEnumerable<GiaoDichDinhKyMH> ds, bool ghiGiaoDich)
+        {
+            if (!PhienDangNhap.DaDangNhap)
+                return new KetQuaGiaoDichDinhKy { ThanhCong = false, ThongBao = "Bạn chưa đăng nhập." };
+
+            int tong = 0, thanhCong = 0;
+            foreach (var gd in ds)
+            {
+                tong++;
+                try
+                {
+                    DateTime moi = TinhNgayKeTiep(gd.NgayDenHanTiepTheo, gd.TanSuat);
+                    bool ok = ghiGiaoDich
+                        ? GiaoDichDinhKyDL.XacNhanKy(gd, PhienDangNhap.MaND, moi)
+                        : GiaoDichDinhKyDL.BoQuaKy(gd.MaGDDK, PhienDangNhap.MaND, gd.NgayDenHanTiepTheo, moi);
+                    if (ok) thanhCong++;
+                }
+                catch (Exception ex)
+                {
+                    NhatKyLoi.GhiLog("Lỗi tại GiaoDichDinhKyNV.XuLyKy #" + gd.MaGDDK, ex);
+                }
+            }
+
+            if (tong == 0)
+                return new KetQuaGiaoDichDinhKy { ThanhCong = false, ThongBao = "Chưa có khoản nào được chọn." };
+
+            string hanhDong = ghiGiaoDich ? "xác nhận" : "bỏ qua";
+            NhatKyLoi.GhiLog($"Người dùng '{PhienDangNhap.TenDangNhap}' {hanhDong} {thanhCong}/{tong} khoản định kỳ đến hạn.");
+            return new KetQuaGiaoDichDinhKy
+            {
+                ThanhCong = thanhCong > 0,
+                ThongBao = thanhCong == tong
+                    ? $"Đã {hanhDong} {thanhCong} khoản."
+                    : $"Đã {hanhDong} {thanhCong}/{tong} khoản (số còn lại đã được xử lý trước đó hoặc bị lỗi)."
+            };
+        }
+
+        public static KetQuaGiaoDichDinhKy TamDungTiepTuc(int maGDDK)
+        {
+            if (!PhienDangNhap.DaDangNhap)
+                return new KetQuaGiaoDichDinhKy { ThanhCong = false, ThongBao = "Bạn chưa đăng nhập." };
+            try
+            {
+                var gd = GiaoDichDinhKyDL.LayTheoMa(maGDDK, PhienDangNhap.MaND);
+                if (gd == null)
+                    return new KetQuaGiaoDichDinhKy { ThanhCong = false, ThongBao = "Không tìm thấy giao dịch." };
+
+                bool moi = !gd.TrangThai;
+                if (!GiaoDichDinhKyDL.DatTrangThai(maGDDK, PhienDangNhap.MaND, moi))
+                    return new KetQuaGiaoDichDinhKy { ThanhCong = false, ThongBao = "Không thể đổi trạng thái." };
+
+                NhatKyLoi.GhiLog($"Người dùng '{PhienDangNhap.TenDangNhap}' {(moi ? "tiếp tục" : "tạm dừng")} giao dịch định kỳ #{maGDDK}.");
+                return new KetQuaGiaoDichDinhKy
+                {
+                    ThanhCong = true,
+                    MaGDDK = maGDDK,
+                    ThongBao = moi ? "Đã tiếp tục giao dịch định kỳ." : "Đã tạm dừng giao dịch định kỳ."
+                };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại GiaoDichDinhKyNV.TamDungTiepTuc", ex);
+                return new KetQuaGiaoDichDinhKy { ThanhCong = false, ThongBao = "Lỗi: " + ex.Message };
+            }
+        }
     }
 }

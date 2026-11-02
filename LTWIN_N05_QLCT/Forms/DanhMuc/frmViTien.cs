@@ -15,10 +15,9 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
         private static readonly Color MauChu = Color.FromArgb(30, 41, 59);
         private static readonly Color MauNenXen = Color.FromArgb(248, 250, 252);
 
-        private DataTable tblViTien;        // Dữ liệu bảng ví tiền đang hiển thị trên lưới
-        private bool _dangThem;             // true khi đang ở chế độ thêm mới
-        private bool _dangNapDuLieu;        // chặn SelectionChanged khi đang nạp lại lưới
-        private int _maViDangChon;          // MaVi của dòng đang chọn (0 = chưa chọn)
+        private DataTable tblViTien;
+        private bool _dangNapDuLieu;
+        private int _maViDangChon;
 
         public frmViTien()
         {
@@ -28,25 +27,25 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
 
         private void KhoiTao()
         {
-            // Loại ví: lưu mã (TienMat, NganHang...) nhưng hiển thị tên tiếng Việt
             cboLoaiVi.DisplayMember = "Value";
             cboLoaiVi.ValueMember = "Key";
             cboLoaiVi.DataSource = ViTienNV.LayDanhSachLoaiVi();
             cboLoaiVi.SelectedIndex = -1;
 
-            // Viền khung nhập liệu
-            pnlThongTin.Paint += (s, e) =>
-            {
-                using (var pen = new Pen(MauVien, 1))
-                {
-                    e.Graphics.DrawRectangle(pen, 0, 0, pnlThongTin.Width - 1, pnlThongTin.Height - 1);
-                }
-            };
+            var dtTrangThai = new DataTable();
+            dtTrangThai.Columns.Add("Ma", typeof(bool));
+            dtTrangThai.Columns.Add("Ten", typeof(string));
+            dtTrangThai.Rows.Add(true, "Đang sử dụng");
+            dtTrangThai.Rows.Add(false, "Ngừng sử dụng");
+
+            cboTrangThai.DataSource = dtTrangThai;
+            cboTrangThai.DisplayMember = "Ten";
+            cboTrangThai.ValueMember = "Ma";
+            cboTrangThai.SelectedValue = true;
 
             CauHinhLuoi();
         }
 
-        // Giao diện lưới theo phong cách chung của ứng dụng
         private void CauHinhLuoi()
         {
             dgvViTien.BackgroundColor = Color.White;
@@ -55,7 +54,6 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
             dgvViTien.EnableHeadersVisualStyles = false;
             dgvViTien.GridColor = Color.FromArgb(226, 232, 240);
             dgvViTien.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvViTien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvViTien.ColumnHeadersHeight = 36;
             dgvViTien.RowTemplate.Height = 30;
             dgvViTien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -68,28 +66,31 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
             dgvViTien.DefaultCellStyle.SelectionBackColor = Color.FromArgb(219, 234, 254);
             dgvViTien.DefaultCellStyle.SelectionForeColor = MauChu;
             dgvViTien.AlternatingRowsDefaultCellStyle.BackColor = MauNenXen;
+            dgvViTien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvViTien.MultiSelect = false;
+
+            dgvViTien.CellFormatting += dgvViTien_CellFormatting;
+            dgvViTien.SelectionChanged += dgvViTien_SelectionChanged;
+
+            // Xử lý triệt để lỗi FormatException hiển thị trên DataGridView
+            dgvViTien.DataError += (s, e) =>
+            {
+                e.ThrowException = false;
+            };
         }
 
         private void frmViTien_Load(object sender, EventArgs e)
         {
-            _dangThem = false;
             if (!PhienDangNhap.DaDangNhap)
             {
                 MessageBox.Show("Bạn cần đăng nhập để quản lý ví tiền.", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                btnThem.Enabled = false;
-                btnSua.Enabled = false;
-                btnXoa.Enabled = false;
                 return;
             }
             LoadDataGridView();
             ResetValues();
-            DatTrangThaiNut(false);
         }
 
-        // ==========================================
-        // LƯỚI DỮ LIỆU
-        // ==========================================
         private void LoadDataGridView()
         {
             _dangNapDuLieu = true;
@@ -103,7 +104,6 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
                 }
                 dgvViTien.DataSource = tblViTien;
                 DinhDangCot();
-                dgvViTien.CurrentCell = null;
                 dgvViTien.ClearSelection();
             }
             finally
@@ -114,16 +114,23 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
 
         private void DinhDangCot()
         {
-            DatCot("MaVi", "Mã ví", 8, false);
-            DatCot("TenVi", "Tên ví", 22, false);
-            DatCot("LoaiVi", "Loại ví", 14, false);
-            DatCot("SoDuBanDau", "Số dư ban đầu", 16, true);
-            DatCot("SoDuHienTai", "Số dư hiện tại", 16, true);
-            DatCot("GhiChu", "Ghi chú", 24, false);
-            DatCot("TrangThai", "Đang sử dụng", 10, false);
+            if (dgvViTien.Columns["MaVi"] != null) dgvViTien.Columns["MaVi"].Visible = false;
+            if (dgvViTien.Columns["GhiChu"] != null) dgvViTien.Columns["GhiChu"].Visible = false;
+            if (dgvViTien.Columns["MaND"] != null) dgvViTien.Columns["MaND"].Visible = false;
+
+            DatCot("TenVi", "Tên ví", 30);
+            DatCot("LoaiVi", "Loại", 20);
+            DatCot("SoDuBanDau", "Số dư ban đầu", 25, true);
+            DatCot("SoDuHienTai", "Số dư hiện tại", 25, true);
+
+            if (dgvViTien.Columns["TrangThai"] != null)
+            {
+                dgvViTien.Columns["TrangThai"].HeaderText = "Trạng thái";
+                dgvViTien.Columns["TrangThai"].FillWeight = 20;
+            }
         }
 
-        private void DatCot(string ten, string tieuDe, float tyLe, bool laSoTien)
+        private void DatCot(string ten, string tieuDe, float tyLe, bool laSoTien = false)
         {
             DataGridViewColumn cot = dgvViTien.Columns[ten];
             if (cot == null) return;
@@ -136,226 +143,161 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
             }
         }
 
-        // Hiển thị tên loại ví tiếng Việt thay cho mã lưu trong CSDL
         private void dgvViTien_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex < 0 || e.Value == null) return;
-            if (dgvViTien.Columns[e.ColumnIndex].Name == "LoaiVi")
+            if (e.RowIndex < 0 || e.Value == null || e.Value == DBNull.Value) return;
+
+            string columnName = dgvViTien.Columns[e.ColumnIndex].Name;
+            if (columnName == "LoaiVi")
             {
                 e.Value = ViTienNV.TenLoaiVi(e.Value.ToString());
                 e.FormattingApplied = true;
             }
+            else if (columnName == "TrangThai")
+            {
+                if (bool.TryParse(e.Value.ToString(), out bool trangThai))
+                {
+                    e.Value = trangThai ? "Đang sử dụng" : "Ngừng sử dụng";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
-        // Chọn dòng trên lưới => hiển thị lên các ô nhập
         private void dgvViTien_SelectionChanged(object sender, EventArgs e)
         {
-            if (_dangNapDuLieu || _dangThem) return;
+            if (_dangNapDuLieu) return;
             if (dgvViTien.CurrentRow == null || dgvViTien.SelectedRows.Count == 0) return;
 
             var dong = dgvViTien.CurrentRow.DataBoundItem as DataRowView;
             if (dong == null) return;
 
-            _maViDangChon = Convert.ToInt32(dong["MaVi"]);
-            txtMaVi.Text = _maViDangChon.ToString();
-            txtTenVi.Text = dong["TenVi"].ToString();
-            cboLoaiVi.SelectedValue = dong["LoaiVi"].ToString();
-            txtSoDuBanDau.Text = Convert.ToDecimal(dong["SoDuBanDau"]).ToString("0", CultureInfo.InvariantCulture);
-            txtSoDuHienTai.Text = Convert.ToDecimal(dong["SoDuHienTai"]).ToString("N0");
-            txtGhiChu.Text = dong["GhiChu"] == DBNull.Value ? "" : dong["GhiChu"].ToString();
-            chkTrangThai.Checked = Convert.ToBoolean(dong["TrangThai"]);
+            _maViDangChon = dong["MaVi"] != DBNull.Value ? Convert.ToInt32(dong["MaVi"]) : 0;
+            txtTenVi.Text = dong["TenVi"] != DBNull.Value ? dong["TenVi"].ToString() : "";
+            cboLoaiVi.SelectedValue = dong["LoaiVi"] != DBNull.Value ? dong["LoaiVi"].ToString() : "";
 
-            DatTrangThaiNut(true);
+            if (dong["SoDuBanDau"] != DBNull.Value && decimal.TryParse(dong["SoDuBanDau"].ToString(), out decimal soDu))
+            {
+                txtSoDuBanDau.Text = soDu.ToString("0", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                txtSoDuBanDau.Text = "0";
+            }
+
+            if (dong["TrangThai"] != DBNull.Value)
+            {
+                cboTrangThai.SelectedValue = Convert.ToBoolean(dong["TrangThai"]);
+            }
         }
 
-        // ==========================================
-        // TRẠNG THÁI GIAO DIỆN
-        // ==========================================
         private void ResetValues()
         {
             _maViDangChon = 0;
-            txtMaVi.Text = "(tự sinh)";
             txtTenVi.Text = "";
             cboLoaiVi.SelectedIndex = -1;
             txtSoDuBanDau.Text = "0";
-            txtSoDuHienTai.Text = "0";
-            txtGhiChu.Text = "";
-            chkTrangThai.Checked = true;
+            cboTrangThai.SelectedValue = true;
+            dgvViTien.ClearSelection();
         }
 
-        private void DatTrangThaiNut(bool coChon)
-        {
-            btnThem.Enabled = !_dangThem;
-            btnSua.Enabled = !_dangThem && coChon;
-            btnXoa.Enabled = !_dangThem && coChon;
-            btnLuu.Enabled = _dangThem;
-            btnBoQua.Enabled = _dangThem || coChon;
-        }
-
-        private void KetThucCheDoThem()
-        {
-            _dangThem = false;
-            dgvViTien.Enabled = true;
-            LoadDataGridView();
-            ResetValues();
-            DatTrangThaiNut(false);
-        }
-
-        // ==========================================
-        // THÊM / SỬA / XÓA / LƯU / BỎ QUA
-        // ==========================================
         private void btnThem_Click(object sender, EventArgs e)
         {
-            _dangThem = true;
-            dgvViTien.Enabled = false;
+            decimal soDu;
+            if (!KiemTraNhap(out soDu)) return;
+
+            var kq = ViTienNV.Them(txtTenVi.Text, cboLoaiVi.SelectedValue.ToString(), soDu, "", (bool)cboTrangThai.SelectedValue);
+            if (!kq.ThanhCong)
+            {
+                MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadDataGridView();
             ResetValues();
-            DatTrangThaiNut(false);
-            txtTenVi.Focus();
         }
 
-        // Kiểm tra các ô nhập (dùng chung cho Lưu và Sửa); trả về false nếu có lỗi
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (_maViDangChon <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn ví cần sửa trên danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            decimal soDu;
+            if (!KiemTraNhap(out soDu)) return;
+
+            var kq = ViTienNV.Sua(_maViDangChon, txtTenVi.Text, cboLoaiVi.SelectedValue.ToString(), soDu, "", (bool)cboTrangThai.SelectedValue);
+            if (!kq.ThanhCong)
+            {
+                MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadDataGridView();
+            ResetValues();
+        }
+
+        private void btnMoi_Click(object sender, EventArgs e)
+        {
+            ResetValues();
+        }
+
+        private void btnNgungSuDung_Click(object sender, EventArgs e)
+        {
+            if (_maViDangChon <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn ví cần ngừng sử dụng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            decimal soDu = 0;
+            decimal.TryParse(txtSoDuBanDau.Text.Trim(), out soDu);
+
+            var kq = ViTienNV.Sua(_maViDangChon, txtTenVi.Text, cboLoaiVi.SelectedValue.ToString(), soDu, "", false);
+            if (kq.ThanhCong)
+            {
+                MessageBox.Show("Đã cập nhật trạng thái ví thành ngừng sử dụng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDataGridView();
+                ResetValues();
+            }
+            else
+            {
+                MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private bool KiemTraNhap(out decimal soDuBanDau)
         {
             soDuBanDau = 0;
-            if (txtTenVi.Text.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(txtTenVi.Text))
             {
-                MessageBox.Show("Bạn phải nhập tên ví", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn phải nhập tên ví.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTenVi.Focus();
                 return false;
             }
-            if (LoaiViDangChon() == null)
+            if (cboLoaiVi.SelectedIndex == -1)
             {
-                MessageBox.Show("Bạn phải chọn loại ví", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn phải chọn loại ví.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cboLoaiVi.Focus();
                 return false;
             }
-            string s = txtSoDuBanDau.Text.Trim();
-            if (s.Length > 0 && !decimal.TryParse(s, NumberStyles.None, CultureInfo.InvariantCulture, out soDuBanDau))
+            if (!decimal.TryParse(txtSoDuBanDau.Text.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out soDuBanDau))
             {
-                MessageBox.Show("Số dư ban đầu không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Số dư ban đầu không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSoDuBanDau.Focus();
                 return false;
             }
             return true;
         }
 
-        private string LoaiViDangChon()
-        {
-            return cboLoaiVi.SelectedValue as string;
-        }
-
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            decimal soDu;
-            if (!KiemTraNhap(out soDu)) return;
-
-            KetQuaThaoTac kq = ViTienNV.Them(txtTenVi.Text, LoaiViDangChon(), soDu, txtGhiChu.Text, chkTrangThai.Checked);
-            if (!kq.ThanhCong)
-            {
-                MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            KetThucCheDoThem();
-        }
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-            if (tblViTien == null || tblViTien.Rows.Count == 0)
-            {
-                MessageBox.Show("Không còn dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            if (_maViDangChon <= 0)
-            {
-                MessageBox.Show("Bạn chưa chọn bản ghi nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            decimal soDu;
-            if (!KiemTraNhap(out soDu)) return;
-
-            KetQuaThaoTac kq = ViTienNV.Sua(_maViDangChon, txtTenVi.Text, LoaiViDangChon(), soDu, txtGhiChu.Text, chkTrangThai.Checked);
-            if (!kq.ThanhCong)
-            {
-                MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadDataGridView();
-            ResetValues();
-            DatTrangThaiNut(false);
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            if (tblViTien == null || tblViTien.Rows.Count == 0)
-            {
-                MessageBox.Show("Không còn dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            if (_maViDangChon <= 0)
-            {
-                MessageBox.Show("Bạn chưa chọn bản ghi nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            DialogResult hoi = MessageBox.Show(
-                "Bạn có muốn xóa ví \"" + txtTenVi.Text.Trim() + "\" không?",
-                "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (hoi != DialogResult.Yes) return;
-
-            KetQuaThaoTac kq = ViTienNV.Xoa(_maViDangChon);
-            if (!kq.ThanhCong)
-            {
-                MessageBox.Show(kq.ThongBao, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            LoadDataGridView();
-            ResetValues();
-            DatTrangThaiNut(false);
-        }
-
-        private void btnBoQua_Click(object sender, EventArgs e)
-        {
-            if (_dangThem)
-            {
-                KetThucCheDoThem();
-                return;
-            }
-            ResetValues();
-            dgvViTien.CurrentCell = null;
-            dgvViTien.ClearSelection();
-            DatTrangThaiNut(false);
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        // ==========================================
-        // NHẬP LIỆU
-        // ==========================================
-        // Số dư ban đầu: chỉ cho nhập chữ số
         private void txtSoDuBanDau_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
-            }
-        }
-
-        // Nhấn Enter để chuyển sang ô kế tiếp
-        private void Enter_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                SelectNextControl((Control)sender, true, true, true, true);
             }
         }
     }
