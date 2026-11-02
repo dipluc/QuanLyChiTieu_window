@@ -1,4 +1,4 @@
-﻿using LTWIN_N05_QLCT.Forms.HeThong;
+using LTWIN_N05_QLCT.Forms.HeThong;
 using LTWIN_N05_QLCT.Services;
 using LTWIN_N05_QLCT.TienIch;
 using NghiepVu.TienIch;
@@ -131,7 +131,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             btnThuNhap.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyThuNhap(), "Quản lý thu nhập");
             btnChiTieu.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyChiTieu(), "Quản lý chi tiêu");
             btnNganSach.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmNganSach(), "Ngân sách");
-            btnBaoCao.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Báo cáo tài chính");
+            btnBaoCao.Click += (s, e) => MoFormCon(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true);
             btnTimKiem.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Tìm kiếm giao dịch");
             btnLamMoi.Click += (s, e) => LamMoiDuLieu();
 
@@ -165,12 +165,18 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             mnuNghiepVu.DropDownItems.Add(new ToolStripSeparator());
             mnuNghiepVu.DropDownItems.Add(mnuChuyenTienExtra);
             mnuNghiepVu.DropDownItems.Add(mnuTimKiemExtra);
+            var mnuGiaoDichDinhKy = new ToolStripMenuItem("Giao dịch định kỳ", null, (s, e) => MoFormCon(new Forms.NghiepVu.frmGiaoDichDinhKy(), "Giao dịch định kỳ"));
+            var mnuMucTieuTietKiem = new ToolStripMenuItem("Mục tiêu tiết kiệm", null, (s, e) => MoFormCon(new Forms.NghiepVu.frmMucTieuTietKiem(), "Mục tiêu tiết kiệm"));
+            mnuNghiepVu.DropDownItems.Add(mnuGiaoDichDinhKy);
+            mnuNghiepVu.DropDownItems.Add(mnuMucTieuTietKiem);
 
             // Menu quản trị: Cấu hình ứng dụng
             var mnuCauHinhExtra = new ToolStripMenuItem("Cấu hình ứng dụng", null, (s, e) => MoFormCon(new Forms.QuanTri.frmCauHinh(), "Cấu hình ứng dụng"));
             mnuQuanTri.DropDownItems.Insert(0, mnuCauHinhExtra);
-            mnuSaoLuuDuLieu.Click += (s, e) => MoFormCon(new Forms.QuanTri.frmCauHinh(), "Cấu hình ứng dụng");
+            mnuSaoLuuDuLieu.Click += (s, e) => MoFormCon(new Forms.QuanTri.frmSaoLuu(), "Sao lưu và phục hồi", true);
             mnuPhucHoiDuLieu.Click += (s, e) => MoFormCon(new Forms.QuanTri.frmSaoLuu(), "Sao lưu và phục hồi", true);
+            mnuQuanLyNguoiDung.Click += (s, e) => MoFormCon(new Forms.QuanTri.frmNguoiDung(), "Quản lý người dùng");
+            mnuPhanQuyen.Click += (s, e) => MoFormCon(new Forms.HeThong.frmPhanQuyen(), "Phân quyền người dùng");
 
             // Menu trợ giúp
             mnuHuongDan.Click += (s, e) => MoFormHuongDan();

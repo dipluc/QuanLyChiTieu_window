@@ -422,8 +422,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void BtnXuatExcel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Đã xuất dữ liệu chi tiêu ra file Excel thành công!", "Xuất Excel",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            XuatExcelHelper.XuatDataGridViewRaExcel(this.dgvChiTieu, "DanhSachChiTieu", "Báo cáo danh sách chi tiêu");
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿using MoHinh;
+using MoHinh;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -287,5 +287,82 @@ namespace DuLieu
                 new SqlParameter("@DenNgay", denNgay)
             );
         }
-    }
+    
+        // Lấy chi tiêu theo loại kết hợp ngân sách trong tháng
+        public static DataTable LayChiTieuTheoLoai(int maND, int thang, int nam)
+        {
+            const string sql = @"
+                SELECT 
+                    lc.TenLoaiChi AS TenLoai,
+                    ISNULL(ns.HanMuc, 0) AS HanMuc,
+                    ISNULL(SUM(ct.SoTien), 0) AS DaChi
+                FROM LoaiChi lc
+                LEFT JOIN NganSach ns 
+                    ON ns.MaLoaiChi = lc.MaLoaiChi 
+                   AND ns.Thang = @Thang 
+                   AND ns.Nam = @Nam 
+                   AND ns.MaND = @MaND
+                LEFT JOIN ChiTieu ct 
+                    ON ct.MaLoaiChi = lc.MaLoaiChi 
+                   AND MONTH(ct.NgayChi) = @Thang 
+                   AND YEAR(ct.NgayChi) = @Nam 
+                   AND ct.MaND = @MaND
+                WHERE lc.MaND = @MaND OR lc.MaND IS NULL
+                GROUP BY lc.TenLoaiChi, lc.MaLoaiChi, ns.HanMuc
+                ORDER BY lc.TenLoaiChi";
+            return KetNoiCSDL.DocDuLieu(sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@Thang", thang),
+                new SqlParameter("@Nam", nam));
+        }
+
+        // Lấy giao dịch thu + chi trong khoảng ngày để xuất báo cáo
+        public static DataTable LayGiaoDichBaoCao(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            const string sql = @"
+                SELECT N'Thu' AS LoaiGD, t.NgayThu AS Ngay, lt.TenLoaiThu AS DanhMuc,
+                       t.SoTien, t.GhiChu, v.TenVi
+                FROM ThuNhap t
+                JOIN LoaiThu lt ON lt.MaLoaiThu = t.MaLoaiThu
+                JOIN ViTien v   ON v.MaVi = t.MaVi
+                WHERE t.MaND = @MaND AND t.NgayThu >= @TuNgay AND t.NgayThu < @DenNgay
+                UNION ALL
+                SELECT N'Chi', c.NgayChi, lc.TenLoaiChi,
+                       c.SoTien, c.GhiChu, v.TenVi
+                FROM ChiTieu c
+                JOIN LoaiChi lc ON lc.MaLoaiChi = c.MaLoaiChi
+                JOIN ViTien v   ON v.MaVi = c.MaVi
+                WHERE c.MaND = @MaND AND c.NgayChi >= @TuNgay AND c.NgayChi < @DenNgay
+                ORDER BY Ngay DESC";
+            return KetNoiCSDL.DocDuLieu(sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay.AddDays(1)));
+        }
+
+        // Lấy thống kê tổng thu/chi theo tháng trong khoảng thời gian
+        public static DataTable LayThongKeBaoCao(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            const string sql = @"
+                SELECT FORMAT(Thang, 'MM/yyyy') AS ThangNam,
+                       TongThu, TongChi, (TongThu - TongChi) AS TietKiem
+                FROM (
+                    SELECT DATEFROMPARTS(YEAR(NgayGD), MONTH(NgayGD), 1) AS Thang,
+                           SUM(TongThu) AS TongThu, SUM(TongChi) AS TongChi
+                    FROM (
+                        SELECT NgayThu AS NgayGD, SoTien AS TongThu, CAST(0 AS decimal(18,2)) AS TongChi
+                        FROM ThuNhap WHERE MaND = @MaND AND NgayThu >= @TuNgay AND NgayThu < @DenNgay
+                        UNION ALL
+                        SELECT NgayChi, CAST(0 AS decimal(18,2)), SoTien
+                        FROM ChiTieu WHERE MaND = @MaND AND NgayChi >= @TuNgay AND NgayChi < @DenNgay
+                    ) t
+                    GROUP BY DATEFROMPARTS(YEAR(NgayGD), MONTH(NgayGD), 1)
+                ) s
+                ORDER BY Thang";
+            return KetNoiCSDL.DocDuLieu(sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay.AddDays(1)));
+        }
+}
 }

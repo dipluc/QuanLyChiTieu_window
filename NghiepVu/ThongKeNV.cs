@@ -1,4 +1,4 @@
-﻿using DuLieu;
+using DuLieu;
 using MoHinh;
 using System;
 using System.Collections.Generic;
@@ -135,5 +135,45 @@ namespace NghiepVu
 
             return ThongKeDL.LayThuTheoLoai(maND, tuNgay, denNgay);
         }
-    }
+    
+        // Lấy chi tiêu theo loại/danh mục kết hợp ngân sách tháng đó
+        public static DataTable LayChiTieuTheoLoai(int maND, int thang, int nam)
+        {
+            try
+            {
+                return ThongKeDL.LayChiTieuTheoLoai(maND, thang, nam);
+            }
+            catch { return new DataTable(); }
+        }
+
+        // Lấy toàn bộ giao dịch (thu + chi) trong khoảng ngày để xuất báo cáo
+        public static DataTable LayGiaoDichBaoCao(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            try
+            {
+                return ThongKeDL.LayGiaoDichBaoCao(maND, tuNgay, denNgay);
+            }
+            catch { return new DataTable(); }
+        }
+
+        // Lấy thống kê tổng hợp (thu/chi theo tháng) để xuất báo cáo
+        public static DataTable LayThongKeBaoCao(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            try
+            {
+                return ThongKeDL.LayThongKeBaoCao(maND, tuNgay, denNgay);
+            }
+            catch { return new DataTable(); }
+        }
+
+        // Lấy dữ liệu ngân sách tháng để xuất báo cáo
+        public static DataTable LayNganSachBaoCao(int maND, int thang, int nam)
+        {
+            try
+            {
+                return ThongKeDL.LayChiTieuTheoLoai(maND, thang, nam);
+            }
+            catch { return new DataTable(); }
+        }
+}
 }

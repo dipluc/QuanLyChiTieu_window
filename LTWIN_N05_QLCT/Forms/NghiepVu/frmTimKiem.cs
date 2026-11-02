@@ -33,7 +33,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             this.btnXoaLoc.Click += (s, e) => XoaLoc();
             this.btnXuatExcel.Click += (s, e) =>
             {
-                MessageBox.Show("Đã xuất kết quả tìm kiếm ra file Excel thành công!", "Xuất Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XuatExcelHelper.XuatDataGridViewRaExcel(this.dgvKetQua, "KetQuaTimKiem", "Báo cáo kết quả tìm kiếm giao dịch");
             };
 
             this.txtTienTu.Leave += (s, e) => FormatMoneyInput(txtTienTu);

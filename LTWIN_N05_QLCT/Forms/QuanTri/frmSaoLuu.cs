@@ -1,29 +1,221 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
+using System.IO;
 using System.Windows.Forms;
+using DuLieu;
 
 namespace LTWIN_N05_QLCT.Forms.QuanTri
 {
     public partial class frmSaoLuu : Form
     {
+        private static readonly string[] _duongDanMDF = new string[]
+        {
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Database\QLChiTieu.mdf")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf")),
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database", "QLChiTieu.mdf")
+        };
+
+        private static readonly string[] _duongDanLDF = new string[]
+        {
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Database\QLChiTieu_log.ldf")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu_log.ldf")),
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database", "QLChiTieu_log.ldf")
+        };
+
         public frmSaoLuu()
         {
             InitializeComponent();
+            string thuMucMacDinh = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QuanLyChiTieu", "SaoLuu");
+            txtThuMucSaoLuu.Text = thuMucMacDinh;
+            KhoiTao();
+        }
+
+        private void KhoiTao()
+        {
+            btnDuyet.Click += btnDuyet_Click;
+            btnSaoLuu.Click += btnSaoLuu_Click;
             btnPhucHoi.Click += btnPhucHoi_Click;
+            lvSaoLuu.SelectedIndexChanged += (s, e) => CapNhatDaChon();
+            Load += (s, e) => TaiDanhSachSaoLuu();
+        }
+
+        private void btnDuyet_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new FolderBrowserDialog())
+            {
+                dlg.Description = "Chọn thư mục lưu trữ các bản sao lưu";
+                if (Directory.Exists(txtThuMucSaoLuu.Text))
+                    dlg.SelectedPath = txtThuMucSaoLuu.Text;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    txtThuMucSaoLuu.Text = dlg.SelectedPath;
+                    TaiDanhSachSaoLuu();
+                }
+            }
+        }
+
+        private void btnSaoLuu_Click(object sender, EventArgs e)
+        {
+            string thuMuc = txtThuMucSaoLuu.Text.Trim();
+            if (string.IsNullOrEmpty(thuMuc))
+            {
+                MessageBox.Show("Vui lòng chọn thư mục sao lưu.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string mdfNguon = TimFileMDF();
+            string ldfNguon = TimFileLDF();
+
+            if (mdfNguon == null || !File.Exists(mdfNguon))
+            {
+                MessageBox.Show("Không tìm thấy tệp cơ sở dữ liệu để sao lưu.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            btnSaoLuu.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                if (!Directory.Exists(thuMuc))
+                    Directory.CreateDirectory(thuMuc);
+
+                // Ghi dữ liệu từ bộ nhớ xuống đĩa trước khi copy
+                try
+                {
+                    KetNoiCSDL.ThucThiLenh("CHECKPOINT;");
+                }
+                catch { }
+
+                string timestamp = DateTime.Now.ToString("dd-MM-yyyy_HHmm");
+                string tenTep = string.Format("ChiTieu_{0}.bak", timestamp);
+                string mdfDich = Path.Combine(thuMuc, tenTep);
+                string ldfDich = Path.Combine(thuMuc, string.Format("ChiTieu_{0}_log.bak", timestamp));
+
+                // Copy tệp MDF và LDF
+                File.Copy(mdfNguon, mdfDich, true);
+                if (ldfNguon != null && File.Exists(ldfNguon))
+                {
+                    File.Copy(ldfNguon, ldfDich, true);
+                }
+
+                MessageBox.Show(string.Format("Đã sao lưu dữ liệu thành công!\n\nTệp: {0}", mdfDich),
+                    "Sao lưu thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                TaiDanhSachSaoLuu();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi trong quá trình sao lưu: " + ex.Message,
+                    "Lỗi sao lưu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                btnSaoLuu.Enabled = true;
+            }
         }
 
         private void btnPhucHoi_Click(object sender, EventArgs e)
         {
-            using (var form = new frmXacNhanPhucHoi())
+            if (lvSaoLuu.SelectedItems.Count == 0)
             {
-                form.ShowDialog(TopLevelControl);
+                MessageBox.Show("Vui lòng chọn một bản sao lưu từ danh sách để phục hồi.",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            var item = lvSaoLuu.SelectedItems[0];
+            string tenTep = item.Text;
+            string ngayTao = item.SubItems.Count > 1 ? item.SubItems[1].Text : "";
+            string dungLuong = item.SubItems.Count > 2 ? item.SubItems[2].Text : "";
+            string duongDan = item.Tag as string;
+
+            using (var form = new frmXacNhanPhucHoi(tenTep, ngayTao, dungLuong, duongDan))
+            {
+                if (form.ShowDialog(TopLevelControl) == DialogResult.OK)
+                {
+                    TaiDanhSachSaoLuu();
+                }
+            }
+        }
+
+        private void TaiDanhSachSaoLuu()
+        {
+            lvSaoLuu.Items.Clear();
+            string thuMuc = txtThuMucSaoLuu.Text.Trim();
+
+            if (!Directory.Exists(thuMuc))
+            {
+                lblSoLuong.Text = "0 bản sao lưu";
+                lblDaChon.Text = "Chưa chọn bản sao lưu nào";
+                return;
+            }
+
+            var files = Directory.GetFiles(thuMuc, "*.bak");
+            Array.Sort(files, (a, b) => File.GetCreationTime(b).CompareTo(File.GetCreationTime(a)));
+
+            int count = 0;
+            foreach (string f in files)
+            {
+                // Bỏ qua file log phụ
+                if (f.EndsWith("_log.bak", StringComparison.OrdinalIgnoreCase)) continue;
+
+                var fi = new FileInfo(f);
+                string dungLuong = fi.Length < 1024 * 1024
+                    ? string.Format("{0:0.0} KB", fi.Length / 1024.0)
+                    : string.Format("{0:0.0} MB", fi.Length / (1024.0 * 1024.0));
+
+                var item = new ListViewItem(fi.Name);
+                item.SubItems.Add(fi.CreationTime.ToString("dd/MM/yyyy HH:mm"));
+                item.SubItems.Add(dungLuong);
+                item.SubItems.Add("Thủ công");
+                item.Tag = f;
+
+                if (count % 2 == 0)
+                {
+                    item.BackColor = System.Drawing.Color.FromArgb(246, 249, 253);
+                }
+
+                lvSaoLuu.Items.Add(item);
+                count++;
+            }
+
+            lblSoLuong.Text = string.Format("{0} bản sao lưu", count);
+            lblDaChon.Text = count > 0 ? "Chưa chọn bản sao lưu nào" : "Không có bản sao lưu";
+        }
+
+        private void CapNhatDaChon()
+        {
+            if (lvSaoLuu.SelectedItems.Count > 0)
+            {
+                lblDaChon.Text = "Đã chọn: " + lvSaoLuu.SelectedItems[0].Text;
+            }
+            else
+            {
+                lblDaChon.Text = "Chưa chọn bản sao lưu nào";
+            }
+        }
+
+        private static string TimFileMDF()
+        {
+            foreach (var p in _duongDanMDF)
+            {
+                if (File.Exists(p)) return p;
+            }
+            return null;
+        }
+
+        private static string TimFileLDF()
+        {
+            foreach (var p in _duongDanLDF)
+            {
+                if (File.Exists(p)) return p;
+            }
+            return null;
         }
     }
 }

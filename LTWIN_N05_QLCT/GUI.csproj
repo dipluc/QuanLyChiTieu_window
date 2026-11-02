@@ -209,6 +209,7 @@
     <Compile Include="Models\Models.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\XuatBieuDoService.cs" />
+    <Compile Include="Services\XuatExcelHelper.cs" />
     <Compile Include="Forms\IDongBoThang.cs" />
     <Compile Include="Forms\NghiepVu\frmQuanLyThuNhap.cs">
       <SubType>Form</SubType>
