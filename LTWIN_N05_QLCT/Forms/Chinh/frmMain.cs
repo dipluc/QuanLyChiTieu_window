@@ -1,11 +1,11 @@
+using LTWIN_N05_QLCT.Forms.HeThong;
+using LTWIN_N05_QLCT.Services;
+using LTWIN_N05_QLCT.TienIch;
+using NghiepVu.TienIch;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using LTWIN_N05_QLCT.Forms.DanhMuc;
-using LTWIN_N05_QLCT.Forms.HeThong;
-using LTWIN_N05_QLCT.TienIch;
-using NghiepVu.TienIch;
 
 namespace LTWIN_N05_QLCT.Forms.Chinh
 {
@@ -118,77 +118,54 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 }
             };
 
-            // ===== Menu Hệ thống =====
-            if (btnTrangChu != null) btnTrangChu.Click += (s, e) => MoDashboard();
+            // Sự kiện hệ thống
+            btnTrangChu.Click += (s, e) => MoDashboard();
             mnuDangNhap.Click += (s, e) => MoFormDangNhap();
             mnuDangKy.Click += (s, e) => MoFormDangKy();
             mnuDoiMatKhau.Click += (s, e) => MoFormDoiMatKhau();
             mnuThongTinCaNhan.Click += (s, e) => MoFormThongTinCaNhan();
-            if (mnuPhanQuyen != null) mnuPhanQuyen.Click += (s, e) => MoFormPhanQuyen();
             mnuDangXuat.Click += (s, e) => DangXuat();
             mnuThoat.Click += (s, e) => XacNhanThoat();
 
-            // ===== Menu Danh mục =====
-            if (mnuDanhMucVi != null) mnuDanhMucVi.Click += (s, e) => MoFormViTien();
-            if (mnuDanhMucNhomChi != null) mnuDanhMucNhomChi.Click += (s, e) => MoFormLoaiChiTieu();
-            if (mnuDanhMucNguonThu != null) mnuDanhMucNguonThu.Click += (s, e) => MoFormLoaiThuNhap();
+            // Nút công cụ nhanh
+            btnThuNhap.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyThuNhap(), "Quản lý thu nhập");
+            btnChiTieu.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyChiTieu(), "Quản lý chi tiêu");
+            btnNganSach.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmNganSach(), "Ngân sách");
+            btnBaoCao.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Báo cáo tài chính");
+            btnTimKiem.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Tìm kiếm giao dịch");
+            btnLamMoi.Click += (s, e) => LamMoiDuLieu();
 
-            // ===== Menu Nghiệp vụ =====
-            mnuThuNhap.Click += (s, e) => ThaoTacChucNang("Quản lý thu nhập");
-            mnuChiTieu.Click += (s, e) => ThaoTacChucNang("Quản lý chi tiêu");
-            mnuNganSach.Click += (s, e) => ThaoTacChucNang("Quản lý ngân sách");
-            if (mnuGiaoDichDinhKy != null) mnuGiaoDichDinhKy.Click += (s, e) => MoFormGiaoDichDinhKy();
-            if (mnuMucTieuTietKiem != null) mnuMucTieuTietKiem.Click += (s, e) => MoFormMucTieuTietKiem();
+            // Menu nghiệp vụ & báo cáo
+            mnuThuNhap.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyThuNhap(), "Quản lý thu nhập");
+            mnuChiTieu.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmQuanLyChiTieu(), "Quản lý chi tiêu");
+            mnuNganSach.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmNganSach(), "Ngân sách");
+            mnuBaoCaoThuChi.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Báo cáo thu - chi");
+            mnuBaoCaoNganSach.Click += (s, e) => MoFormCon(new Forms.NghiepVu.frmNganSach(), "Báo cáo theo dõi ngân sách");
 
-            // ===== Menu Báo cáo =====
-            mnuBaoCaoThuChi.Click += (s, e) => MoFormBaoCaoThang();
-            mnuBaoCaoNganSach.Click += (s, e) => ThaoTacChucNang("Báo cáo theo dõi ngân sách");
-            mnuBieuDo.Click += (s, e) => MoFormBieuDo();
-            mnuXuatBaoCao.Click += (s, e) => MoFormXuatBaoCao();
-            mnuNhanhBaoCaoThang.Click += (s, e) => MoFormBaoCaoThang();
-            mnuNhanhBieuDo.Click += (s, e) => MoFormBieuDo();
-            mnuNhanhXuatBaoCao.Click += (s, e) => MoFormXuatBaoCao();
+            // Bổ sung menu nghiệp vụ: Chuyển tiền & Tìm kiếm
+            var mnuChuyenTienExtra = new ToolStripMenuItem("Chuyển tiền giữa các ví", null, (s, e) => MoFormCon(new Forms.NghiepVu.frmChuyenTien(), "Chuyển tiền giữa các ví"));
+            var mnuTimKiemExtra = new ToolStripMenuItem("Tìm kiếm giao dịch", null, (s, e) => MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Tìm kiếm giao dịch"));
+            mnuNghiepVu.DropDownItems.Add(new ToolStripSeparator());
+            mnuNghiepVu.DropDownItems.Add(mnuChuyenTienExtra);
+            mnuNghiepVu.DropDownItems.Add(mnuTimKiemExtra);
 
-            // ===== Menu Quản trị =====
-            if (mnuQuanLyNguoiDung != null) mnuQuanLyNguoiDung.Click += (s, e) => MoFormNguoiDung();
-            if (mnuSaoLuuDuLieu != null) mnuSaoLuuDuLieu.Click += (s, e) => MoFormSaoLuu();
-            if (mnuPhucHoiDuLieu != null) mnuPhucHoiDuLieu.Click += (s, e) => MoFormSaoLuu();
+            // Menu quản trị: Cấu hình ứng dụng
+            var mnuCauHinhExtra = new ToolStripMenuItem("Cấu hình ứng dụng", null, (s, e) => MoFormCon(new Forms.QuanTri.frmCauHinh(), "Cấu hình ứng dụng"));
+            mnuQuanTri.DropDownItems.Insert(0, mnuCauHinhExtra);
+            mnuSaoLuuDuLieu.Click += (s, e) => MoFormCon(new Forms.QuanTri.frmCauHinh(), "Cấu hình ứng dụng");
 
-            // ===== Menu Trợ giúp =====
+            // Menu trợ giúp
             mnuHuongDan.Click += (s, e) => MoFormHuongDan();
             mnuGioiThieu.Click += (s, e) => MoFormGioiThieu();
-
-            // Nút công cụ nhanh
-            btnThuNhap.Click += (s, e) => ThaoTacChucNang("Ghi nhận thu nhập");
-            btnChiTieu.Click += (s, e) => ThaoTacChucNang("Ghi nhận chi tiêu");
-            btnNganSach.Click += (s, e) => MoFormViTien(); // Hoặc ThaoTacChucNang tùy logic nhóm
-            btnBaoCao.Click += (s, e) => cmsBaoCao.Show(btnBaoCao, new Point(0, btnBaoCao.Height));
-            btnTimKiem.Click += (s, e) => ThaoTacChucNang("Tìm kiếm giao dịch");
-            btnLamMoi.Click += (s, e) => LamMoiDuLieu();
 
             // Chọn tháng
             dtpThang.ValueChanged += (s, e) =>
             {
                 lblTrangThai.Text = string.Format("Xem dữ liệu {0:MM/yyyy}", dtpThang.Value);
-
-                foreach (Control control in pnlNoiDung.Controls)
-                {
-                    if(control is frmDashboard dashboard)
-                    {
-                        dashboard.capNhatThang(dtpThang.Value);
-                        break;
-                    }
-                }
+                DongBoThangFormConHienTai();
             };
 
-            // Mở Dashboard mặc định khi form hiển thị
             Shown += (s, e) => MoDashboard();
-        }
-
-        //Ve trang chu
-        public void VeTrangChu()
-        {
-            MoDashboard();
         }
 
         // Cập nhật thông tin người dùng trên toàn giao diện
@@ -234,12 +211,13 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             lblThang.Visible = !cheDoTrangCaNhan;
             dtpThang.Visible = !cheDoTrangCaNhan;
             btnLamMoi.Visible = !cheDoTrangCaNhan;
-        }
 
-        private void MoChucNang(Form f, string tieuDe, bool cheDoTrangCaNhan = false)
-        {
-            MoFormCon(f, tieuDe, cheDoTrangCaNhan);
-            lblTrangThai.Text = "Đang xem: " + tieuDe;
+            // Đồng bộ ngày tháng sang form con ngay khi mở
+            var dongBo = formCon as IDongBoThang;
+            if (dongBo != null)
+            {
+                dongBo.DongBoThang(dtpThang.Value);
+            }
         }
 
         private void ThaoTacChucNang(string tenChucNang)
@@ -249,21 +227,23 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private void LamMoiDuLieu()
         {
-            foreach (Control control in pnlNoiDung.Controls)
-            {
-                if (control is frmDashboard dashboard)
-                {
-                    dashboard.capNhatThang(dtpThang.Value);
-                    break;
-                }
-            }
-
+            DataService.ReloadData();
+            DongBoThangFormConHienTai();
             lblTrangThai.Text = "Dữ liệu đã được làm mới lúc " + DateTime.Now.ToString("HH:mm:ss");
         }
 
-        // ==========================================
-        // HỆ THỐNG
-        // ==========================================
+        private void DongBoThangFormConHienTai()
+        {
+            if (pnlNoiDung.Controls.Count > 0)
+            {
+                var dongBo = pnlNoiDung.Controls[0] as IDongBoThang;
+                if (dongBo != null)
+                {
+                    dongBo.DongBoThang(dtpThang.Value);
+                }
+            }
+        }
+
         private void MoFormDangNhap()
         {
             using (var f = new frmDangNhap())
@@ -294,83 +274,15 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             var f = new frmThongTinCaNhan(_tenDangNhap, _hoTen, emailHienTai);
             f.OnThongTinDaCapNhat += CapNhatThongTinNguoiDung;
             f.OnThongTinChiTietDaCapNhat += (hoTenMoi, emailMoi) => CapNhatThongTinNguoiDung(hoTenMoi, emailMoi);
-            MoChucNang(f, "Thông tin cá nhân", true);
+            MoFormCon(f, "Thông tin cá nhân", true);
+            lblTrangThai.Text = "Đang xem: Thông tin cá nhân";
         }
 
-        private void MoFormPhanQuyen()
-        {
-            MoChucNang(new frmPhanQuyen(), "Phân quyền");
-        }
-
-        // ==========================================
-        // DANH MỤC
-        // ==========================================
-        private void MoFormViTien()
-        {
-            MoChucNang(new frmViTien(), "Danh mục ví tiền");
-            btnLamMoi.Hide();
-            dtpThang.Hide();
-            lblThang.Hide();
-        }
-
-        private void MoFormLoaiChiTieu()
-        {
-            MoChucNang(new frmLoaiChiTieu(), "Danh mục nhóm chi");
-        }
-
-        private void MoFormLoaiThuNhap()
-        {
-            MoChucNang(new frmLoaiThuNhap(), "Danh mục nguồn thu");
-        }
-
-        // ==========================================
-        // NGHIỆP VỤ
-        // ==========================================
-        private void MoFormGiaoDichDinhKy()
-        {
-            MoChucNang(new Forms.NghiepVu.frmGiaoDichDinhKy(), "Giao dịch định kỳ");
-        }
-
-        private void MoFormMucTieuTietKiem()
-        {
-            MoChucNang(new Forms.NghiepVu.frmMucTieuTietKiem(), "Mục tiêu tiết kiệm");
-        }
-
-        private void MoFormBaoCaoThang()
-        {
-            MoChucNang(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true);
-        }
-
-        private void MoFormBieuDo()
-        {
-            MoChucNang(new Forms.BaoCao.frmBieuDo(), "Biểu đồ", true);
-        }
-
-        public void MoFormXuatBaoCao(bool xuatPdf = false)
-        {
-            MoChucNang(new Forms.BaoCao.frmXuatBaoCao(xuatPdf), "Xuất báo cáo", true);
-        }
-
-        private void MoFormSaoLuu()
-        {
-            MoChucNang(new Forms.QuanTri.frmSaoLuu(), "Sao lưu và phục hồi", true);
-        }
-
-        // ==========================================
-        // QUẢN TRỊ
-        // ==========================================
-        private void MoFormNguoiDung()
-        {
-            MoChucNang(new Forms.QuanTri.frmNguoiDung(), "Quản lý người dùng");
-        }
-
-        // ==========================================
-        // TRỢ GIÚP & KHÁC
-        // ==========================================
         private void MoFormHuongDan()
         {
             var f = new Forms.TroGiup.frmHuongDan();
-            MoChucNang(f, "Hướng dẫn sử dụng", true);
+            MoFormCon(f, "Hướng dẫn sử dụng", true);
+            lblTrangThai.Text = "Đang xem: Hướng dẫn sử dụng";
         }
 
         private void MoFormGioiThieu()
@@ -386,14 +298,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 pnlNoiDung.Controls.Clear();
                 lblTrangThai.Text = "Sẵn sàng";
             };
-            MoChucNang(f, "Giới thiệu", true);
-        }
-
-        private void MoDashboard()
-        {
-            var frm = new frmDashboard(dtpThang.Value);
-            MoFormCon(frm, "Tổng quan");
-            lblTrangThai.Text = $"Đang xem: Tổng quan {dtpThang.Value:MM/yyyy}";
+            MoFormCon(f, "Giới thiệu", true);
+            lblTrangThai.Text = "Đang xem: Giới thiệu ứng dụng";
         }
 
         private void DangXuat()
@@ -460,6 +366,14 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             {
                 // Thiếu icon không làm gián đoạn ứng dụng
             }
+        }
+
+        //Mo dasshboard
+        private void MoDashboard()
+        {
+            var frm = new frmDashboard();
+            MoFormCon(frm, "Tổng quan");
+            lblTrangThai.Text = "Đang xem: Tổng quan";
         }
     }
 }

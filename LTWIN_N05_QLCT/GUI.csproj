@@ -76,9 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-    <PackageReference Include="Guna.UI2.WinForms">
-      <Version>2.0.4.8</Version>
-    </PackageReference>
     <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData">
       <Version>10.0.14</Version>
@@ -175,16 +172,45 @@
     <Compile Include="Forms\TroGiup\frmHuongDan.Designer.cs">
       <DependentUpon>frmHuongDan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BaoCao\frmBieuDo.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\BaoCao\frmBieuDo.Designer.cs"><DependentUpon>frmBieuDo.cs</DependentUpon></Compile>
-    <Compile Include="Forms\BaoCao\frmBaoCaoThang.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\BaoCao\frmBaoCaoThang.Designer.cs"><DependentUpon>frmBaoCaoThang.cs</DependentUpon></Compile>
-    <Compile Include="Forms\BaoCao\frmXuatBaoCao.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\BaoCao\frmXuatBaoCao.Designer.cs"><DependentUpon>frmXuatBaoCao.cs</DependentUpon></Compile>
-    <Compile Include="Forms\QuanTri\frmSaoLuu.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\QuanTri\frmSaoLuu.Designer.cs"><DependentUpon>frmSaoLuu.cs</DependentUpon></Compile>
-    <Compile Include="Forms\QuanTri\frmXacNhanPhucHoi.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\QuanTri\frmXacNhanPhucHoi.Designer.cs"><DependentUpon>frmXacNhanPhucHoi.cs</DependentUpon></Compile>
+    <Compile Include="Models\Models.cs" />
+    <Compile Include="Services\DataService.cs" />
+    <Compile Include="Forms\IDongBoThang.cs" />
+    <Compile Include="Forms\NghiepVu\frmQuanLyThuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmQuanLyThuNhap.Designer.cs">
+      <DependentUpon>frmQuanLyThuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmQuanLyChiTieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmQuanLyChiTieu.Designer.cs">
+      <DependentUpon>frmQuanLyChiTieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmNganSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmNganSach.Designer.cs">
+      <DependentUpon>frmNganSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmChuyenTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmChuyenTien.Designer.cs">
+      <DependentUpon>frmChuyenTien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmTimKiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NghiepVu\frmTimKiem.Designer.cs">
+      <DependentUpon>frmTimKiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmCauHinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuanTri\frmCauHinh.Designer.cs">
+      <DependentUpon>frmCauHinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Chinh\frmDashboard.resx">
@@ -280,6 +306,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Forms\BaoCao\" />
+    <Folder Include="Forms\DanhMuc\" />
+    <Folder Include="Forms\NghiepVu\" />
+    <Folder Include="Forms\QuanTri\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Chỉ tạo database đầu tiên. Build lại không ghi đè dữ liệu người dùng bằng bản mẫu. -->

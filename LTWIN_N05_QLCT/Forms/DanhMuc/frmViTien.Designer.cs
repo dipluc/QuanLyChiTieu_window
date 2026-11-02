@@ -45,6 +45,8 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.cboTrangThai = new System.Windows.Forms.ComboBox();
             this.lblTrangThai = new System.Windows.Forms.Label();
+            this.txtSoDuHienTai = new System.Windows.Forms.TextBox();
+            this.lblSoDuHienTai = new System.Windows.Forms.Label();
             this.txtSoDuBanDau = new System.Windows.Forms.TextBox();
             this.lblSoDuBanDau = new System.Windows.Forms.Label();
             this.lblLoaiVi2 = new System.Windows.Forms.Label();
@@ -76,7 +78,7 @@
             // 
             // pnlTongQuan
             // 
-            this.pnlTongQuan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlTongQuan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTongQuan.Controls.Add(this.pnlTheTongHop);
             this.pnlTongQuan.Controls.Add(this.pnlTheTongHop2);
@@ -206,8 +208,8 @@
             // 
             // pnlDanhSachVi
             // 
-            this.pnlDanhSachVi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlDanhSachVi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlDanhSachVi.BackColor = System.Drawing.Color.White;
             this.pnlDanhSachVi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -255,8 +257,8 @@
             // 
             // dgvViTien
             // 
-            this.dgvViTien.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvViTien.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvViTien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViTien.Location = new System.Drawing.Point(16, 50);
@@ -289,7 +291,7 @@
             // 
             // pnlThongTinVi
             // 
-            this.pnlThongTinVi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pnlThongTinVi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlThongTinVi.BackColor = System.Drawing.Color.White;
             this.pnlThongTinVi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -300,6 +302,8 @@
             this.pnlThongTinVi.Controls.Add(this.btnThem);
             this.pnlThongTinVi.Controls.Add(this.cboTrangThai);
             this.pnlThongTinVi.Controls.Add(this.lblTrangThai);
+            this.pnlThongTinVi.Controls.Add(this.txtSoDuHienTai);
+            this.pnlThongTinVi.Controls.Add(this.lblSoDuHienTai);
             this.pnlThongTinVi.Controls.Add(this.txtSoDuBanDau);
             this.pnlThongTinVi.Controls.Add(this.lblSoDuBanDau);
             this.pnlThongTinVi.Controls.Add(this.lblLoaiVi2);
@@ -316,7 +320,7 @@
             // lblSoDuHienTaiDuocTinh
             // 
             this.lblSoDuHienTaiDuocTinh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblSoDuHienTaiDuocTinh.Location = new System.Drawing.Point(16, 440);
+            this.lblSoDuHienTaiDuocTinh.Location = new System.Drawing.Point(16, 458);
             this.lblSoDuHienTaiDuocTinh.Name = "lblSoDuHienTaiDuocTinh";
             this.lblSoDuHienTaiDuocTinh.Size = new System.Drawing.Size(345, 23);
             this.lblSoDuHienTaiDuocTinh.TabIndex = 0;
@@ -328,7 +332,7 @@
             this.btnNgungSuDung.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNgungSuDung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNgungSuDung.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnNgungSuDung.Location = new System.Drawing.Point(16, 390);
+            this.btnNgungSuDung.Location = new System.Drawing.Point(16, 416);
             this.btnNgungSuDung.Name = "btnNgungSuDung";
             this.btnNgungSuDung.Size = new System.Drawing.Size(345, 38);
             this.btnNgungSuDung.TabIndex = 1;
@@ -342,7 +346,7 @@
             this.btnMoi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnMoi.Location = new System.Drawing.Point(281, 340);
+            this.btnMoi.Location = new System.Drawing.Point(281, 368);
             this.btnMoi.Name = "btnMoi";
             this.btnMoi.Size = new System.Drawing.Size(80, 38);
             this.btnMoi.TabIndex = 2;
@@ -356,7 +360,7 @@
             this.btnSua.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSua.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnSua.Location = new System.Drawing.Point(185, 340);
+            this.btnSua.Location = new System.Drawing.Point(185, 368);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(85, 38);
             this.btnSua.TabIndex = 3;
@@ -370,7 +374,7 @@
             this.btnThem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.ForeColor = System.Drawing.Color.White;
-            this.btnThem.Location = new System.Drawing.Point(16, 340);
+            this.btnThem.Location = new System.Drawing.Point(16, 368);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(158, 38);
             this.btnThem.TabIndex = 4;
@@ -382,7 +386,7 @@
             // 
             this.cboTrangThai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTrangThai.FormattingEnabled = true;
-            this.cboTrangThai.Location = new System.Drawing.Point(16, 280);
+            this.cboTrangThai.Location = new System.Drawing.Point(16, 317);
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Size = new System.Drawing.Size(345, 31);
             this.cboTrangThai.TabIndex = 8;
@@ -391,15 +395,34 @@
             // 
             this.lblTrangThai.AutoSize = true;
             this.lblTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblTrangThai.Location = new System.Drawing.Point(16, 255);
+            this.lblTrangThai.Location = new System.Drawing.Point(16, 292);
             this.lblTrangThai.Name = "lblTrangThai";
             this.lblTrangThai.Size = new System.Drawing.Size(87, 23);
             this.lblTrangThai.TabIndex = 9;
             this.lblTrangThai.Text = "Trạng thái";
             // 
+            // txtSoDuHienTai
+            // 
+            this.txtSoDuHienTai.Location = new System.Drawing.Point(16, 250);
+            this.txtSoDuHienTai.Name = "txtSoDuHienTai";
+            this.txtSoDuHienTai.Size = new System.Drawing.Size(345, 30);
+            this.txtSoDuHienTai.TabIndex = 7;
+            this.txtSoDuHienTai.Text = "0";
+            this.txtSoDuHienTai.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblSoDuHienTai
+            // 
+            this.lblSoDuHienTai.AutoSize = true;
+            this.lblSoDuHienTai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblSoDuHienTai.Location = new System.Drawing.Point(16, 225);
+            this.lblSoDuHienTai.Name = "lblSoDuHienTai";
+            this.lblSoDuHienTai.Size = new System.Drawing.Size(150, 23);
+            this.lblSoDuHienTai.TabIndex = 21;
+            this.lblSoDuHienTai.Text = "Số dư hiện tại (₫)";
+            // 
             // txtSoDuBanDau
             // 
-            this.txtSoDuBanDau.Location = new System.Drawing.Point(16, 205);
+            this.txtSoDuBanDau.Location = new System.Drawing.Point(16, 185);
             this.txtSoDuBanDau.Name = "txtSoDuBanDau";
             this.txtSoDuBanDau.Size = new System.Drawing.Size(345, 30);
             this.txtSoDuBanDau.TabIndex = 6;
@@ -411,7 +434,7 @@
             // 
             this.lblSoDuBanDau.AutoSize = true;
             this.lblSoDuBanDau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblSoDuBanDau.Location = new System.Drawing.Point(16, 180);
+            this.lblSoDuBanDau.Location = new System.Drawing.Point(16, 160);
             this.lblSoDuBanDau.Name = "lblSoDuBanDau";
             this.lblSoDuBanDau.Size = new System.Drawing.Size(147, 23);
             this.lblSoDuBanDau.TabIndex = 10;
@@ -426,6 +449,7 @@
             this.lblLoaiVi2.Size = new System.Drawing.Size(386, 23);
             this.lblLoaiVi2.TabIndex = 11;
             this.lblLoaiVi2.Text = "Tiền mặt • Ngân hàng • Ví điện tử • Thẻ tín dụng";
+            this.lblLoaiVi2.Visible = false;
             // 
             // cboLoaiVi
             // 
@@ -538,6 +562,8 @@
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.ComboBox cboTrangThai;
         private System.Windows.Forms.Label lblTrangThai;
+        private System.Windows.Forms.TextBox txtSoDuHienTai;
+        private System.Windows.Forms.Label lblSoDuHienTai;
         private System.Windows.Forms.TextBox txtSoDuBanDau;
         private System.Windows.Forms.Label lblSoDuBanDau;
         private System.Windows.Forms.Label lblLoaiVi2;
