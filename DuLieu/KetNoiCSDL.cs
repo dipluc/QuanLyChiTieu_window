@@ -14,10 +14,10 @@ namespace DuLieu
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
             string[] possiblePaths = new string[]
             {
-                Path.Combine(baseDir, "Database", "QLChiTieu.mdf"),
-                Path.Combine(baseDir, "QLChiTieu.mdf"),
                 Path.GetFullPath(Path.Combine(baseDir, @"..\..\Database\QLChiTieu.mdf")),
-                Path.GetFullPath(Path.Combine(baseDir, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf"))
+                Path.GetFullPath(Path.Combine(baseDir, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf")),
+                Path.Combine(baseDir, "Database", "QLChiTieu.mdf"),
+                Path.Combine(baseDir, "QLChiTieu.mdf")
             };
 
             foreach (var p in possiblePaths)
