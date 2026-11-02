@@ -207,5 +207,74 @@ namespace NghiepVu
                 return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Lỗi nạp tiền: " + ex.Message };
             }
         }
+        // Rút bớt tiền khỏi mục tiêu
+        public static KetQuaMucTieu RutTien(int maMT, decimal soTien)
+        {
+            if (!PhienDangNhap.DaDangNhap)
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Bạn chưa đăng nhập." };
+            if (maMT <= 0)
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Bạn hãy chọn một mục tiêu trong lưới trước." };
+            if (soTien <= 0)
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Số tiền rút phải lớn hơn 0." };
+
+            try
+            {
+                var mt = MucTieuDL.LayTheoMa(maMT, PhienDangNhap.MaND);
+                if (mt == null)
+                    return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Không tìm thấy mục tiêu." };
+                if (mt.TrangThai == "Huy")
+                    return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Mục tiêu đã hủy, không thể rút tiền." };
+                if (soTien > mt.SoTienDaTietKiem)
+                    return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Số tiền rút vượt quá số đã tiết kiệm (" + mt.SoTienDaTietKiem.ToString("N0") + ")." };
+
+                if (MucTieuDL.TruTienDaTietKiem(maMT, PhienDangNhap.MaND, soTien))
+                {
+                    NhatKyLoi.GhiLog($"Người dùng '{PhienDangNhap.TenDangNhap}' rút {soTien:N0} khỏi mục tiêu #{maMT}.");
+                    return new KetQuaMucTieu { ThanhCong = true, ThongBao = "Đã rút " + soTien.ToString("N0") + " khỏi mục tiêu.", MaMT = maMT };
+                }
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Không thể rút tiền khỏi mục tiêu." };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại MucTieuNV.RutTien", ex);
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Lỗi rút tiền: " + ex.Message };
+            }
+        }
+
+        // Hủy mục tiêu: hoàn lại số đã tiết kiệm (đưa về 0) và đổi trạng thái sang Đã hủy
+        public static KetQuaMucTieu HuyMucTieu(int maMT)
+        {
+            if (!PhienDangNhap.DaDangNhap)
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Bạn chưa đăng nhập." };
+            if (maMT <= 0)
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Bạn chưa chọn mục tiêu nào." };
+
+            try
+            {
+                var mt = MucTieuDL.LayTheoMa(maMT, PhienDangNhap.MaND);
+                if (mt == null)
+                    return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Không tìm thấy mục tiêu." };
+                if (mt.TrangThai == "Huy")
+                    return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Mục tiêu này đã được hủy trước đó." };
+
+                decimal hoan = mt.SoTienDaTietKiem;
+                if (MucTieuDL.Huy(maMT, PhienDangNhap.MaND))
+                {
+                    NhatKyLoi.GhiLog($"Người dùng '{PhienDangNhap.TenDangNhap}' hủy mục tiêu #{maMT}, hoàn {hoan:N0}.");
+                    return new KetQuaMucTieu
+                    {
+                        ThanhCong = true,
+                        MaMT = maMT,
+                        ThongBao = "Đã hủy mục tiêu. Đã hoàn " + hoan.ToString("N0") + " ₫ về ví."
+                    };
+                }
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Không thể hủy mục tiêu." };
+            }
+            catch (Exception ex)
+            {
+                NhatKyLoi.GhiLog("Lỗi tại MucTieuNV.HuyMucTieu", ex);
+                return new KetQuaMucTieu { ThanhCong = false, ThongBao = "Lỗi hủy mục tiêu: " + ex.Message };
+            }
+        }
     }
 }
