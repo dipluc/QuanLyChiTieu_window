@@ -19,25 +19,18 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         {
             this.components = new System.ComponentModel.Container();
             this.pnlThanhTieuDe = new System.Windows.Forms.Panel();
-            this.picTieuDeIcon = new System.Windows.Forms.PictureBox();
             this.lblTieuDeCuaSo = new System.Windows.Forms.Label();
-            this.btnThuNho = new System.Windows.Forms.Button();
-            this.btnPhongTo = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
             this.mnuChinh = new System.Windows.Forms.MenuStrip();
             this.mnuHeThong = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDangNhap = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDangKy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDoiMatKhau = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThongTinCaNhan = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPhanQuyen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuDangXuat = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDanhMuc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDanhMucVi = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDanhMucNhomChi = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDanhMucNguonThu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDanhMucNhomChi = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNghiepVu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuChiTieu = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,54 +39,63 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMucTieuTietKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGiaoDichDinhKy = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCauHinh = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCao = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBaoCaoThuChi = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBaoCaoNganSach = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBieuDo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuXuatBaoCao = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBaoCaoThuChi = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBaoCaoNganSach = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuQuanTri = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuQuanLyNguoiDung = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPhanQuyen = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSaoLuuDuLieu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCauHinh = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTroGiup = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHuongDan = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuGioiThieu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDangNhap = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDangKy = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsBaoCao = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuNhanhBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhBieuDo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhXuatBaoCao = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuQuanTri = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuQuanLyNguoiDung = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSaoLuuDuLieu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPhucHoiDuLieu = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuTroGiup = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuHuongDan = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuGioiThieu = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsCongCu = new System.Windows.Forms.Panel();
             this.btnThuNhap = new System.Windows.Forms.Button();
             this.btnChiTieu = new System.Windows.Forms.Button();
-            this.btnNganSach = new System.Windows.Forms.Button();
-            this.btnBaoCao = new System.Windows.Forms.Button();
-            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.lblNguoiDungHienTai = new System.Windows.Forms.Label();
             this.lblThang = new System.Windows.Forms.Label();
             this.dtpThang = new System.Windows.Forms.DateTimePicker();
-            this.btnLamMoi = new System.Windows.Forms.Button();
-            this.lblNguoiDungHienTai = new System.Windows.Forms.Label();
             this.pnlNoiDung = new System.Windows.Forms.Panel();
             this.stsTrangThai = new System.Windows.Forms.StatusStrip();
-            this.lblTrangThai = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPhanCach1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNguoiDung = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblKhoangTrang = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblViDangChon = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPhanCach2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNgayHienTai = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblTrangThai = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnTrangChu = new System.Windows.Forms.Button();
+            this.btnNganSach = new System.Windows.Forms.Button();
+            this.btnBaoCao = new System.Windows.Forms.Button();
+            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.pnlPhanCachCongCu = new System.Windows.Forms.Panel();
+            this.btnLamMoi = new System.Windows.Forms.Button();
+            this.picTieuDeIcon = new System.Windows.Forms.PictureBox();
+            this.btnThuNho = new System.Windows.Forms.Button();
+            this.btnPhongTo = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
             this.pnlThanhTieuDe.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).BeginInit();
             this.mnuChinh.SuspendLayout();
+            this.cmsBaoCao.SuspendLayout();
             this.tlsCongCu.SuspendLayout();
             this.stsTrangThai.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlThanhTieuDe
             // 
-            this.pnlThanhTieuDe.BackColor = System.Drawing.Color.White;
+            this.pnlThanhTieuDe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.pnlThanhTieuDe.Controls.Add(this.picTieuDeIcon);
             this.pnlThanhTieuDe.Controls.Add(this.lblTieuDeCuaSo);
             this.pnlThanhTieuDe.Controls.Add(this.btnThuNho);
@@ -105,16 +107,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.pnlThanhTieuDe.Size = new System.Drawing.Size(1333, 44);
             this.pnlThanhTieuDe.TabIndex = 0;
             // 
-            // picTieuDeIcon
-            // 
-            this.picTieuDeIcon.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
-            this.picTieuDeIcon.Location = new System.Drawing.Point(16, 10);
-            this.picTieuDeIcon.Name = "picTieuDeIcon";
-            this.picTieuDeIcon.Size = new System.Drawing.Size(27, 25);
-            this.picTieuDeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picTieuDeIcon.TabIndex = 4;
-            this.picTieuDeIcon.TabStop = false;
-            // 
             // lblTieuDeCuaSo
             // 
             this.lblTieuDeCuaSo.AutoSize = true;
@@ -125,42 +117,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblTieuDeCuaSo.Size = new System.Drawing.Size(259, 21);
             this.lblTieuDeCuaSo.TabIndex = 3;
             this.lblTieuDeCuaSo.Text = "Quản Lý Chi Tiêu — Màn hình chính";
-            // 
-            // btnThuNho
-            // 
-            this.btnThuNho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThuNho.FlatAppearance.BorderSize = 0;
-            this.btnThuNho.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThuNho.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThuNho_XamDam;
-            this.btnThuNho.Location = new System.Drawing.Point(1173, 0);
-            this.btnThuNho.Name = "btnThuNho";
-            this.btnThuNho.Size = new System.Drawing.Size(53, 44);
-            this.btnThuNho.TabIndex = 2;
-            this.btnThuNho.UseVisualStyleBackColor = true;
-            // 
-            // btnPhongTo
-            // 
-            this.btnPhongTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPhongTo.FlatAppearance.BorderSize = 0;
-            this.btnPhongTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPhongTo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoPhongTo_XamDam;
-            this.btnPhongTo.Location = new System.Drawing.Point(1227, 0);
-            this.btnPhongTo.Name = "btnPhongTo";
-            this.btnPhongTo.Size = new System.Drawing.Size(53, 44);
-            this.btnPhongTo.TabIndex = 1;
-            this.btnPhongTo.UseVisualStyleBackColor = true;
-            // 
-            // btnDong
-            // 
-            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.FlatAppearance.BorderSize = 0;
-            this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDong.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoDongCuaSo_XamDam;
-            this.btnDong.Location = new System.Drawing.Point(1280, 0);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(53, 44);
-            this.btnDong.TabIndex = 0;
-            this.btnDong.UseVisualStyleBackColor = true;
             // 
             // mnuChinh
             // 
@@ -183,7 +139,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // mnuHeThong
             // 
             this.mnuHeThong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            
             this.mnuDoiMatKhau,
             this.mnuThongTinCaNhan,
             this.toolStripSeparator1,
@@ -194,51 +149,33 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuHeThong.Size = new System.Drawing.Size(88, 25);
             this.mnuHeThong.Text = "Hệ thống";
             // 
-            // mnuDangNhap
-            // 
-            this.mnuDangNhap.Name = "mnuDangNhap";
-            this.mnuDangNhap.Size = new System.Drawing.Size(224, 26);
-            this.mnuDangNhap.Text = "Đăng nhập";
-            // 
-            // mnuDangKy
-            // 
-            this.mnuDangKy.Name = "mnuDangKy";
-            this.mnuDangKy.Size = new System.Drawing.Size(224, 26);
-            this.mnuDangKy.Text = "Đăng ký";
-            // 
             // mnuDoiMatKhau
             // 
             this.mnuDoiMatKhau.Name = "mnuDoiMatKhau";
-            this.mnuDoiMatKhau.Size = new System.Drawing.Size(224, 26);
+            this.mnuDoiMatKhau.Size = new System.Drawing.Size(218, 26);
             this.mnuDoiMatKhau.Text = "Đổi mật khẩu";
             // 
             // mnuThongTinCaNhan
             // 
             this.mnuThongTinCaNhan.Name = "mnuThongTinCaNhan";
-            this.mnuThongTinCaNhan.Size = new System.Drawing.Size(224, 26);
+            this.mnuThongTinCaNhan.Size = new System.Drawing.Size(218, 26);
             this.mnuThongTinCaNhan.Text = "Thông tin cá nhân";
-            // 
-            // mnuPhanQuyen
-            // 
-            this.mnuPhanQuyen.Name = "mnuPhanQuyen";
-            this.mnuPhanQuyen.Size = new System.Drawing.Size(224, 26);
-            this.mnuPhanQuyen.Text = "Phân quyền";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(215, 6);
             // 
             // mnuDangXuat
             // 
             this.mnuDangXuat.Name = "mnuDangXuat";
-            this.mnuDangXuat.Size = new System.Drawing.Size(224, 26);
+            this.mnuDangXuat.Size = new System.Drawing.Size(218, 26);
             this.mnuDangXuat.Text = "Đăng xuất";
             // 
             // mnuThoat
             // 
             this.mnuThoat.Name = "mnuThoat";
-            this.mnuThoat.Size = new System.Drawing.Size(224, 26);
+            this.mnuThoat.Size = new System.Drawing.Size(218, 26);
             this.mnuThoat.Text = "Thoát";
             // 
             // mnuDanhMuc
@@ -255,19 +192,19 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // mnuDanhMucVi
             // 
             this.mnuDanhMucVi.Name = "mnuDanhMucVi";
-            this.mnuDanhMucVi.Size = new System.Drawing.Size(241, 26);
+            this.mnuDanhMucVi.Size = new System.Drawing.Size(150, 26);
             this.mnuDanhMucVi.Text = "Ví tiền";
             // 
             // mnuDanhMucNguonThu
             // 
             this.mnuDanhMucNguonThu.Name = "mnuDanhMucNguonThu";
-            this.mnuDanhMucNguonThu.Size = new System.Drawing.Size(241, 26);
+            this.mnuDanhMucNguonThu.Size = new System.Drawing.Size(150, 26);
             this.mnuDanhMucNguonThu.Text = "Loại thu";
             // 
             // mnuDanhMucNhomChi
             // 
             this.mnuDanhMucNhomChi.Name = "mnuDanhMucNhomChi";
-            this.mnuDanhMucNhomChi.Size = new System.Drawing.Size(241, 26);
+            this.mnuDanhMucNhomChi.Size = new System.Drawing.Size(150, 26);
             this.mnuDanhMucNhomChi.Text = "Loại chi";
             // 
             // mnuNghiepVu
@@ -288,43 +225,43 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // mnuThuNhap
             // 
             this.mnuThuNhap.Name = "mnuThuNhap";
-            this.mnuThuNhap.Size = new System.Drawing.Size(222, 26);
+            this.mnuThuNhap.Size = new System.Drawing.Size(218, 26);
             this.mnuThuNhap.Text = "Thu nhập";
             // 
             // mnuChiTieu
             // 
             this.mnuChiTieu.Name = "mnuChiTieu";
-            this.mnuChiTieu.Size = new System.Drawing.Size(222, 26);
+            this.mnuChiTieu.Size = new System.Drawing.Size(218, 26);
             this.mnuChiTieu.Text = "Chi tiêu";
             // 
             // mnuNganSach
             // 
             this.mnuNganSach.Name = "mnuNganSach";
-            this.mnuNganSach.Size = new System.Drawing.Size(222, 26);
+            this.mnuNganSach.Size = new System.Drawing.Size(218, 26);
             this.mnuNganSach.Text = "Ngân sách";
             // 
             // mnuChuyenTien
             // 
             this.mnuChuyenTien.Name = "mnuChuyenTien";
-            this.mnuChuyenTien.Size = new System.Drawing.Size(222, 26);
+            this.mnuChuyenTien.Size = new System.Drawing.Size(218, 26);
             this.mnuChuyenTien.Text = "Chuyển tiền";
             // 
             // mnuTimKiem
             // 
             this.mnuTimKiem.Name = "mnuTimKiem";
-            this.mnuTimKiem.Size = new System.Drawing.Size(222, 26);
+            this.mnuTimKiem.Size = new System.Drawing.Size(218, 26);
             this.mnuTimKiem.Text = "Tìm kiếm";
             // 
             // mnuMucTieuTietKiem
             // 
             this.mnuMucTieuTietKiem.Name = "mnuMucTieuTietKiem";
-            this.mnuMucTieuTietKiem.Size = new System.Drawing.Size(222, 26);
+            this.mnuMucTieuTietKiem.Size = new System.Drawing.Size(218, 26);
             this.mnuMucTieuTietKiem.Text = "Mục tiêu tiết kiệm";
             // 
             // mnuGiaoDichDinhKy
             // 
             this.mnuGiaoDichDinhKy.Name = "mnuGiaoDichDinhKy";
-            this.mnuGiaoDichDinhKy.Size = new System.Drawing.Size(222, 26);
+            this.mnuGiaoDichDinhKy.Size = new System.Drawing.Size(218, 26);
             this.mnuGiaoDichDinhKy.Text = "Giao dịch định kỳ";
             // 
             // mnuBaoCao
@@ -340,6 +277,24 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuBaoCao.Size = new System.Drawing.Size(78, 25);
             this.mnuBaoCao.Text = "Báo cáo";
             // 
+            // mnuBaoCaoThang
+            // 
+            this.mnuBaoCaoThang.Name = "mnuBaoCaoThang";
+            this.mnuBaoCaoThang.Size = new System.Drawing.Size(283, 26);
+            this.mnuBaoCaoThang.Text = "Báo cáo tháng";
+            // 
+            // mnuBieuDo
+            // 
+            this.mnuBieuDo.Name = "mnuBieuDo";
+            this.mnuBieuDo.Size = new System.Drawing.Size(283, 26);
+            this.mnuBieuDo.Text = "Biểu đồ";
+            // 
+            // mnuXuatBaoCao
+            // 
+            this.mnuXuatBaoCao.Name = "mnuXuatBaoCao";
+            this.mnuXuatBaoCao.Size = new System.Drawing.Size(283, 26);
+            this.mnuXuatBaoCao.Text = "Xuất báo cáo";
+            // 
             // mnuBaoCaoThuChi
             // 
             this.mnuBaoCaoThuChi.Name = "mnuBaoCaoThuChi";
@@ -351,30 +306,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuBaoCaoNganSach.Name = "mnuBaoCaoNganSach";
             this.mnuBaoCaoNganSach.Size = new System.Drawing.Size(283, 26);
             this.mnuBaoCaoNganSach.Text = "Báo cáo theo dõi ngân sách";
-            //
-            // Các trang báo cáo và menu nhanh trên thanh công cụ
-            //
-            this.mnuBaoCaoThang.Name = "mnuBaoCaoThang";
-            this.mnuBaoCaoThang.Size = new System.Drawing.Size(283, 26);
-            this.mnuBaoCaoThang.Text = "Báo cáo tháng";
-            // 
-            // mnuBieuDo
-            // 
-            this.mnuBieuDo.Name = "mnuBieuDo";
-            this.mnuBieuDo.Text = "Biểu đồ";
-            this.mnuXuatBaoCao.Name = "mnuXuatBaoCao";
-            this.mnuXuatBaoCao.Text = "Xuất báo cáo";
-            this.cmsBaoCao.Name = "cmsBaoCao";
-            this.cmsBaoCao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuNhanhBaoCaoThang,
-            this.mnuNhanhBieuDo,
-            this.mnuNhanhXuatBaoCao});
-            this.mnuNhanhBaoCaoThang.Name = "mnuNhanhBaoCaoThang";
-            this.mnuNhanhBaoCaoThang.Text = "Báo cáo tháng";
-            this.mnuNhanhBieuDo.Name = "mnuNhanhBieuDo";
-            this.mnuNhanhBieuDo.Text = "Biểu đồ";
-            this.mnuNhanhXuatBaoCao.Name = "mnuNhanhXuatBaoCao";
-            this.mnuNhanhXuatBaoCao.Text = "Xuất báo cáo";
             // 
             // mnuQuanTri
             // 
@@ -391,19 +322,25 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // mnuQuanLyNguoiDung
             // 
             this.mnuQuanLyNguoiDung.Name = "mnuQuanLyNguoiDung";
-            this.mnuQuanLyNguoiDung.Size = new System.Drawing.Size(233, 26);
+            this.mnuQuanLyNguoiDung.Size = new System.Drawing.Size(220, 26);
             this.mnuQuanLyNguoiDung.Text = "Người dùng";
+            // 
+            // mnuPhanQuyen
+            // 
+            this.mnuPhanQuyen.Name = "mnuPhanQuyen";
+            this.mnuPhanQuyen.Size = new System.Drawing.Size(220, 26);
+            this.mnuPhanQuyen.Text = "Phân quyền";
             // 
             // mnuSaoLuuDuLieu
             // 
             this.mnuSaoLuuDuLieu.Name = "mnuSaoLuuDuLieu";
-            this.mnuSaoLuuDuLieu.Size = new System.Drawing.Size(233, 26);
+            this.mnuSaoLuuDuLieu.Size = new System.Drawing.Size(220, 26);
             this.mnuSaoLuuDuLieu.Text = "Sao lưu / Phục hồi";
             // 
             // mnuCauHinh
             // 
             this.mnuCauHinh.Name = "mnuCauHinh";
-            this.mnuCauHinh.Size = new System.Drawing.Size(233, 26);
+            this.mnuCauHinh.Size = new System.Drawing.Size(220, 26);
             this.mnuCauHinh.Text = "Cấu hình";
             // 
             // mnuTroGiup
@@ -419,14 +356,59 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // mnuHuongDan
             // 
             this.mnuHuongDan.Name = "mnuHuongDan";
-            this.mnuHuongDan.Size = new System.Drawing.Size(232, 26);
+            this.mnuHuongDan.Size = new System.Drawing.Size(172, 26);
             this.mnuHuongDan.Text = "Hướng dẫn";
             // 
             // mnuGioiThieu
             // 
             this.mnuGioiThieu.Name = "mnuGioiThieu";
-            this.mnuGioiThieu.Size = new System.Drawing.Size(232, 26);
+            this.mnuGioiThieu.Size = new System.Drawing.Size(172, 26);
             this.mnuGioiThieu.Text = "Giới thiệu";
+            // 
+            // mnuDangNhap
+            // 
+            this.mnuDangNhap.Name = "mnuDangNhap";
+            this.mnuDangNhap.Size = new System.Drawing.Size(224, 26);
+            this.mnuDangNhap.Text = "Đăng nhập";
+            // 
+            // mnuDangKy
+            // 
+            this.mnuDangKy.Name = "mnuDangKy";
+            this.mnuDangKy.Size = new System.Drawing.Size(224, 26);
+            this.mnuDangKy.Text = "Đăng ký";
+            // 
+            // cmsBaoCao
+            // 
+            this.cmsBaoCao.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsBaoCao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuNhanhBaoCaoThang,
+            this.mnuNhanhBieuDo,
+            this.mnuNhanhXuatBaoCao});
+            this.cmsBaoCao.Name = "cmsBaoCao";
+            this.cmsBaoCao.Size = new System.Drawing.Size(175, 76);
+            // 
+            // mnuNhanhBaoCaoThang
+            // 
+            this.mnuNhanhBaoCaoThang.Name = "mnuNhanhBaoCaoThang";
+            this.mnuNhanhBaoCaoThang.Size = new System.Drawing.Size(174, 24);
+            this.mnuNhanhBaoCaoThang.Text = "Báo cáo tháng";
+            // 
+            // mnuNhanhBieuDo
+            // 
+            this.mnuNhanhBieuDo.Name = "mnuNhanhBieuDo";
+            this.mnuNhanhBieuDo.Size = new System.Drawing.Size(174, 24);
+            this.mnuNhanhBieuDo.Text = "Biểu đồ";
+            // 
+            // mnuNhanhXuatBaoCao
+            // 
+            this.mnuNhanhXuatBaoCao.Name = "mnuNhanhXuatBaoCao";
+            this.mnuNhanhXuatBaoCao.Size = new System.Drawing.Size(174, 24);
+            this.mnuNhanhXuatBaoCao.Text = "Xuất báo cáo";
+            // 
+            // mnuPhucHoiDuLieu
+            // 
+            this.mnuPhucHoiDuLieu.Name = "mnuPhucHoiDuLieu";
+            this.mnuPhucHoiDuLieu.Size = new System.Drawing.Size(32, 19);
             // 
             // tlsCongCu
             // 
@@ -434,6 +416,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.tlsCongCu.Controls.Add(this.btnTrangChu);
             this.tlsCongCu.Controls.Add(this.btnThuNhap);
             this.tlsCongCu.Controls.Add(this.btnChiTieu);
+            this.tlsCongCu.Controls.Add(this.pnlPhanCachCongCu);
             this.tlsCongCu.Controls.Add(this.btnNganSach);
             this.tlsCongCu.Controls.Add(this.btnBaoCao);
             this.tlsCongCu.Controls.Add(this.btnTimKiem);
@@ -444,7 +427,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.tlsCongCu.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlsCongCu.Location = new System.Drawing.Point(0, 77);
             this.tlsCongCu.Name = "tlsCongCu";
-            this.tlsCongCu.Size = new System.Drawing.Size(1333, 56);
+            this.tlsCongCu.Size = new System.Drawing.Size(1333, 54);
             this.tlsCongCu.TabIndex = 2;
             // 
             // btnTrangChu
@@ -458,7 +441,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnTrangChu.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnTrangChu.Location = new System.Drawing.Point(16, 9);
             this.btnTrangChu.Name = "btnTrangChu";
-            this.btnTrangChu.Size = new System.Drawing.Size(112, 38);
+            this.btnTrangChu.Size = new System.Drawing.Size(110, 36);
             this.btnTrangChu.TabIndex = 0;
             this.btnTrangChu.Text = " Trang chủ";
             this.btnTrangChu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -473,9 +456,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnThuNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThuNhap.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThuNhap.ForeColor = System.Drawing.Color.White;
-            this.btnThuNhap.Location = new System.Drawing.Point(134, 9);
+            this.btnThuNhap.Location = new System.Drawing.Point(132, 9);
             this.btnThuNhap.Name = "btnThuNhap";
-            this.btnThuNhap.Size = new System.Drawing.Size(110, 38);
+            this.btnThuNhap.Size = new System.Drawing.Size(104, 36);
             this.btnThuNhap.TabIndex = 1;
             this.btnThuNhap.Text = "+ Thu nhập";
             this.btnThuNhap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -489,13 +472,21 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnChiTieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChiTieu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnChiTieu.Location = new System.Drawing.Point(250, 9);
+            this.btnChiTieu.Location = new System.Drawing.Point(242, 9);
             this.btnChiTieu.Name = "btnChiTieu";
-            this.btnChiTieu.Size = new System.Drawing.Size(106, 38);
+            this.btnChiTieu.Size = new System.Drawing.Size(98, 36);
             this.btnChiTieu.TabIndex = 2;
             this.btnChiTieu.Text = "— Chi tiêu";
             this.btnChiTieu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnChiTieu.UseVisualStyleBackColor = false;
+            // 
+            // pnlPhanCachCongCu
+            // 
+            this.pnlPhanCachCongCu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.pnlPhanCachCongCu.Location = new System.Drawing.Point(349, 14);
+            this.pnlPhanCachCongCu.Name = "pnlPhanCachCongCu";
+            this.pnlPhanCachCongCu.Size = new System.Drawing.Size(1, 26);
+            this.pnlPhanCachCongCu.TabIndex = 3;
             // 
             // btnNganSach
             // 
@@ -507,10 +498,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnNganSach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnNganSach.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
             this.btnNganSach.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnNganSach.Location = new System.Drawing.Point(362, 9);
+            this.btnNganSach.Location = new System.Drawing.Point(358, 9);
             this.btnNganSach.Name = "btnNganSach";
-            this.btnNganSach.Size = new System.Drawing.Size(116, 38);
-            this.btnNganSach.TabIndex = 3;
+            this.btnNganSach.Size = new System.Drawing.Size(112, 36);
+            this.btnNganSach.TabIndex = 4;
             this.btnNganSach.Text = " Ngân sách";
             this.btnNganSach.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnNganSach.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -526,10 +517,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnBaoCao.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong;
             this.btnBaoCao.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnBaoCao.Location = new System.Drawing.Point(484, 9);
+            this.btnBaoCao.Location = new System.Drawing.Point(476, 9);
             this.btnBaoCao.Name = "btnBaoCao";
-            this.btnBaoCao.Size = new System.Drawing.Size(108, 38);
-            this.btnBaoCao.TabIndex = 4;
+            this.btnBaoCao.Size = new System.Drawing.Size(104, 36);
+            this.btnBaoCao.TabIndex = 5;
             this.btnBaoCao.Text = " Báo cáo";
             this.btnBaoCao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnBaoCao.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -545,10 +536,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnTimKiem.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong;
             this.btnTimKiem.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnTimKiem.Location = new System.Drawing.Point(598, 9);
+            this.btnTimKiem.Location = new System.Drawing.Point(586, 9);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(112, 38);
-            this.btnTimKiem.TabIndex = 5;
+            this.btnTimKiem.Size = new System.Drawing.Size(108, 36);
+            this.btnTimKiem.TabIndex = 6;
             this.btnTimKiem.Text = " Tìm kiếm";
             this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnTimKiem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -562,7 +553,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblNguoiDungHienTai.Location = new System.Drawing.Point(725, 14);
             this.lblNguoiDungHienTai.Name = "lblNguoiDungHienTai";
             this.lblNguoiDungHienTai.Size = new System.Drawing.Size(220, 26);
-            this.lblNguoiDungHienTai.TabIndex = 6;
+            this.lblNguoiDungHienTai.TabIndex = 7;
             this.lblNguoiDungHienTai.Text = "Nguyễn Minh Anh";
             this.lblNguoiDungHienTai.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblNguoiDungHienTai.Visible = false;
@@ -573,10 +564,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblThang.AutoSize = true;
             this.lblThang.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblThang.Location = new System.Drawing.Point(955, 17);
+            this.lblThang.Location = new System.Drawing.Point(955, 16);
             this.lblThang.Name = "lblThang";
             this.lblThang.Size = new System.Drawing.Size(53, 21);
-            this.lblThang.TabIndex = 7;
+            this.lblThang.TabIndex = 8;
             this.lblThang.Text = "Tháng";
             // 
             // dtpThang
@@ -585,10 +576,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.dtpThang.CustomFormat = "'Tháng 'MM/yyyy";
             this.dtpThang.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpThang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpThang.Location = new System.Drawing.Point(1012, 13);
+            this.dtpThang.Location = new System.Drawing.Point(1012, 12);
             this.dtpThang.Name = "dtpThang";
             this.dtpThang.Size = new System.Drawing.Size(170, 29);
-            this.dtpThang.TabIndex = 8;
+            this.dtpThang.TabIndex = 9;
             // 
             // btnLamMoi
             // 
@@ -603,8 +594,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnLamMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLamMoi.Location = new System.Drawing.Point(1192, 9);
             this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(118, 38);
-            this.btnLamMoi.TabIndex = 9;
+            this.btnLamMoi.Size = new System.Drawing.Size(118, 36);
+            this.btnLamMoi.TabIndex = 10;
             this.btnLamMoi.Text = " Làm mới";
             this.btnLamMoi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLamMoi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -638,15 +629,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.stsTrangThai.Size = new System.Drawing.Size(1333, 28);
             this.stsTrangThai.SizingGrip = false;
             this.stsTrangThai.TabIndex = 4;
-            // 
-            // lblTrangThai
-            // 
-            this.lblTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblTrangThai.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoSanSang_XanhLa;
-            this.lblTrangThai.Margin = new System.Windows.Forms.Padding(8, 4, 0, 4);
-            this.lblTrangThai.Name = "lblTrangThai";
-            this.lblTrangThai.Size = new System.Drawing.Size(88, 20);
-            this.lblTrangThai.Text = "Sẵn sàng";
             // 
             // lblPhanCach1
             // 
@@ -689,7 +671,148 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblNgayHienTai.Name = "lblNgayHienTai";
             this.lblNgayHienTai.Size = new System.Drawing.Size(152, 20);
             this.lblNgayHienTai.Text = "Hôm nay: 29/10/2026";
-
+            // 
+            // lblTrangThai
+            // 
+            this.lblTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.lblTrangThai.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoSanSang_XanhLa;
+            this.lblTrangThai.Margin = new System.Windows.Forms.Padding(8, 4, 0, 4);
+            this.lblTrangThai.Name = "lblTrangThai";
+            this.lblTrangThai.Size = new System.Drawing.Size(88, 20);
+            this.lblTrangThai.Text = "Sẵn sàng";
+            // 
+            // btnTrangChu
+            // 
+            this.btnTrangChu.BackColor = System.Drawing.Color.White;
+            this.btnTrangChu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrangChu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnTrangChu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTrangChu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrangChu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnTrangChu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTrangChu.Location = new System.Drawing.Point(16, 9);
+            this.btnTrangChu.Name = "btnTrangChu";
+            this.btnTrangChu.Size = new System.Drawing.Size(112, 38);
+            this.btnTrangChu.TabIndex = 0;
+            this.btnTrangChu.Text = " Trang chủ";
+            this.btnTrangChu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTrangChu.UseVisualStyleBackColor = false;
+            // 
+            // btnNganSach
+            // 
+            this.btnNganSach.BackColor = System.Drawing.Color.White;
+            this.btnNganSach.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNganSach.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnNganSach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNganSach.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNganSach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnNganSach.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
+            this.btnNganSach.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnNganSach.Location = new System.Drawing.Point(362, 9);
+            this.btnNganSach.Name = "btnNganSach";
+            this.btnNganSach.Size = new System.Drawing.Size(116, 38);
+            this.btnNganSach.TabIndex = 3;
+            this.btnNganSach.Text = " Ngân sách";
+            this.btnNganSach.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNganSach.UseVisualStyleBackColor = false;
+            // 
+            // btnBaoCao
+            // 
+            this.btnBaoCao.BackColor = System.Drawing.Color.White;
+            this.btnBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBaoCao.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnBaoCao.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong;
+            this.btnBaoCao.Location = new System.Drawing.Point(484, 9);
+            this.btnBaoCao.Name = "btnBaoCao";
+            this.btnBaoCao.Size = new System.Drawing.Size(108, 38);
+            this.btnBaoCao.TabIndex = 4;
+            this.btnBaoCao.Text = " Báo cáo";
+            this.btnBaoCao.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBaoCao.UseVisualStyleBackColor = false;
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.BackColor = System.Drawing.Color.White;
+            this.btnTimKiem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTimKiem.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnTimKiem.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong;
+            this.btnTimKiem.Location = new System.Drawing.Point(598, 9);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(112, 38);
+            this.btnTimKiem.TabIndex = 5;
+            this.btnTimKiem.Text = " Tìm kiếm";
+            this.btnTimKiem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTimKiem.UseVisualStyleBackColor = false;
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLamMoi.BackColor = System.Drawing.Color.White;
+            this.btnLamMoi.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLamMoi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLamMoi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnLamMoi.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoLamMoi_XanhDuong;
+            this.btnLamMoi.Location = new System.Drawing.Point(1192, 9);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(118, 38);
+            this.btnLamMoi.TabIndex = 9;
+            this.btnLamMoi.Text = " Làm mới";
+            this.btnLamMoi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLamMoi.UseVisualStyleBackColor = false;
+            // 
+            // picTieuDeIcon
+            // 
+            this.picTieuDeIcon.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
+            this.picTieuDeIcon.Location = new System.Drawing.Point(16, 10);
+            this.picTieuDeIcon.Name = "picTieuDeIcon";
+            this.picTieuDeIcon.Size = new System.Drawing.Size(27, 25);
+            this.picTieuDeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picTieuDeIcon.TabIndex = 4;
+            this.picTieuDeIcon.TabStop = false;
+            // 
+            // btnThuNho
+            // 
+            this.btnThuNho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThuNho.FlatAppearance.BorderSize = 0;
+            this.btnThuNho.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThuNho.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThuNho_XamDam;
+            this.btnThuNho.Location = new System.Drawing.Point(1173, 0);
+            this.btnThuNho.Name = "btnThuNho";
+            this.btnThuNho.Size = new System.Drawing.Size(53, 44);
+            this.btnThuNho.TabIndex = 2;
+            this.btnThuNho.UseVisualStyleBackColor = true;
+            // 
+            // btnPhongTo
+            // 
+            this.btnPhongTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPhongTo.FlatAppearance.BorderSize = 0;
+            this.btnPhongTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPhongTo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoPhongTo_XamDam;
+            this.btnPhongTo.Location = new System.Drawing.Point(1227, 0);
+            this.btnPhongTo.Name = "btnPhongTo";
+            this.btnPhongTo.Size = new System.Drawing.Size(53, 44);
+            this.btnPhongTo.TabIndex = 1;
+            this.btnPhongTo.UseVisualStyleBackColor = true;
+            // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.FlatAppearance.BorderSize = 0;
+            this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDong.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoDongCuaSo_XamDam;
+            this.btnDong.Location = new System.Drawing.Point(1280, 0);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(53, 44);
+            this.btnDong.TabIndex = 0;
+            this.btnDong.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -697,12 +820,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(1333, 750);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Controls.Add(this.pnlNoiDung);
             this.Controls.Add(this.stsTrangThai);
             this.Controls.Add(this.tlsCongCu);
             this.Controls.Add(this.mnuChinh);
             this.Controls.Add(this.pnlThanhTieuDe);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.mnuChinh;
             this.Name = "frmMain";
@@ -710,13 +833,14 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.Text = "Quản Lý Chi Tiêu — Màn hình chính";
             this.pnlThanhTieuDe.ResumeLayout(false);
             this.pnlThanhTieuDe.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).EndInit();
             this.mnuChinh.ResumeLayout(false);
             this.mnuChinh.PerformLayout();
+            this.cmsBaoCao.ResumeLayout(false);
             this.tlsCongCu.ResumeLayout(false);
             this.tlsCongCu.PerformLayout();
             this.stsTrangThai.ResumeLayout(false);
             this.stsTrangThai.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,6 +900,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private System.Windows.Forms.Button btnNganSach;
         private System.Windows.Forms.Button btnBaoCao;
         private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.Panel pnlPhanCachCongCu;
         private System.Windows.Forms.Label lblThang;
         private System.Windows.Forms.DateTimePicker dtpThang;
         private System.Windows.Forms.Button btnLamMoi;

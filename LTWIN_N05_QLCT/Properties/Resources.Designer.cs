@@ -58,9 +58,9 @@ namespace LTWIN_N05_QLCT.Properties {
             set {
                 resourceCulture = value;
             }
-        }
-        
-        /// <summary>
+        }
+
+/// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icoBaoCao_Trang {
@@ -303,6 +303,26 @@ namespace LTWIN_N05_QLCT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icoTrangChu_Trang {
+            get {
+                object obj = ResourceManager.GetObject("icoTrangChu_Trang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icoTrangChu_XanhDuong {
+            get {
+                object obj = ResourceManager.GetObject("icoTrangChu_XanhDuong", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icoViTien_Trang {
             get {
                 object obj = ResourceManager.GetObject("icoViTien_Trang", resourceCulture);
@@ -346,19 +366,6 @@ namespace LTWIN_N05_QLCT.Properties {
         internal static System.Drawing.Bitmap icoXuatBaoCao_XanhDuong {
             get {
                 object obj = ResourceManager.GetObject("icoXuatBaoCao_XanhDuong", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        internal static System.Drawing.Bitmap icoTrangChu_Trang {
-            get {
-                object obj = ResourceManager.GetObject("icoTrangChu_Trang", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap icoTrangChu_XanhDuong {
-            get {
-                object obj = ResourceManager.GetObject("icoTrangChu_XanhDuong", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
