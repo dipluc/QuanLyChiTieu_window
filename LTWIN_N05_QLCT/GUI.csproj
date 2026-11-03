@@ -86,6 +86,12 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BaoCao\frmThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaoCao\frmThongKe.Designer.cs">
+      <DependentUpon>frmThongKe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BaoCao\frmBieuDo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\QuanTri\frmXacNhanPhucHoi.resx">
       <DependentUpon>frmXacNhanPhucHoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TroGiup\frmGioiThieu.resx">
+      <DependentUpon>frmGioiThieu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

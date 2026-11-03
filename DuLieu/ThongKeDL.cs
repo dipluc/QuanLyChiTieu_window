@@ -364,5 +364,45 @@ namespace DuLieu
                 new SqlParameter("@TuNgay", tuNgay),
                 new SqlParameter("@DenNgay", denNgay.AddDays(1)));
         }
-}
+public static DataTable LayTopKhoanChi(int maND, DateTime tuNgay, DateTime denNgay, int soLuong = 5)
+        {
+            string sql = @"
+                SELECT TOP (@SoLuong)
+                    c.NgayChi AS Ngay,
+                    lc.TenLoaiChi AS LoaiChi,
+                    c.GhiChu,
+                    c.SoTien
+                FROM ChiTieu c
+                JOIN LoaiChi lc ON lc.MaLoaiChi = c.MaLoaiChi
+                WHERE c.MaND = @MaND AND c.NgayChi >= @TuNgay AND c.NgayChi < @DenNgay
+                ORDER BY c.SoTien DESC, c.NgayChi DESC";
+
+            return KetNoiCSDL.DocDuLieu(sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay),
+                new SqlParameter("@SoLuong", soLuong));
+        }
+
+        public static (int SoKhoan, decimal TongTien) DemTongKhoanChi(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            string sql = @"
+                SELECT COUNT(*) AS SoKhoan, ISNULL(SUM(SoTien), 0) AS TongTien
+                FROM ChiTieu
+                WHERE MaND = @MaND AND NgayChi >= @TuNgay AND NgayChi < @DenNgay";
+
+            DataTable dt = KetNoiCSDL.DocDuLieu(sql,
+                new SqlParameter("@MaND", maND),
+                new SqlParameter("@TuNgay", tuNgay),
+                new SqlParameter("@DenNgay", denNgay));
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                int soKhoan = Convert.ToInt32(dt.Rows[0]["SoKhoan"]);
+                decimal tongTien = Convert.ToDecimal(dt.Rows[0]["TongTien"]);
+                return (soKhoan, tongTien);
+            }
+            return (0, 0m);
+        }
+    }
 }

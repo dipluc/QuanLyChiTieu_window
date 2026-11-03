@@ -44,6 +44,7 @@
             this.mnuMucTieuTietKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGiaoDichDinhKy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCao = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBieuDo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuXuatBaoCao = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +61,7 @@
             this.mnuDangNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDangKy = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsBaoCao = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuNhanhThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhBieuDo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhXuatBaoCao = new System.Windows.Forms.ToolStripMenuItem();
@@ -312,7 +314,8 @@
             // 
             // mnuBaoCao
             // 
-            this.mnuBaoCao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuBaoCao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuThongKe,
             this.mnuBaoCaoThang,
             this.mnuBieuDo,
             this.mnuXuatBaoCao,
@@ -426,7 +429,8 @@
             // cmsBaoCao
             // 
             this.cmsBaoCao.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsBaoCao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsBaoCao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuNhanhThongKe,
             this.mnuNhanhBaoCaoThang,
             this.mnuNhanhBieuDo,
             this.mnuNhanhXuatBaoCao});
@@ -788,6 +792,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBieuDo;
         private System.Windows.Forms.ToolStripMenuItem mnuXuatBaoCao;
         private System.Windows.Forms.ContextMenuStrip cmsBaoCao;
+        private System.Windows.Forms.ToolStripMenuItem mnuThongKe;
+        private System.Windows.Forms.ToolStripMenuItem mnuNhanhThongKe;
         private System.Windows.Forms.ToolStripMenuItem mnuNhanhBaoCaoThang;
         private System.Windows.Forms.ToolStripMenuItem mnuNhanhBieuDo;
         private System.Windows.Forms.ToolStripMenuItem mnuNhanhXuatBaoCao;

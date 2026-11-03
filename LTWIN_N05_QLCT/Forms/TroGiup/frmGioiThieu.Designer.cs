@@ -19,7 +19,6 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
         {
             this.pnlTieuDeTrang = new System.Windows.Forms.Panel();
             this.lblGioiThieu = new System.Windows.Forms.Label();
-            this.lblMoTaTrang = new System.Windows.Forms.Label();
             this.tblBocCucChinh = new System.Windows.Forms.TableLayoutPanel();
             this.pnlThongTinDeTai = new System.Windows.Forms.Panel();
             this.lblSection1 = new System.Windows.Forms.Label();
@@ -36,10 +35,8 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblPhienBanVal = new System.Windows.Forms.Label();
             this.pnlLine2 = new System.Windows.Forms.Panel();
             this.pnlKhungGiangVien = new System.Windows.Forms.Panel();
-            this.picGiangVien = new System.Windows.Forms.PictureBox();
             this.lblGVHDLabel = new System.Windows.Forms.Label();
             this.lblTenGVHD = new System.Windows.Forms.Label();
-            this.lblNenTang = new System.Windows.Forms.Label();
             this.pnlDanhSachNhom = new System.Windows.Forms.Panel();
             this.lblSection2 = new System.Windows.Forms.Label();
             this.lblTieuDeNhom = new System.Windows.Forms.Label();
@@ -68,23 +65,23 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlFooterRight = new System.Windows.Forms.Panel();
             this.lblNamHoc = new System.Windows.Forms.Label();
             this.btnDongGioiThieu = new System.Windows.Forms.Button();
+            this.picGiangVien = new System.Windows.Forms.PictureBox();
             this.pnlTieuDeTrang.SuspendLayout();
             this.tblBocCucChinh.SuspendLayout();
             this.pnlThongTinDeTai.SuspendLayout();
             this.pnlKhungGiangVien.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picGiangVien)).BeginInit();
             this.pnlDanhSachNhom.SuspendLayout();
             this.pnlThanhVien1.SuspendLayout();
             this.pnlThanhVien2.SuspendLayout();
             this.pnlThanhVien3.SuspendLayout();
             this.pnlThanhVien4.SuspendLayout();
             this.pnlFooterRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picGiangVien)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTieuDeTrang
             // 
             this.pnlTieuDeTrang.Controls.Add(this.lblGioiThieu);
-            this.pnlTieuDeTrang.Controls.Add(this.lblMoTaTrang);
             this.pnlTieuDeTrang.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTieuDeTrang.Location = new System.Drawing.Point(0, 0);
             this.pnlTieuDeTrang.Name = "pnlTieuDeTrang";
@@ -98,20 +95,9 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblGioiThieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.lblGioiThieu.Location = new System.Drawing.Point(24, 12);
             this.lblGioiThieu.Name = "lblGioiThieu";
-            this.lblGioiThieu.Size = new System.Drawing.Size(199, 31);
+            this.lblGioiThieu.Size = new System.Drawing.Size(187, 31);
             this.lblGioiThieu.TabIndex = 0;
             this.lblGioiThieu.Text = "Giới thiệu đề tài";
-            // 
-            // lblMoTaTrang
-            // 
-            this.lblMoTaTrang.AutoSize = true;
-            this.lblMoTaTrang.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoTaTrang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblMoTaTrang.Location = new System.Drawing.Point(25, 40);
-            this.lblMoTaTrang.Name = "lblMoTaTrang";
-            this.lblMoTaTrang.Size = new System.Drawing.Size(325, 20);
-            this.lblMoTaTrang.TabIndex = 1;
-            this.lblMoTaTrang.Text = "Đồ án môn học Lập trình Windows — Nhóm 5";
             // 
             // tblBocCucChinh
             // 
@@ -146,7 +132,6 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlThongTinDeTai.Controls.Add(this.lblPhienBanVal);
             this.pnlThongTinDeTai.Controls.Add(this.pnlLine2);
             this.pnlThongTinDeTai.Controls.Add(this.pnlKhungGiangVien);
-            this.pnlThongTinDeTai.Controls.Add(this.lblNenTang);
             this.pnlThongTinDeTai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlThongTinDeTai.Location = new System.Drawing.Point(24, 4);
             this.pnlThongTinDeTai.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
@@ -162,7 +147,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblSection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblSection1.Location = new System.Drawing.Point(24, 20);
             this.lblSection1.Name = "lblSection1";
-            this.lblSection1.Size = new System.Drawing.Size(161, 19);
+            this.lblSection1.Size = new System.Drawing.Size(173, 19);
             this.lblSection1.TabIndex = 0;
             this.lblSection1.Text = "THÔNG TIN HỌC THUẬT";
             // 
@@ -173,7 +158,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTenDeTai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
             this.lblTenDeTai.Location = new System.Drawing.Point(24, 44);
             this.lblTenDeTai.Name = "lblTenDeTai";
-            this.lblTenDeTai.Size = new System.Drawing.Size(356, 35);
+            this.lblTenDeTai.Size = new System.Drawing.Size(345, 35);
             this.lblTenDeTai.TabIndex = 1;
             this.lblTenDeTai.Text = "Phần Mềm Quản Lý Chi Tiêu";
             // 
@@ -187,7 +172,8 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblMoTaDeTai.Name = "lblMoTaDeTai";
             this.lblMoTaDeTai.Size = new System.Drawing.Size(556, 42);
             this.lblMoTaDeTai.TabIndex = 2;
-            this.lblMoTaDeTai.Text = "Ứng dụng hỗ trợ ghi nhận thu chi, quản lý ví tiền, theo dõi hạn mức ngân sách và lập báo cáo thống kê tài chính cá nhân.";
+            this.lblMoTaDeTai.Text = "Ứng dụng hỗ trợ ghi nhận thu chi, quản lý ví tiền, theo dõi hạn mức ngân sách và " +
+    "lập báo cáo thống kê tài chính cá nhân.";
             // 
             // pnlLine1
             // 
@@ -206,7 +192,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTruongKhoaKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblTruongKhoaKey.Location = new System.Drawing.Point(24, 146);
             this.lblTruongKhoaKey.Name = "lblTruongKhoaKey";
-            this.lblTruongKhoaKey.Size = new System.Drawing.Size(108, 20);
+            this.lblTruongKhoaKey.Size = new System.Drawing.Size(111, 20);
             this.lblTruongKhoaKey.TabIndex = 4;
             this.lblTruongKhoaKey.Text = "Đơn vị đào tạo:";
             // 
@@ -217,7 +203,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTruongKhoaVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.lblTruongKhoaVal.Location = new System.Drawing.Point(145, 146);
             this.lblTruongKhoaVal.Name = "lblTruongKhoaVal";
-            this.lblTruongKhoaVal.Size = new System.Drawing.Size(395, 20);
+            this.lblTruongKhoaVal.Size = new System.Drawing.Size(398, 20);
             this.lblTruongKhoaVal.TabIndex = 5;
             this.lblTruongKhoaVal.Text = "Trường Đại học Văn Hiến — Khoa Công Nghệ Thông Tin";
             // 
@@ -239,7 +225,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblMonHocVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.lblMonHocVal.Location = new System.Drawing.Point(145, 176);
             this.lblMonHocVal.Name = "lblMonHocVal";
-            this.lblMonHocVal.Size = new System.Drawing.Size(246, 20);
+            this.lblMonHocVal.Size = new System.Drawing.Size(250, 20);
             this.lblMonHocVal.TabIndex = 7;
             this.lblMonHocVal.Text = "Lập trình Windows (Mã: LTWIN_N05)";
             // 
@@ -250,7 +236,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblHocKyKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblHocKyKey.Location = new System.Drawing.Point(24, 206);
             this.lblHocKyKey.Name = "lblHocKyKey";
-            this.lblHocKyKey.Size = new System.Drawing.Size(65, 20);
+            this.lblHocKyKey.Size = new System.Drawing.Size(74, 20);
             this.lblHocKyKey.TabIndex = 8;
             this.lblHocKyKey.Text = "Thời gian:";
             // 
@@ -261,7 +247,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblHocKyVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.lblHocKyVal.Location = new System.Drawing.Point(145, 206);
             this.lblHocKyVal.Name = "lblHocKyVal";
-            this.lblHocKyVal.Size = new System.Drawing.Size(222, 20);
+            this.lblHocKyVal.Size = new System.Drawing.Size(227, 20);
             this.lblHocKyVal.TabIndex = 9;
             this.lblHocKyVal.Text = "Học kỳ I — Năm học 2025 - 2026";
             // 
@@ -283,7 +269,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblPhienBanVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.lblPhienBanVal.Location = new System.Drawing.Point(145, 236);
             this.lblPhienBanVal.Name = "lblPhienBanVal";
-            this.lblPhienBanVal.Size = new System.Drawing.Size(126, 20);
+            this.lblPhienBanVal.Size = new System.Drawing.Size(141, 20);
             this.lblPhienBanVal.TabIndex = 11;
             this.lblPhienBanVal.Text = "1.0 (Tháng 11/2026)";
             // 
@@ -310,16 +296,6 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlKhungGiangVien.Size = new System.Drawing.Size(556, 72);
             this.pnlKhungGiangVien.TabIndex = 13;
             // 
-            // picGiangVien
-            // 
-            this.picGiangVien.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThongTin_XanhDuong;
-            this.picGiangVien.Location = new System.Drawing.Point(16, 24);
-            this.picGiangVien.Name = "picGiangVien";
-            this.picGiangVien.Size = new System.Drawing.Size(24, 24);
-            this.picGiangVien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picGiangVien.TabIndex = 0;
-            this.picGiangVien.TabStop = false;
-            // 
             // lblGVHDLabel
             // 
             this.lblGVHDLabel.AutoSize = true;
@@ -327,7 +303,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblGVHDLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblGVHDLabel.Location = new System.Drawing.Point(50, 14);
             this.lblGVHDLabel.Name = "lblGVHDLabel";
-            this.lblGVHDLabel.Size = new System.Drawing.Size(147, 19);
+            this.lblGVHDLabel.Size = new System.Drawing.Size(148, 19);
             this.lblGVHDLabel.TabIndex = 1;
             this.lblGVHDLabel.Text = "Giảng viên hướng dẫn:";
             // 
@@ -338,21 +314,9 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTenGVHD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
             this.lblTenGVHD.Location = new System.Drawing.Point(50, 34);
             this.lblTenGVHD.Name = "lblTenGVHD";
-            this.lblTenGVHD.Size = new System.Drawing.Size(232, 28);
+            this.lblTenGVHD.Size = new System.Drawing.Size(237, 28);
             this.lblTenGVHD.TabIndex = 2;
             this.lblTenGVHD.Text = "ThS. Bùi Thị Hoàng Anh";
-            // 
-            // lblNenTang
-            // 
-            this.lblNenTang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblNenTang.AutoSize = true;
-            this.lblNenTang.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNenTang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblNenTang.Location = new System.Drawing.Point(24, 458);
-            this.lblNenTang.Name = "lblNenTang";
-            this.lblNenTang.Size = new System.Drawing.Size(431, 20);
-            this.lblNenTang.TabIndex = 14;
-            this.lblNenTang.Text = "Kiến trúc: Mô hình 3 lớp (3-Tier)  •  CSDL: Microsoft SQL Server";
             // 
             // pnlDanhSachNhom
             // 
@@ -367,11 +331,11 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlDanhSachNhom.Controls.Add(this.pnlThanhVien4);
             this.pnlDanhSachNhom.Controls.Add(this.pnlFooterRight);
             this.pnlDanhSachNhom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDanhSachNhom.Location = new System.Drawing.Point(640, 4);
+            this.pnlDanhSachNhom.Location = new System.Drawing.Point(652, 4);
             this.pnlDanhSachNhom.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.pnlDanhSachNhom.Name = "pnlDanhSachNhom";
             this.pnlDanhSachNhom.Padding = new System.Windows.Forms.Padding(24);
-            this.pnlDanhSachNhom.Size = new System.Drawing.Size(669, 497);
+            this.pnlDanhSachNhom.Size = new System.Drawing.Size(657, 497);
             this.pnlDanhSachNhom.TabIndex = 1;
             // 
             // lblSection2
@@ -381,7 +345,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblSection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblSection2.Location = new System.Drawing.Point(24, 20);
             this.lblSection2.Name = "lblSection2";
-            this.lblSection2.Size = new System.Drawing.Size(227, 19);
+            this.lblSection2.Size = new System.Drawing.Size(246, 19);
             this.lblSection2.TabIndex = 0;
             this.lblSection2.Text = "DANH SÁCH SINH VIÊN THỰC HIỆN";
             // 
@@ -403,7 +367,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblGhiChuNhom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
             this.lblGhiChuNhom.Location = new System.Drawing.Point(24, 82);
             this.lblGhiChuNhom.Name = "lblGhiChuNhom";
-            this.lblGhiChuNhom.Size = new System.Drawing.Size(306, 20);
+            this.lblGhiChuNhom.Size = new System.Drawing.Size(308, 20);
             this.lblGhiChuNhom.TabIndex = 2;
             this.lblGhiChuNhom.Text = "Sinh viên lớp Lập trình Windows — Nhóm 05:";
             // 
@@ -414,7 +378,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlLine3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
             this.pnlLine3.Location = new System.Drawing.Point(24, 110);
             this.pnlLine3.Name = "pnlLine3";
-            this.pnlLine3.Size = new System.Drawing.Size(621, 1);
+            this.pnlLine3.Size = new System.Drawing.Size(609, 1);
             this.pnlLine3.TabIndex = 3;
             // 
             // pnlThanhVien1
@@ -428,7 +392,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlThanhVien1.Controls.Add(this.lblRoleTV1);
             this.pnlThanhVien1.Location = new System.Drawing.Point(24, 122);
             this.pnlThanhVien1.Name = "pnlThanhVien1";
-            this.pnlThanhVien1.Size = new System.Drawing.Size(621, 56);
+            this.pnlThanhVien1.Size = new System.Drawing.Size(609, 56);
             this.pnlThanhVien1.TabIndex = 4;
             // 
             // lblStt1
@@ -449,7 +413,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTenTV1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
             this.lblTenTV1.Location = new System.Drawing.Point(46, 9);
             this.lblTenTV1.Name = "lblTenTV1";
-            this.lblTenTV1.Size = new System.Drawing.Size(225, 23);
+            this.lblTenTV1.Size = new System.Drawing.Size(203, 23);
             this.lblTenTV1.TabIndex = 1;
             this.lblTenTV1.Text = "Nguyễn Văn Thanh Diệp";
             // 
@@ -460,7 +424,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblMssvTV1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblMssvTV1.Location = new System.Drawing.Point(46, 30);
             this.lblMssvTV1.Name = "lblMssvTV1";
-            this.lblMssvTV1.Size = new System.Drawing.Size(130, 20);
+            this.lblMssvTV1.Size = new System.Drawing.Size(136, 20);
             this.lblMssvTV1.TabIndex = 2;
             this.lblMssvTV1.Text = "MSSV: 231A010165";
             // 
@@ -470,9 +434,9 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblRoleTV1.AutoSize = true;
             this.lblRoleTV1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoleTV1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.lblRoleTV1.Location = new System.Drawing.Point(510, 18);
+            this.lblRoleTV1.Location = new System.Drawing.Point(498, 18);
             this.lblRoleTV1.Name = "lblRoleTV1";
-            this.lblRoleTV1.Size = new System.Drawing.Size(102, 20);
+            this.lblRoleTV1.Size = new System.Drawing.Size(105, 20);
             this.lblRoleTV1.TabIndex = 3;
             this.lblRoleTV1.Text = "Trưởng nhóm";
             // 
@@ -487,7 +451,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlThanhVien2.Controls.Add(this.lblRoleTV2);
             this.pnlThanhVien2.Location = new System.Drawing.Point(24, 186);
             this.pnlThanhVien2.Name = "pnlThanhVien2";
-            this.pnlThanhVien2.Size = new System.Drawing.Size(621, 56);
+            this.pnlThanhVien2.Size = new System.Drawing.Size(609, 56);
             this.pnlThanhVien2.TabIndex = 5;
             // 
             // lblStt2
@@ -508,7 +472,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTenTV2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
             this.lblTenTV2.Location = new System.Drawing.Point(46, 9);
             this.lblTenTV2.Name = "lblTenTV2";
-            this.lblTenTV2.Size = new System.Drawing.Size(161, 23);
+            this.lblTenTV2.Size = new System.Drawing.Size(151, 23);
             this.lblTenTV2.TabIndex = 1;
             this.lblTenTV2.Text = "Huỳnh Khải Đông";
             // 
@@ -519,7 +483,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblMssvTV2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblMssvTV2.Location = new System.Drawing.Point(46, 30);
             this.lblMssvTV2.Name = "lblMssvTV2";
-            this.lblMssvTV2.Size = new System.Drawing.Size(130, 20);
+            this.lblMssvTV2.Size = new System.Drawing.Size(136, 20);
             this.lblMssvTV2.TabIndex = 2;
             this.lblMssvTV2.Text = "MSSV: 231A290050";
             // 
@@ -529,9 +493,9 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblRoleTV2.AutoSize = true;
             this.lblRoleTV2.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoleTV2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblRoleTV2.Location = new System.Drawing.Point(530, 18);
+            this.lblRoleTV2.Location = new System.Drawing.Point(518, 18);
             this.lblRoleTV2.Name = "lblRoleTV2";
-            this.lblRoleTV2.Size = new System.Drawing.Size(81, 20);
+            this.lblRoleTV2.Size = new System.Drawing.Size(80, 20);
             this.lblRoleTV2.TabIndex = 3;
             this.lblRoleTV2.Text = "Thành viên";
             // 
@@ -546,7 +510,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlThanhVien3.Controls.Add(this.lblRoleTV3);
             this.pnlThanhVien3.Location = new System.Drawing.Point(24, 250);
             this.pnlThanhVien3.Name = "pnlThanhVien3";
-            this.pnlThanhVien3.Size = new System.Drawing.Size(621, 56);
+            this.pnlThanhVien3.Size = new System.Drawing.Size(609, 56);
             this.pnlThanhVien3.TabIndex = 6;
             // 
             // lblStt3
@@ -567,7 +531,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTenTV3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
             this.lblTenTV3.Location = new System.Drawing.Point(46, 9);
             this.lblTenTV3.Name = "lblTenTV3";
-            this.lblTenTV3.Size = new System.Drawing.Size(124, 23);
+            this.lblTenTV3.Size = new System.Drawing.Size(108, 23);
             this.lblTenTV3.TabIndex = 1;
             this.lblTenTV3.Text = "Võ Đức Bình";
             // 
@@ -578,7 +542,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblMssvTV3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblMssvTV3.Location = new System.Drawing.Point(46, 30);
             this.lblMssvTV3.Name = "lblMssvTV3";
-            this.lblMssvTV3.Size = new System.Drawing.Size(130, 20);
+            this.lblMssvTV3.Size = new System.Drawing.Size(136, 20);
             this.lblMssvTV3.TabIndex = 2;
             this.lblMssvTV3.Text = "MSSV: 231A290140";
             // 
@@ -588,9 +552,9 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblRoleTV3.AutoSize = true;
             this.lblRoleTV3.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoleTV3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblRoleTV3.Location = new System.Drawing.Point(530, 18);
+            this.lblRoleTV3.Location = new System.Drawing.Point(518, 18);
             this.lblRoleTV3.Name = "lblRoleTV3";
-            this.lblRoleTV3.Size = new System.Drawing.Size(81, 20);
+            this.lblRoleTV3.Size = new System.Drawing.Size(80, 20);
             this.lblRoleTV3.TabIndex = 3;
             this.lblRoleTV3.Text = "Thành viên";
             // 
@@ -605,7 +569,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlThanhVien4.Controls.Add(this.lblRoleTV4);
             this.pnlThanhVien4.Location = new System.Drawing.Point(24, 314);
             this.pnlThanhVien4.Name = "pnlThanhVien4";
-            this.pnlThanhVien4.Size = new System.Drawing.Size(621, 56);
+            this.pnlThanhVien4.Size = new System.Drawing.Size(609, 56);
             this.pnlThanhVien4.TabIndex = 7;
             // 
             // lblStt4
@@ -626,7 +590,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTenTV4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
             this.lblTenTV4.Location = new System.Drawing.Point(46, 9);
             this.lblTenTV4.Name = "lblTenTV4";
-            this.lblTenTV4.Size = new System.Drawing.Size(155, 23);
+            this.lblTenTV4.Size = new System.Drawing.Size(139, 23);
             this.lblTenTV4.TabIndex = 1;
             this.lblTenTV4.Text = "Thái Bình Xuyên";
             // 
@@ -637,7 +601,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblMssvTV4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblMssvTV4.Location = new System.Drawing.Point(46, 30);
             this.lblMssvTV4.Name = "lblMssvTV4";
-            this.lblMssvTV4.Size = new System.Drawing.Size(130, 20);
+            this.lblMssvTV4.Size = new System.Drawing.Size(136, 20);
             this.lblMssvTV4.TabIndex = 2;
             this.lblMssvTV4.Text = "MSSV: 231A290014";
             // 
@@ -647,9 +611,9 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblRoleTV4.AutoSize = true;
             this.lblRoleTV4.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoleTV4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblRoleTV4.Location = new System.Drawing.Point(530, 18);
+            this.lblRoleTV4.Location = new System.Drawing.Point(518, 18);
             this.lblRoleTV4.Name = "lblRoleTV4";
-            this.lblRoleTV4.Size = new System.Drawing.Size(81, 20);
+            this.lblRoleTV4.Size = new System.Drawing.Size(80, 20);
             this.lblRoleTV4.TabIndex = 3;
             this.lblRoleTV4.Text = "Thành viên";
             // 
@@ -661,7 +625,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlFooterRight.Controls.Add(this.btnDongGioiThieu);
             this.pnlFooterRight.Location = new System.Drawing.Point(24, 440);
             this.pnlFooterRight.Name = "pnlFooterRight";
-            this.pnlFooterRight.Size = new System.Drawing.Size(621, 45);
+            this.pnlFooterRight.Size = new System.Drawing.Size(609, 45);
             this.pnlFooterRight.TabIndex = 8;
             // 
             // lblNamHoc
@@ -671,7 +635,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblNamHoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
             this.lblNamHoc.Location = new System.Drawing.Point(0, 12);
             this.lblNamHoc.Name = "lblNamHoc";
-            this.lblNamHoc.Size = new System.Drawing.Size(262, 20);
+            this.lblNamHoc.Size = new System.Drawing.Size(267, 20);
             this.lblNamHoc.TabIndex = 0;
             this.lblNamHoc.Text = "TP. Hồ Chí Minh — Tháng 11 năm 2026";
             // 
@@ -684,12 +648,22 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.btnDongGioiThieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDongGioiThieu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDongGioiThieu.ForeColor = System.Drawing.Color.White;
-            this.btnDongGioiThieu.Location = new System.Drawing.Point(516, 4);
+            this.btnDongGioiThieu.Location = new System.Drawing.Point(504, 4);
             this.btnDongGioiThieu.Name = "btnDongGioiThieu";
             this.btnDongGioiThieu.Size = new System.Drawing.Size(105, 36);
             this.btnDongGioiThieu.TabIndex = 1;
             this.btnDongGioiThieu.Text = "Đóng";
             this.btnDongGioiThieu.UseVisualStyleBackColor = false;
+            // 
+            // picGiangVien
+            // 
+            this.picGiangVien.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThongTin_XanhDuong;
+            this.picGiangVien.Location = new System.Drawing.Point(16, 24);
+            this.picGiangVien.Name = "picGiangVien";
+            this.picGiangVien.Size = new System.Drawing.Size(24, 24);
+            this.picGiangVien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picGiangVien.TabIndex = 0;
+            this.picGiangVien.TabStop = false;
             // 
             // frmGioiThieu
             // 
@@ -710,7 +684,6 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlThongTinDeTai.PerformLayout();
             this.pnlKhungGiangVien.ResumeLayout(false);
             this.pnlKhungGiangVien.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picGiangVien)).EndInit();
             this.pnlDanhSachNhom.ResumeLayout(false);
             this.pnlDanhSachNhom.PerformLayout();
             this.pnlThanhVien1.ResumeLayout(false);
@@ -723,6 +696,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlThanhVien4.PerformLayout();
             this.pnlFooterRight.ResumeLayout(false);
             this.pnlFooterRight.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picGiangVien)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -731,7 +705,6 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
 
         private System.Windows.Forms.Panel pnlTieuDeTrang;
         private System.Windows.Forms.Label lblGioiThieu;
-        private System.Windows.Forms.Label lblMoTaTrang;
         private System.Windows.Forms.TableLayoutPanel tblBocCucChinh;
         private System.Windows.Forms.Panel pnlThongTinDeTai;
         private System.Windows.Forms.Label lblSection1;
@@ -751,7 +724,6 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
         private System.Windows.Forms.PictureBox picGiangVien;
         private System.Windows.Forms.Label lblGVHDLabel;
         private System.Windows.Forms.Label lblTenGVHD;
-        private System.Windows.Forms.Label lblNenTang;
         private System.Windows.Forms.Panel pnlDanhSachNhom;
         private System.Windows.Forms.Label lblSection2;
         private System.Windows.Forms.Label lblTieuDeNhom;

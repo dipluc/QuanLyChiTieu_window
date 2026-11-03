@@ -175,5 +175,44 @@ namespace NghiepVu
             }
             catch { return new DataTable(); }
         }
-}
+// Lấy top khoản chi lớn nhất
+
+        public static ThongKeMH LayTongQuan(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            try
+            {
+                return ThongKeDL.LayTongQuan(maND, tuNgay, denNgay);
+            }
+            catch { return new ThongKeMH(); }
+        }
+
+        public static DataTable LayThuTheoLoai(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            try
+            {
+                return ThongKeDL.LayThuTheoLoai(maND, tuNgay, denNgay);
+            }
+            catch { return new DataTable(); }
+        }
+
+        // Lay top khoan chi lon nhat
+        public static DataTable LayTopKhoanChi(int maND, DateTime tuNgay, DateTime denNgay, int soLuong = 5)
+        {
+            try
+            {
+                return ThongKeDL.LayTopKhoanChi(maND, tuNgay, denNgay, soLuong);
+            }
+            catch { return new DataTable(); }
+        }
+
+        // Dem tong so khoan chi va tong tien chi
+        public static (int SoKhoan, decimal TongTien) DemTongKhoanChi(int maND, DateTime tuNgay, DateTime denNgay)
+        {
+            try
+            {
+                return ThongKeDL.DemTongKhoanChi(maND, tuNgay, denNgay);
+            }
+            catch { return (0, 0m); }
+        }
+    }
 }
