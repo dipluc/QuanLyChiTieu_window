@@ -78,6 +78,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 btnTimKiem.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong, new Size(18, 18));
                 btnLamMoi.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoLamMoi_XanhDuong, new Size(18, 18));
                 picTieuDeIcon.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
+                btnThuNho.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThuNho_XamDam;
+                btnPhongTo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoPhongTo_XamDam;
+                btnDong.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoDongCuaSo_XamDam;
+                lblTrangThai.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoSanSang_XanhLa;
             }
             catch { }
 

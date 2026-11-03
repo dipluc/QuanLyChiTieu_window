@@ -548,7 +548,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // lblTrangThai
             // 
             this.lblTrangThai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblTrangThai.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoSanSang_XanhLa;
             this.lblTrangThai.Margin = new System.Windows.Forms.Padding(8, 4, 0, 4);
             this.lblTrangThai.Name = "lblTrangThai";
             this.lblTrangThai.Size = new System.Drawing.Size(88, 20);
@@ -578,7 +577,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnThuNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThuNhap.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThuNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnThuNhap.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThemThuNhap_XanhDuong;
             this.btnThuNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnThuNhap.Location = new System.Drawing.Point(118, 9);
             this.btnThuNhap.Name = "btnThuNhap";
@@ -597,7 +595,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnChiTieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChiTieu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnChiTieu.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_XanhDuong;
             this.btnChiTieu.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnChiTieu.Location = new System.Drawing.Point(232, 9);
             this.btnChiTieu.Name = "btnChiTieu";
@@ -634,7 +631,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnBaoCao.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong;
             this.btnBaoCao.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnBaoCao.Location = new System.Drawing.Point(463, 9);
             this.btnBaoCao.Name = "btnBaoCao";
@@ -653,7 +649,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnTimKiem.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong;
             this.btnTimKiem.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnTimKiem.Location = new System.Drawing.Point(573, 9);
             this.btnTimKiem.Name = "btnTimKiem";
@@ -673,7 +668,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLamMoi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnLamMoi.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoLamMoi_XanhDuong;
             this.btnLamMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLamMoi.Location = new System.Drawing.Point(1192, 9);
             this.btnLamMoi.Name = "btnLamMoi";
@@ -698,7 +692,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnThuNho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThuNho.FlatAppearance.BorderSize = 0;
             this.btnThuNho.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThuNho.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThuNho_XamDam;
             this.btnThuNho.Location = new System.Drawing.Point(1173, 0);
             this.btnThuNho.Name = "btnThuNho";
             this.btnThuNho.Size = new System.Drawing.Size(53, 44);
@@ -710,7 +703,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnPhongTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPhongTo.FlatAppearance.BorderSize = 0;
             this.btnPhongTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPhongTo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoPhongTo_XamDam;
             this.btnPhongTo.Location = new System.Drawing.Point(1227, 0);
             this.btnPhongTo.Name = "btnPhongTo";
             this.btnPhongTo.Size = new System.Drawing.Size(53, 44);
@@ -722,7 +714,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.FlatAppearance.BorderSize = 0;
             this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDong.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoDongCuaSo_XamDam;
             this.btnDong.Location = new System.Drawing.Point(1280, 0);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(53, 44);
