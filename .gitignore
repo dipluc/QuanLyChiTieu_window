@@ -11,6 +11,8 @@ _ReSharper.*
 *.mdf_log
 *.ldf
 !LTWIN_N05_QLCT/Database/QLChiTieu_log.ldf
+UpgradeLog*
+*.htm
 
 # Local recovery copies; the original files are retained for rollback only.
 LTWIN_N05_QLCT/Database/backup-before-log-rebuild/
