@@ -1,4 +1,4 @@
-﻿namespace LTWIN_N05_QLCT.Forms.TroGiup
+namespace LTWIN_N05_QLCT.Forms.TroGiup
 {
     partial class frmHuongDan
     {
@@ -57,6 +57,8 @@
             // 
             // pnlHuongDan
             // 
+            this.pnlHuongDan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.pnlHuongDan.BackColor = System.Drawing.Color.White;
             this.pnlHuongDan.Controls.Add(this.lblNoiDungHuongDan);
             this.pnlHuongDan.Controls.Add(this.tvwTinhNang);
@@ -78,6 +80,9 @@
             // 
             // tvwTinhNang
             // 
+            this.tvwTinhNang.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tvwTinhNang.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvwTinhNang.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvwTinhNang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
@@ -93,6 +98,9 @@
             // 
             // pnlNoiDungHuongDan
             // 
+            this.pnlNoiDungHuongDan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlNoiDungHuongDan.BackColor = System.Drawing.Color.White;
             this.pnlNoiDungHuongDan.Controls.Add(this.lblThuChiChiNhanKhoanChi);
             this.pnlNoiDungHuongDan.Controls.Add(this.lblGhiNhanKhoanChi);
@@ -136,17 +144,20 @@
             // 
             // lblTheoDoiKhoanTienDaChi
             // 
-            this.lblTheoDoiKhoanTienDaChi.AutoSize = true;
+            this.lblTheoDoiKhoanTienDaChi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTheoDoiKhoanTienDaChi.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTheoDoiKhoanTienDaChi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblTheoDoiKhoanTienDaChi.Location = new System.Drawing.Point(28, 76);
             this.lblTheoDoiKhoanTienDaChi.Name = "lblTheoDoiKhoanTienDaChi";
-            this.lblTheoDoiKhoanTienDaChi.Size = new System.Drawing.Size(437, 21);
+            this.lblTheoDoiKhoanTienDaChi.Size = new System.Drawing.Size(910, 24);
             this.lblTheoDoiKhoanTienDaChi.TabIndex = 2;
             this.lblTheoDoiKhoanTienDaChi.Text = "Theo dõi khoản tiền đã chi và cập nhật số dư ví, ngân sách tương ứng.";
             // 
             // pnlPhanCach1
             // 
+            this.pnlPhanCach1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlPhanCach1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
             this.pnlPhanCach1.Location = new System.Drawing.Point(28, 108);
             this.pnlPhanCach1.Name = "pnlPhanCach1";
@@ -166,12 +177,13 @@
             // 
             // lblBuoc1NoiDung
             // 
-            this.lblBuoc1NoiDung.AutoSize = true;
+            this.lblBuoc1NoiDung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuoc1NoiDung.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuoc1NoiDung.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
             this.lblBuoc1NoiDung.Location = new System.Drawing.Point(28, 145);
             this.lblBuoc1NoiDung.Name = "lblBuoc1NoiDung";
-            this.lblBuoc1NoiDung.Size = new System.Drawing.Size(437, 21);
+            this.lblBuoc1NoiDung.Size = new System.Drawing.Size(910, 24);
             this.lblBuoc1NoiDung.TabIndex = 5;
             this.lblBuoc1NoiDung.Text = "Chọn Nghiệp vụ → Chi tiêu, hoặc nhấn Chi tiêu trên thanh công cụ.";
             // 
@@ -188,12 +200,13 @@
             // 
             // lblBuoc2NoiDung
             // 
-            this.lblBuoc2NoiDung.AutoSize = true;
+            this.lblBuoc2NoiDung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuoc2NoiDung.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuoc2NoiDung.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
             this.lblBuoc2NoiDung.Location = new System.Drawing.Point(28, 201);
             this.lblBuoc2NoiDung.Name = "lblBuoc2NoiDung";
-            this.lblBuoc2NoiDung.Size = new System.Drawing.Size(567, 21);
+            this.lblBuoc2NoiDung.Size = new System.Drawing.Size(910, 24);
             this.lblBuoc2NoiDung.TabIndex = 7;
             this.lblBuoc2NoiDung.Text = "Chọn ngày chi, ví thanh toán, nhóm và loại chi. Nhập số tiền lớn hơn 0 và ghi chú nếu cần.";
             // 
@@ -210,12 +223,13 @@
             // 
             // lblBuoc3NoiDung
             // 
-            this.lblBuoc3NoiDung.AutoSize = true;
+            this.lblBuoc3NoiDung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuoc3NoiDung.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuoc3NoiDung.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
             this.lblBuoc3NoiDung.Location = new System.Drawing.Point(28, 257);
             this.lblBuoc3NoiDung.Name = "lblBuoc3NoiDung";
-            this.lblBuoc3NoiDung.Size = new System.Drawing.Size(707, 21);
+            this.lblBuoc3NoiDung.Size = new System.Drawing.Size(910, 24);
             this.lblBuoc3NoiDung.TabIndex = 9;
             this.lblBuoc3NoiDung.Text = "Kiểm tra số tiền, ví và danh mục, sau đó nhấn Thêm. Giao dịch được đưa vào danh sách và số dư ví được cập nhật.";
             // 
@@ -232,17 +246,20 @@
             // 
             // lblBuoc4NoiDung
             // 
-            this.lblBuoc4NoiDung.AutoSize = true;
+            this.lblBuoc4NoiDung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuoc4NoiDung.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuoc4NoiDung.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
             this.lblBuoc4NoiDung.Location = new System.Drawing.Point(28, 313);
             this.lblBuoc4NoiDung.Name = "lblBuoc4NoiDung";
-            this.lblBuoc4NoiDung.Size = new System.Drawing.Size(564, 21);
+            this.lblBuoc4NoiDung.Size = new System.Drawing.Size(910, 24);
             this.lblBuoc4NoiDung.TabIndex = 11;
             this.lblBuoc4NoiDung.Text = "Chọn giao dịch trong danh sách để xem chi tiết. Nhấn Sửa để điều chỉnh thông tin khi có sai sót.";
             // 
             // pnlMeoSuDung
             // 
+            this.pnlMeoSuDung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMeoSuDung.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
             this.pnlMeoSuDung.Controls.Add(this.picIconMeo);
             this.pnlMeoSuDung.Controls.Add(this.lblMeoSuDung);
@@ -275,6 +292,8 @@
             // 
             // lblGhiChuRoMucDichChi
             // 
+            this.lblGhiChuRoMucDichChi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGhiChuRoMucDichChi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGhiChuRoMucDichChi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.lblGhiChuRoMucDichChi.Location = new System.Drawing.Point(44, 38);

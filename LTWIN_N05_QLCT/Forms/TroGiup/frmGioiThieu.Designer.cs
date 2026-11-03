@@ -23,13 +23,11 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblPhienBan = new System.Windows.Forms.Label();
             this.lblUngDungQuanLyThuNhap = new System.Windows.Forms.Label();
             this.pnlPhanCach1 = new System.Windows.Forms.Panel();
+            this.lblGiangVienHuongDan = new System.Windows.Forms.Label();
+            this.lblTenGiangVien = new System.Windows.Forms.Label();
             this.lblNhomThucHien = new System.Windows.Forms.Label();
             this.lblThanhVienNhom = new System.Windows.Forms.Label();
             this.lblDanhSachThanhVien = new System.Windows.Forms.Label();
-            this.lblGiangVienHuongDan = new System.Windows.Forms.Label();
-            this.lblTenGiangVien = new System.Windows.Forms.Label();
-            this.lblThongTinNhomVaGiangVien = new System.Windows.Forms.Label();
-            this.pnlPhanCach2 = new System.Windows.Forms.Panel();
             this.btnDongGioiThieu = new System.Windows.Forms.Button();
             this.pnlGioiThieu.SuspendLayout();
             this.SuspendLayout();
@@ -52,17 +50,15 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.pnlGioiThieu.Controls.Add(this.lblPhienBan);
             this.pnlGioiThieu.Controls.Add(this.lblUngDungQuanLyThuNhap);
             this.pnlGioiThieu.Controls.Add(this.pnlPhanCach1);
+            this.pnlGioiThieu.Controls.Add(this.lblGiangVienHuongDan);
+            this.pnlGioiThieu.Controls.Add(this.lblTenGiangVien);
             this.pnlGioiThieu.Controls.Add(this.lblNhomThucHien);
             this.pnlGioiThieu.Controls.Add(this.lblThanhVienNhom);
             this.pnlGioiThieu.Controls.Add(this.lblDanhSachThanhVien);
-            this.pnlGioiThieu.Controls.Add(this.lblGiangVienHuongDan);
-            this.pnlGioiThieu.Controls.Add(this.lblTenGiangVien);
-            this.pnlGioiThieu.Controls.Add(this.lblThongTinNhomVaGiangVien);
-            this.pnlGioiThieu.Controls.Add(this.pnlPhanCach2);
             this.pnlGioiThieu.Controls.Add(this.btnDongGioiThieu);
             this.pnlGioiThieu.Location = new System.Drawing.Point(24, 60);
             this.pnlGioiThieu.Name = "pnlGioiThieu";
-            this.pnlGioiThieu.Size = new System.Drawing.Size(650, 395);
+            this.pnlGioiThieu.Size = new System.Drawing.Size(650, 375);
             this.pnlGioiThieu.TabIndex = 1;
             // 
             // lblTenUngDung
@@ -101,7 +97,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             // pnlPhanCach1
             // 
             this.pnlPhanCach1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
-            this.pnlPhanCach1.Location = new System.Drawing.Point(28, 126);
+            this.pnlPhanCach1.Location = new System.Drawing.Point(28, 124);
             this.pnlPhanCach1.Name = "pnlPhanCach1";
             this.pnlPhanCach1.Size = new System.Drawing.Size(594, 1);
             this.pnlPhanCach1.TabIndex = 3;
@@ -111,7 +107,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblGiangVienHuongDan.AutoSize = true;
             this.lblGiangVienHuongDan.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGiangVienHuongDan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblGiangVienHuongDan.Location = new System.Drawing.Point(28, 144);
+            this.lblGiangVienHuongDan.Location = new System.Drawing.Point(28, 142);
             this.lblGiangVienHuongDan.Name = "lblGiangVienHuongDan";
             this.lblGiangVienHuongDan.Size = new System.Drawing.Size(161, 21);
             this.lblGiangVienHuongDan.TabIndex = 4;
@@ -122,7 +118,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblTenGiangVien.AutoSize = true;
             this.lblTenGiangVien.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenGiangVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblTenGiangVien.Location = new System.Drawing.Point(195, 144);
+            this.lblTenGiangVien.Location = new System.Drawing.Point(195, 142);
             this.lblTenGiangVien.Name = "lblTenGiangVien";
             this.lblTenGiangVien.Size = new System.Drawing.Size(165, 21);
             this.lblTenGiangVien.TabIndex = 5;
@@ -133,7 +129,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblNhomThucHien.AutoSize = true;
             this.lblNhomThucHien.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNhomThucHien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblNhomThucHien.Location = new System.Drawing.Point(28, 178);
+            this.lblNhomThucHien.Location = new System.Drawing.Point(28, 174);
             this.lblNhomThucHien.Name = "lblNhomThucHien";
             this.lblNhomThucHien.Size = new System.Drawing.Size(148, 21);
             this.lblNhomThucHien.TabIndex = 6;
@@ -144,7 +140,7 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblThanhVienNhom.AutoSize = true;
             this.lblThanhVienNhom.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThanhVienNhom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblThanhVienNhom.Location = new System.Drawing.Point(195, 178);
+            this.lblThanhVienNhom.Location = new System.Drawing.Point(195, 174);
             this.lblThanhVienNhom.Name = "lblThanhVienNhom";
             this.lblThanhVienNhom.Size = new System.Drawing.Size(70, 21);
             this.lblThanhVienNhom.TabIndex = 7;
@@ -155,42 +151,26 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
             this.lblDanhSachThanhVien.AutoSize = true;
             this.lblDanhSachThanhVien.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDanhSachThanhVien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.lblDanhSachThanhVien.Location = new System.Drawing.Point(195, 208);
+            this.lblDanhSachThanhVien.Location = new System.Drawing.Point(195, 204);
             this.lblDanhSachThanhVien.Name = "lblDanhSachThanhVien";
             this.lblDanhSachThanhVien.Size = new System.Drawing.Size(320, 84);
             this.lblDanhSachThanhVien.TabIndex = 8;
             this.lblDanhSachThanhVien.Text = "1.  231A010165 — Nguyễn Văn Thanh Diệp\r\n2.  231A290050 — Huỳnh Khải Đông\r\n3.  231A290140 — Võ Đức Bình\r\n4.  231A290014 — Thái Bình Xuyên";
-            // 
-            // lblThongTinNhomVaGiangVien
-            // 
-            this.lblThongTinNhomVaGiangVien.AutoSize = true;
-            this.lblThongTinNhomVaGiangVien.Location = new System.Drawing.Point(28, 234);
-            this.lblThongTinNhomVaGiangVien.Name = "lblThongTinNhomVaGiangVien";
-            this.lblThongTinNhomVaGiangVien.Size = new System.Drawing.Size(0, 20);
-            this.lblThongTinNhomVaGiangVien.TabIndex = 9;
-            this.lblThongTinNhomVaGiangVien.Text = "";
-            this.lblThongTinNhomVaGiangVien.Visible = false;
-            // 
-            // pnlPhanCach2
-            // 
-            this.pnlPhanCach2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
-            this.pnlPhanCach2.Location = new System.Drawing.Point(28, 316);
-            this.pnlPhanCach2.Name = "pnlPhanCach2";
-            this.pnlPhanCach2.Size = new System.Drawing.Size(594, 1);
-            this.pnlPhanCach2.TabIndex = 10;
             // 
             // btnDongGioiThieu
             // 
             this.btnDongGioiThieu.BackColor = System.Drawing.Color.White;
             this.btnDongGioiThieu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDongGioiThieu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnDongGioiThieu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.btnDongGioiThieu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
             this.btnDongGioiThieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDongGioiThieu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDongGioiThieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnDongGioiThieu.Location = new System.Drawing.Point(540, 336);
+            this.btnDongGioiThieu.Location = new System.Drawing.Point(540, 316);
             this.btnDongGioiThieu.Name = "btnDongGioiThieu";
             this.btnDongGioiThieu.Size = new System.Drawing.Size(82, 34);
-            this.btnDongGioiThieu.TabIndex = 11;
+            this.btnDongGioiThieu.TabIndex = 9;
             this.btnDongGioiThieu.Text = "Đóng";
             this.btnDongGioiThieu.UseVisualStyleBackColor = false;
             // 
@@ -221,13 +201,11 @@ namespace LTWIN_N05_QLCT.Forms.TroGiup
         private System.Windows.Forms.Label lblPhienBan;
         private System.Windows.Forms.Label lblUngDungQuanLyThuNhap;
         private System.Windows.Forms.Panel pnlPhanCach1;
+        private System.Windows.Forms.Label lblGiangVienHuongDan;
+        private System.Windows.Forms.Label lblTenGiangVien;
         private System.Windows.Forms.Label lblNhomThucHien;
         private System.Windows.Forms.Label lblThanhVienNhom;
         private System.Windows.Forms.Label lblDanhSachThanhVien;
-        private System.Windows.Forms.Label lblGiangVienHuongDan;
-        private System.Windows.Forms.Label lblTenGiangVien;
-        private System.Windows.Forms.Label lblThongTinNhomVaGiangVien;
-        private System.Windows.Forms.Panel pnlPhanCach2;
         private System.Windows.Forms.Button btnDongGioiThieu;
     }
 }
