@@ -163,7 +163,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             mnuGiaoDichDinhKy.Click += (s, e) => { DatTrangThaiNutThanhCongCu(null); MoFormCon(new Forms.NghiepVu.frmGiaoDichDinhKy(), "Giao dịch định kỳ"); };
 
             // Menu báo cáo
-            mnuThongKe.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmThongKe(), "Thống kê", false); };
+            mnuThongKe.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmThongKe(), "Thống kê", false); };
+
             mnuBaoCaoThang.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true); };
             mnuBieuDo.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmBieuDo(), "Biểu đồ", true); };
             mnuXuatBaoCao.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormXuatBaoCao(); };
@@ -171,7 +172,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             mnuBaoCaoNganSach.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnNganSach); MoFormCon(new Forms.NghiepVu.frmNganSach(), "Báo cáo theo dõi ngân sách"); };
 
             // Context menu cho nút Báo cáo nhanh
-            mnuNhanhThongKe.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmThongKe(), "Thống kê", false); };
+            mnuNhanhThongKe.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmThongKe(), "Thống kê", false); };
+
             mnuNhanhBaoCaoThang.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true); };
             mnuNhanhBieuDo.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmBieuDo(), "Biểu đồ", true); };
             mnuNhanhXuatBaoCao.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormXuatBaoCao(); };

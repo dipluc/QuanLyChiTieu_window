@@ -175,7 +175,7 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.pnlKyThongKe.Controls.Add(this.btnKyNgay);
             this.pnlKyThongKe.Location = new System.Drawing.Point(0, 23);
             this.pnlKyThongKe.Name = "pnlKyThongKe";
-            this.pnlKyThongKe.Size = new System.Drawing.Size(260, 30);
+            this.pnlKyThongKe.Size = new System.Drawing.Size(340, 32);
             this.pnlKyThongKe.TabIndex = 1;
             // 
             // btnKyNam
@@ -258,7 +258,7 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.lblKy.AutoSize = true;
             this.lblKy.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblKy.Location = new System.Drawing.Point(276, 4);
+            this.lblKy.Location = new System.Drawing.Point(360, 4);
             this.lblKy.Name = "lblKy";
             this.lblKy.Size = new System.Drawing.Size(71, 15);
             this.lblKy.TabIndex = 2;
@@ -298,11 +298,14 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.btnXuatExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXuatExcel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXuatExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btnXuatExcel.Location = new System.Drawing.Point(828, 22);
+            this.btnXuatExcel.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoXuatBaoCao_XanhDuong;
+            this.btnXuatExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatExcel.Location = new System.Drawing.Point(790, 22);
             this.btnXuatExcel.Name = "btnXuatExcel";
-            this.btnXuatExcel.Size = new System.Drawing.Size(100, 28);
+            this.btnXuatExcel.Size = new System.Drawing.Size(118, 31);
             this.btnXuatExcel.TabIndex = 5;
-            this.btnXuatExcel.Text = "📥 Xuất Excel";
+            this.btnXuatExcel.Text = " Xuất Excel";
+            this.btnXuatExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXuatExcel.UseVisualStyleBackColor = false;
             // 
             // btnXuatPDF
@@ -314,11 +317,14 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.btnXuatPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXuatPDF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXuatPDF.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btnXuatPDF.Location = new System.Drawing.Point(936, 22);
+            this.btnXuatPDF.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoXuatBaoCao_XanhDuong;
+            this.btnXuatPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatPDF.Location = new System.Drawing.Point(918, 22);
             this.btnXuatPDF.Name = "btnXuatPDF";
-            this.btnXuatPDF.Size = new System.Drawing.Size(95, 28);
+            this.btnXuatPDF.Size = new System.Drawing.Size(112, 31);
             this.btnXuatPDF.TabIndex = 6;
-            this.btnXuatPDF.Text = "📥 Xuất PDF";
+            this.btnXuatPDF.Text = " Xuất PDF";
+            this.btnXuatPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXuatPDF.UseVisualStyleBackColor = false;
             // 
             // tblTheTongHop
@@ -380,13 +386,12 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             // 
             // lblLuong23TrieuThuKhac2
             // 
-            this.lblLuong23TrieuThuKhac2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLuong23TrieuThuKhac2.AutoSize = true;
             this.lblLuong23TrieuThuKhac2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLuong23TrieuThuKhac2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblLuong23TrieuThuKhac2.Location = new System.Drawing.Point(12, 60);
             this.lblLuong23TrieuThuKhac2.Name = "lblLuong23TrieuThuKhac2";
-            this.lblLuong23TrieuThuKhac2.Size = new System.Drawing.Size(228, 18);
+            this.lblLuong23TrieuThuKhac2.Size = new System.Drawing.Size(99, 13);
             this.lblLuong23TrieuThuKhac2.TabIndex = 2;
             this.lblLuong23TrieuThuKhac2.Text = "Chưa có phát sinh";
             // 
@@ -429,13 +434,12 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             // 
             // lblTatCaLoaiChiTatCa
             // 
-            this.lblTatCaLoaiChiTatCa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTatCaLoaiChiTatCa.AutoSize = true;
             this.lblTatCaLoaiChiTatCa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTatCaLoaiChiTatCa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblTatCaLoaiChiTatCa.Location = new System.Drawing.Point(12, 60);
             this.lblTatCaLoaiChiTatCa.Name = "lblTatCaLoaiChiTatCa";
-            this.lblTatCaLoaiChiTatCa.Size = new System.Drawing.Size(228, 18);
+            this.lblTatCaLoaiChiTatCa.Size = new System.Drawing.Size(147, 13);
             this.lblTatCaLoaiChiTatCa.TabIndex = 2;
             this.lblTatCaLoaiChiTatCa.Text = "Tất cả loại chi • Tất cả các ví";
             // 
@@ -478,13 +482,12 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             // 
             // lblTongThuTongChi
             // 
-            this.lblTongThuTongChi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTongThuTongChi.AutoSize = true;
             this.lblTongThuTongChi.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTongThuTongChi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblTongThuTongChi.Location = new System.Drawing.Point(12, 60);
             this.lblTongThuTongChi.Name = "lblTongThuTongChi";
-            this.lblTongThuTongChi.Size = new System.Drawing.Size(228, 18);
+            this.lblTongThuTongChi.Size = new System.Drawing.Size(107, 13);
             this.lblTongThuTongChi.TabIndex = 2;
             this.lblTongThuTongChi.Text = "Tổng thu − Tổng chi";
             // 
@@ -526,13 +529,12 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             // 
             // lblChenhLechTongThu
             // 
-            this.lblChenhLechTongThu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblChenhLechTongThu.AutoSize = true;
             this.lblChenhLechTongThu.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChenhLechTongThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblChenhLechTongThu.Location = new System.Drawing.Point(12, 60);
             this.lblChenhLechTongThu.Name = "lblChenhLechTongThu";
-            this.lblChenhLechTongThu.Size = new System.Drawing.Size(233, 18);
+            this.lblChenhLechTongThu.Size = new System.Drawing.Size(122, 13);
             this.lblChenhLechTongThu.TabIndex = 2;
             this.lblChenhLechTongThu.Text = "Chênh lệch / Tổng thu";
             // 

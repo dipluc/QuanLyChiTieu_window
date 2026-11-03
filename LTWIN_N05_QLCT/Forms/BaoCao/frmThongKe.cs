@@ -48,6 +48,12 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             dtpKy.ValueChanged += (s, e) => TaiDuLieu();
 
             // Nút xuất Excel / PDF
+            try
+            {
+                btnXuatExcel.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoXuatBaoCao_XanhDuong, new Size(18, 18));
+                btnXuatPDF.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoXuatBaoCao_XanhDuong, new Size(18, 18));
+            }
+            catch { }
             btnXuatExcel.Click += BtnXuatExcel_Click;
             btnXuatPDF.Click += BtnXuatPDF_Click;
 

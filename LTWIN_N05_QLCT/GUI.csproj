@@ -306,6 +306,9 @@
     <EmbeddedResource Include="Forms\QuanTri\frmXacNhanPhucHoi.resx">
       <DependentUpon>frmXacNhanPhucHoi.cs</DependentUpon>
     </EmbeddedResource>
+        <EmbeddedResource Include="Forms\BaoCao\frmThongKe.resx">
+      <DependentUpon>frmThongKe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\TroGiup\frmGioiThieu.resx">
       <DependentUpon>frmGioiThieu.cs</DependentUpon>
     </EmbeddedResource>
