@@ -35,7 +35,6 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnPhongTo = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
             this.pnlGioiThieuUngDung = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblQuanLyChiTieu = new System.Windows.Forms.Label();
             this.lblChuDongHomNayAnTam = new System.Windows.Forms.Label();
             this.pnlKhuVucPhai = new System.Windows.Forms.Panel();
@@ -57,10 +56,10 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.btnDangKy = new System.Windows.Forms.Button();
             this.lblQuanLyChiTieuPhienBan = new System.Windows.Forms.Label();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlThanhTieuDe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).BeginInit();
             this.pnlGioiThieuUngDung.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlKhuVucPhai.SuspendLayout();
             this.pnlTheDangNhap.SuspendLayout();
             this.pnlThongTinTaiKhoan.SuspendLayout();
@@ -68,6 +67,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             ((System.ComponentModel.ISupportInitialize)(this.picIconUser)).BeginInit();
             this.pnlBorderMatKhau.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIconLock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlThanhTieuDe
@@ -159,16 +159,6 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlGioiThieuUngDung.Name = "pnlGioiThieuUngDung";
             this.pnlGioiThieuUngDung.Size = new System.Drawing.Size(500, 670);
             this.pnlGioiThieuUngDung.TabIndex = 1;
-            // 
-            // picLogo
-            // 
-            this.picLogo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_Trang;
-            this.picLogo.Location = new System.Drawing.Point(56, 74);
-            this.picLogo.Margin = new System.Windows.Forms.Padding(4);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(64, 59);
-            this.picLogo.TabIndex = 0;
-            this.picLogo.TabStop = false;
             // 
             // lblQuanLyChiTieu
             // 
@@ -441,6 +431,16 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.lblQuanLyChiTieuPhienBan.TabIndex = 1;
             this.lblQuanLyChiTieuPhienBan.Text = "Quản Lý Chi Tiêu • Phiên bản 1.0";
             // 
+            // picLogo
+            // 
+            this.picLogo.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_Trang;
+            this.picLogo.Location = new System.Drawing.Point(56, 74);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(64, 59);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 3;
+            this.picLogo.TabStop = false;
+            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -460,7 +460,6 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).EndInit();
             this.pnlGioiThieuUngDung.ResumeLayout(false);
             this.pnlGioiThieuUngDung.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.pnlKhuVucPhai.ResumeLayout(false);
             this.pnlKhuVucPhai.PerformLayout();
             this.pnlTheDangNhap.ResumeLayout(false);
@@ -473,6 +472,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             this.pnlBorderMatKhau.ResumeLayout(false);
             this.pnlBorderMatKhau.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIconLock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -486,7 +486,6 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
         private System.Windows.Forms.Button btnPhongTo;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Panel pnlGioiThieuUngDung;
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblQuanLyChiTieu;
         private System.Windows.Forms.Label lblChuDongHomNayAnTam;
         private System.Windows.Forms.Panel pnlKhuVucPhai;
@@ -508,5 +507,6 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
         public System.Windows.Forms.Button btnDangNhap;
         public System.Windows.Forms.Button btnDangKy;
         private System.Windows.Forms.Label lblQuanLyChiTieuPhienBan;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }

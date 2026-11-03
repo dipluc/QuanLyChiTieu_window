@@ -291,8 +291,14 @@
     <EmbeddedResource Include="Forms\NghiepVu\frmQuanLyThuNhap.resx">
       <DependentUpon>frmQuanLyThuNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QuanTri\frmCauHinh.resx">
+      <DependentUpon>frmCauHinh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\QuanTri\frmNguoiDung.resx">
       <DependentUpon>frmNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QuanTri\frmXacNhanPhucHoi.resx">
+      <DependentUpon>frmXacNhanPhucHoi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
