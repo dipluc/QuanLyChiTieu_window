@@ -36,6 +36,7 @@ namespace LTWIN_N05_QLCT.Services
         private static T GiaoDich<T>(Func<SqlConnection, SqlTransaction, int, T> action)
         {
             int maND = MaND;
+            if (maND <= 0) throw new InvalidOperationException("Vui lòng đăng nhập trước khi thực hiện giao dịch.");
             using (var conn = KetNoiCSDL.LayKetNoi())
             using (var tx = conn.BeginTransaction(IsolationLevel.Serializable))
             {

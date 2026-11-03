@@ -12,12 +12,20 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
     {
         private List<Vi> _danhSachVi = new List<Vi>();
 
+        private bool _isDataLoaded = false;
+        private void NapDuLieuAnToan()
+        {
+            if (_isDataLoaded || !global::NghiepVu.TienIch.PhienDangNhap.DaDangNhap) return;
+            _isDataLoaded = true;
+            LoadFilterData();
+            ThucHienTimKiem();
+        }
+
         public frmTimKiem()
         {
             InitializeComponent();
             SetupEvents();
-            LoadFilterData();
-            ThucHienTimKiem();
+            this.Load += (s, e) => NapDuLieuAnToan();
         }
 
         public void DongBoThang(DateTime thang)
@@ -48,7 +56,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             dtpTuNgay.Value = new DateTime(now.Year, now.Month, 1);
             dtpDenNgay.Value = now;
 
-            _danhSachVi = DataService.GetDanhSachVi();
+            try { _danhSachVi = DataService.GetDanhSachVi(); } catch { _danhSachVi = new List<Vi>(); }
             cboVi.Items.Clear();
             cboVi.Items.Add("Tất cả");
             foreach (var v in _danhSachVi)

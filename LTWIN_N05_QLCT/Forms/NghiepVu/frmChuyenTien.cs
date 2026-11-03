@@ -19,8 +19,24 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             InitializeComponent();
             SetupEvents();
             SetupDataGridView();
-            LoadWallets();
-            LoadLichSu();
+            if (!IsDesignMode() && global::NghiepVu.TienIch.PhienDangNhap.DaDangNhap)
+            {
+                LoadWallets();
+                LoadLichSu();
+            }
+            this.Load += (s, e) =>
+            {
+                if (!IsDesignMode() && global::NghiepVu.TienIch.PhienDangNhap.DaDangNhap && cboViNguon.Items.Count == 0)
+                {
+                    LoadWallets();
+                    LoadLichSu();
+                }
+            };
+        }
+
+        private bool IsDesignMode()
+        {
+            return DesignMode || (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime);
         }
 
         public void DongBoThang(DateTime thang)
@@ -50,6 +66,17 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void SetupDataGridView()
         {
+            if (dgvLichSuChuyenTien.Columns.Count > 0)
+            {
+                dgvLichSuChuyenTien.AutoGenerateColumns = false;
+                dgvLichSuChuyenTien.AllowUserToAddRows = false;
+                dgvLichSuChuyenTien.RowHeadersVisible = false;
+                dgvLichSuChuyenTien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvLichSuChuyenTien.ReadOnly = true;
+                dgvLichSuChuyenTien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvLichSuChuyenTien.BackgroundColor = Color.White;
+                return;
+            }
             dgvLichSuChuyenTien.Columns.Clear();
             dgvLichSuChuyenTien.AutoGenerateColumns = false;
             dgvLichSuChuyenTien.AllowUserToAddRows = false;
@@ -104,7 +131,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         public void LoadWallets()
         {
-            _danhSachVi = DataService.GetDanhSachVi();
+            try { _danhSachVi = DataService.GetDanhSachVi(); } catch { _danhSachVi = new List<Vi>(); }
             cboViNguon.Items.Clear();
             cboViDich.Items.Clear();
 
@@ -123,7 +150,8 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         public void LoadLichSu()
         {
-            var tatCa = DataService.GetChuyenTien();
+            List<ChuyenTienRecord> tatCa;
+            try { tatCa = DataService.GetChuyenTien(); } catch { tatCa = new List<ChuyenTienRecord>(); }
             // Lọc theo tháng đang chọn của ứng dụng (đồng bộ tháng)
             _danhSachChuyenTien = tatCa
                 .Where(x => x.Ngay.Month == _thangHienTai.Month && x.Ngay.Year == _thangHienTai.Year)

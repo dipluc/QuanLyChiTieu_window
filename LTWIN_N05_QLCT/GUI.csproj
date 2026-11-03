@@ -276,6 +276,12 @@
     <EmbeddedResource Include="Forms\HeThong\frmPhanQuyen.resx">
       <DependentUpon>frmPhanQuyen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NghiepVu\frmChuyenTien.resx">
+      <DependentUpon>frmChuyenTien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NghiepVu\frmQuanLyChiTieu.resx">
+      <DependentUpon>frmQuanLyChiTieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NghiepVu\frmGiaoDichDinhKy.resx">
       <DependentUpon>frmGiaoDichDinhKy.cs</DependentUpon>
     </EmbeddedResource>

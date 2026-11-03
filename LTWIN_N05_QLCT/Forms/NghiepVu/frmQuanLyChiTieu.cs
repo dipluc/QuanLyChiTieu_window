@@ -27,15 +27,23 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             KiemTraNganSach();
         }
 
+        private bool _isDataLoaded = false;
+        private void NapDuLieuAnToan()
+        {
+            if (_isDataLoaded || !global::NghiepVu.TienIch.PhienDangNhap.DaDangNhap) return;
+            _isDataLoaded = true;
+            LoadComboBoxes();
+            LoadData();
+            KiemTraNganSach();
+        }
+
         public frmQuanLyChiTieu()
         {
             InitializeComponent();
             SetupEvents();
             SetupDataGridViewColumns();
-            LoadComboBoxes();
             SetDefaultDates();
-            LoadData();
-            KiemTraNganSach();
+            this.Load += (s, e) => NapDuLieuAnToan();
         }
 
         #region Setup
@@ -140,7 +148,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void LoadWallets()
         {
-            _danhSachVi = DataService.GetDanhSachVi();
+            try { _danhSachVi = DataService.GetDanhSachVi(); } catch { _danhSachVi = new List<Vi>(); }
             cboViChi.Items.Clear();
             foreach (var vi in _danhSachVi)
             {

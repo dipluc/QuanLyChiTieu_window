@@ -10,11 +10,19 @@ namespace LTWIN_N05_QLCT.Forms.QuanTri
     {
         private int _currentNguong = 80;
 
+        private bool _isDataLoaded = false;
+        private void NapDuLieuAnToan()
+        {
+            if (_isDataLoaded || !global::NghiepVu.TienIch.PhienDangNhap.DaDangNhap) return;
+            _isDataLoaded = true;
+            LoadConfig();
+        }
+
         public frmCauHinh()
         {
             InitializeComponent();
             SetupEvents();
-            LoadConfig();
+            this.Load += (s, e) => NapDuLieuAnToan();
         }
 
         private void SetupEvents()

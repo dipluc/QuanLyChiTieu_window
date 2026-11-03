@@ -11,6 +11,14 @@ _ReSharper.*
 *.mdf_log
 *.ldf
 !LTWIN_N05_QLCT/Database/QLChiTieu_log.ldf
+
 # Local recovery copies; the original files are retained for rollback only.
 LTWIN_N05_QLCT/Database/backup-before-log-rebuild/
 SqlServerData/
+
+# Test probes and temporary test outputs
+tools/*Probe*
+tools/Test-*
+tools/design-previews/
+*.xlsx
+*.pdf

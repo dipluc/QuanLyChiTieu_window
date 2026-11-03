@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -16,11 +16,12 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
         private static readonly Color MauXanhDuong = Color.FromArgb(21, 101, 192);
         private static readonly Color MauXanhLa = Color.FromArgb(46, 125, 50);
         private static readonly Color MauXam = Color.FromArgb(100, 116, 139);
-        private static readonly Color MauDo = Color.FromArgb(198, 40, 40);
+        private static readonly Color MauVienThuong = Color.FromArgb(226, 232, 240);
         private const string GoiYMacDinh = "Chọn mục tiêu bên trái để xem và cập nhật thông tin.";
 
         private List<MucTieuMH> _dsMucTieu = new List<MucTieuMH>();
-        private TheMucTieu _theDangChon = null;
+        private MucTieuMH _mucTieuDangChon = null;
+        private Panel _panelDangChon = null;
         private bool _dangDinhDang = false;
 
         public frmMucTieuTietKiem()
@@ -31,6 +32,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void KhoiTao()
         {
+            KhoiTaoAlias();
             Load += frmMucTieuTietKiem_Load;
             SizeChanged += frmMucTieuTietKiem_SizeChanged;
 
@@ -41,7 +43,17 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             btnNapTien.Click += (s, e) => XuLyNapRut(true);
             btnRutBot.Click += (s, e) => XuLyNapRut(false);
 
-            flpMucTieu.SizeChanged += (s, e) => CanChinhRong();
+            // Gán sự kiện click và vẽ viền cho các thẻ thiết kế
+            GanClick(pnlTheMucTieu, (s, e) => ChonTheTheoThuTu(0));
+            GanClick(pnlTheMucTieu2, (s, e) => ChonTheTheoThuTu(1));
+            GanClick(pnlTheMucTieu3, (s, e) => ChonTheTheoThuTu(2));
+
+            pnlTheMucTieu.Paint += (s, e) => VeVienThe(pnlTheMucTieu, e);
+            pnlTheMucTieu2.Paint += (s, e) => VeVienThe(pnlTheMucTieu2, e);
+            pnlTheMucTieu3.Paint += (s, e) => VeVienThe(pnlTheMucTieu3, e);
+
+            // Mặc định thẻ 1 được chọn
+            _panelDangChon = pnlTheMucTieu;
 
             foreach (TextBox t in new[] { txtSoTienMucTieu, txtSoTienNapRut })
             {
@@ -52,101 +64,260 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
             dtpNgayBatDau.Format = DateTimePickerFormat.Short;
             dtpNgayDich.Format = DateTimePickerFormat.Short;
-            dtpNgayDich.ShowCheckBox = true;
 
             foreach (Control c in new Control[] { txtTenMucTieu, txtSoTienMucTieu, dtpNgayBatDau, dtpNgayDich, txtSoTienNapRut })
                 c.KeyDown += Enter_KeyDown;
         }
 
+        private void KhoiTaoAlias()
+        {
+            this.pnlMucTieu = this.pnlQuanLyMucTieu;
+            this.pnlNapRutMucTieu = this.pnlNapRut;
+            this.lblCon6Thang11202604 = this.lblCon6Thang;
+            this.lblQuyDuPhongDangThucHien = this.lblTenVaTrangThai;
+            this.lblDaTietKiem12000000 = this.lblDaTietKiem;
+            this.lblConCanTichLuy18000 = this.lblConCanTichLuy;
+            this.lblChonMucTieuDenTraiDe = this.lblChonMucTieuBenTraiDe;
+        }
+
         private void frmMucTieuTietKiem_Load(object sender, EventArgs e)
         {
-            if (DesignMode) return;
+            if (DesignMode || !PhienDangNhap.DaDangNhap) return;
             NapDanhSach(0);
-            ResetForm();
         }
 
         private void frmMucTieuTietKiem_SizeChanged(object sender, EventArgs e)
         {
-            if (DesignMode) return;
-            // Tự động căn chỉnh chiều cao linh hoạt của danh sách thẻ theo form chính
-            if (flpMucTieu != null && pnlNapRut != null)
+            if (flpMucTieu != null)
             {
-                int bottomLimit = pnlNapRut.Visible ? pnlNapRut.Top - 10 : lblMucTieuDaHuyDaHoan.Top - 10;
-                flpMucTieu.Height = Math.Max(200, bottomLimit - flpMucTieu.Top);
+                int rong = Math.Max(300, flpMucTieu.ClientSize.Width - SystemInformation.VerticalScrollBarWidth - 4);
+                pnlTheMucTieu.Width = rong;
+                pnlNapRut.Width = rong;
+                pnlTheMucTieu2.Width = rong;
+                pnlTheMucTieu3.Width = rong;
+                foreach (Control c in flpMucTieu.Controls)
+                {
+                    if (c is Panel) c.Width = rong;
+                }
             }
         }
 
-        private int RongThe()
+        private static void GanClick(Control goc, EventHandler h)
         {
-            return Math.Max(260, flpMucTieu.ClientSize.Width - SystemInformation.VerticalScrollBarWidth - 6);
+            goc.Click += h;
+            foreach (Control con in goc.Controls)
+            {
+                if (con is TextBox || con is Button || con is DateTimePicker) continue;
+                con.Click += h;
+            }
         }
 
-        private void CanChinhRong()
+        private void VeVienThe(Panel pnl, PaintEventArgs e)
         {
-            int w = RongThe();
-            foreach (Control c in flpMucTieu.Controls) c.Width = w;
+            bool daChon = (_panelDangChon == pnl);
+            Color mauVien = daChon ? MauXanhDuong : MauVienThuong;
+            int doDay = daChon ? 2 : 1;
+            using (var pen = new Pen(mauVien, doDay))
+            {
+                float d = pen.Width / 2f;
+                e.Graphics.DrawRectangle(pen, d, d, pnl.Width - pen.Width, pnl.Height - pen.Width);
+            }
         }
 
         private void NapDanhSach(int maChon)
         {
             _dsMucTieu = MucTieuNV.LayDanhSach();
 
-            flpMucTieu.SuspendLayout();
-            flpMucTieu.Controls.Remove(pnlNapRut);
-            pnlNapRut.Visible = false;
-            foreach (Control c in flpMucTieu.Controls.Cast<Control>().ToList())
-            {
-                flpMucTieu.Controls.Remove(c);
-                c.Dispose();
-            }
-            _theDangChon = null;
-
-            foreach (var mt in _dsMucTieu)
-            {
-                var the = new TheMucTieu(mt, RongThe());
-                the.Margin = new Padding(0, 0, 0, 8);
-                GanClick(the, (s, e) => ChonThe(the));
-                flpMucTieu.Controls.Add(the);
-            }
-            flpMucTieu.ResumeLayout();
-
             CapNhatTomTat();
-            frmMucTieuTietKiem_SizeChanged(null, null);
 
-            var canChon = flpMucTieu.Controls.OfType<TheMucTieu>().FirstOrDefault(t => t.Du.MaMT == maChon);
-            if (canChon != null) ChonThe(canChon);
-            else CapNhatKhungTomTat(null);
-            CapNhatNut();
+            // Nếu không có mục tiêu nào trong CSDL
+            if (_dsMucTieu.Count == 0)
+            {
+                pnlTheMucTieu.Visible = false;
+                pnlTheMucTieu2.Visible = false;
+                pnlTheMucTieu3.Visible = false;
+                pnlNapRut.Visible = false;
+                ResetForm();
+                CapNhatKhungTomTat(null);
+                CapNhatNut();
+                return;
+            }
+
+            // Gán dữ liệu cho Thẻ 1
+            if (_dsMucTieu.Count > 0)
+            {
+                pnlTheMucTieu.Visible = true;
+                pnlTheMucTieu.Tag = _dsMucTieu[0];
+                DienDuLieuThe(pnlTheMucTieu, _dsMucTieu[0], lblQuyDuPhong, lblDangThucHien, lblDaTietKiemVaMucTieu, lblTyLe, prgMucTieuDaHuyDaHoan, lblHan30042027, lblConThieu18000000);
+            }
+
+            // Gán dữ liệu cho Thẻ 2
+            if (_dsMucTieu.Count > 1)
+            {
+                pnlTheMucTieu2.Visible = true;
+                pnlTheMucTieu2.Tag = _dsMucTieu[1];
+                DienDuLieuThe(pnlTheMucTieu2, _dsMucTieu[1], lblMuaMayTinh, lblHoanThanh, lblDaTietKiemVaMucTieu2, lblTyLe2, prgMucTieuDaHuyDaHoan2, lblHan30092026, lblConThieu0);
+            }
+            else
+            {
+                pnlTheMucTieu2.Visible = false;
+            }
+
+            // Gán dữ liệu cho Thẻ 3
+            if (_dsMucTieu.Count > 2)
+            {
+                pnlTheMucTieu3.Visible = true;
+                pnlTheMucTieu3.Tag = _dsMucTieu[2];
+                DienDuLieuThe(pnlTheMucTieu3, _dsMucTieu[2], lblDuLichDaLat, lblDaHuy, lblDaTietKiemVaMucTieu3, lblTyLe3, prgMucTieuDaHuyDaHoan3, lblHan31122026, lblConThieu8000000);
+            }
+            else
+            {
+                pnlTheMucTieu3.Visible = false;
+            }
+
+            // Xóa các thẻ động từ vị trí thứ 4 trở đi (nếu có từ lần nạp trước)
+            var cacTheDong = flpMucTieu.Controls.Cast<Control>()
+                .Where(c => c != pnlTheMucTieu && c != pnlNapRut && c != pnlTheMucTieu2 && c != pnlTheMucTieu3)
+                .ToList();
+            foreach (var td in cacTheDong)
+            {
+                flpMucTieu.Controls.Remove(td);
+                td.Dispose();
+            }
+
+            // Nếu có nhiều hơn 3 mục tiêu, tạo thêm các thẻ động
+            for (int i = 3; i < _dsMucTieu.Count; i++)
+            {
+                var mt = _dsMucTieu[i];
+                var pnlMoi = TaoTheDong(mt, i);
+                flpMucTieu.Controls.Add(pnlMoi);
+            }
+
+            // Chọn mục tiêu phù hợp
+            int viTriChon = 0;
+            if (maChon > 0)
+            {
+                int index = _dsMucTieu.FindIndex(x => x.MaMT == maChon);
+                if (index >= 0) viTriChon = index;
+            }
+
+            ChonTheTheoThuTu(viTriChon);
         }
 
-        private static void GanClick(Control goc, EventHandler h)
+        private void DienDuLieuThe(Panel pnl, MucTieuMH mt, Label lblTen, Label lblTrangThai, Label lblTien, Label lblTyLe, ProgressBar prg, Label lblHan, Label lblConThieu)
         {
-            goc.Click += h;
-            foreach (Control con in goc.Controls) GanClick(con, h);
+            lblTen.Text = mt.TenMucTieu;
+            lblTrangThai.Text = MucTieuNV.TenTrangThai(mt.TrangThai);
+            lblTien.Text = Tien(mt.SoTienDaTietKiem) + " / " + Tien(mt.SoTienMucTieu);
+
+            int tyLe = mt.SoTienMucTieu > 0
+                ? (int)Math.Min(100, Math.Floor(mt.SoTienDaTietKiem * 100m / mt.SoTienMucTieu))
+                : 0;
+            lblTyLe.Text = tyLe + "%";
+            prg.Value = Math.Min(100, Math.Max(0, tyLe));
+
+            lblHan.Text = mt.NgayDich.HasValue ? "Hạn: " + mt.NgayDich.Value.ToString("dd/MM/yyyy") : "Không đặt hạn";
+            lblConThieu.Text = "Còn thiếu: " + Tien(Math.Max(0, mt.SoTienMucTieu - mt.SoTienDaTietKiem));
+
+            Color mauChinh = mt.TrangThai == "HoanThanh" ? MauXanhLa : (mt.TrangThai == "Huy" ? MauXam : MauXanhDuong);
+            lblTrangThai.ForeColor = mauChinh;
+            lblTien.ForeColor = mauChinh;
+            lblTyLe.ForeColor = mauChinh;
         }
 
-        private void ChonThe(TheMucTieu the)
+        private Panel TaoTheDong(MucTieuMH mt, int index)
         {
-            if (_theDangChon != null) _theDangChon.DaChon = false;
-            _theDangChon = the;
-            the.DaChon = true;
+            var pnl = new Panel
+            {
+                Size = pnlTheMucTieu.Size,
+                Margin = pnlTheMucTieu.Margin,
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                Cursor = Cursors.Hand,
+                Tag = mt
+            };
 
-            HienLenForm(the.Du);
+            var lblTen = new Label { Location = lblQuyDuPhong.Location, Size = lblQuyDuPhong.Size, Font = lblQuyDuPhong.Font, ForeColor = lblQuyDuPhong.ForeColor };
+            var lblTT = new Label { Location = lblDangThucHien.Location, Size = lblDangThucHien.Size, Font = lblDangThucHien.Font, TextAlign = ContentAlignment.MiddleRight, Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            var lblT = new Label { Location = lblDaTietKiemVaMucTieu.Location, Size = lblDaTietKiemVaMucTieu.Size, Font = lblDaTietKiemVaMucTieu.Font };
+            var lblTL = new Label { Location = lblTyLe.Location, Size = lblTyLe.Size, Font = lblTyLe.Font, TextAlign = ContentAlignment.MiddleRight, Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            var prg = new ProgressBar { Location = prgMucTieuDaHuyDaHoan.Location, Size = prgMucTieuDaHuyDaHoan.Size, Style = ProgressBarStyle.Continuous, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            var lblH = new Label { Location = lblHan30042027.Location, Size = lblHan30042027.Size, Font = lblHan30042027.Font, ForeColor = MauXam };
+            var lblCT = new Label { Location = lblConThieu18000000.Location, Size = lblConThieu18000000.Size, Font = lblConThieu18000000.Font, ForeColor = MauXam, TextAlign = ContentAlignment.MiddleRight, Anchor = AnchorStyles.Top | AnchorStyles.Right };
 
+            pnl.Controls.AddRange(new Control[] { lblTen, lblTT, lblT, lblTL, prg, lblH, lblCT });
+            DienDuLieuThe(pnl, mt, lblTen, lblTT, lblT, lblTL, prg, lblH, lblCT);
+
+            GanClick(pnl, (s, e) => ChonTheTheoThuTu(index));
+            pnl.Paint += (s, e) => VeVienThe(pnl, e);
+            return pnl;
+        }
+
+        private void ChonTheTheoThuTu(int index)
+        {
+            if (_dsMucTieu.Count == 0)
+            {
+                // Khi ở chế độ xem mẫu hoặc trước đăng nhập
+                if (index == 0) ChonTheGiaoDien(pnlTheMucTieu, "Quỹ dự phòng", 30000000, 12000000, "DangThucHien", new DateTime(2026, 10, 1), new DateTime(2027, 4, 30), "Dự phòng chi phí sinh hoạt và các tình huống khẩn cấp.");
+                else if (index == 1) ChonTheGiaoDien(pnlTheMucTieu2, "Mua máy tính", 20000000, 20000000, "HoanThanh", new DateTime(2026, 1, 1), new DateTime(2026, 9, 30), "Mua laptop phục vụ công việc.");
+                else if (index == 2) ChonTheGiaoDien(pnlTheMucTieu3, "Du lịch Đà Lạt", 8000000, 0, "Huy", new DateTime(2026, 6, 1), new DateTime(2026, 12, 31), "Kế hoạch du lịch cuối năm.");
+                return;
+            }
+
+            if (index < 0 || index >= _dsMucTieu.Count) return;
+            var mt = _dsMucTieu[index];
+
+            Panel cardPanel;
+            if (index == 0) cardPanel = pnlTheMucTieu;
+            else if (index == 1) cardPanel = pnlTheMucTieu2;
+            else if (index == 2) cardPanel = pnlTheMucTieu3;
+            else
+            {
+                cardPanel = flpMucTieu.Controls.OfType<Panel>().FirstOrDefault(p => p.Tag == mt) ?? pnlTheMucTieu;
+            }
+
+            ChonThe(cardPanel, mt);
+        }
+
+        private void ChonTheGiaoDien(Panel cardPanel, string ten, decimal mucTieu, decimal daTietKiem, string trangThai, DateTime batDau, DateTime? dich, string ghiChu)
+        {
+            var mt = new MucTieuMH
+            {
+                MaMT = 0,
+                TenMucTieu = ten,
+                SoTienMucTieu = mucTieu,
+                SoTienDaTietKiem = daTietKiem,
+                TrangThai = trangThai,
+                NgayBatDau = batDau,
+                NgayDich = dich,
+                GhiChu = ghiChu
+            };
+            ChonThe(cardPanel, mt);
+        }
+
+        private void ChonThe(Panel cardPanel, MucTieuMH mt)
+        {
+            var panelCu = _panelDangChon;
+            _panelDangChon = cardPanel;
+            _mucTieuDangChon = mt;
+
+            if (panelCu != null) panelCu.Invalidate();
+            if (cardPanel != null) cardPanel.Invalidate();
+
+            HienLenForm(mt);
+
+            // Chuyển panel Nạp/Rút ngay bên dưới thẻ đang chọn
             flpMucTieu.SuspendLayout();
             flpMucTieu.Controls.Remove(pnlNapRut);
             flpMucTieu.Controls.Add(pnlNapRut);
-            flpMucTieu.Controls.SetChildIndex(pnlNapRut, flpMucTieu.Controls.GetChildIndex(the) + 1);
-            pnlNapRut.Width = RongThe();
+            flpMucTieu.Controls.SetChildIndex(pnlNapRut, flpMucTieu.Controls.GetChildIndex(cardPanel) + 1);
+            pnlNapRut.Width = cardPanel.Width;
             pnlNapRut.Visible = true;
             flpMucTieu.ResumeLayout();
 
-            frmMucTieuTietKiem_SizeChanged(null, null);
-            flpMucTieu.ScrollControlIntoView(the);
-
             txtSoTienNapRut.Text = "";
-            CapNhatNapRut(the.Du);
-            CapNhatKhungTomTat(the.Du);
+            CapNhatNapRut(mt);
+            CapNhatKhungTomTat(mt);
             CapNhatNut();
         }
 
@@ -160,7 +331,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private static string Tien(decimal v)
         {
-            return ((long)v).ToString("N0", Vi) + " ₫";
+            return ((long)v).ToString("N0", Vi) + " đ";
         }
 
         private void CapNhatNapRut(MucTieuMH mt)
@@ -198,8 +369,9 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
                 DateTime dich = mt.NgayDich.Value;
                 int chenh = (dich.Year * 12 + dich.Month) - (homNay.Year * 12 + homNay.Month);
                 int thang = Math.Max(1, chenh);
-                lblGoiY.Text = $"Cần để dành {Tien(Math.Ceiling(conThieu / thang))}/tháng";
-                lblCon6Thang.Text = $"Còn {thang} tháng ({dich:MM/yyyy}) để tích lũy {Tien(conThieu)}.";
+                decimal moiThang = Math.Ceiling(conThieu / thang);
+                lblGoiY.Text = $"Mỗi tháng cần để dành {Tien(moiThang)}";
+                lblCon6Thang.Text = $"Còn {thang} tháng ({homNay:MM/yyyy}–{dich:MM/yyyy}) để tích lũy {Tien(conThieu)}.";
             }
         }
 
@@ -221,8 +393,8 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void CapNhatNut()
         {
-            bool coChon = _theDangChon != null;
-            bool huy = coChon && _theDangChon.Du.TrangThai == "Huy";
+            bool coChon = _mucTieuDangChon != null && _mucTieuDangChon.MaMT > 0;
+            bool huy = _mucTieuDangChon != null && _mucTieuDangChon.TrangThai == "Huy";
             btnSua.Enabled = coChon;
             btnHuyMucTieu.Enabled = coChon && !huy;
         }
@@ -244,23 +416,17 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             txtSoTienMucTieu.Text = "";
             dtpNgayBatDau.Value = DateTime.Today;
             dtpNgayDich.Value = DateTime.Today.AddMonths(6);
-            dtpNgayDich.Checked = true;
             txtGhiChu.Text = "";
         }
 
         private void HienLenForm(MucTieuMH mt)
         {
             txtTenMucTieu.Text = mt.TenMucTieu;
-            txtSoTienMucTieu.Text = ((long)mt.SoTienMucTieu).ToString(CultureInfo.InvariantCulture);
+            txtSoTienMucTieu.Text = ((long)mt.SoTienMucTieu).ToString("N0", Vi);
             dtpNgayBatDau.Value = mt.NgayBatDau;
             if (mt.NgayDich.HasValue)
             {
                 dtpNgayDich.Value = mt.NgayDich.Value;
-                dtpNgayDich.Checked = true;
-            }
-            else
-            {
-                dtpNgayDich.Checked = false;
             }
             txtGhiChu.Text = mt.GhiChu ?? "";
         }
@@ -296,16 +462,17 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
         private void XuLyMoi()
         {
             ResetForm();
-            if (_theDangChon != null)
+            _mucTieuDangChon = null;
+            if (_panelDangChon != null)
             {
-                _theDangChon.DaChon = false;
-                _theDangChon = null;
+                var p = _panelDangChon;
+                _panelDangChon = null;
+                p.Invalidate();
             }
             flpMucTieu.Controls.Remove(pnlNapRut);
             pnlNapRut.Visible = false;
             CapNhatKhungTomTat(null);
             CapNhatNut();
-            frmMucTieuTietKiem_SizeChanged(null, null);
             txtTenMucTieu.Focus();
         }
 
@@ -324,12 +491,12 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void XuLySua()
         {
-            if (_theDangChon == null) { BaoLoi("Bạn chưa chọn mục tiêu nào."); return; }
+            if (_mucTieuDangChon == null || _mucTieuDangChon.MaMT <= 0) { BaoLoi("Bạn chưa chọn mục tiêu nào."); return; }
             if (!KiemTraNhap()) return;
 
             var mt = LayDuLieuTuForm();
-            mt.MaMT = _theDangChon.Du.MaMT;
-            mt.TrangThai = _theDangChon.Du.TrangThai;
+            mt.MaMT = _mucTieuDangChon.MaMT;
+            mt.TrangThai = _mucTieuDangChon.TrangThai;
             var kq = MucTieuNV.Sua(mt);
             if (!kq.ThanhCong) { BaoLoi(kq.ThongBao); return; }
 
@@ -339,9 +506,9 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void XuLyHuy()
         {
-            if (_theDangChon == null) { BaoLoi("Bạn chưa chọn mục tiêu nào."); return; }
+            if (_mucTieuDangChon == null || _mucTieuDangChon.MaMT <= 0) { BaoLoi("Bạn chưa chọn mục tiêu nào."); return; }
 
-            var mt = _theDangChon.Du;
+            var mt = _mucTieuDangChon;
             string hoi = $"Hủy mục tiêu \"{mt.TenMucTieu}\"?\nSố đã tiết kiệm ({Tien(mt.SoTienDaTietKiem)}) sẽ được hoàn về ví.";
             if (MessageBox.Show(hoi, "Hủy mục tiêu", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
@@ -355,7 +522,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         private void XuLyNapRut(bool nap)
         {
-            if (_theDangChon == null) { BaoLoi("Bạn hãy chọn một mục tiêu trước."); return; }
+            if (_mucTieuDangChon == null || _mucTieuDangChon.MaMT <= 0) { BaoLoi("Bạn hãy chọn một mục tiêu trước."); return; }
 
             decimal tien = DocSo(txtSoTienNapRut.Text);
             if (tien <= 0)
@@ -365,7 +532,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
                 return;
             }
 
-            int ma = _theDangChon.Du.MaMT;
+            int ma = _mucTieuDangChon.MaMT;
             var kq = nap ? MucTieuNV.NapTien(ma, tien) : MucTieuNV.RutTien(ma, tien);
             if (!kq.ThanhCong) { BaoLoi(kq.ThongBao); return; }
 
@@ -387,7 +554,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
                 txtSoTienMucTieu.Focus();
                 return false;
             }
-            if (dtpNgayDich.Checked && dtpNgayDich.Value.Date <= dtpNgayBatDau.Value.Date)
+            if (dtpNgayDich.Value.Date <= dtpNgayBatDau.Value.Date)
             {
                 BaoLoi("Ngày đích phải sau ngày bắt đầu.");
                 dtpNgayDich.Focus();
@@ -407,113 +574,13 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
         {
             return new MucTieuMH
             {
-                TenMucTieu = txtTenMucTieu.Text,
+                TenMucTieu = txtTenMucTieu.Text.Trim(),
                 SoTienMucTieu = DocSo(txtSoTienMucTieu.Text),
                 NgayBatDau = dtpNgayBatDau.Value.Date,
-                NgayDich = dtpNgayDich.Checked ? (DateTime?)dtpNgayDich.Value.Date : null,
+                NgayDich = dtpNgayDich.Value.Date,
                 TrangThai = "DangThucHien",
                 GhiChu = txtGhiChu.Text
             };
-        }
-
-        private class TheMucTieu : Panel
-        {
-            private static readonly Color MauVienThuong = Color.FromArgb(226, 232, 240);
-            private static readonly Color MauNenThanh = Color.FromArgb(226, 232, 240);
-
-            public MucTieuMH Du { get; private set; }
-
-            private bool _daChon;
-            public bool DaChon
-            {
-                get { return _daChon; }
-                set { _daChon = value; Invalidate(); }
-            }
-
-            private readonly Label _lblTen = new Label();
-            private readonly Label _lblTrangThai = new Label();
-            private readonly Label _lblTien = new Label();
-            private readonly Label _lblTyLe = new Label();
-            private readonly Label _lblHan = new Label();
-            private readonly Label _lblConThieu = new Label();
-            private readonly Panel _thanh = new Panel();
-            private readonly Panel _tien = new Panel();
-            private int _phanTram;
-
-            public TheMucTieu(MucTieuMH mt, int rong)
-            {
-                Du = mt;
-                DoubleBuffered = true;
-                BackColor = Color.White;
-                Size = new Size(rong, 88);
-                Cursor = Cursors.Hand;
-
-                Color chinh = mt.TrangThai == "HoanThanh" ? MauXanhLa : (mt.TrangThai == "Huy" ? MauXam : MauXanhDuong);
-
-                Cau(_lblTen, 12, 8, 280, 20, new Font("Segoe UI", 9.5F, FontStyle.Bold), Color.FromArgb(30, 41, 59), ContentAlignment.MiddleLeft);
-                _lblTen.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-
-                Cau(_lblTrangThai, rong - 12 - 120, 8, 120, 20, new Font("Segoe UI", 8.25F, FontStyle.Bold), chinh, ContentAlignment.MiddleRight);
-                _lblTrangThai.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-
-                Cau(_lblTien, 12, 30, 320, 20, new Font("Segoe UI", 9.5F, FontStyle.Bold), chinh, ContentAlignment.MiddleLeft);
-                Cau(_lblTyLe, rong - 12 - 60, 30, 60, 20, new Font("Segoe UI", 9.5F, FontStyle.Bold), chinh, ContentAlignment.MiddleRight);
-                _lblTyLe.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-
-                _thanh.BackColor = MauNenThanh;
-                _thanh.Location = new Point(12, 56);
-                _thanh.Size = new Size(rong - 24, 6);
-                _thanh.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-                _tien.BackColor = chinh;
-                _tien.Location = new Point(0, 0);
-                _tien.Height = 6;
-                _thanh.Controls.Add(_tien);
-                _thanh.Resize += (s, e) => CapNhatThanh();
-
-                Cau(_lblHan, 12, 66, 200, 18, new Font("Segoe UI", 8F), MauXam, ContentAlignment.MiddleLeft);
-                Cau(_lblConThieu, rong - 12 - 200, 66, 200, 18, new Font("Segoe UI", 8F), MauXam, ContentAlignment.MiddleRight);
-                _lblConThieu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-
-                Controls.AddRange(new Control[] { _lblTen, _lblTrangThai, _lblTien, _lblTyLe, _thanh, _lblHan, _lblConThieu });
-
-                _lblTen.Text = mt.TenMucTieu;
-                _lblTrangThai.Text = MucTieuNV.TenTrangThai(mt.TrangThai);
-                _lblTien.Text = Tien(mt.SoTienDaTietKiem) + " / " + Tien(mt.SoTienMucTieu);
-
-                _phanTram = mt.SoTienMucTieu > 0
-                    ? (int)Math.Min(100, Math.Floor(mt.SoTienDaTietKiem * 100m / mt.SoTienMucTieu))
-                    : 0;
-                _lblTyLe.Text = _phanTram + "%";
-                _lblHan.Text = mt.NgayDich.HasValue ? "Hạn: " + mt.NgayDich.Value.ToString("dd/MM/yyyy") : "Không đặt hạn";
-                _lblConThieu.Text = "Còn thiếu: " + Tien(Math.Max(0, mt.SoTienMucTieu - mt.SoTienDaTietKiem));
-                CapNhatThanh();
-            }
-
-            private static void Cau(Label l, int x, int y, int w, int h, Font f, Color mau, ContentAlignment canLe)
-            {
-                l.AutoSize = false;
-                l.Location = new Point(x, y);
-                l.Size = new Size(w, h);
-                l.Font = f;
-                l.ForeColor = mau;
-                l.TextAlign = canLe;
-                l.BackColor = Color.Transparent;
-            }
-
-            private void CapNhatThanh()
-            {
-                _tien.Width = _thanh.Width * _phanTram / 100;
-            }
-
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                base.OnPaint(e);
-                using (var but = new Pen(_daChon ? MauXanhDuong : MauVienThuong, _daChon ? 2 : 1))
-                {
-                    float d = but.Width / 2f;
-                    e.Graphics.DrawRectangle(but, d, d, Width - but.Width, Height - but.Width);
-                }
-            }
         }
     }
 }
