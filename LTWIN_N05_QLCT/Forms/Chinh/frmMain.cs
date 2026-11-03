@@ -71,13 +71,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // Icon chuẩn cho các nút thanh công cụ
             try
             {
-                btnTrangChu.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_XanhDuong, new Size(20, 20));
-                btnThuNhap.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoThemThuNhap_XanhDuong, new Size(20, 20));
-                btnChiTieu.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_XanhDuong, new Size(20, 20));
-                btnNganSach.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong, new Size(20, 20));
-                btnBaoCao.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong, new Size(20, 20));
-                btnTimKiem.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong, new Size(20, 20));
-                btnLamMoi.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoLamMoi_XanhDuong, new Size(20, 20));
+                btnTrangChu.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_XanhDuong, new Size(18, 18));
+                btnNganSach.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong, new Size(18, 18));
+                btnBaoCao.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong, new Size(18, 18));
+                btnTimKiem.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong, new Size(18, 18));
+                btnLamMoi.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoLamMoi_XanhDuong, new Size(18, 18));
             }
             catch { }
 
@@ -113,18 +111,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 }
             };
 
-            tlsCongCu.Resize += (s, e) =>
-            {
-                if (lblThang.Visible)
-                {
-                    lblNguoiDungHienTai.Location = new Point(Math.Max(740, lblThang.Left - 245), 14);
-                }
-                else
-                {
-                    lblNguoiDungHienTai.Location = new Point(Math.Max(650, tlsCongCu.ClientSize.Width - 320), 14);
-                }
-            };
-
             stsTrangThai.Paint += (s, e) =>
             {
                 using (var pen = new Pen(MauDuongKe, 1))
@@ -152,12 +138,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             btnThuNhap.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnThuNhap); MoFormCon(new Forms.NghiepVu.frmQuanLyThuNhap(), "Quản lý thu nhập"); };
             btnChiTieu.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnChiTieu); MoFormCon(new Forms.NghiepVu.frmQuanLyChiTieu(), "Quản lý chi tiêu"); };
             btnNganSach.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnNganSach); MoFormCon(new Forms.NghiepVu.frmNganSach(), "Quản lý ngân sách"); };
-            btnBaoCao.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmBaoCaoThang(), "Báo cáo tháng", true); };
+            btnBaoCao.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnBaoCao); MoFormCon(new Forms.BaoCao.frmBieuDo(), "Báo cáo thống kê"); };
             btnTimKiem.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnTimKiem); MoFormCon(new Forms.NghiepVu.frmTimKiem(), "Tìm kiếm giao dịch"); };
             btnLamMoi.Click += (s, e) => LamMoiDuLieu();
 
             // Menu danh mục
-            mnuDanhMucVi.Click += (s, e) => { DatTrangThaiNutThanhCongCu(btnTrangChu); MoFormCon(new Forms.DanhMuc.frmViTien(), "Danh mục ví tiền"); };
+            mnuDanhMucVi.Click += (s, e) => { DatTrangThaiNutThanhCongCu(null); MoFormCon(new Forms.DanhMuc.frmViTien(), "Danh mục ví tiền"); };
             mnuDanhMucNhomChi.Click += (s, e) => { DatTrangThaiNutThanhCongCu(null); MoFormCon(new Forms.DanhMuc.frmLoaiChiTieu(), "Danh mục loại chi"); };
             mnuDanhMucNguonThu.Click += (s, e) => { DatTrangThaiNutThanhCongCu(null); MoFormCon(new Forms.DanhMuc.frmLoaiThuNhap(), "Danh mục loại thu"); };
 
@@ -240,25 +226,18 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 lblTieuDeCuaSo.Text = "Quản Lý Chi Tiêu — " + tieuDe;
             }
 
-            // Thanh công cụ: hiển thị tên người dùng góc phải, không bị che khuất
+            // Thanh công cụ: chế độ trang cá nhân hiển thị tên người dùng góc phải, ẩn bộ lọc tháng
             lblNguoiDungHienTai.Text = _hoTen;
-            lblNguoiDungHienTai.Visible = true;
+            lblNguoiDungHienTai.Visible = cheDoTrangCaNhan;
             lblThang.Visible = !cheDoTrangCaNhan;
             dtpThang.Visible = !cheDoTrangCaNhan;
             btnLamMoi.Visible = !cheDoTrangCaNhan;
 
             if (cheDoTrangCaNhan)
             {
-                lblNguoiDungHienTai.Location = new Point(Math.Max(650, tlsCongCu.ClientSize.Width - 320), 14);
-                lblNguoiDungHienTai.Size = new Size(300, 28);
+                lblNguoiDungHienTai.Location = new Point(Math.Max(700, tlsCongCu.ClientSize.Width - lblNguoiDungHienTai.Width - 16), 14);
+                lblNguoiDungHienTai.BringToFront();
             }
-            else
-            {
-                int leftPos = Math.Max(740, lblThang.Left - 245);
-                lblNguoiDungHienTai.Location = new Point(leftPos, 14);
-                lblNguoiDungHienTai.Size = new Size(235, 28);
-            }
-            lblNguoiDungHienTai.BringToFront();
 
             // Đồng bộ ngày tháng sang form con ngay khi mở
             var dongBo = formCon as IDongBoThang;
@@ -434,8 +413,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                     b.FlatAppearance.BorderSize = 0;
                     b.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
                     if (b == btnTrangChu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_Trang;
-                    else if (b == btnThuNhap) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoSanSang_XanhLa;
-                    else if (b == btnChiTieu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_Trang;
                     else if (b == btnNganSach) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_Trang;
                     else if (b == btnBaoCao) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_Trang;
                     else if (b == btnTimKiem) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_Trang;
@@ -448,8 +425,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                     b.FlatAppearance.BorderColor = Color.FromArgb(203, 213, 225);
                     b.Font = new Font("Segoe UI", 9.25F, FontStyle.Regular);
                     if (b == btnTrangChu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_XanhDuong;
-                    else if (b == btnThuNhap) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThemThuNhap_XanhDuong;
-                    else if (b == btnChiTieu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_XanhDuong;
                     else if (b == btnNganSach) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
                     else if (b == btnBaoCao) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong;
                     else if (b == btnTimKiem) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong;
@@ -457,13 +432,13 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             }
         }
 
-        //Mo dasshboard
+        // Mở dashboard / màn hình chính
         private void MoDashboard()
         {
-            DatTrangThaiNutThanhCongCu(null);
+            DatTrangThaiNutThanhCongCu(btnTrangChu);
             var frm = new frmDashboard();
-            MoFormCon(frm, "Tổng quan");
-            lblTrangThai.Text = "Đang xem: Tổng quan";
+            MoFormCon(frm, "Màn hình chính");
+            lblTrangThai.Text = "Sẵn sàng";
         }
     }
 }
