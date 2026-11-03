@@ -42,6 +42,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuThuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuChiTieu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNganSach = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuChuyenTien = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMucTieuTietKiem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuGiaoDichDinhKy = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCauHinh = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCao = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCaoThuChi = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCaoNganSach = new System.Windows.Forms.ToolStripMenuItem();
@@ -162,7 +168,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.mnuChinh.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuChinh.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuChinh.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnTrangChu,
             this.mnuHeThong,
             this.mnuDanhMuc,
             this.mnuNghiepVu,
@@ -178,11 +183,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // mnuHeThong
             // 
             this.mnuHeThong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuDangNhap,
-            this.mnuDangKy,
+            this.btnTrangChu,
             this.mnuDoiMatKhau,
             this.mnuThongTinCaNhan,
-            this.mnuPhanQuyen,
             this.toolStripSeparator1,
             this.mnuDangXuat,
             this.mnuThoat});
@@ -242,8 +245,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             this.mnuDanhMuc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuDanhMucVi,
-            this.mnuDanhMucNhomChi,
-            this.mnuDanhMucNguonThu});
+            this.mnuDanhMucNguonThu,
+            this.mnuDanhMucNhomChi});
             this.mnuDanhMuc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.mnuDanhMuc.Name = "mnuDanhMuc";
             this.mnuDanhMuc.Size = new System.Drawing.Size(95, 25);
@@ -253,26 +256,30 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             this.mnuDanhMucVi.Name = "mnuDanhMucVi";
             this.mnuDanhMucVi.Size = new System.Drawing.Size(241, 26);
-            this.mnuDanhMucVi.Text = "Danh mục ví tiền";
-            // 
-            // mnuDanhMucNhomChi
-            // 
-            this.mnuDanhMucNhomChi.Name = "mnuDanhMucNhomChi";
-            this.mnuDanhMucNhomChi.Size = new System.Drawing.Size(241, 26);
-            this.mnuDanhMucNhomChi.Text = "Danh mục nhóm chi";
+            this.mnuDanhMucVi.Text = "Ví tiền";
             // 
             // mnuDanhMucNguonThu
             // 
             this.mnuDanhMucNguonThu.Name = "mnuDanhMucNguonThu";
             this.mnuDanhMucNguonThu.Size = new System.Drawing.Size(241, 26);
-            this.mnuDanhMucNguonThu.Text = "Danh mục nguồn thu";
+            this.mnuDanhMucNguonThu.Text = "Loại thu";
+            // 
+            // mnuDanhMucNhomChi
+            // 
+            this.mnuDanhMucNhomChi.Name = "mnuDanhMucNhomChi";
+            this.mnuDanhMucNhomChi.Size = new System.Drawing.Size(241, 26);
+            this.mnuDanhMucNhomChi.Text = "Loại chi";
             // 
             // mnuNghiepVu
             // 
             this.mnuNghiepVu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuThuNhap,
             this.mnuChiTieu,
-            this.mnuNganSach});
+            this.mnuNganSach,
+            this.mnuChuyenTien,
+            this.mnuTimKiem,
+            this.mnuMucTieuTietKiem,
+            this.mnuGiaoDichDinhKy});
             this.mnuNghiepVu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.mnuNghiepVu.Name = "mnuNghiepVu";
             this.mnuNghiepVu.Size = new System.Drawing.Size(96, 25);
@@ -282,27 +289,52 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             this.mnuThuNhap.Name = "mnuThuNhap";
             this.mnuThuNhap.Size = new System.Drawing.Size(222, 26);
-            this.mnuThuNhap.Text = "Quản lý thu nhập";
+            this.mnuThuNhap.Text = "Thu nhập";
             // 
             // mnuChiTieu
             // 
             this.mnuChiTieu.Name = "mnuChiTieu";
             this.mnuChiTieu.Size = new System.Drawing.Size(222, 26);
-            this.mnuChiTieu.Text = "Quản lý chi tiêu";
+            this.mnuChiTieu.Text = "Chi tiêu";
             // 
             // mnuNganSach
             // 
             this.mnuNganSach.Name = "mnuNganSach";
             this.mnuNganSach.Size = new System.Drawing.Size(222, 26);
-            this.mnuNganSach.Text = "Quản lý ngân sách";
+            this.mnuNganSach.Text = "Ngân sách";
+            // 
+            // mnuChuyenTien
+            // 
+            this.mnuChuyenTien.Name = "mnuChuyenTien";
+            this.mnuChuyenTien.Size = new System.Drawing.Size(222, 26);
+            this.mnuChuyenTien.Text = "Chuyển tiền";
+            // 
+            // mnuTimKiem
+            // 
+            this.mnuTimKiem.Name = "mnuTimKiem";
+            this.mnuTimKiem.Size = new System.Drawing.Size(222, 26);
+            this.mnuTimKiem.Text = "Tìm kiếm";
+            // 
+            // mnuMucTieuTietKiem
+            // 
+            this.mnuMucTieuTietKiem.Name = "mnuMucTieuTietKiem";
+            this.mnuMucTieuTietKiem.Size = new System.Drawing.Size(222, 26);
+            this.mnuMucTieuTietKiem.Text = "Mục tiêu tiết kiệm";
+            // 
+            // mnuGiaoDichDinhKy
+            // 
+            this.mnuGiaoDichDinhKy.Name = "mnuGiaoDichDinhKy";
+            this.mnuGiaoDichDinhKy.Size = new System.Drawing.Size(222, 26);
+            this.mnuGiaoDichDinhKy.Text = "Giao dịch định kỳ";
             // 
             // mnuBaoCao
             // 
             this.mnuBaoCao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuBaoCaoThuChi,
-            this.mnuBaoCaoNganSach,
+            this.mnuBaoCaoThang,
             this.mnuBieuDo,
-            this.mnuXuatBaoCao});
+            this.mnuXuatBaoCao,
+            this.mnuBaoCaoThuChi,
+            this.mnuBaoCaoNganSach});
             this.mnuBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.mnuBaoCao.Name = "mnuBaoCao";
             this.mnuBaoCao.Size = new System.Drawing.Size(78, 25);
@@ -322,6 +354,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             //
             // Các trang báo cáo và menu nhanh trên thanh công cụ
             //
+            this.mnuBaoCaoThang.Name = "mnuBaoCaoThang";
+            this.mnuBaoCaoThang.Size = new System.Drawing.Size(283, 26);
+            this.mnuBaoCaoThang.Text = "Báo cáo tháng";
+            // 
+            // mnuBieuDo
+            // 
             this.mnuBieuDo.Name = "mnuBieuDo";
             this.mnuBieuDo.Text = "Biểu đồ";
             this.mnuXuatBaoCao.Name = "mnuXuatBaoCao";
@@ -342,8 +380,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             this.mnuQuanTri.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuQuanLyNguoiDung,
+            this.mnuPhanQuyen,
             this.mnuSaoLuuDuLieu,
-            this.mnuPhucHoiDuLieu});
+            this.mnuCauHinh});
             this.mnuQuanTri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.mnuQuanTri.Name = "mnuQuanTri";
             this.mnuQuanTri.Size = new System.Drawing.Size(81, 25);
@@ -353,19 +392,19 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             this.mnuQuanLyNguoiDung.Name = "mnuQuanLyNguoiDung";
             this.mnuQuanLyNguoiDung.Size = new System.Drawing.Size(233, 26);
-            this.mnuQuanLyNguoiDung.Text = "Quản lý người dùng";
+            this.mnuQuanLyNguoiDung.Text = "Người dùng";
             // 
             // mnuSaoLuuDuLieu
             // 
             this.mnuSaoLuuDuLieu.Name = "mnuSaoLuuDuLieu";
             this.mnuSaoLuuDuLieu.Size = new System.Drawing.Size(233, 26);
-            this.mnuSaoLuuDuLieu.Text = "Sao lưu dữ liệu";
+            this.mnuSaoLuuDuLieu.Text = "Sao lưu / Phục hồi";
             // 
-            // mnuPhucHoiDuLieu
+            // mnuCauHinh
             // 
-            this.mnuPhucHoiDuLieu.Name = "mnuPhucHoiDuLieu";
-            this.mnuPhucHoiDuLieu.Size = new System.Drawing.Size(233, 26);
-            this.mnuPhucHoiDuLieu.Text = "Phục hồi dữ liệu";
+            this.mnuCauHinh.Name = "mnuCauHinh";
+            this.mnuCauHinh.Size = new System.Drawing.Size(233, 26);
+            this.mnuCauHinh.Text = "Cấu hình";
             // 
             // mnuTroGiup
             // 
@@ -381,7 +420,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             this.mnuHuongDan.Name = "mnuHuongDan";
             this.mnuHuongDan.Size = new System.Drawing.Size(232, 26);
-            this.mnuHuongDan.Text = "Hướng dẫn sử dụng";
+            this.mnuHuongDan.Text = "Hướng dẫn";
             // 
             // mnuGioiThieu
             // 
@@ -701,6 +740,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private System.Windows.Forms.ToolStripMenuItem mnuQuanLyNguoiDung;
         private System.Windows.Forms.ToolStripMenuItem mnuSaoLuuDuLieu;
         private System.Windows.Forms.ToolStripMenuItem mnuPhucHoiDuLieu;
+        private System.Windows.Forms.ToolStripMenuItem mnuChuyenTien;
+        private System.Windows.Forms.ToolStripMenuItem mnuTimKiem;
+        private System.Windows.Forms.ToolStripMenuItem mnuMucTieuTietKiem;
+        private System.Windows.Forms.ToolStripMenuItem mnuGiaoDichDinhKy;
+        private System.Windows.Forms.ToolStripMenuItem mnuBaoCaoThang;
+        private System.Windows.Forms.ToolStripMenuItem mnuCauHinh;
         private System.Windows.Forms.ToolStripMenuItem mnuTroGiup;
         private System.Windows.Forms.ToolStripMenuItem mnuHuongDan;
         private System.Windows.Forms.ToolStripMenuItem mnuGioiThieu;
