@@ -71,7 +71,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // Icon chuẩn cho các nút thanh công cụ
             try
             {
-                btnTrangChu.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_XanhDuong, new Size(18, 18));
                 btnThuNhap.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoThemThuNhap_XanhDuong, new Size(18, 18));
                 btnChiTieu.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_XanhDuong, new Size(18, 18));
                 btnNganSach.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong, new Size(18, 18));
@@ -414,7 +413,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                     b.ForeColor = Color.White;
                     b.FlatAppearance.BorderSize = 0;
                     b.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-                    if (b == btnTrangChu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_Trang;
+                    if (b == btnTrangChu) b.Image = null;
                     else if (b == btnThuNhap) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThemThuNhap_Trang;
                     else if (b == btnChiTieu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_Trang;
                     else if (b == btnNganSach) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_Trang;
@@ -428,7 +427,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                     b.FlatAppearance.BorderSize = 1;
                     b.FlatAppearance.BorderColor = Color.FromArgb(203, 213, 225);
                     b.Font = new Font("Segoe UI", 9.25F, FontStyle.Regular);
-                    if (b == btnTrangChu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_XanhDuong;
+                    if (b == btnTrangChu) b.Image = null;
                     else if (b == btnThuNhap) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThemThuNhap_XanhDuong;
                     else if (b == btnChiTieu) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_XanhDuong;
                     else if (b == btnNganSach) b.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
@@ -446,5 +445,5 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             MoFormCon(frm, "Màn hình chính");
             lblTrangThai.Text = "Sẵn sàng";
         }
-    }
+}
 }

@@ -59,10 +59,9 @@ namespace LTWIN_N05_QLCT.Properties {
                 resourceCulture = value;
             }
         }
-
-
-
-/// <summary>
+        
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icoBaoCao_Trang {
@@ -245,6 +244,16 @@ namespace LTWIN_N05_QLCT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icoThemThuNhap_Trang {
+            get {
+                object obj = ResourceManager.GetObject("icoThemThuNhap_Trang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icoThemThuNhap_XanhDuong {
             get {
                 object obj = ResourceManager.GetObject("icoThemThuNhap_XanhDuong", resourceCulture);
@@ -368,15 +377,6 @@ namespace LTWIN_N05_QLCT.Properties {
         internal static System.Drawing.Bitmap icoXuatBaoCao_XanhDuong {
             get {
                 object obj = ResourceManager.GetObject("icoXuatBaoCao_XanhDuong", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icoThemThuNhap_Trang {
-            get {
-                object obj = ResourceManager.GetObject("icoThemThuNhap_Trang", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
