@@ -58,8 +58,10 @@ namespace LTWIN_N05_QLCT.Properties {
             set {
                 resourceCulture = value;
             }
-        }
-
+        }
+
+
+
 /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -366,6 +368,15 @@ namespace LTWIN_N05_QLCT.Properties {
         internal static System.Drawing.Bitmap icoXuatBaoCao_XanhDuong {
             get {
                 object obj = ResourceManager.GetObject("icoXuatBaoCao_XanhDuong", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icoThemThuNhap_Trang {
+            get {
+                object obj = ResourceManager.GetObject("icoThemThuNhap_Trang", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
