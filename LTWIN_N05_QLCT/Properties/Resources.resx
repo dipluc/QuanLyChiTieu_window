@@ -205,4 +205,10 @@
   <data name="icoXuatBaoCao_XanhDuong" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icoXuatBaoCao_XanhDuong.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icoTrangChu_Trang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icoTrangChu_Trang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icoTrangChu_XanhDuong" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icoTrangChu_XanhDuong.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

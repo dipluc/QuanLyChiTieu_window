@@ -83,7 +83,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblViDangChon = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPhanCach2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNgayHienTai = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnTrangChu = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnTrangChu = new System.Windows.Forms.Button();
             this.pnlThanhTieuDe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).BeginInit();
             this.mnuChinh.SuspendLayout();
@@ -183,7 +183,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // mnuHeThong
             // 
             this.mnuHeThong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnTrangChu,
+            
             this.mnuDoiMatKhau,
             this.mnuThongTinCaNhan,
             this.toolStripSeparator1,
@@ -431,6 +431,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // tlsCongCu
             // 
             this.tlsCongCu.BackColor = System.Drawing.Color.White;
+            this.tlsCongCu.Controls.Add(this.btnTrangChu);
             this.tlsCongCu.Controls.Add(this.btnThuNhap);
             this.tlsCongCu.Controls.Add(this.btnChiTieu);
             this.tlsCongCu.Controls.Add(this.btnNganSach);
@@ -446,6 +447,24 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.tlsCongCu.Size = new System.Drawing.Size(1333, 56);
             this.tlsCongCu.TabIndex = 2;
             // 
+            // btnTrangChu
+            // 
+            this.btnTrangChu.BackColor = System.Drawing.Color.White;
+            this.btnTrangChu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTrangChu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnTrangChu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTrangChu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrangChu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnTrangChu.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_XanhDuong;
+            this.btnTrangChu.Location = new System.Drawing.Point(16, 9);
+            this.btnTrangChu.Name = "btnTrangChu";
+            this.btnTrangChu.Size = new System.Drawing.Size(115, 38);
+            this.btnTrangChu.TabIndex = 0;
+            this.btnTrangChu.Text = " Trang chủ";
+            this.btnTrangChu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTrangChu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTrangChu.UseVisualStyleBackColor = false;
+            // 
             // btnThuNhap
             // 
             this.btnThuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
@@ -454,9 +473,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnThuNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThuNhap.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThuNhap.ForeColor = System.Drawing.Color.White;
-            this.btnThuNhap.Location = new System.Drawing.Point(16, 9);
+            this.btnThuNhap.Location = new System.Drawing.Point(137, 9);
             this.btnThuNhap.Name = "btnThuNhap";
-            this.btnThuNhap.Size = new System.Drawing.Size(125, 38);
+            this.btnThuNhap.Size = new System.Drawing.Size(115, 38);
             this.btnThuNhap.TabIndex = 0;
             this.btnThuNhap.Text = "+ Thu nhập";
             this.btnThuNhap.UseVisualStyleBackColor = false;
@@ -469,9 +488,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnChiTieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChiTieu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnChiTieu.Location = new System.Drawing.Point(149, 9);
+            this.btnChiTieu.Location = new System.Drawing.Point(258, 9);
             this.btnChiTieu.Name = "btnChiTieu";
-            this.btnChiTieu.Size = new System.Drawing.Size(110, 38);
+            this.btnChiTieu.Size = new System.Drawing.Size(115, 38);
             this.btnChiTieu.TabIndex = 1;
             this.btnChiTieu.Text = "— Chi tiêu";
             this.btnChiTieu.UseVisualStyleBackColor = false;
@@ -485,9 +504,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnNganSach.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNganSach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnNganSach.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
-            this.btnNganSach.Location = new System.Drawing.Point(267, 9);
+            this.btnNganSach.Location = new System.Drawing.Point(379, 9);
             this.btnNganSach.Name = "btnNganSach";
-            this.btnNganSach.Size = new System.Drawing.Size(140, 38);
+            this.btnNganSach.Size = new System.Drawing.Size(115, 38);
             this.btnNganSach.TabIndex = 2;
             this.btnNganSach.Text = " Ngân sách";
             this.btnNganSach.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -503,9 +522,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnBaoCao.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong;
-            this.btnBaoCao.Location = new System.Drawing.Point(415, 9);
+            this.btnBaoCao.Location = new System.Drawing.Point(500, 9);
             this.btnBaoCao.Name = "btnBaoCao";
-            this.btnBaoCao.Size = new System.Drawing.Size(120, 38);
+            this.btnBaoCao.Size = new System.Drawing.Size(115, 38);
             this.btnBaoCao.TabIndex = 3;
             this.btnBaoCao.Text = " Báo cáo";
             this.btnBaoCao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -521,9 +540,9 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnTimKiem.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong;
-            this.btnTimKiem.Location = new System.Drawing.Point(543, 9);
+            this.btnTimKiem.Location = new System.Drawing.Point(621, 9);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(125, 38);
+            this.btnTimKiem.Size = new System.Drawing.Size(115, 38);
             this.btnTimKiem.TabIndex = 4;
             this.btnTimKiem.Text = " Tìm kiếm";
             this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -575,14 +594,14 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // lblNguoiDungHienTai
             // 
             this.lblNguoiDungHienTai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNguoiDungHienTai.AutoSize = true;
             this.lblNguoiDungHienTai.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNguoiDungHienTai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblNguoiDungHienTai.Location = new System.Drawing.Point(1170, 18);
+            this.lblNguoiDungHienTai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.lblNguoiDungHienTai.Location = new System.Drawing.Point(742, 14);
             this.lblNguoiDungHienTai.Name = "lblNguoiDungHienTai";
-            this.lblNguoiDungHienTai.Size = new System.Drawing.Size(137, 21);
+            this.lblNguoiDungHienTai.Size = new System.Drawing.Size(200, 28);
             this.lblNguoiDungHienTai.TabIndex = 8;
             this.lblNguoiDungHienTai.Text = "Nguyễn Minh Anh";
+            this.lblNguoiDungHienTai.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblNguoiDungHienTai.Visible = false;
             // 
             // pnlNoiDung
@@ -664,12 +683,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblNgayHienTai.Name = "lblNgayHienTai";
             this.lblNgayHienTai.Size = new System.Drawing.Size(152, 20);
             this.lblNgayHienTai.Text = "Hôm nay: 29/10/2026";
-            // 
-            // btnTrangChu
-            // 
-            this.btnTrangChu.Name = "btnTrangChu";
-            this.btnTrangChu.Size = new System.Drawing.Size(224, 26);
-            this.btnTrangChu.Text = "Trang chủ";
+
             // 
             // frmMain
             // 
@@ -768,6 +782,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         public System.Windows.Forms.ToolStripStatusLabel lblViDangChon;
         private System.Windows.Forms.ToolStripStatusLabel lblPhanCach2;
         private System.Windows.Forms.ToolStripStatusLabel lblNgayHienTai;
-        private System.Windows.Forms.ToolStripMenuItem btnTrangChu;
+        private System.Windows.Forms.Button btnTrangChu;
     }
 }

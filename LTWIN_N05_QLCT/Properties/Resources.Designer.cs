@@ -349,5 +349,18 @@ namespace LTWIN_N05_QLCT.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        internal static System.Drawing.Bitmap icoTrangChu_Trang {
+            get {
+                object obj = ResourceManager.GetObject("icoTrangChu_Trang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap icoTrangChu_XanhDuong {
+            get {
+                object obj = ResourceManager.GetObject("icoTrangChu_XanhDuong", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
