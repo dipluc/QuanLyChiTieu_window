@@ -44,7 +44,7 @@
             this.mnuMucTieuTietKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGiaoDichDinhKy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCao = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBieuDo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuXuatBaoCao = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +61,7 @@
             this.mnuDangNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDangKy = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsBaoCao = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuNhanhThongKe = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNhanhThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhBaoCaoThang = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhBieuDo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNhanhXuatBaoCao = new System.Windows.Forms.ToolStripMenuItem();
@@ -314,7 +314,7 @@
             // 
             // mnuBaoCao
             // 
-            this.mnuBaoCao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuBaoCao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuThongKe,
             this.mnuBaoCaoThang,
             this.mnuBieuDo,
@@ -325,6 +325,12 @@
             this.mnuBaoCao.Name = "mnuBaoCao";
             this.mnuBaoCao.Size = new System.Drawing.Size(78, 25);
             this.mnuBaoCao.Text = "Báo cáo";
+            // 
+            // mnuThongKe
+            // 
+            this.mnuThongKe.Name = "mnuThongKe";
+            this.mnuThongKe.Size = new System.Drawing.Size(283, 26);
+            this.mnuThongKe.Text = "Thống kê";
             // 
             // mnuBaoCaoThang
             // 
@@ -429,13 +435,19 @@
             // cmsBaoCao
             // 
             this.cmsBaoCao.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsBaoCao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsBaoCao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuNhanhThongKe,
             this.mnuNhanhBaoCaoThang,
             this.mnuNhanhBieuDo,
             this.mnuNhanhXuatBaoCao});
             this.cmsBaoCao.Name = "cmsBaoCao";
-            this.cmsBaoCao.Size = new System.Drawing.Size(175, 76);
+            this.cmsBaoCao.Size = new System.Drawing.Size(175, 100);
+            // 
+            // mnuNhanhThongKe
+            // 
+            this.mnuNhanhThongKe.Name = "mnuNhanhThongKe";
+            this.mnuNhanhThongKe.Size = new System.Drawing.Size(174, 24);
+            this.mnuNhanhThongKe.Text = "Thống kê";
             // 
             // mnuNhanhBaoCaoThang
             // 
@@ -504,7 +516,6 @@
             this.btnThuNhap.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThuNhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnThuNhap.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoThemThuNhap_XanhDuong;
-            this.btnThuNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnThuNhap.Location = new System.Drawing.Point(118, 9);
             this.btnThuNhap.Name = "btnThuNhap";
             this.btnThuNhap.Size = new System.Drawing.Size(120, 36);
@@ -522,7 +533,6 @@
             this.btnChiTieu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnChiTieu.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoChiTieu_XanhDuong;
-            this.btnChiTieu.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnChiTieu.Location = new System.Drawing.Point(244, 9);
             this.btnChiTieu.Name = "btnChiTieu";
             this.btnChiTieu.Size = new System.Drawing.Size(115, 36);
@@ -548,7 +558,6 @@
             this.btnNganSach.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNganSach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnNganSach.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
-            this.btnNganSach.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnNganSach.Location = new System.Drawing.Point(372, 9);
             this.btnNganSach.Name = "btnNganSach";
             this.btnNganSach.Size = new System.Drawing.Size(125, 36);
@@ -566,7 +575,6 @@
             this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnBaoCao.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong;
-            this.btnBaoCao.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnBaoCao.Location = new System.Drawing.Point(503, 9);
             this.btnBaoCao.Name = "btnBaoCao";
             this.btnBaoCao.Size = new System.Drawing.Size(115, 36);
@@ -584,7 +592,6 @@
             this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnTimKiem.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong;
-            this.btnTimKiem.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnTimKiem.Location = new System.Drawing.Point(624, 9);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(120, 36);
@@ -639,7 +646,6 @@
             this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLamMoi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnLamMoi.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoLamMoi_XanhDuong;
-            this.btnLamMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLamMoi.Location = new System.Drawing.Point(1192, 9);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(120, 36);
@@ -792,8 +798,10 @@
         private System.Windows.Forms.ToolStripMenuItem mnuBieuDo;
         private System.Windows.Forms.ToolStripMenuItem mnuXuatBaoCao;
         private System.Windows.Forms.ContextMenuStrip cmsBaoCao;
-        private System.Windows.Forms.ToolStripMenuItem mnuThongKe;
-        private System.Windows.Forms.ToolStripMenuItem mnuNhanhThongKe;
+        private System.Windows.Forms.ToolStripMenuItem mnuThongKe;
+
+        private System.Windows.Forms.ToolStripMenuItem mnuNhanhThongKe;
+
         private System.Windows.Forms.ToolStripMenuItem mnuNhanhBaoCaoThang;
         private System.Windows.Forms.ToolStripMenuItem mnuNhanhBieuDo;
         private System.Windows.Forms.ToolStripMenuItem mnuNhanhXuatBaoCao;

@@ -152,7 +152,7 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.pnlBoLoc.Controls.Add(this.btnXuatPDF);
             this.pnlBoLoc.Location = new System.Drawing.Point(24, 48);
             this.pnlBoLoc.Name = "pnlBoLoc";
-            this.pnlBoLoc.Size = new System.Drawing.Size(1040, 56);
+            this.pnlBoLoc.Size = new System.Drawing.Size(1040, 60);
             this.pnlBoLoc.TabIndex = 1;
             // 
             // lblKyThongKe
@@ -175,68 +175,8 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.pnlKyThongKe.Controls.Add(this.btnKyNgay);
             this.pnlKyThongKe.Location = new System.Drawing.Point(0, 23);
             this.pnlKyThongKe.Name = "pnlKyThongKe";
-            this.pnlKyThongKe.Size = new System.Drawing.Size(340, 32);
+            this.pnlKyThongKe.Size = new System.Drawing.Size(350, 32);
             this.pnlKyThongKe.TabIndex = 1;
-            // 
-            // btnKyNam
-            // 
-            this.btnKyNam.BackColor = System.Drawing.Color.White;
-            this.btnKyNam.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKyNam.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.btnKyNam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKyNam.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKyNam.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btnKyNam.Location = new System.Drawing.Point(208, 0);
-            this.btnKyNam.Name = "btnKyNam";
-            this.btnKyNam.Size = new System.Drawing.Size(52, 30);
-            this.btnKyNam.TabIndex = 4;
-            this.btnKyNam.Text = "Năm";
-            this.btnKyNam.UseVisualStyleBackColor = false;
-            // 
-            // btnKyQuy
-            // 
-            this.btnKyQuy.BackColor = System.Drawing.Color.White;
-            this.btnKyQuy.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKyQuy.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.btnKyQuy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKyQuy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKyQuy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btnKyQuy.Location = new System.Drawing.Point(156, 0);
-            this.btnKyQuy.Name = "btnKyQuy";
-            this.btnKyQuy.Size = new System.Drawing.Size(52, 30);
-            this.btnKyQuy.TabIndex = 3;
-            this.btnKyQuy.Text = "Quý";
-            this.btnKyQuy.UseVisualStyleBackColor = false;
-            // 
-            // btnKyThang
-            // 
-            this.btnKyThang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.btnKyThang.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKyThang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(95)))), ((int)(((byte)(184)))));
-            this.btnKyThang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKyThang.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKyThang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(95)))), ((int)(((byte)(184)))));
-            this.btnKyThang.Location = new System.Drawing.Point(104, 0);
-            this.btnKyThang.Name = "btnKyThang";
-            this.btnKyThang.Size = new System.Drawing.Size(52, 30);
-            this.btnKyThang.TabIndex = 2;
-            this.btnKyThang.Text = "Tháng";
-            this.btnKyThang.UseVisualStyleBackColor = false;
-            // 
-            // btnKyTuan
-            // 
-            this.btnKyTuan.BackColor = System.Drawing.Color.White;
-            this.btnKyTuan.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKyTuan.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.btnKyTuan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKyTuan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKyTuan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btnKyTuan.Location = new System.Drawing.Point(52, 0);
-            this.btnKyTuan.Name = "btnKyTuan";
-            this.btnKyTuan.Size = new System.Drawing.Size(52, 30);
-            this.btnKyTuan.TabIndex = 1;
-            this.btnKyTuan.Text = "Tuần";
-            this.btnKyTuan.UseVisualStyleBackColor = false;
             // 
             // btnKyNgay
             // 
@@ -248,17 +188,77 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.btnKyNgay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
             this.btnKyNgay.Location = new System.Drawing.Point(0, 0);
             this.btnKyNgay.Name = "btnKyNgay";
-            this.btnKyNgay.Size = new System.Drawing.Size(52, 30);
+            this.btnKyNgay.Size = new System.Drawing.Size(70, 32);
             this.btnKyNgay.TabIndex = 0;
             this.btnKyNgay.Text = "Ngày";
             this.btnKyNgay.UseVisualStyleBackColor = false;
+            // 
+            // btnKyTuan
+            // 
+            this.btnKyTuan.BackColor = System.Drawing.Color.White;
+            this.btnKyTuan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKyTuan.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnKyTuan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKyTuan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKyTuan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.btnKyTuan.Location = new System.Drawing.Point(70, 0);
+            this.btnKyTuan.Name = "btnKyTuan";
+            this.btnKyTuan.Size = new System.Drawing.Size(70, 32);
+            this.btnKyTuan.TabIndex = 1;
+            this.btnKyTuan.Text = "Tuần";
+            this.btnKyTuan.UseVisualStyleBackColor = false;
+            // 
+            // btnKyThang
+            // 
+            this.btnKyThang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.btnKyThang.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKyThang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(95)))), ((int)(((byte)(184)))));
+            this.btnKyThang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKyThang.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKyThang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(95)))), ((int)(((byte)(184)))));
+            this.btnKyThang.Location = new System.Drawing.Point(140, 0);
+            this.btnKyThang.Name = "btnKyThang";
+            this.btnKyThang.Size = new System.Drawing.Size(70, 32);
+            this.btnKyThang.TabIndex = 2;
+            this.btnKyThang.Text = "Tháng";
+            this.btnKyThang.UseVisualStyleBackColor = false;
+            // 
+            // btnKyQuy
+            // 
+            this.btnKyQuy.BackColor = System.Drawing.Color.White;
+            this.btnKyQuy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKyQuy.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnKyQuy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKyQuy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKyQuy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.btnKyQuy.Location = new System.Drawing.Point(210, 0);
+            this.btnKyQuy.Name = "btnKyQuy";
+            this.btnKyQuy.Size = new System.Drawing.Size(70, 32);
+            this.btnKyQuy.TabIndex = 3;
+            this.btnKyQuy.Text = "Quý";
+            this.btnKyQuy.UseVisualStyleBackColor = false;
+            // 
+            // btnKyNam
+            // 
+            this.btnKyNam.BackColor = System.Drawing.Color.White;
+            this.btnKyNam.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKyNam.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
+            this.btnKyNam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKyNam.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKyNam.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.btnKyNam.Location = new System.Drawing.Point(280, 0);
+            this.btnKyNam.Name = "btnKyNam";
+            this.btnKyNam.Size = new System.Drawing.Size(70, 32);
+            this.btnKyNam.TabIndex = 4;
+            this.btnKyNam.Text = "Năm";
+            this.btnKyNam.UseVisualStyleBackColor = false;
             // 
             // lblKy
             // 
             this.lblKy.AutoSize = true;
             this.lblKy.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblKy.Location = new System.Drawing.Point(360, 4);
+            this.lblKy.Location = new System.Drawing.Point(375, 4);
             this.lblKy.Name = "lblKy";
             this.lblKy.Size = new System.Drawing.Size(71, 15);
             this.lblKy.TabIndex = 2;
@@ -269,9 +269,9 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.dtpKy.CustomFormat = "MM/yyyy";
             this.dtpKy.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpKy.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpKy.Location = new System.Drawing.Point(276, 23);
+            this.dtpKy.Location = new System.Drawing.Point(375, 23);
             this.dtpKy.Name = "dtpKy";
-            this.dtpKy.Size = new System.Drawing.Size(120, 25);
+            this.dtpKy.Size = new System.Drawing.Size(125, 25);
             this.dtpKy.TabIndex = 3;
             // 
             // btnThongKe
@@ -282,9 +282,9 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThongKe.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThongKe.ForeColor = System.Drawing.Color.White;
-            this.btnThongKe.Location = new System.Drawing.Point(408, 22);
+            this.btnThongKe.Location = new System.Drawing.Point(515, 22);
             this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Size = new System.Drawing.Size(110, 28);
+            this.btnThongKe.Size = new System.Drawing.Size(130, 28);
             this.btnThongKe.TabIndex = 4;
             this.btnThongKe.Text = "Xem thống kê";
             this.btnThongKe.UseVisualStyleBackColor = false;
@@ -302,7 +302,7 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.btnXuatExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnXuatExcel.Location = new System.Drawing.Point(790, 22);
             this.btnXuatExcel.Name = "btnXuatExcel";
-            this.btnXuatExcel.Size = new System.Drawing.Size(118, 31);
+            this.btnXuatExcel.Size = new System.Drawing.Size(118, 30);
             this.btnXuatExcel.TabIndex = 5;
             this.btnXuatExcel.Text = " Xuất Excel";
             this.btnXuatExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -321,7 +321,7 @@ namespace LTWIN_N05_QLCT.Forms.BaoCao
             this.btnXuatPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnXuatPDF.Location = new System.Drawing.Point(918, 22);
             this.btnXuatPDF.Name = "btnXuatPDF";
-            this.btnXuatPDF.Size = new System.Drawing.Size(112, 31);
+            this.btnXuatPDF.Size = new System.Drawing.Size(112, 30);
             this.btnXuatPDF.TabIndex = 6;
             this.btnXuatPDF.Text = " Xuất PDF";
             this.btnXuatPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
