@@ -77,6 +77,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 btnBaoCao.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong, new Size(18, 18));
                 btnTimKiem.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoTimKiem_XanhDuong, new Size(18, 18));
                 btnLamMoi.Image = new Bitmap(global::LTWIN_N05_QLCT.Properties.Resources.icoLamMoi_XanhDuong, new Size(18, 18));
+                picTieuDeIcon.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
             }
             catch { }
 

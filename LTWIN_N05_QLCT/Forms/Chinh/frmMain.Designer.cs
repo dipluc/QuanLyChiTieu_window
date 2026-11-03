@@ -616,7 +616,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnNganSach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNganSach.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNganSach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnNganSach.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
             this.btnNganSach.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnNganSach.Location = new System.Drawing.Point(345, 9);
             this.btnNganSach.Name = "btnNganSach";
@@ -687,7 +686,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // 
             // picTieuDeIcon
             // 
-            this.picTieuDeIcon.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
             this.picTieuDeIcon.Location = new System.Drawing.Point(16, 10);
             this.picTieuDeIcon.Name = "picTieuDeIcon";
             this.picTieuDeIcon.Size = new System.Drawing.Size(27, 25);
