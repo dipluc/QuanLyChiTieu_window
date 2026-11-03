@@ -455,7 +455,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.btnTrangChu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTrangChu.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrangChu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnTrangChu.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoTrangChu_XanhDuong;
             this.btnTrangChu.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnTrangChu.Location = new System.Drawing.Point(16, 9);
             this.btnTrangChu.Name = "btnTrangChu";
