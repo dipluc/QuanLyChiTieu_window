@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using NghiepVu;
+using NghiepVu.TienIch;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using NghiepVu;
-using NghiepVu.TienIch;
 
 namespace LTWIN_N05_QLCT.Forms.DanhMuc
 {
@@ -96,7 +97,24 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
 
         private void DinhDangCot()
         {
-            if (dgvLoaiThu.Columns["MaLoaiThu"] != null) dgvLoaiThu.Columns["MaLoaiThu"].Visible = false;
+            if (dgvLoaiThu.Columns["MaLoaiThu"] != null)
+                dgvLoaiThu.Columns["MaLoaiThu"].Visible = false;
+
+            var cotTrangThai = dgvLoaiThu.Columns["TrangThai"];
+            if (cotTrangThai is DataGridViewCheckBoxColumn)
+            {
+                int viTri = cotTrangThai.DisplayIndex;
+                dgvLoaiThu.Columns.Remove(cotTrangThai);
+
+                dgvLoaiThu.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "TrangThai",
+                    DataPropertyName = "TrangThai",
+                    HeaderText = "Trạng thái",
+                    ReadOnly = true,
+                    DisplayIndex = viTri
+                });
+            }
 
             DatCot("TenLoaiThu", "Tên loại thu", 35);
             DatCot("GhiChu", "Ghi chú", 45);
@@ -142,6 +160,7 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
 
             bool trangThai = dong["TrangThai"] != DBNull.Value && Convert.ToBoolean(dong["TrangThai"]);
             lblTrangThaiGiaTri.Text = trangThai ? "Đang sử dụng" : "Ngừng sử dụng";
+            btnNgungSuDung.Text = trangThai ? "Ngừng sử dụng" : "Sử dụng lại";
         }
 
         private void ResetValues()
@@ -151,6 +170,7 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
             txtTenLoaiThu.Text = "";
             txtGhiChu.Text = "";
             lblTrangThaiGiaTri.Text = "Đang sử dụng";
+            btnNgungSuDung.Text = "Ngừng sử dụng";
             dgvLoaiThu.ClearSelection();
         }
 
@@ -234,12 +254,18 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
                 return;
             }
 
-            var kq = LoaiThuNV.Sua(_maDangChon, txtTenLoaiThu.Text.Trim(), txtGhiChu.Text.Trim(), false);
+            bool trangThaiMoi = lblTrangThaiGiaTri.Text != "Đang sử dụng";
+
+            var kq = LoaiThuNV.Sua(
+                _maDangChon,
+                txtTenLoaiThu.Text.Trim(),
+                txtGhiChu.Text.Trim(),
+                trangThaiMoi);
             if (kq.ThanhCong)
             {
                 LoadDataGridView();
                 ResetValues();
-                HienThongBao("✓ Đã chuyển trạng thái sang ngừng sử dụng.", false);
+                HienThongBao("Đã đổi trạng thái thành công.", false);
             }
             else
             {

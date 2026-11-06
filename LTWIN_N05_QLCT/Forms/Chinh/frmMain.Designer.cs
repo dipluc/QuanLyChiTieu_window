@@ -84,8 +84,6 @@
             this.lblPhanCach1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNguoiDung = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblKhoangTrang = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblViDangChon = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblPhanCach2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNgayHienTai = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlThanhTieuDe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTieuDeIcon)).BeginInit();
@@ -673,8 +671,6 @@
             this.lblPhanCach1,
             this.lblNguoiDung,
             this.lblKhoangTrang,
-            this.lblViDangChon,
-            this.lblPhanCach2,
             this.lblNgayHienTai});
             this.stsTrangThai.Location = new System.Drawing.Point(0, 722);
             this.stsTrangThai.Name = "stsTrangThai";
@@ -711,20 +707,6 @@
             this.lblKhoangTrang.Name = "lblKhoangTrang";
             this.lblKhoangTrang.Size = new System.Drawing.Size(637, 22);
             this.lblKhoangTrang.Spring = true;
-            // 
-            // lblViDangChon
-            // 
-            this.lblViDangChon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.lblViDangChon.Name = "lblViDangChon";
-            this.lblViDangChon.Size = new System.Drawing.Size(190, 22);
-            this.lblViDangChon.Text = "Ví đang chọn: Vietcombank";
-            // 
-            // lblPhanCach2
-            // 
-            this.lblPhanCach2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.lblPhanCach2.Name = "lblPhanCach2";
-            this.lblPhanCach2.Size = new System.Drawing.Size(13, 22);
-            this.lblPhanCach2.Text = "|";
             // 
             // lblNgayHienTai
             // 
@@ -835,8 +817,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblPhanCach1;
         public System.Windows.Forms.ToolStripStatusLabel lblNguoiDung;
         private System.Windows.Forms.ToolStripStatusLabel lblKhoangTrang;
-        public System.Windows.Forms.ToolStripStatusLabel lblViDangChon;
-        private System.Windows.Forms.ToolStripStatusLabel lblPhanCach2;
         private System.Windows.Forms.ToolStripStatusLabel lblNgayHienTai;
         private System.Windows.Forms.Button btnTrangChu;
     }

@@ -28,7 +28,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private string _tenDangNhap = "";
         private string _hoTen = "";
         private string _email = "";
-        private string _viDangChon = "";
         private bool _dangXuLyThoat = false;
         private bool _choPhepDong = false;
 
@@ -91,7 +90,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             // Hiển thị ngày tháng hiện tại trên thanh trạng thái
             lblNgayHienTai.Text = "Hôm nay: " + DateTime.Now.ToString("dd/MM/yyyy");
             lblNguoiDung.Text = "Đăng nhập: " + _hoTen;
-            lblViDangChon.Text = "Ví đang chọn: " + _viDangChon;
 
             // Gắn sự kiện cửa sổ
             btnDong.Click += (s, e) => XacNhanThoat();
