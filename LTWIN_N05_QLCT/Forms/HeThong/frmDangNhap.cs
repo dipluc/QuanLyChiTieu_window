@@ -95,7 +95,7 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
             txtTenDangNhap.Text = string.Empty;
             txtMatKhau.Text = string.Empty;
 
-            string ten = DocTenGhiNho();
+            string ten = GhiNhoDangNhap.Doc();
             if (!string.IsNullOrEmpty(ten))
             {
                 txtTenDangNhap.Text = ten;
@@ -257,37 +257,5 @@ namespace LTWIN_N05_QLCT.Forms.HeThong
                 // thiếu icon không được làm hỏng đăng nhập
             }
         }
-
-        // ---------------- Ghi nhớ tên đăng nhập ----------------
-        private static string DocTenGhiNho()
-        {
-            try
-            {
-                return File.Exists(TepGhiNho) ? File.ReadAllText(TepGhiNho).Trim() : null;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private static void GhiTenGhiNho(string ten)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(ten))
-                {
-                    if (File.Exists(TepGhiNho)) File.Delete(TepGhiNho);
-                    return;
-                }
-                Directory.CreateDirectory(Path.GetDirectoryName(TepGhiNho));
-                File.WriteAllText(TepGhiNho, ten);
-            }
-            catch
-            {
-                // ghi nhớ chỉ là tiện ích, bỏ qua lỗi
-            }
-        }
-}
-
+    }
 }

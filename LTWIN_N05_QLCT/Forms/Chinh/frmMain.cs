@@ -25,10 +25,10 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private static readonly Color MauVien = Color.FromArgb(203, 213, 225);
         private static readonly Color MauDuongKe = Color.FromArgb(226, 232, 240);
 
-        private string _tenDangNhap = "minhanh";
-        private string _hoTen = "Nguyễn Minh Anh";
+        private string _tenDangNhap = "";
+        private string _hoTen = "";
         private string _email = "";
-        private string _viDangChon = "Vietcombank";
+        private string _viDangChon = "";
         private bool _dangXuLyThoat = false;
         private bool _choPhepDong = false;
 
