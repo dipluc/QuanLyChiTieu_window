@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MoHinh;
 using NghiepVu;
+using NghiepVu.TienIch;
 
 namespace LTWIN_N05_QLCT.Forms.DanhMuc
 {
@@ -15,11 +16,11 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
         private static readonly Color MauDo = Color.FromArgb(198, 40, 40);
         private static readonly Color MauXanhLa = Color.FromArgb(46, 125, 50);
 
-        private DataTable tblNhomChi;
-        private DataTable tblLoaiChi;
         private bool _dangNapDuLieu;
         private int _maNhomDangChon;
         private int _maLoaiDangChon;
+        private bool _nhomDangDung;
+        private bool _loaiDangDung;
 
         public frmLoaiChiTieu()
         {
@@ -31,20 +32,20 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
         {
             CauHinhLuoi(dgvNhomChi);
             CauHinhLuoi(dgvLoaiChi);
-
             dgvNhomChi.SelectionChanged += dgvNhomChi_SelectionChanged;
             dgvLoaiChi.SelectionChanged += dgvLoaiChi_SelectionChanged;
+            dgvNhomChi.CellFormatting += DinhDangTrangThai;
+            dgvLoaiChi.CellFormatting += DinhDangTrangThai;
 
+            btnMoiNhom.Click += (s, e) => TaoNhomMoi();
             btnThemNhom.Click += btnThemNhom_Click;
             btnSuaNhom.Click += btnSuaNhom_Click;
             btnNgungSuDungNhom.Click += btnNgungSuDungNhom_Click;
-
+            btnMoiLoai.Click += (s, e) => TaoLoaiMoi();
             btnThemLoai.Click += btnThemLoai_Click;
             btnSuaLoai.Click += btnSuaLoai_Click;
             btnNgungSuDungLoai.Click += btnNgungSuDungLoai_Click;
-
-            dgvNhomChi.DataError += (s, e) => { e.ThrowException = false; };
-            dgvLoaiChi.DataError += (s, e) => { e.ThrowException = false; };
+            CapNhatNut();
         }
 
         private void CauHinhLuoi(DataGridView dgv)
@@ -58,7 +59,6 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
             dgv.ColumnHeadersHeight = 34;
             dgv.RowTemplate.Height = 30;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
             dgv.ColumnHeadersDefaultCellStyle.BackColor = MauXanh;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = MauXanh;
@@ -69,6 +69,9 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
             dgv.AlternatingRowsDefaultCellStyle.BackColor = MauNenXen;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.MultiSelect = false;
+            dgv.ReadOnly = true;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
         }
 
         private void frmLoaiChiTieu_Load(object sender, EventArgs e)
@@ -76,10 +79,68 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
             LoadDanhSachNhomChi();
         }
 
-        // ==========================================
-        // QUẢN LÝ NHÓM CHI (BÊN TRÁI)
-        // ==========================================
-        private void LoadDanhSachNhomChi()
+        private static DataRowView DongDangChon(DataGridView dgv)
+        {
+            return dgv.SelectedRows.Count > 0 ? dgv.SelectedRows[0].DataBoundItem as DataRowView : null;
+        }
+
+        private static void ChonDong(DataGridView dgv, string cotMa, int ma)
+        {
+            dgv.ClearSelection();
+            dgv.CurrentCell = null;
+            if (dgv.Rows.Count == 0) return;
+
+            DataGridViewRow dongChon = dgv.Rows[0];
+            foreach (DataGridViewRow dong in dgv.Rows)
+            {
+                var duLieu = dong.DataBoundItem as DataRowView;
+                if (duLieu != null && Convert.ToInt32(duLieu[cotMa]) == ma)
+                {
+                    dongChon = dong;
+                    break;
+                }
+            }
+            foreach (DataGridViewColumn cot in dgv.Columns)
+            {
+                if (cot.Visible)
+                {
+                    dgv.CurrentCell = dongChon.Cells[cot.Index];
+                    break;
+                }
+            }
+            dongChon.Selected = true;
+        }
+
+        private static void CauHinhCotTrangThai(DataGridView dgv)
+        {
+            var cot = dgv.Columns["TrangThai"];
+            if (cot is DataGridViewCheckBoxColumn)
+            {
+                int viTri = cot.DisplayIndex;
+                dgv.Columns.Remove(cot);
+                dgv.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "TrangThai", DataPropertyName = "TrangThai", DisplayIndex = viTri
+                });
+            }
+            if (dgv.Columns["TrangThai"] != null)
+            {
+                dgv.Columns["TrangThai"].HeaderText = "Trạng thái";
+                dgv.Columns["TrangThai"].FillWeight = 75;
+            }
+        }
+
+        private void DinhDangTrangThai(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+            if (e.RowIndex < 0 || dgv.Columns[e.ColumnIndex].Name != "TrangThai" || !(e.Value is bool)) return;
+            bool dangDung = (bool)e.Value;
+            e.Value = dangDung ? "Đang dùng" : "Ngừng dùng";
+            e.CellStyle.ForeColor = dangDung ? MauXanhLa : MauDo;
+            e.FormattingApplied = true;
+        }
+
+        private void LoadDanhSachNhomChi(int maNhom = 0, int maLoai = 0)
         {
             _dangNapDuLieu = true;
             try
@@ -87,261 +148,240 @@ namespace LTWIN_N05_QLCT.Forms.DanhMuc
                 var kq = LoaiChiNV.LayDanhSachNhomChi();
                 if (!kq.ThanhCong)
                 {
+                    dgvNhomChi.DataSource = null;
+                    XoaNhomDangChon();
                     HienThongBao(kq.ThongBao, true);
                     return;
                 }
 
-                tblNhomChi = kq.DuLieu;
-                dgvNhomChi.DataSource = tblNhomChi;
-
-                if (dgvNhomChi.Columns["MaNhom"] != null) dgvNhomChi.Columns["MaNhom"].Visible = false;
-                if (dgvNhomChi.Columns["GhiChu"] != null) dgvNhomChi.Columns["GhiChu"].Visible = false;
-                if (dgvNhomChi.Columns["TenNhom"] != null) dgvNhomChi.Columns["TenNhom"].HeaderText = "Tên nhóm chi";
-                if (dgvNhomChi.Columns["TrangThai"] != null)
-                {
-                    dgvNhomChi.Columns["TrangThai"].HeaderText = "Trạng thái";
-                    dgvNhomChi.Columns["TrangThai"].FillWeight = 40;
-                }
-
-                dgvNhomChi.ClearSelection();
-                if (tblNhomChi.Rows.Count > 0)
-                {
-                    dgvNhomChi.Rows[0].Selected = true;
-                }
+                dgvNhomChi.DataSource = kq.DuLieu;
+                dgvNhomChi.Columns["MaNhom"].Visible = false;
+                dgvNhomChi.Columns["TenNhom"].HeaderText = "Tên nhóm chi";
+                CauHinhCotTrangThai(dgvNhomChi);
+                ChonDong(dgvNhomChi, "MaNhom", maNhom);
             }
             finally
             {
                 _dangNapDuLieu = false;
-                if (dgvNhomChi.SelectedRows.Count > 0)
-                {
-                    dgvNhomChi_SelectionChanged(null, null);
-                }
+            }
+
+            if (DongDangChon(dgvNhomChi) == null)
+                TaoNhomMoi();
+            else
+            {
+                dgvNhomChi_SelectionChanged(null, EventArgs.Empty);
+                if (maLoai > 0) LoadDanhSachLoaiChiTheoNhom(maLoai);
             }
         }
 
         private void dgvNhomChi_SelectionChanged(object sender, EventArgs e)
         {
             if (_dangNapDuLieu) return;
-            if (dgvNhomChi.CurrentRow == null || dgvNhomChi.SelectedRows.Count == 0) return;
+            var dong = DongDangChon(dgvNhomChi);
+            if (dong == null)
+            {
+                XoaNhomDangChon();
+                return;
+            }
 
-            var dong = dgvNhomChi.CurrentRow.DataBoundItem as DataRowView;
-            if (dong == null) return;
-
-            _maNhomDangChon = dong["MaNhom"] != DBNull.Value ? Convert.ToInt32(dong["MaNhom"]) : 0;
-            string tenNhom = dong["TenNhom"] != DBNull.Value ? dong["TenNhom"].ToString() : "";
-
+            _maNhomDangChon = Convert.ToInt32(dong["MaNhom"]);
+            _nhomDangDung = Convert.ToBoolean(dong["TrangThai"]);
+            string tenNhom = dong["TenNhom"].ToString();
             txtTenNhomChi.Text = tenNhom;
-            txtGhiChuNhom.Text = dong["GhiChu"] != DBNull.Value ? dong["GhiChu"].ToString() : "";
+            lblTenNhomChi.Text = "Tên nhóm chi *";
+            lblLoaiChiTieuTieuDe.Text = "2. Loại chi trong nhóm";
 
-            // Cập nhật tiêu đề bên phải
-            lblLoaiChiTieuTieuDe.Text = "Loại chi thuộc nhóm " + tenNhom;
-            cboNhomChiKhoa.DataSource = tblNhomChi;
-            cboNhomChiKhoa.DisplayMember = "TenNhom";
-            cboNhomChiKhoa.ValueMember = "MaNhom";
-            cboNhomChiKhoa.SelectedValue = _maNhomDangChon;
+            // Chỉ hiển thị tên nhóm, không dùng chung CurrencyManager với lưới nhóm.
+            cboNhomChiKhoa.Items.Clear();
+            cboNhomChiKhoa.Items.Add(tenNhom);
+            cboNhomChiKhoa.SelectedIndex = 0;
+            LoadDanhSachLoaiChiTheoNhom();
+            CapNhatNut();
+        }
 
-            LoadDanhSachLoaiChiTheoNhom(_maNhomDangChon, tenNhom);
+        private void XoaNhomDangChon()
+        {
+            _maNhomDangChon = 0;
+            _nhomDangDung = false;
+            txtTenNhomChi.Clear();
+            lblTenNhomChi.Text = "Tên nhóm mới *";
+            cboNhomChiKhoa.Items.Clear();
+            lblLoaiChiTieuTieuDe.Text = "2. Loại chi trong nhóm";
+            lblNhomDangChon.Text = "Chọn nhóm bên trái hoặc tạo và lưu nhóm mới trước.";
+            dgvLoaiChi.DataSource = null;
+            XoaLoaiDangChon();
+        }
+
+        private void TaoNhomMoi()
+        {
+            _dangNapDuLieu = true;
+            try
+            {
+                dgvNhomChi.ClearSelection();
+                dgvNhomChi.CurrentCell = null;
+                XoaNhomDangChon();
+            }
+            finally { _dangNapDuLieu = false; }
+            txtTenNhomChi.Focus();
         }
 
         private void btnThemNhom_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenNhomChi.Text))
-            {
-                HienThongBao("Bạn phải nhập tên nhóm chi.", true);
-                txtTenNhomChi.Focus();
-                return;
-            }
-
-            var kq = LoaiChiNV.ThemNhomChi(txtTenNhomChi.Text.Trim(), txtGhiChuNhom.Text.Trim(), true);
-            if (!kq.ThanhCong)
-            {
-                HienThongBao(kq.ThongBao, true);
-                return;
-            }
-
-            HienThongBao("✓ Thêm nhóm chi thành công!", false);
-            LoadDanhSachNhomChi();
+            if (_maNhomDangChon > 0) return;
+            var kq = LoaiChiNV.ThemNhomChi(txtTenNhomChi.Text, true);
+            if (!kq.ThanhCong) { HienThongBao(kq.ThongBao, true); return; }
+            HienThongBao("Đã thêm nhóm chi. Bấm Tạo loại mới để thêm loại chi vào nhóm này.", false);
+            LoadDanhSachNhomChi(kq.MaNhom);
         }
 
         private void btnSuaNhom_Click(object sender, EventArgs e)
         {
-            if (_maNhomDangChon <= 0)
-            {
-                HienThongBao("Vui lòng chọn nhóm chi cần sửa.", true);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtTenNhomChi.Text))
-            {
-                HienThongBao("Bạn phải nhập tên nhóm chi.", true);
-                txtTenNhomChi.Focus();
-                return;
-            }
-
-            var kq = LoaiChiNV.SuaNhomChi(_maNhomDangChon, txtTenNhomChi.Text.Trim(), txtGhiChuNhom.Text.Trim(), true);
-            if (!kq.ThanhCong)
-            {
-                HienThongBao(kq.ThongBao, true);
-                return;
-            }
-
-            HienThongBao("✓ Cập nhật nhóm chi thành công!", false);
-            LoadDanhSachNhomChi();
+            if (_maNhomDangChon <= 0) return;
+            var kq = LoaiChiNV.SuaNhomChi(_maNhomDangChon, txtTenNhomChi.Text, _nhomDangDung);
+            if (!kq.ThanhCong) { HienThongBao(kq.ThongBao, true); return; }
+            HienThongBao("Đã cập nhật nhóm chi.", false);
+            LoadDanhSachNhomChi(_maNhomDangChon, _maLoaiDangChon);
         }
 
         private void btnNgungSuDungNhom_Click(object sender, EventArgs e)
         {
-            if (_maNhomDangChon <= 0)
-            {
-                HienThongBao("Vui lòng chọn nhóm chi cần ngừng sử dụng.", true);
-                return;
-            }
-
-            var kq = LoaiChiNV.SuaNhomChi(_maNhomDangChon, txtTenNhomChi.Text.Trim(), txtGhiChuNhom.Text.Trim(), false);
-            if (kq.ThanhCong)
-            {
-                HienThongBao("✓ Đã chuyển nhóm chi sang ngừng sử dụng.", false);
-                LoadDanhSachNhomChi();
-            }
-            else
-            {
-                HienThongBao(kq.ThongBao, true);
-            }
+            var dong = DongDangChon(dgvNhomChi);
+            if (_maNhomDangChon <= 0 || dong == null) return;
+            bool trangThaiMoi = !_nhomDangDung;
+            var kq = LoaiChiNV.SuaNhomChi(_maNhomDangChon, dong["TenNhom"].ToString(), trangThaiMoi);
+            if (!kq.ThanhCong) { HienThongBao(kq.ThongBao, true); return; }
+            HienThongBao(trangThaiMoi ? "Đã bật sử dụng nhóm chi." : "Đã ngừng sử dụng nhóm chi.", false);
+            LoadDanhSachNhomChi(_maNhomDangChon, _maLoaiDangChon);
         }
 
-        // ==========================================
-        // QUẢN LÝ LOẠI CHI (BÊN PHẢI)
-        // ==========================================
-        private void LoadDanhSachLoaiChiTheoNhom(int maNhom, string tenNhom)
+        private void LoadDanhSachLoaiChiTheoNhom(int maLoai = 0)
         {
-            var kq = LoaiChiNV.LayDanhSachTheoNhom(maNhom);
-            if (!kq.ThanhCong)
+            _dangNapDuLieu = true;
+            try
             {
-                dgvLoaiChi.DataSource = null;
-                return;
+                XoaLoaiDangChon();
+                var kq = LoaiChiNV.LayDanhSachTheoNhom(_maNhomDangChon);
+                if (!kq.ThanhCong)
+                {
+                    dgvLoaiChi.DataSource = null;
+                    lblNhomDangChon.Text = "Không tải được loại chi. Chọn lại nhóm để thử lại.";
+                    HienThongBao(kq.ThongBao, true);
+                    return;
+                }
+
+                dgvLoaiChi.DataSource = kq.DuLieu;
+                dgvLoaiChi.Columns["MaLoaiChi"].Visible = false;
+                dgvLoaiChi.Columns["MaNhom"].Visible = false;
+                dgvLoaiChi.Columns["TenNhom"].Visible = false;
+                dgvLoaiChi.Columns["TenLoaiChi"].HeaderText = "Tên loại chi";
+                dgvLoaiChi.Columns["GhiChu"].HeaderText = "Ghi chú";
+                CauHinhCotTrangThai(dgvLoaiChi);
+                lblNhomDangChon.Text = string.Format("{0} • {1} loại chi{2}",
+                    cboNhomChiKhoa.Text, kq.DuLieu.Rows.Count, _nhomDangDung ? "" : " • Nhóm đã ngừng dùng");
+                ChonDong(dgvLoaiChi, "MaLoaiChi", maLoai);
             }
+            finally { _dangNapDuLieu = false; }
 
-            tblLoaiChi = kq.DuLieu;
-            dgvLoaiChi.DataSource = tblLoaiChi;
-
-            if (dgvLoaiChi.Columns["MaLoaiChi"] != null) dgvLoaiChi.Columns["MaLoaiChi"].Visible = false;
-            if (dgvLoaiChi.Columns["MaNhom"] != null) dgvLoaiChi.Columns["MaNhom"].Visible = false;
-            if (dgvLoaiChi.Columns["TenLoaiChi"] != null) dgvLoaiChi.Columns["TenLoaiChi"].HeaderText = "Tên loại chi";
-            if (dgvLoaiChi.Columns["GhiChu"] != null) dgvLoaiChi.Columns["GhiChu"].HeaderText = "Ghi chú";
-            if (dgvLoaiChi.Columns["TrangThai"] != null) dgvLoaiChi.Columns["TrangThai"].HeaderText = "Trạng thái";
-
-            int soLuong = tblLoaiChi.Rows.Count;
-            lblNhomDangChon.Text = $"Nhóm đang chọn: {tenNhom} • {soLuong} loại chi";
-
-            dgvLoaiChi.ClearSelection();
-            if (soLuong > 0)
-            {
-                dgvLoaiChi.Rows[0].Selected = true;
-            }
-            else
-            {
-                txtTenLoaiChi.Text = "";
-                txtGhiChuLoai.Text = "";
-            }
+            dgvLoaiChi_SelectionChanged(null, EventArgs.Empty);
         }
 
         private void dgvLoaiChi_SelectionChanged(object sender, EventArgs e)
         {
             if (_dangNapDuLieu) return;
-            if (dgvLoaiChi.CurrentRow == null || dgvLoaiChi.SelectedRows.Count == 0) return;
+            var dong = DongDangChon(dgvLoaiChi);
+            if (dong == null) { XoaLoaiDangChon(); return; }
 
-            var dong = dgvLoaiChi.CurrentRow.DataBoundItem as DataRowView;
-            if (dong == null) return;
+            _maLoaiDangChon = Convert.ToInt32(dong["MaLoaiChi"]);
+            _loaiDangDung = Convert.ToBoolean(dong["TrangThai"]);
+            txtTenLoaiChi.Text = dong["TenLoaiChi"].ToString();
+            txtGhiChuLoai.Text = dong["GhiChu"].ToString();
+            lblTenLoaiChi.Text = "Tên loại chi *";
+            CapNhatNut();
+        }
 
-            _maLoaiDangChon = dong["MaLoaiChi"] != DBNull.Value ? Convert.ToInt32(dong["MaLoaiChi"]) : 0;
-            txtTenLoaiChi.Text = dong["TenLoaiChi"] != DBNull.Value ? dong["TenLoaiChi"].ToString() : "";
-            txtGhiChuLoai.Text = dong["GhiChu"] != DBNull.Value ? dong["GhiChu"].ToString() : "";
+        private void XoaLoaiDangChon()
+        {
+            _maLoaiDangChon = 0;
+            _loaiDangDung = false;
+            txtTenLoaiChi.Clear();
+            txtGhiChuLoai.Clear();
+            lblTenLoaiChi.Text = "Tên loại chi mới *";
+            CapNhatNut();
+        }
+
+        private void TaoLoaiMoi()
+        {
+            if (_maNhomDangChon <= 0 || !_nhomDangDung) return;
+            _dangNapDuLieu = true;
+            try
+            {
+                dgvLoaiChi.ClearSelection();
+                dgvLoaiChi.CurrentCell = null;
+                XoaLoaiDangChon();
+            }
+            finally { _dangNapDuLieu = false; }
+            txtTenLoaiChi.Focus();
+        }
+
+        private LoaiChiMH DocLoaiChi(bool themMoi)
+        {
+            return new LoaiChiMH
+            {
+                MaLoaiChi = _maLoaiDangChon,
+                MaNhom = _maNhomDangChon,
+                TenLoaiChi = txtTenLoaiChi.Text,
+                GhiChu = txtGhiChuLoai.Text,
+                TrangThai = themMoi || _loaiDangDung
+            };
         }
 
         private void btnThemLoai_Click(object sender, EventArgs e)
         {
-            if (_maNhomDangChon <= 0)
-            {
-                HienThongBao("Vui lòng chọn nhóm chi bên trái trước khi thêm loại chi.", true);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtTenLoaiChi.Text))
-            {
-                HienThongBao("Bạn phải nhập tên loại chi.", true);
-                txtTenLoaiChi.Focus();
-                return;
-            }
-
-            var model = new LoaiChiMH
-            {
-                MaNhom = _maNhomDangChon,
-                TenLoaiChi = txtTenLoaiChi.Text.Trim(),
-                GhiChu = txtGhiChuLoai.Text.Trim(),
-                TrangThai = true
-            };
-
-            var kq = LoaiChiNV.Them(model);
-            if (!kq.ThanhCong)
-            {
-                HienThongBao(kq.ThongBao, true);
-                return;
-            }
-
-            HienThongBao("✓ Thêm loại chi thành công!", false);
-            LoadDanhSachNhomChi();
+            if (_maNhomDangChon <= 0 || !_nhomDangDung || _maLoaiDangChon > 0) return;
+            var kq = LoaiChiNV.Them(DocLoaiChi(true));
+            if (!kq.ThanhCong) { HienThongBao(kq.ThongBao, true); return; }
+            HienThongBao("Đã thêm loại chi vào nhóm đang chọn.", false);
+            LoadDanhSachLoaiChiTheoNhom(kq.MaLoaiChi);
         }
 
         private void btnSuaLoai_Click(object sender, EventArgs e)
         {
-            if (_maLoaiDangChon <= 0)
-            {
-                HienThongBao("Vui lòng chọn loại chi cần sửa trên lưới.", true);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtTenLoaiChi.Text))
-            {
-                HienThongBao("Bạn phải nhập tên loại chi.", true);
-                txtTenLoaiChi.Focus();
-                return;
-            }
-
-            var model = new LoaiChiMH
-            {
-                MaLoaiChi = _maLoaiDangChon,
-                MaNhom = _maNhomDangChon,
-                TenLoaiChi = txtTenLoaiChi.Text.Trim(),
-                GhiChu = txtGhiChuLoai.Text.Trim(),
-                TrangThai = true
-            };
-
-            var kq = LoaiChiNV.CapNhat(model);
-            if (!kq.ThanhCong)
-            {
-                HienThongBao(kq.ThongBao, true);
-                return;
-            }
-
-            HienThongBao("✓ Cập nhật loại chi thành công!", false);
-            LoadDanhSachNhomChi();
+            if (_maLoaiDangChon <= 0 || _maNhomDangChon <= 0) return;
+            var kq = LoaiChiNV.CapNhat(DocLoaiChi(false));
+            if (!kq.ThanhCong) { HienThongBao(kq.ThongBao, true); return; }
+            HienThongBao("Đã cập nhật loại chi.", false);
+            LoadDanhSachLoaiChiTheoNhom(kq.MaLoaiChi);
         }
 
         private void btnNgungSuDungLoai_Click(object sender, EventArgs e)
         {
-            if (_maLoaiDangChon <= 0)
-            {
-                HienThongBao("Vui lòng chọn loại chi cần ngừng sử dụng trên lưới.", true);
-                return;
-            }
+            if (_maLoaiDangChon <= 0) return;
+            var kq = LoaiChiNV.DatTrangThai(_maLoaiDangChon, !_loaiDangDung);
+            if (!kq.ThanhCong) { HienThongBao(kq.ThongBao, true); return; }
+            HienThongBao(kq.ThongBao, false);
+            LoadDanhSachLoaiChiTheoNhom(kq.MaLoaiChi);
+        }
 
-            var kq = LoaiChiNV.DatTrangThai(_maLoaiDangChon, false);
-            if (kq.ThanhCong)
-            {
-                HienThongBao("✓ Đã chuyển loại chi sang ngừng sử dụng.", false);
-                LoadDanhSachNhomChi();
-            }
-            else
-            {
-                HienThongBao(kq.ThongBao, true);
-            }
+        private void CapNhatNut()
+        {
+            bool coPhien = PhienDangNhap.DaDangNhap;
+            bool coNhom = _maNhomDangChon > 0;
+            bool coLoai = coNhom && _maLoaiDangChon > 0;
+            btnMoiNhom.Enabled = coPhien;
+            txtTenNhomChi.Enabled = coPhien;
+            btnThemNhom.Enabled = coPhien && !coNhom;
+            btnSuaNhom.Enabled = coPhien && coNhom;
+            btnNgungSuDungNhom.Enabled = coPhien && coNhom;
+            btnNgungSuDungNhom.Text = coNhom && !_nhomDangDung ? "Dùng lại nhóm" : "Ngừng sử dụng nhóm";
+            btnMoiLoai.Enabled = coPhien && coNhom && _nhomDangDung;
+            txtTenLoaiChi.Enabled = coPhien && coNhom && (_nhomDangDung || coLoai);
+            txtGhiChuLoai.Enabled = txtTenLoaiChi.Enabled;
+            btnThemLoai.Enabled = coPhien && coNhom && _nhomDangDung && !coLoai;
+            btnSuaLoai.Enabled = coPhien && coLoai;
+            btnNgungSuDungLoai.Enabled = coPhien && coLoai;
+            btnNgungSuDungLoai.Text = coLoai && !_loaiDangDung ? "Dùng lại loại chi" : "Ngừng sử dụng loại chi";
+            btnThemNhom.BackColor = btnThemNhom.Enabled ? MauXanh : Color.FromArgb(226, 232, 240);
+            btnThemLoai.BackColor = btnThemLoai.Enabled ? MauXanh : Color.FromArgb(226, 232, 240);
         }
 
         private void HienThongBao(string thongDiep, bool laLoi)

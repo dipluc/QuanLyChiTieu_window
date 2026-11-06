@@ -549,6 +549,7 @@
             // 
             // btnNganSach
             // 
+            this.btnNganSach.AutoEllipsis = true;
             this.btnNganSach.BackColor = System.Drawing.Color.White;
             this.btnNganSach.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNganSach.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
@@ -556,16 +557,19 @@
             this.btnNganSach.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNganSach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnNganSach.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoViTien_XanhDuong;
+            this.btnNganSach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNganSach.Location = new System.Drawing.Point(372, 9);
             this.btnNganSach.Name = "btnNganSach";
             this.btnNganSach.Size = new System.Drawing.Size(125, 36);
             this.btnNganSach.TabIndex = 4;
-            this.btnNganSach.Text = " Ngân sách";
+            this.btnNganSach.Text = " Ngân sách";
+            this.btnNganSach.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNganSach.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNganSach.UseVisualStyleBackColor = false;
             // 
             // btnBaoCao
             // 
+            this.btnBaoCao.AutoEllipsis = true;
             this.btnBaoCao.BackColor = System.Drawing.Color.White;
             this.btnBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBaoCao.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
@@ -573,11 +577,13 @@
             this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnBaoCao.Image = global::LTWIN_N05_QLCT.Properties.Resources.icoBaoCao_XanhDuong;
+            this.btnBaoCao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBaoCao.Location = new System.Drawing.Point(503, 9);
             this.btnBaoCao.Name = "btnBaoCao";
             this.btnBaoCao.Size = new System.Drawing.Size(115, 36);
             this.btnBaoCao.TabIndex = 5;
-            this.btnBaoCao.Text = " Báo cáo";
+            this.btnBaoCao.Text = " Báo cáo";
+            this.btnBaoCao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBaoCao.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBaoCao.UseVisualStyleBackColor = false;
             // 
@@ -705,7 +711,7 @@
             // lblKhoangTrang
             // 
             this.lblKhoangTrang.Name = "lblKhoangTrang";
-            this.lblKhoangTrang.Size = new System.Drawing.Size(637, 22);
+            this.lblKhoangTrang.Size = new System.Drawing.Size(840, 22);
             this.lblKhoangTrang.Spring = true;
             // 
             // lblNgayHienTai

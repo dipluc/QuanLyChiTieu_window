@@ -18,13 +18,12 @@ namespace DuLieu
             return KetNoiCSDL.DocDuLieu(sql, new SqlParameter("@MaND", maND));
         }
 
-        // Danh sách nhóm chi để nạp ComboBox (nhóm đang dùng + nhóm đang được loại chi tham chiếu)
+        // Hiển thị cả nhóm ngừng sử dụng để có thể chọn và bật lại trong danh mục.
         public static DataTable LayDanhSachNhomChi(int maND)
         {
-            string sql = @"SELECT MaNhom, TenNhom, GhiChu, TrangThai
+            string sql = @"SELECT MaNhom, TenNhom, TrangThai
                            FROM NhomChi
                            WHERE MaND = @MaND
-                             AND (TrangThai = 1 OR MaNhom IN (SELECT MaNhom FROM LoaiChi WHERE MaND = @MaND))
                            ORDER BY TenNhom ASC";
             return KetNoiCSDL.DocDuLieu(sql, new SqlParameter("@MaND", maND));
         }
@@ -32,27 +31,25 @@ namespace DuLieu
         // ==========================================
         // THÊM / SỬA NHÓM CHI (BỔ SUNG)
         // ==========================================
-        public static int ThemNhomChi(int maND, string tenNhom, string ghiChu, bool trangThai)
+        public static int ThemNhomChi(int maND, string tenNhom, bool trangThai)
         {
-            string sql = @"INSERT INTO NhomChi (MaND, TenNhom, GhiChu, TrangThai)
-                           VALUES (@MaND, @TenNhom, @GhiChu, @TrangThai);
+            string sql = @"INSERT INTO NhomChi (MaND, TenNhom, TrangThai)
+                           VALUES (@MaND, @TenNhom, @TrangThai);
                            SELECT SCOPE_IDENTITY();";
             object id = KetNoiCSDL.LayMotGiaTri(sql,
                 new SqlParameter("@MaND", maND),
                 new SqlParameter("@TenNhom", tenNhom),
-                new SqlParameter("@GhiChu", (object)ghiChu ?? DBNull.Value),
                 new SqlParameter("@TrangThai", trangThai));
             return (id != null && id != DBNull.Value) ? Convert.ToInt32(id) : 0;
         }
 
-        public static bool SuaNhomChi(int maNhom, int maND, string tenNhom, string ghiChu, bool trangThai)
+        public static bool SuaNhomChi(int maNhom, int maND, string tenNhom, bool trangThai)
         {
             string sql = @"UPDATE NhomChi
-                           SET TenNhom = @TenNhom, GhiChu = @GhiChu, TrangThai = @TrangThai
+                           SET TenNhom = @TenNhom, TrangThai = @TrangThai
                            WHERE MaNhom = @MaNhom AND MaND = @MaND";
             int rows = KetNoiCSDL.ThucThiLenh(sql,
                 new SqlParameter("@TenNhom", tenNhom),
-                new SqlParameter("@GhiChu", (object)ghiChu ?? DBNull.Value),
                 new SqlParameter("@TrangThai", trangThai),
                 new SqlParameter("@MaNhom", maNhom),
                 new SqlParameter("@MaND", maND));

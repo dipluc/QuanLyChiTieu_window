@@ -102,14 +102,15 @@ namespace NghiepVu
         // ==========================================
         // 2. QUẢN LÝ NHÓM CHI (THÊM / SỬA)
         // ==========================================
-        public static KetQuaLoaiChi ThemNhomChi(string tenNhom, string ghiChu, bool trangThai)
+        public static KetQuaLoaiChi ThemNhomChi(string tenNhom, bool trangThai)
         {
             if (!PhienDangNhap.DaDangNhap) return Loi(LoiPhien);
             if (string.IsNullOrWhiteSpace(tenNhom)) return Loi("Tên nhóm chi không được để trống.");
+            if (tenNhom.Trim().Length > 100) return Loi("Tên nhóm chi tối đa 100 ký tự.");
 
             try
             {
-                int maMoi = LoaiChiDL.ThemNhomChi(PhienDangNhap.MaND, tenNhom.Trim(), string.IsNullOrWhiteSpace(ghiChu) ? null : ghiChu.Trim(), trangThai);
+                int maMoi = LoaiChiDL.ThemNhomChi(PhienDangNhap.MaND, tenNhom.Trim(), trangThai);
                 if (maMoi <= 0) return Loi("Không thể thêm nhóm chi vào cơ sở dữ liệu.");
 
                 return new KetQuaLoaiChi { ThanhCong = true, ThongBao = "Thêm nhóm chi thành công!", MaNhom = maMoi };
@@ -121,15 +122,16 @@ namespace NghiepVu
             }
         }
 
-        public static KetQuaLoaiChi SuaNhomChi(int maNhom, string tenNhom, string ghiChu, bool trangThai)
+        public static KetQuaLoaiChi SuaNhomChi(int maNhom, string tenNhom, bool trangThai)
         {
             if (!PhienDangNhap.DaDangNhap) return Loi(LoiPhien);
             if (maNhom <= 0) return Loi("Bạn chưa chọn nhóm chi cần sửa.");
             if (string.IsNullOrWhiteSpace(tenNhom)) return Loi("Tên nhóm chi không được để trống.");
+            if (tenNhom.Trim().Length > 100) return Loi("Tên nhóm chi tối đa 100 ký tự.");
 
             try
             {
-                bool thanhCong = LoaiChiDL.SuaNhomChi(maNhom, PhienDangNhap.MaND, tenNhom.Trim(), string.IsNullOrWhiteSpace(ghiChu) ? null : ghiChu.Trim(), trangThai);
+                bool thanhCong = LoaiChiDL.SuaNhomChi(maNhom, PhienDangNhap.MaND, tenNhom.Trim(), trangThai);
                 if (!thanhCong) return Loi("Không tìm thấy nhóm chi cần cập nhật.");
 
                 return new KetQuaLoaiChi { ThanhCong = true, ThongBao = "Cập nhật nhóm chi thành công!", MaNhom = maNhom };

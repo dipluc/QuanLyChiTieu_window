@@ -18,17 +18,19 @@
         private void InitializeComponent()
         {
             this.lblTieuDe = new System.Windows.Forms.Label();
+            this.lblHuongDan = new System.Windows.Forms.Label();
             this.pnlNhomChi = new System.Windows.Forms.Panel();
+            this.btnMoiNhom = new System.Windows.Forms.Button();
             this.btnNgungSuDungNhom = new System.Windows.Forms.Button();
             this.btnSuaNhom = new System.Windows.Forms.Button();
             this.btnThemNhom = new System.Windows.Forms.Button();
-            this.txtGhiChuNhom = new System.Windows.Forms.TextBox();
-            this.lblGhiChuNhom = new System.Windows.Forms.Label();
+            this.lblHuongDanNhom = new System.Windows.Forms.Label();
             this.txtTenNhomChi = new System.Windows.Forms.TextBox();
             this.lblTenNhomChi = new System.Windows.Forms.Label();
             this.dgvNhomChi = new System.Windows.Forms.DataGridView();
             this.lblNhomChiTieu = new System.Windows.Forms.Label();
             this.pnlLoaiChi = new System.Windows.Forms.Panel();
+            this.btnMoiLoai = new System.Windows.Forms.Button();
             this.lblChiDoc = new System.Windows.Forms.Label();
             this.btnNgungSuDungLoai = new System.Windows.Forms.Button();
             this.btnSuaLoai = new System.Windows.Forms.Button();
@@ -61,24 +63,45 @@
             this.lblTieuDe.Size = new System.Drawing.Size(257, 32);
             this.lblTieuDe.TabIndex = 0;
             this.lblTieuDe.Text = "Nhóm và loại chi tiêu";
+            //
+            // lblHuongDan
+            //
+            this.lblHuongDan.AutoSize = true;
+            this.lblHuongDan.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
+            this.lblHuongDan.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblHuongDan.Location = new System.Drawing.Point(24, 57);
+            this.lblHuongDan.Name = "lblHuongDan";
+            this.lblHuongDan.Text = "Chọn nhóm bên trái để xem loại chi bên phải. Tạo mới → nhập thông tin → Lưu mới; chọn một dòng → sửa → Lưu thay đổi.";
             // 
             // pnlNhomChi
             // 
             this.pnlNhomChi.BackColor = System.Drawing.Color.White;
             this.pnlNhomChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlNhomChi.Controls.Add(this.btnMoiNhom);
             this.pnlNhomChi.Controls.Add(this.btnNgungSuDungNhom);
             this.pnlNhomChi.Controls.Add(this.btnSuaNhom);
             this.pnlNhomChi.Controls.Add(this.btnThemNhom);
-            this.pnlNhomChi.Controls.Add(this.txtGhiChuNhom);
-            this.pnlNhomChi.Controls.Add(this.lblGhiChuNhom);
+            this.pnlNhomChi.Controls.Add(this.lblHuongDanNhom);
             this.pnlNhomChi.Controls.Add(this.txtTenNhomChi);
             this.pnlNhomChi.Controls.Add(this.lblTenNhomChi);
             this.pnlNhomChi.Controls.Add(this.dgvNhomChi);
             this.pnlNhomChi.Controls.Add(this.lblNhomChiTieu);
-            this.pnlNhomChi.Location = new System.Drawing.Point(24, 65);
+            this.pnlNhomChi.Location = new System.Drawing.Point(24, 90);
             this.pnlNhomChi.Name = "pnlNhomChi";
             this.pnlNhomChi.Size = new System.Drawing.Size(380, 560);
             this.pnlNhomChi.TabIndex = 1;
+            //
+            // btnMoiNhom
+            //
+            this.btnMoiNhom.BackColor = System.Drawing.Color.White;
+            this.btnMoiNhom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoiNhom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMoiNhom.Location = new System.Drawing.Point(16, 452);
+            this.btnMoiNhom.Name = "btnMoiNhom";
+            this.btnMoiNhom.Size = new System.Drawing.Size(108, 38);
+            this.btnMoiNhom.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnMoiNhom.TabIndex = 6;
+            this.btnMoiNhom.Text = "Tạo nhóm mới";
             // 
             // btnNgungSuDungNhom
             // 
@@ -89,7 +112,7 @@
             this.btnNgungSuDungNhom.Location = new System.Drawing.Point(16, 502);
             this.btnNgungSuDungNhom.Name = "btnNgungSuDungNhom";
             this.btnNgungSuDungNhom.Size = new System.Drawing.Size(345, 38);
-            this.btnNgungSuDungNhom.TabIndex = 8;
+            this.btnNgungSuDungNhom.TabIndex = 9;
             this.btnNgungSuDungNhom.Text = "Ngừng sử dụng";
             this.btnNgungSuDungNhom.UseVisualStyleBackColor = false;
             // 
@@ -99,11 +122,12 @@
             this.btnSuaNhom.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSuaNhom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSuaNhom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnSuaNhom.Location = new System.Drawing.Point(100, 452);
+            this.btnSuaNhom.Location = new System.Drawing.Point(242, 452);
             this.btnSuaNhom.Name = "btnSuaNhom";
-            this.btnSuaNhom.Size = new System.Drawing.Size(80, 38);
-            this.btnSuaNhom.TabIndex = 7;
-            this.btnSuaNhom.Text = "Sửa";
+            this.btnSuaNhom.Size = new System.Drawing.Size(119, 38);
+            this.btnSuaNhom.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSuaNhom.TabIndex = 8;
+            this.btnSuaNhom.Text = "Lưu thay đổi";
             this.btnSuaNhom.UseVisualStyleBackColor = false;
             // 
             // btnThemNhom
@@ -112,35 +136,28 @@
             this.btnThemNhom.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnThemNhom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThemNhom.ForeColor = System.Drawing.Color.White;
-            this.btnThemNhom.Location = new System.Drawing.Point(16, 452);
+            this.btnThemNhom.Location = new System.Drawing.Point(130, 452);
             this.btnThemNhom.Name = "btnThemNhom";
-            this.btnThemNhom.Size = new System.Drawing.Size(78, 38);
-            this.btnThemNhom.TabIndex = 6;
-            this.btnThemNhom.Text = "Thêm";
+            this.btnThemNhom.Size = new System.Drawing.Size(106, 38);
+            this.btnThemNhom.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnThemNhom.TabIndex = 7;
+            this.btnThemNhom.Text = "Lưu mới";
             this.btnThemNhom.UseVisualStyleBackColor = false;
             // 
-            // txtGhiChuNhom
+            // lblHuongDanNhom
             // 
-            this.txtGhiChuNhom.Location = new System.Drawing.Point(16, 372);
-            this.txtGhiChuNhom.Multiline = true;
-            this.txtGhiChuNhom.Name = "txtGhiChuNhom";
-            this.txtGhiChuNhom.Size = new System.Drawing.Size(345, 65);
-            this.txtGhiChuNhom.TabIndex = 5;
-            // 
-            // lblGhiChuNhom
-            // 
-            this.lblGhiChuNhom.AutoSize = true;
-            this.lblGhiChuNhom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblGhiChuNhom.Location = new System.Drawing.Point(16, 348);
-            this.lblGhiChuNhom.Name = "lblGhiChuNhom";
-            this.lblGhiChuNhom.Size = new System.Drawing.Size(69, 23);
-            this.lblGhiChuNhom.TabIndex = 4;
-            this.lblGhiChuNhom.Text = "Ghi chú";
+            this.lblHuongDanNhom.Location = new System.Drawing.Point(16, 355);
+            this.lblHuongDanNhom.Name = "lblHuongDanNhom";
+            this.lblHuongDanNhom.Size = new System.Drawing.Size(345, 84);
+            this.lblHuongDanNhom.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblHuongDanNhom.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
+            this.lblHuongDanNhom.Text = "Nhóm tập hợp các loại chi cùng chủ đề.\r\nVí dụ: Ăn uống gồm Ăn sáng, Ăn trưa, Cà phê.\r\nTạo và lưu nhóm trước, rồi thêm loại chi bên phải.\r\nChọn lại một dòng trong bảng để hủy nhập mới.";
             // 
             // txtTenNhomChi
             // 
             this.txtTenNhomChi.Location = new System.Drawing.Point(16, 310);
             this.txtTenNhomChi.Name = "txtTenNhomChi";
+            this.txtTenNhomChi.MaxLength = 100;
             this.txtTenNhomChi.Size = new System.Drawing.Size(345, 30);
             this.txtTenNhomChi.TabIndex = 3;
             // 
@@ -179,11 +196,11 @@
             this.lblNhomChiTieu.AutoSize = true;
             this.lblNhomChiTieu.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNhomChiTieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblNhomChiTieu.Location = new System.Drawing.Point(104, -1);
+            this.lblNhomChiTieu.Location = new System.Drawing.Point(16, 10);
             this.lblNhomChiTieu.Name = "lblNhomChiTieu";
             this.lblNhomChiTieu.Size = new System.Drawing.Size(136, 25);
             this.lblNhomChiTieu.TabIndex = 0;
-            this.lblNhomChiTieu.Text = "Nhóm chi tiêu";
+            this.lblNhomChiTieu.Text = "1. Nhóm chi tiêu";
             // 
             // pnlLoaiChi
             // 
@@ -191,6 +208,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLoaiChi.BackColor = System.Drawing.Color.White;
             this.pnlLoaiChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLoaiChi.Controls.Add(this.btnMoiLoai);
             this.pnlLoaiChi.Controls.Add(this.lblChiDoc);
             this.pnlLoaiChi.Controls.Add(this.btnNgungSuDungLoai);
             this.pnlLoaiChi.Controls.Add(this.btnSuaLoai);
@@ -204,21 +222,34 @@
             this.pnlLoaiChi.Controls.Add(this.dgvLoaiChi);
             this.pnlLoaiChi.Controls.Add(this.pnlNhomDangChon);
             this.pnlLoaiChi.Controls.Add(this.lblLoaiChiTieuTieuDe);
-            this.pnlLoaiChi.Location = new System.Drawing.Point(420, 65);
+            this.pnlLoaiChi.Location = new System.Drawing.Point(420, 90);
             this.pnlLoaiChi.Name = "pnlLoaiChi";
             this.pnlLoaiChi.Size = new System.Drawing.Size(730, 560);
             this.pnlLoaiChi.TabIndex = 2;
+            //
+            // btnMoiLoai
+            //
+            this.btnMoiLoai.BackColor = System.Drawing.Color.White;
+            this.btnMoiLoai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoiLoai.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMoiLoai.Location = new System.Drawing.Point(16, 452);
+            this.btnMoiLoai.Name = "btnMoiLoai";
+            this.btnMoiLoai.Size = new System.Drawing.Size(130, 38);
+            this.btnMoiLoai.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnMoiLoai.TabIndex = 9;
+            this.btnMoiLoai.Text = "Tạo loại mới";
             // 
             // lblChiDoc
             // 
             this.lblChiDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblChiDoc.AutoSize = true;
             this.lblChiDoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblChiDoc.Location = new System.Drawing.Point(676, 16);
+            this.lblChiDoc.Location = new System.Drawing.Point(495, 15);
             this.lblChiDoc.Name = "lblChiDoc";
             this.lblChiDoc.Size = new System.Drawing.Size(68, 23);
             this.lblChiDoc.TabIndex = 12;
-            this.lblChiDoc.Text = "Chỉ đọc";
+            this.lblChiDoc.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.lblChiDoc.Text = "Chọn nhóm ở bảng bên trái";
             // 
             // btnNgungSuDungLoai
             // 
@@ -229,7 +260,7 @@
             this.btnNgungSuDungLoai.Location = new System.Drawing.Point(16, 502);
             this.btnNgungSuDungLoai.Name = "btnNgungSuDungLoai";
             this.btnNgungSuDungLoai.Size = new System.Drawing.Size(345, 38);
-            this.btnNgungSuDungLoai.TabIndex = 11;
+            this.btnNgungSuDungLoai.TabIndex = 12;
             this.btnNgungSuDungLoai.Text = "Ngừng sử dụng";
             this.btnNgungSuDungLoai.UseVisualStyleBackColor = false;
             // 
@@ -239,11 +270,12 @@
             this.btnSuaLoai.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSuaLoai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSuaLoai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnSuaLoai.Location = new System.Drawing.Point(100, 452);
+            this.btnSuaLoai.Location = new System.Drawing.Point(288, 452);
             this.btnSuaLoai.Name = "btnSuaLoai";
-            this.btnSuaLoai.Size = new System.Drawing.Size(80, 38);
-            this.btnSuaLoai.TabIndex = 10;
-            this.btnSuaLoai.Text = "Sửa";
+            this.btnSuaLoai.Size = new System.Drawing.Size(130, 38);
+            this.btnSuaLoai.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSuaLoai.TabIndex = 11;
+            this.btnSuaLoai.Text = "Lưu thay đổi";
             this.btnSuaLoai.UseVisualStyleBackColor = false;
             // 
             // btnThemLoai
@@ -252,11 +284,12 @@
             this.btnThemLoai.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnThemLoai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThemLoai.ForeColor = System.Drawing.Color.White;
-            this.btnThemLoai.Location = new System.Drawing.Point(16, 452);
+            this.btnThemLoai.Location = new System.Drawing.Point(152, 452);
             this.btnThemLoai.Name = "btnThemLoai";
-            this.btnThemLoai.Size = new System.Drawing.Size(78, 38);
-            this.btnThemLoai.TabIndex = 9;
-            this.btnThemLoai.Text = "Thêm";
+            this.btnThemLoai.Size = new System.Drawing.Size(130, 38);
+            this.btnThemLoai.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnThemLoai.TabIndex = 10;
+            this.btnThemLoai.Text = "Lưu mới";
             this.btnThemLoai.UseVisualStyleBackColor = false;
             // 
             // txtGhiChuLoai
@@ -266,6 +299,7 @@
             this.txtGhiChuLoai.Location = new System.Drawing.Point(16, 372);
             this.txtGhiChuLoai.Multiline = true;
             this.txtGhiChuLoai.Name = "txtGhiChuLoai";
+            this.txtGhiChuLoai.MaxLength = 200;
             this.txtGhiChuLoai.Size = new System.Drawing.Size(698, 65);
             this.txtGhiChuLoai.TabIndex = 8;
             // 
@@ -277,7 +311,7 @@
             this.lblGhiChuLoai.Name = "lblGhiChuLoai";
             this.lblGhiChuLoai.Size = new System.Drawing.Size(69, 23);
             this.lblGhiChuLoai.TabIndex = 7;
-            this.lblGhiChuLoai.Text = "Ghi chú";
+            this.lblGhiChuLoai.Text = "Ghi chú loại chi (không bắt buộc)";
             // 
             // cboNhomChiKhoa
             // 
@@ -305,6 +339,7 @@
             // 
             this.txtTenLoaiChi.Location = new System.Drawing.Point(16, 310);
             this.txtTenLoaiChi.Name = "txtTenLoaiChi";
+            this.txtTenLoaiChi.MaxLength = 50;
             this.txtTenLoaiChi.Size = new System.Drawing.Size(345, 30);
             this.txtTenLoaiChi.TabIndex = 4;
             // 
@@ -350,33 +385,38 @@
             // 
             // lblNhomDangChon
             // 
-            this.lblNhomDangChon.AutoSize = true;
+            this.lblNhomDangChon.AutoSize = false;
+            this.lblNhomDangChon.AutoEllipsis = true;
+            this.lblNhomDangChon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNhomDangChon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNhomDangChon.Padding = new System.Windows.Forms.Padding(12, 0, 8, 0);
             this.lblNhomDangChon.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNhomDangChon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
             this.lblNhomDangChon.Location = new System.Drawing.Point(12, 8);
             this.lblNhomDangChon.Name = "lblNhomDangChon";
             this.lblNhomDangChon.Size = new System.Drawing.Size(274, 21);
             this.lblNhomDangChon.TabIndex = 0;
-            this.lblNhomDangChon.Text = "Nhóm đang chọn: Ăn uống • 4 loại chi";
+            this.lblNhomDangChon.Text = "Chọn nhóm bên trái để xem loại chi.";
             // 
             // lblLoaiChiTieuTieuDe
             // 
             this.lblLoaiChiTieuTieuDe.AutoSize = true;
             this.lblLoaiChiTieuTieuDe.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoaiChiTieuTieuDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblLoaiChiTieuTieuDe.Location = new System.Drawing.Point(234, -1);
+            this.lblLoaiChiTieuTieuDe.Location = new System.Drawing.Point(16, 10);
             this.lblLoaiChiTieuTieuDe.Name = "lblLoaiChiTieuTieuDe";
             this.lblLoaiChiTieuTieuDe.Size = new System.Drawing.Size(275, 25);
             this.lblLoaiChiTieuTieuDe.TabIndex = 0;
-            this.lblLoaiChiTieuTieuDe.Text = "Loại chi thuộc nhóm Ăn uống";
+            this.lblLoaiChiTieuTieuDe.Text = "2. Loại chi trong nhóm";
             // 
             // lblThongBao
             // 
-            this.lblThongBao.AutoSize = true;
+            this.lblThongBao.AutoSize = false;
+            this.lblThongBao.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.lblThongBao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.lblThongBao.Location = new System.Drawing.Point(24, 635);
+            this.lblThongBao.Location = new System.Drawing.Point(24, 660);
             this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(0, 23);
+            this.lblThongBao.Size = new System.Drawing.Size(1126, 48);
             this.lblThongBao.TabIndex = 0;
             this.lblThongBao.Visible = false;
             // 
@@ -384,8 +424,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1175, 675);
+            this.ClientSize = new System.Drawing.Size(1175, 715);
+            this.Controls.Add(this.lblHuongDan);
             this.Controls.Add(this.lblThongBao);
             this.Controls.Add(this.pnlLoaiChi);
             this.Controls.Add(this.pnlNhomChi);
@@ -394,6 +436,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLoaiChiTieu";
             this.Text = "Nhóm và loại chi tiêu";
+            this.Load += new System.EventHandler(this.frmLoaiChiTieu_Load);
             this.pnlNhomChi.ResumeLayout(false);
             this.pnlNhomChi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhomChi)).EndInit();
@@ -410,13 +453,14 @@
         #endregion
 
         private System.Windows.Forms.Label lblTieuDe;
+        private System.Windows.Forms.Label lblHuongDan;
         private System.Windows.Forms.Panel pnlNhomChi;
         private System.Windows.Forms.Label lblNhomChiTieu;
         private System.Windows.Forms.DataGridView dgvNhomChi;
         private System.Windows.Forms.Label lblTenNhomChi;
         private System.Windows.Forms.TextBox txtTenNhomChi;
-        private System.Windows.Forms.Label lblGhiChuNhom;
-        private System.Windows.Forms.TextBox txtGhiChuNhom;
+        private System.Windows.Forms.Label lblHuongDanNhom;
+        private System.Windows.Forms.Button btnMoiNhom;
         private System.Windows.Forms.Button btnThemNhom;
         private System.Windows.Forms.Button btnSuaNhom;
         private System.Windows.Forms.Button btnNgungSuDungNhom;
@@ -432,6 +476,7 @@
         private System.Windows.Forms.Label lblGhiChuLoai;
         private System.Windows.Forms.TextBox txtGhiChuLoai;
         private System.Windows.Forms.Button btnThemLoai;
+        private System.Windows.Forms.Button btnMoiLoai;
         private System.Windows.Forms.Button btnSuaLoai;
         private System.Windows.Forms.Button btnNgungSuDungLoai;
         private System.Windows.Forms.Label lblChiDoc;
