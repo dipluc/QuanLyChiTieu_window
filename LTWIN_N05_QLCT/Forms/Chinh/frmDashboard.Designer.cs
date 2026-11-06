@@ -29,7 +29,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTatCaCacVi = new System.Windows.Forms.Label();
-            this.lblDuLieuDenNgay2610 = new System.Windows.Forms.Label();
+            this.lblDuLieuDenNgay = new System.Windows.Forms.Label();
             this.lblThang = new System.Windows.Forms.Label();
             this.lblTongQuanTaiChinh = new System.Windows.Forms.Label();
             this.tlpTongQuanTaiChinh = new System.Windows.Forms.TableLayoutPanel();
@@ -114,7 +114,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlHeader.BackColor = System.Drawing.Color.Transparent;
             this.pnlHeader.Controls.Add(this.lblTatCaCacVi);
-            this.pnlHeader.Controls.Add(this.lblDuLieuDenNgay2610);
+            this.pnlHeader.Controls.Add(this.lblDuLieuDenNgay);
             this.pnlHeader.Controls.Add(this.lblThang);
             this.pnlHeader.Controls.Add(this.lblTongQuanTaiChinh);
             this.pnlHeader.Location = new System.Drawing.Point(12, 7);
@@ -133,16 +133,16 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblTatCaCacVi.TabIndex = 0;
             this.lblTatCaCacVi.Text = "• Tất cả các ví";
             // 
-            // lblDuLieuDenNgay2610
+            // lblDuLieuDenNgay
             // 
-            this.lblDuLieuDenNgay2610.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDuLieuDenNgay2610.AutoSize = true;
-            this.lblDuLieuDenNgay2610.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblDuLieuDenNgay2610.Location = new System.Drawing.Point(873, 15);
-            this.lblDuLieuDenNgay2610.Name = "lblDuLieuDenNgay2610";
-            this.lblDuLieuDenNgay2610.Size = new System.Drawing.Size(202, 20);
-            this.lblDuLieuDenNgay2610.TabIndex = 1;
-            this.lblDuLieuDenNgay2610.Text = "Dữ liệu đến ngày 00/00/0000";
+            this.lblDuLieuDenNgay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDuLieuDenNgay.AutoSize = true;
+            this.lblDuLieuDenNgay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.lblDuLieuDenNgay.Location = new System.Drawing.Point(873, 15);
+            this.lblDuLieuDenNgay.Name = "lblDuLieuDenNgay";
+            this.lblDuLieuDenNgay.Size = new System.Drawing.Size(202, 20);
+            this.lblDuLieuDenNgay.TabIndex = 1;
+            this.lblDuLieuDenNgay.Text = "Dữ liệu đến ngày 00/00/0000";
             // 
             // lblThang
             // 
@@ -987,7 +987,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblTongQuanTaiChinh;
         private System.Windows.Forms.Label lblThang;
-        private System.Windows.Forms.Label lblDuLieuDenNgay2610;
+        private System.Windows.Forms.Label lblDuLieuDenNgay;
         private System.Windows.Forms.Label lblTatCaCacVi;
         private System.Windows.Forms.TableLayoutPanel tlpTongQuanTaiChinh;
         private System.Windows.Forms.Panel pnlTheTongHop1;

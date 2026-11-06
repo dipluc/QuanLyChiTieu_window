@@ -15,7 +15,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace LTWIN_N05_QLCT.Forms.Chinh
 {
-    public partial class frmDashboard : Form
+    public partial class frmDashboard : Form, IDongBoThang
     {
         private DateTime _thangDangXem = DateTime.Today; //Dung de chon ngay, set bat dau la today
         public frmDashboard()
@@ -40,6 +40,11 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             NapDuLieuDashboard();
         }
 
+        public void DongBoThang(DateTime thang)
+        {
+            capNhatThang(thang);
+        }
+
         private void NapDuLieuDashboard()
         {
             if (!PhienDangNhap.DaDangNhap)
@@ -59,7 +64,7 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
                 NapXepHangVi();
                 NapThuTheoLoai(maND ,thang, nam);
 
-                lblDuLieuDenNgay2610.Text = "Tháng đang xem: " + _thangDangXem.ToString("MM/yyyy");
+                lblDuLieuDenNgay.Text = "Tháng đang xem: " + _thangDangXem.ToString("MM/yyyy");
             }
             catch (Exception ex)
             {

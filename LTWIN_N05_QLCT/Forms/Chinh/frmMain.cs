@@ -227,7 +227,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         {
             if (formCon == null) return;
 
-            pnlNoiDung.Controls.Clear();
+            while (pnlNoiDung.Controls.Count > 0)
+            {
+                Control control = pnlNoiDung.Controls[0];
+                pnlNoiDung.Controls.Remove(control);
+                control.Dispose();
+            }
             formCon.TopLevel = false;
             formCon.FormBorderStyle = FormBorderStyle.None;
             formCon.Dock = DockStyle.Fill;
@@ -285,9 +290,17 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
 
         private void MoFormDangNhap()
         {
+            //Tao frmDanNhap moi,  dùng using để đóng bằng dispose
             using (var f = new frmDangNhap())
             {
-                f.ShowDialog(this);
+                if (f.ShowDialog(this) == DialogResult.OK) //Phải dóng form mới thao tác dc với cha
+                {
+                    MoDashboard();
+                }
+                else
+                {
+                    Application.Exit(); // Đóng hoặc bấm Cancel -> Thoát toàn bộ chương trình
+                }
             }
         }
 
