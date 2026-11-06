@@ -84,13 +84,12 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.lblCanhBaoNganSach = new System.Windows.Forms.Label();
             this.pnlGiaoDichGanDay = new System.Windows.Forms.Panel();
             this.dgvGiaoDichGanDay = new System.Windows.Forms.DataGridView();
-            this.lnkXemTatCa = new System.Windows.Forms.LinkLabel();
-            this.lblGiaoDichGanDay = new System.Windows.Forms.Label();
-            this.tlpNoiDungDuoi = new System.Windows.Forms.TableLayoutPanel();
             this.colNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDanhMuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblGiaoDichGanDay = new System.Windows.Forms.Label();
+            this.tlpNoiDungDuoi = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeader.SuspendLayout();
             this.tlpTongQuanTaiChinh.SuspendLayout();
             this.pnlTheTongHop1.SuspendLayout();
@@ -435,16 +434,16 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 187F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(370, 187);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
@@ -823,7 +822,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.pnlGiaoDichGanDay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlGiaoDichGanDay.BackColor = System.Drawing.Color.White;
             this.pnlGiaoDichGanDay.Controls.Add(this.dgvGiaoDichGanDay);
-            this.pnlGiaoDichGanDay.Controls.Add(this.lnkXemTatCa);
             this.pnlGiaoDichGanDay.Controls.Add(this.lblGiaoDichGanDay);
             this.pnlGiaoDichGanDay.Location = new System.Drawing.Point(3, 3);
             this.pnlGiaoDichGanDay.Name = "pnlGiaoDichGanDay";
@@ -874,46 +872,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.dgvGiaoDichGanDay.Size = new System.Drawing.Size(378, 184);
             this.dgvGiaoDichGanDay.TabIndex = 0;
             // 
-            // lnkXemTatCa
-            // 
-            this.lnkXemTatCa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnkXemTatCa.AutoSize = true;
-            this.lnkXemTatCa.Location = new System.Drawing.Point(291, 16);
-            this.lnkXemTatCa.Name = "lnkXemTatCa";
-            this.lnkXemTatCa.Size = new System.Drawing.Size(97, 20);
-            this.lnkXemTatCa.TabIndex = 1;
-            this.lnkXemTatCa.TabStop = true;
-            this.lnkXemTatCa.Text = "Xem tất cả →";
-            // 
-            // lblGiaoDichGanDay
-            // 
-            this.lblGiaoDichGanDay.AutoSize = true;
-            this.lblGiaoDichGanDay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblGiaoDichGanDay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblGiaoDichGanDay.Location = new System.Drawing.Point(10, 8);
-            this.lblGiaoDichGanDay.Name = "lblGiaoDichGanDay";
-            this.lblGiaoDichGanDay.Size = new System.Drawing.Size(183, 28);
-            this.lblGiaoDichGanDay.TabIndex = 2;
-            this.lblGiaoDichGanDay.Text = "Giao dịch gần đây";
-            // 
-            // tlpNoiDungDuoi
-            // 
-            this.tlpNoiDungDuoi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpNoiDungDuoi.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tlpNoiDungDuoi.ColumnCount = 2;
-            this.tlpNoiDungDuoi.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpNoiDungDuoi.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpNoiDungDuoi.Controls.Add(this.pnlChiTheoLoaiChi, 1, 0);
-            this.tlpNoiDungDuoi.Controls.Add(this.pnlGiaoDichGanDay, 0, 0);
-            this.tlpNoiDungDuoi.Location = new System.Drawing.Point(12, 450);
-            this.tlpNoiDungDuoi.Name = "tlpNoiDungDuoi";
-            this.tlpNoiDungDuoi.RowCount = 1;
-            this.tlpNoiDungDuoi.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpNoiDungDuoi.Size = new System.Drawing.Size(804, 239);
-            this.tlpNoiDungDuoi.TabIndex = 3;
-            // 
             // colNgay
             // 
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
@@ -947,6 +905,35 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             this.colSoTien.Name = "colSoTien";
             this.colSoTien.ReadOnly = true;
             this.colSoTien.Width = 150;
+            // 
+            // lblGiaoDichGanDay
+            // 
+            this.lblGiaoDichGanDay.AutoSize = true;
+            this.lblGiaoDichGanDay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblGiaoDichGanDay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.lblGiaoDichGanDay.Location = new System.Drawing.Point(10, 8);
+            this.lblGiaoDichGanDay.Name = "lblGiaoDichGanDay";
+            this.lblGiaoDichGanDay.Size = new System.Drawing.Size(183, 28);
+            this.lblGiaoDichGanDay.TabIndex = 2;
+            this.lblGiaoDichGanDay.Text = "Giao dịch gần đây";
+            // 
+            // tlpNoiDungDuoi
+            // 
+            this.tlpNoiDungDuoi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlpNoiDungDuoi.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tlpNoiDungDuoi.ColumnCount = 2;
+            this.tlpNoiDungDuoi.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpNoiDungDuoi.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpNoiDungDuoi.Controls.Add(this.pnlChiTheoLoaiChi, 1, 0);
+            this.tlpNoiDungDuoi.Controls.Add(this.pnlGiaoDichGanDay, 0, 0);
+            this.tlpNoiDungDuoi.Location = new System.Drawing.Point(12, 450);
+            this.tlpNoiDungDuoi.Name = "tlpNoiDungDuoi";
+            this.tlpNoiDungDuoi.RowCount = 1;
+            this.tlpNoiDungDuoi.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpNoiDungDuoi.Size = new System.Drawing.Size(804, 239);
+            this.tlpNoiDungDuoi.TabIndex = 3;
             // 
             // frmDashboard
             // 
@@ -1029,7 +1016,6 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private System.Windows.Forms.LinkLabel lnkXemNganSach;
         private System.Windows.Forms.Panel pnlGiaoDichGanDay;
         private System.Windows.Forms.Label lblGiaoDichGanDay;
-        private System.Windows.Forms.LinkLabel lnkXemTatCa;
         private System.Windows.Forms.DataGridView dgvGiaoDichGanDay;
         private System.Windows.Forms.FlowLayoutPanel flpDanhSachNganSach;
         private System.Windows.Forms.TableLayoutPanel tlpNoiDungDuoi;

@@ -87,14 +87,22 @@ namespace LTWIN_N05_QLCT.Forms.QuanTri
                     return;
                 }
 
+                string thuMuc = SaoLuuServices.LayThuMuc(txtThuMucSaoLuuMacDinh.Text);
+
+                // Tạo thư mục để phát hiện sớm đường dẫn không hợp lệ
+                // hoặc trường hợp không có quyền tạo thư mục.
+                Directory.CreateDirectory(thuMuc);
+
                 var cfg = new CauHinhApp
                 {
-                    ThuMucSaoLuu = txtThuMucSaoLuuMacDinh.Text.Trim(),
+                    ThuMucSaoLuu = thuMuc,
                     TuDongSaoLuuKhiThoat = chkTuDongSaoLuuKhiThoat.Checked,
                     NguongCanhBao = nguong
                 };
 
                 DataService.LuuCauHinh(cfg);
+                _currentNguong = nguong;
+                LoadConfig();
                 MessageBox.Show("Lưu cấu hình thành công!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

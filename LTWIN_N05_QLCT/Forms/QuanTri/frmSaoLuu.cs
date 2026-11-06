@@ -1,7 +1,12 @@
+using DuLieu;
+using LTWIN_N05_QLCT.Services;
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
-using DuLieu;
+using System.Threading.Tasks;
+using LTWIN_N05_QLCT.Services;
 
 namespace LTWIN_N05_QLCT.Forms.QuanTri
 {
@@ -24,10 +29,27 @@ namespace LTWIN_N05_QLCT.Forms.QuanTri
         public frmSaoLuu()
         {
             InitializeComponent();
-            string thuMucMacDinh = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QuanLyChiTieu", "SaoLuu");
-            txtThuMucSaoLuu.Text = thuMucMacDinh;
             KhoiTao();
+
+            // Có sẵn đường dẫn dự phòng nếu đọc cấu hình thất bại.
+            txtThuMucSaoLuu.Text = SaoLuuServices.LayThuMuc(null);
+
+            try
+            {
+                var cfg = DataService.GetCauHinh();
+
+                txtThuMucSaoLuu.Text = SaoLuuServices.LayThuMuc(
+                    cfg == null ? null : cfg.ThuMucSaoLuu);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Không đọc được cấu hình thư mục sao lưu.\n" +
+                    "Ứng dụng sẽ dùng thư mục Documents.\n\n" + ex.Message,
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
 
         private void KhoiTao()
@@ -55,67 +77,46 @@ namespace LTWIN_N05_QLCT.Forms.QuanTri
             }
         }
 
-        private void btnSaoLuu_Click(object sender, EventArgs e)
+        private async void btnSaoLuu_Click(object sender, EventArgs e)
         {
             string thuMuc = txtThuMucSaoLuu.Text.Trim();
-            if (string.IsNullOrEmpty(thuMuc))
-            {
-                MessageBox.Show("Vui lòng chọn thư mục sao lưu.", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            string mdfNguon = TimFileMDF();
-            string ldfNguon = TimFileLDF();
-
-            if (mdfNguon == null || !File.Exists(mdfNguon))
+            if (string.IsNullOrWhiteSpace(thuMuc))
             {
-                MessageBox.Show("Không tìm thấy tệp cơ sở dữ liệu để sao lưu.", "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn thư mục sao lưu.");
                 return;
             }
 
             btnSaoLuu.Enabled = false;
+            btnPhucHoi.Enabled = false;
             Cursor = Cursors.WaitCursor;
 
             try
             {
-                if (!Directory.Exists(thuMuc))
-                    Directory.CreateDirectory(thuMuc);
+                string duongDan = await Task.Run(
+                    () => SaoLuuServices.TaoBanSaoLuu(thuMuc));
 
-                // Ghi dữ liệu từ bộ nhớ xuống đĩa trước khi copy
-                try
-                {
-                    KetNoiCSDL.ThucThiLenh("CHECKPOINT;");
-                }
-                catch { }
-
-                string timestamp = DateTime.Now.ToString("dd-MM-yyyy_HHmm");
-                string tenTep = string.Format("ChiTieu_{0}.bak", timestamp);
-                string mdfDich = Path.Combine(thuMuc, tenTep);
-                string ldfDich = Path.Combine(thuMuc, string.Format("ChiTieu_{0}_log.bak", timestamp));
-
-                // Copy tệp MDF và LDF
-                File.Copy(mdfNguon, mdfDich, true);
-                if (ldfNguon != null && File.Exists(ldfNguon))
-                {
-                    File.Copy(ldfNguon, ldfDich, true);
-                }
-
-                MessageBox.Show(string.Format("Đã sao lưu dữ liệu thành công!\n\nTệp: {0}", mdfDich),
-                    "Sao lưu thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Sao lưu thành công!\n\nTệp: " + duongDan,
+                    "Sao lưu",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
                 TaiDanhSachSaoLuu();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi trong quá trình sao lưu: " + ex.Message,
-                    "Lỗi sao lưu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Không thể sao lưu: " + ex.Message,
+                    "Lỗi sao lưu",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             finally
             {
                 Cursor = Cursors.Default;
                 btnSaoLuu.Enabled = true;
+                btnPhucHoi.Enabled = true;
             }
         }
 

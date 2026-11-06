@@ -6,6 +6,7 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace LTWIN_N05_QLCT.Forms.Chinh
 {
@@ -28,6 +29,8 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
         private string _hoTen = "Nguyễn Minh Anh";
         private string _email = "";
         private string _viDangChon = "Vietcombank";
+        private bool _dangXuLyThoat = false;
+        private bool _choPhepDong = false;
 
         public frmMain()
         {
@@ -343,37 +346,69 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             lblTrangThai.Text = "Đang xem: Giới thiệu ứng dụng";
         }
 
-        private void DangXuat()
+        private async void DangXuat()
         {
-            var dr = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Xác nhận",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
+            if (_dangXuLyThoat)
+                return;
+
+            DialogResult ketQua = MessageBox.Show(
+                "Bạn có chắc chắn muốn đăng xuất không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (ketQua != DialogResult.Yes)
+                return;
+
+            _dangXuLyThoat = true;
+            Enabled = false;
+
+            bool duocDangXuat = false;
+
+            try
             {
-                PhienDangNhap.XoaPhien();
-                GhiNhoDangNhap.Xoa();
-                Hide();
-                using (var f = new frmDangNhap())
+                // Phải đọc cấu hình và sao lưu trước khi xóa phiên.
+                duocDangXuat = await SaoLuuTruocKhiRoiPhienAsync();
+            }
+            finally
+            {
+                Enabled = true;
+                _dangXuLyThoat = false;
+            }
+
+            if (!duocDangXuat)
+                return;
+
+            PhienDangNhap.XoaPhien();
+            GhiNhoDangNhap.Xoa();
+
+            // Giải phóng màn hình chứa dữ liệu tài khoản cũ.
+            while (pnlNoiDung.Controls.Count > 0)
+            {
+                Control control = pnlNoiDung.Controls[0];
+                pnlNoiDung.Controls.Remove(control);
+                control.Dispose();
+            }
+
+            Hide();
+
+            using (var f = new frmDangNhap())
+            {
+                if (f.ShowDialog() == DialogResult.OK)
                 {
-                    if (f.ShowDialog() == DialogResult.OK)
-                    {
-                        Show();
-                    }
-                    else
-                    {
-                        Close();
-                    }
+                    Show();
+                    MoDashboard();
+                }
+                else
+                {
+                    Close();
                 }
             }
         }
 
         private void XacNhanThoat()
         {
-            var dr = MessageBox.Show("Bạn có muốn thoát chương trình không?", "Xác nhận",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            Close();
         }
 
         private void btnPhongTo_Click(object sender, EventArgs e)
@@ -454,5 +489,111 @@ namespace LTWIN_N05_QLCT.Forms.Chinh
             MoFormCon(frm, "Màn hình chính");
             lblTrangThai.Text = "Sẵn sàng";
         }
-}
+
+        //Ham xu ly dong de luu
+        private async Task<bool> SaoLuuTruocKhiRoiPhienAsync()
+        {
+            if (!PhienDangNhap.DaDangNhap)
+                return true;
+
+            while (true)
+            {
+                try
+                {
+                    // Đọc lại để lấy cấu hình vừa được người dùng lưu.
+                    var cfg = DataService.GetCauHinh();
+
+                    if (cfg == null || !cfg.TuDongSaoLuuKhiThoat)
+                        return true;
+
+                    string thuMuc = SaoLuuServices.LayThuMuc(
+                        cfg.ThuMucSaoLuu);
+
+                    lblTrangThai.Text = "Đang tự động sao lưu dữ liệu...";
+                    Cursor = Cursors.WaitCursor;
+
+                    await Task.Run(
+                        () => SaoLuuServices.TaoBanSaoLuu(thuMuc));
+
+                    lblTrangThai.Text = "Đã tự động sao lưu dữ liệu.";
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Cursor = Cursors.Default;
+                    lblTrangThai.Text = "Tự động sao lưu thất bại.";
+
+                    DialogResult luaChon = MessageBox.Show(
+                        this,
+                        "Không thể tự động sao lưu:\n" + ex.Message +
+                        "\n\nCó: thử lại." +
+                        "\nKhông: tiếp tục mà không sao lưu." +
+                        "\nHủy: quay lại ứng dụng.",
+                        "Lỗi sao lưu",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Warning);
+
+                    if (luaChon == DialogResult.Yes)
+                        continue;
+
+                    return luaChon == DialogResult.No;
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
+            }
+        }
+        protected override async void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.Cancel || _choPhepDong)
+                return;
+
+            if (_dangXuLyThoat)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            if (!PhienDangNhap.DaDangNhap)
+                return;
+
+            // Chưa đóng form để chờ sao lưu.
+            e.Cancel = true;
+
+            if (MessageBox.Show(
+                "Bạn có muốn thoát chương trình không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            _dangXuLyThoat = true;
+            Enabled = false;
+
+            bool duocDong = false;
+
+            try
+            {
+                duocDong = await SaoLuuTruocKhiRoiPhienAsync();
+            }
+            finally
+            {
+                Enabled = true;
+                _dangXuLyThoat = false;
+            }
+
+            if (duocDong)
+            {
+                // Cho phép lần Close tiếp theo đóng thật,
+                // không chạy sao lưu lần nữa.
+                _choPhepDong = true;
+                Close();
+            }
+        }
+    }
 }

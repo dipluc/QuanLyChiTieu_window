@@ -1,0 +1,248 @@
+2	Normal	BỘ GIÁO DỤC VÀ ĐÀO TẠO
+3	Normal	TRƯỜNG ĐẠI HỌC VĂN HIẾN
+5	Normal	TIỂU LUẬN 
+6	Normal	HỌC PHẦN: LẬP TRÌNH TRÊN WINDOWS
+7	Normal	ĐỀ TÀI: PHÂN  TÍCH, THIẾT KẾ VÀ XÂY DỰNG
+8	Normal	 ÚNG DỤNG QUẢN LÝ CHI TIÊU CÁ NHÂN 
+11	Normal	GIẢNG VIÊN HƯỚNG DẪN: THS. BÙI THỊ HOÀNG ANH
+12	Normal	SINH VIÊN THỰC HIỆN: NHÓM 5
+13	Normal	231A010165 NGUYỄN VĂN THANH DIỆP 
+14	Normal	231A290050 HUỲNH KHẢI ĐÔNG 
+15	Normal	231A290140 VÕ ĐỨC BÌNH 
+16	Normal	231A290014 THÁI BÌNH XUYÊN 
+20	Normal	TP. HỒ CHÍ MINH – 2026
+23	Heading 1	NHẬN XÉT CỦA GIẢNG VIÊN
+26	Normal	TP. Hồ Chí Minh, ngày ……… tháng ……… năm …
+27	Normal	Giảng viên hướng dẫn
+28	Normal	(Ký tên và ghi rõ họ tên)
+30	Heading 1	DANH SÁCH SINH VIÊN THỰC HIỆN
+34	Heading 1	Lời Cảm Ơn
+35	Normal	Trước hết, nhóm chúng em xin gửi lời cảm ơn chân thành và sâu sắc nhất đến giảng viên phụ trách – ThS. Bùi Thị Hoàng Anh. Trong suốt quá trình học tập và thực hiện đề tài, cô đã luôn nhiệt tình truyền đạt những kiến thức quý báu về lập trình Windows, hướng dẫn cách tiếp cận cũng như đưa ra những góp ý thực tế để giúp chúng em phân tích nghiệp vụ, tối ưu hóa giao diện và tổ chức cơ sở dữ liệu một cách chặt chẽ nhất.
+36	Normal	Chúng em cũng xin gửi lời cảm ơn đến Ban Giám hiệu cùng quý thầy cô Khoa Công nghệ Thông tin – Trường Đại học Văn Hiến đã tạo điều kiện học tập tốt, cung cấp môi trường rèn luyện kiến thức và kỹ năng thực hành bổ ích trong suốt học kỳ vừa qua.   Cuối cùng, xin cảm ơn sự đồng hành, tinh thần trách nhiệm và nỗ lực cùng nhau giải quyết khó khăn của tất cả các thành viên 
+37	Normal	Mặc dù cả nhóm đã cố gắng đầu tư thời gian và tâm huyết để hoàn thiện ứng dụng cũng như bài báo cáo, song do kiến thức và kinh nghiệm thực tế vẫn còn hạn chế nên bài tiểu luận khó tránh khỏi những thiếu sót nhất định. Nhóm chúng em rất mong nhận được những nhận xét, góp ý quý báu từ cô để ứng dụng ngày càng được hoàn thiện và thực tế hơn.Chúng em xin kính chúc cô thật nhiều sức khỏe, hạnh phúc và luôn gặt hái được nhiều thành công trên con đường giảng dạy!
+43	Normal	Chân thành cảm ơn và trân trọng. 
+45	Heading 1	Danh Mục Hình Ảnh 
+46	toc 1	Hình 1.1 Màn hình form Đăng nhập	17
+47	toc 1	Hình 1.2 Màn hình form Dăng Ký	18
+48	toc 1	Hình 1.3 Màn hình form Đổi mật Khẩu	18
+49	toc 1	Hình 1.4 Màn hình form Form chính	19
+50	toc 1	Hình 1.5 Màn hình form Dashboard	20
+51	toc 1	Hình 1.7 Màn hình form Quản lý Chi Tiêu	20
+52	toc 1	Hình 1.8 Màn hình form Quản Lý Thu Nhập	21
+53	toc 1	Hình 1.8 Màn hình form Ví Tiền	21
+54	toc 1	Hình 1.9 Màn hình form Loại Thu Nhập	22
+55	toc 1	Hình 1.10 Màn hình form Loại Chi Tiêu	22
+56	toc 1	Hình 1.11 Màn hình form Quản Lý Ngân Sách	23
+57	toc 1	Hình 1.12 Màn hình form Chuyẻn Tiền	24
+58	toc 1	Hình 1.13 Màn hình form Tìm Kiếm	25
+59	toc 1	Hình 1.14 Màn hình form Thống Kê	25
+60	toc 1	Hình 1.15 Màn hình form Biểu Đồ	26
+61	toc 1	Hình 1.16 Màn hình form Báo Cáo tháng	26
+62	toc 1	Hình 1.17 Màn hình form Xuất Báo Cáo	27
+63	toc 1	Hình 1.18 Màn hình form Người Dùng	27
+64	toc 1	Hình 1.19 Màn hình form Phân Quyền	28
+65	toc 1	Hình 1.20 Màn hình form Sao Lưu	29
+66	toc 1	Hình 1.21 Màn hình form Cấu Hình	29
+67	toc 1	Hình 1.22 Màn hình form Thông Tin Cá Nhân	30
+68	toc 1	Hình 1.23 Màn hình form Hướng Dẫn	30
+69	toc 1	Hình 1.24 Màn hình form Giới Thiệu	30
+70	toc 1	Hình 1.25 Màn hình form Mục Tiêu Tiết Kiệm	31
+71	toc 1	Hình 1.26 Màn hình form Giao Dịch Định Kỳ	32
+73	Heading 1	MỤC LỤC
+76	Heading 1	Chương 1. Tổng Quan
+78	Heading 2	1.2 Lý do chọn đề tài
+79	Normal	Kiểm soát thu chi là nền tảng của quản lý tài chính cá nhân. Trên thực tế, nhiều người vẫn ghi chép bằng sổ tay hoặc bảng tính, cách làm này dễ sót khoản, khó tổng hợp theo tháng, không cảnh báo khi chi vượt kế hoạch và thiếu biểu đồ để nhìn ra thói quen chi tiêu. Khi dữ liệu tăng lên, việc tra cứu và đối chiếu ngày càng tốn thời gian.
+80	Heading 2	1.2 Mục tiêu đề tài 
+81	Normal	Xây dựng ứng dụng giúp người dùng ghi nhận thu nhập, chi tiêu và chuyển tiền giữa các ví một cách nhanh chóng, chính xác nhất.
+82	Normal	Cho phép đặt ngân sách theo từng loại chi và nhận cảnh báo khi chi tiêu đạt 80% hoặc vượt 100% hạn mức.
+83	Normal	Cung cấp thống kê, biểu đồ trực quan theo ngày, tuần, tháng, quý, năm; xuất báo cáo ra Excel và PDF.
+84	Normal	Hỗ trợ nhiều người dùng trên cùng một máy, mỗi người chỉ truy cập dữ liệu của chính mình; có tài khoản Admin để quản trị.
+85	Normal	Hỗ trợ đặt mục tiêu tiết kiệm và tự động nhắc ghi nhận các khoản thu chi định kỳ (tiền nhà, hóa đơn, học phí).
+86	Heading 2	1.3 Đối tượng và phạm vi 
+87	Normal	Đối tượng sử dụng: sinh viên, người đi làm và các hộ gia đình nhỏ muốn quản lý chi tiêu cá nhân.
+88	Normal	Phạm vi: ứng dụng desktop , chạy trên windows, dùng SQL sever làm hệ quản trị cơ sở dũ liệu. Ứng dụng không được kết nối với ngân hàng , không đồng bộ trên đám mây (offline)
+89	Heading 1	Chương 2. Phân tích và thiết kế
+90	Heading 2	2.1 Các chức năng chính 
+91	Heading 2	2.2 Phân Quyền Các tác nhân
+92	Normal	Quản trị viên ( admin ): Quản lý tài khoản, phân quyền, cấu hình hệ thống. Admin không xem được giao dịch riêng tư của khách hàng.
+93	Normal	User( Người dùng): Toàn quyền với cơ sở dữ liệu của chính mình: ví, danh mục, thu, chi, chuyển tiền, ngân sách, báo cáo, sao lưu, cấu hình cá nhân.
+94	Heading 2	2.3 Quy tắc nghiệp vụ 
+95	Normal	Một số quy tắc nghiệp vụ được đặt ra để cố định dự án và là quy tắc nhất thiết . 
+96	Heading 2	2.5 Yêu cầu chức năng
+97	Heading 2	2.6 Kến trúc hệ thống 
+98	Normal	Mô hình 3 lớp chính và ( mô hình ) đống vai trò xử lý độc lập và vận chuyển dữ liệu 
+100	Heading 2	2.7 Thiết kế cơ sở dữ liệu
+101	Normal	Cơ sở dữ liệu QLChiTieu trên SQL Server gồm 12 bảng. Các bảng dữ liệu cá nhân đều có cột MaND để mỗi người dùng chỉ truy cập dữ liệu của chính mình; mọi truy vấn phải có điều kiện lọc theo MaND. Số dư ví không lưu cố định mà được tính từ số dư ban đầu cộng thu, trừ chi và cộng/trừ chuyển tiền, nhờ vậy không bị lệch khi sửa hoặc xóa giao dịch. Ngoại lệ duy nhất là cột SoTienDaTietKiem của bảng MucTieu được lưu trực tiếp để đơn giản hóa việc theo dõi mục tiêu. Tiền dùng kiểu DECIMAL(18,0) vì đồng Việt Nam không có phần lẻ. 
+102	Normal	Bảng NguoiDung
+103	Normal	Tài khoản, mật khẩu băm, quyền, trạng thái.
+105	Normal	Bảng ViTien
+106	Normal	Ví: tiền mặt, ngân hàng, ví điện tử, thẻ tín dụng.
+107	Normal	Bảng LoaiThu
+108	Normal	Loại thu nhập.
+110	Normal	Bảng NhomChi
+111	Normal	Nhóm chi tiêu: Ăn uống, Di chuyển, Nhà ở…
+113	Normal	Bảng LoaiChi
+114	Normal	Loại chi thuộc một nhóm.
+116	Normal	Bảng ThuNhap
+117	Normal	Giao dịch thu nhập.
+119	Normal	Bảng ChiTieu
+120	Normal	Giao dịch chi tiêu.
+122	Normal	Bảng ChuyenTien
+123	Normal	Chuyển tiền giữa hai ví.
+125	Normal	Bảng NganSach
+126	Normal	Hạn mức chi theo loại chi và theo tháng.
+128	Normal	Bảng CauHinh
+129	Normal	Cấu hình cá nhân: thư mục sao lưu, ngưỡng cảnh báo…
+131	Normal	Bảng MucTieu
+132	Normal	Mục tiêu tiết kiệm của người dùng.
+134	Normal	Bảng GiaoDichDinhKy
+135	Normal	Khoản thu hoặc chi lặp lại theo chu kỳ.
+137	Normal	Quan hệ giữa các bảng
+138	Normal	2.8 Bảo Mật 
+139	Normal	Băm mật khẩu bằng BCrypt, không bao giờ lưu hoặc ghi log mật khẩu.
+140	Normal	Cô lập dữ liệu theo MaND; Admin chỉ quản lý tài khoản, không đọc giao dịch của người khác.
+141	Normal	Chuỗi kết nối đặt trong tệp cấu hình; ưu tiên Windows Authentication; không đưa tài khoản vào mã nguồn.
+142	Normal	Hộp thoại xác nhận cho thao tác nguy hiểm: xóa giao dịch, phục hồi dữ liệu, khóa tài khoản.
+145	Heading 1	Chương 3.Xây Dựng Chương Trình 
+146	Heading 2	3.1 Nguyên Tắc Chung 
+149	Heading 2	3.2 Danh sách các Form 
+150	Normal	Ứng dụng được phân tích gồm 26 fom chia thành 7 nhóm. Mức độc được thể hiện tiến độ ưu tiêu xây dựng cá form chính được ưu tiên thực hiện và các form phụ làm sao khi form chính đã ổn định.
+151	Normal	Nhóm 1. Hệ thống gồm 5 form 
+152	Normal	Nhóm 2. Các Form chính gồm 2 form
+153	Normal	Nhóm 3. Danh mục gồm 3 form.
+154	Normal	Nhóm 4 . Nghiệp vụ gồm 7 form
+155	Normal	Nhóm 5 .Báo cáo gồm 4 form
+156	Normal	Nhóm 6 .Quản trị gồm  3 form 
+157	Normal	Nhóm 7. Trợ giúp gồm 2 form
+159	Heading 2	3.3 Luồn điều hướng 
+160	List Paragraph	frmDangNhap → (đăng ký) frmDangKy → quay lại frmDangNhap → frmMain.
+161	List Paragraph	frmMain → menu Danh mục (frmViTien, frmLoaiThuNhap, frmLoaiChiTieu) → menu Nghiệp vụ (frmQuanLyThuNhap, frmQuanLyChiTieu, frmNganSach, frmChuyenTien, frmTimKiem) → menu Báo cáo (frmThongKe, frmBieuDo, frmBaoCaoThang, frmXuatBaoCao).
+162	List Paragraph	Thẻ cảnh báo ngân sách trên frmDashboard → mở frmNganSach; giao dịch gần đây → mở form quản lý tương ứng.
+163	List Paragraph	Menu Nghiệp vụ còn có frmMucTieuTietKiem và frmGiaoDichDinhKy; khi khởi động nếu có khoản định kỳ đến hạn, frmMain tự mở frmGiaoDichDinhKy ở chế độ xác nhận.
+164	List Paragraph	Menu Quản trị (Admin): frmNguoiDung, frmPhanQuyen, frmCauHinh; Trợ giúp: frmHuongDan, frmGioiThieu.
+166	Heading 2	3.4 Nguyên tắc thiết kế giao diện chung 
+167	Heading 2	3.5. Màn hình form Đăng nhập – frmDangNhap
+169	Hình ảnh	Hình 1.1 Màn hình form Đăng nhập
+171	Normal	Bố cục hai cột: bên trái là logo, tên ứng dụng và khẩu hiệu; bên phải là khung đăng nhập.
+172	Normal	Ô tên đăng nhập (txtTenDangNhap), ô mật khẩu (txtMatKhau, che ký tự) kèm nút hiện/ẩn (btnHienMatKhau).
+173	Normal	Hộp chọn ghi nhớ đăng nhập (chkGhiNho): chỉ lưu tên đăng nhập, không lưu mật khẩu.
+174	Normal	Nút Đăng nhập (btnDangNhap, là AcceptButton), nút Đăng ký (btnDangKy), liên kết Quên mật khẩu (lnkQuenMatKhau).
+175	Heading 2	3.6 Màn hình form Dăng Ký
+177	Hình ảnh	Hình 1.2 Màn hình form Dăng Ký
+178	Normal	họ tên, tên đăng nhập, email (không bắt buộc), mật khẩu, nhập lại mật khẩu, thanh đo độ mạnh mật khẩu; nút Đăng ký, Hủy. Kiểm tra trùng tên đăng nhập và quy tắc BR08; thành công thì tạo dữ liệu mặc định .
+179	Heading 2	3.7 Màn hình form Đổi mật Khẩu
+181	Hình ảnh	Hình 1.3 Màn hình form Đổi mật Khẩu
+182	Normal	frmDoiMatKhau: mật khẩu cũ, mật khẩu mới, xác nhận; nút Đổi mật khẩu, Hủy. Mật khẩu mới phải khác mật khẩu cũ.
+183	Heading 2	3.8 Màn hình form Form chính
+185	Hình ảnh	Hình 1.4 Màn hình form Form chính
+186	Heading 2	3.9 Màn hình form Dashboard – Trang tổng quan
+188	Hình ảnh	Hình 1.5 Màn hình form Dashboard
+189	Normal	Hàng 4 thẻ số liệu: tổng số dư các ví; thu nhập tháng; chi tiêu tháng; số tiền còn lại/tiết kiệm.
+190	Normal	Hàng biểu đồ: biểu đồ tròn tỷ lệ chi theo loại chi trong tháng; biểu đồ cột thu – chi 6 tháng gần nhất.
+191	Normal	Khung cảnh báo ngân sách: liệt kê các loại chi đạt 80% hoặc vượt 100%, kèm màu cam/đỏ; bấm vào để mở frmNganSach.
+192	Normal	Giao dịch gần đây: 4–5 giao dịch mới nhất (ngày, loại, ví, số tiền, màu theo thu/chi).
+193	Normal	Ngân sách tháng: thanh tiến độ theo từng loại chi.
+194	Normal	Mục tiêu tiết kiệm: thẻ hiển thị tối đa 3 mục tiêu đang thực hiện kèm thanh tiến độ; bấm vào để mở frmMucTieuTietKiem.
+195	Normal	Nhắc định kỳ: dòng nhắc các khoản định kỳ sẽ đến hạn trong 7 ngày tới; bấm vào để mở frmGiaoDichDinhKy.
+196	Normal	Đổi tháng ở frmMain hoặc bấm Làm mới thì toàn bộ dashboard tải lại
+197	Heading 2	3.10 Màn hình form Quản lý Chi Tiêu 
+199	Hình ảnh	Hình 1.7 Màn hình form Quản lý Chi Tiêu
+200	Heading 2	3.11 Màn hình form Quản Lý Thu Nhập 
+202	Hình ảnh	Hình 1.8 Màn hình form Quản Lý Thu Nhập
+204	Heading 2	3.12 Màn hình form Ví Tiền
+206	Hình ảnh	Hình 1.8 Màn hình form Ví Tiền
+207	Normal	frmViTien: lưới danh sách ví (tên, loại, số dư ban đầu, số dư hiện tại, trạng thái); khung nhập tên ví, loại ví (ComboBox: Tiền mặt, Ngân hàng, Ví điện tử, Thẻ tín dụng), số dư ban đầu, ghi chú; nút Thêm, Sửa, Ngừng sử dụng, Mới. Phía trên hiển thị tổng số dư.
+208	Heading 2	3.13 Màn hình form Loại Thu Nhập
+210	Hình ảnh	Hình 1.9 Màn hình form Loại Thu Nhập
+211	Normal	frmLoaiThuNhap: lưới loại thu và khung nhập tên, ghi chú; nút Thêm, Sửa, Ngừng sử dụng, Mới.
+212	Heading 2	3.14 Màn hình form Loại Chi Tiêu 
+215	Hình ảnh	Hình 1.10 Màn hình form Loại Chi Tiêu
+216	Normal	frmLoaiChiTieu: bố cục hai phần – bên trái danh sách nhóm chi (Ăn uống, Di chuyển, Nhà ở…), bên phải danh sách loại chi thuộc nhóm đang chọn; mỗi phần có khung nhập và nút Thêm, Sửa, Ngừng sử dụng.
+218	Heading 2	3.15 Màn hình form Quản Lý Ngân Sách 
+220	Hình ảnh	Hình 1.11 Màn hình form Quản Lý Ngân Sách
+221	Normal	Chọn tháng và năm (dtpThang); hiển thị tổng hạn mức, tổng đã chi, còn lại của cả tháng.
+222	Normal	Mỗi loại chi là một thẻ (FlowLayoutPanel chứa UserControl ucNganSachItem): tên loại chi, số đã chi, hạn mức, phần trăm và thanh tiến độ.
+223	Normal	Thanh tiến độ đổi màu theo ngưỡng: dưới 80% xanh lá; từ 80% đến dưới 100% cam; từ 100% đỏ.
+224	Normal	Nút Đặt hạn mức (mở hộp nhập hạn mức cho loại chi đang chọn) và Sao chép tháng trước (sao chép hạn mức của tháng trước cho các loại chưa có hạn mức).
+225	Normal	Loại chi chưa có hạn mức hiển thị trạng thái “Chưa đặt hạn mức” và không bị tính cảnh báo.
+226	Heading 2	3.16 Màn hình form Chuyẻn Tiền 
+228	Hình ảnh	Hình 1.12 Màn hình form Chuyẻn Tiền
+229	Normal	frmChuyenTien: ví nguồn, ví đích (hiển thị số dư), ngày, số tiền, ghi chú; nút Chuyển tiền; lưới lịch sử chuyển tiền. Kiểm tra BR04; sau khi chuyển cập nhật số dư hai ví.
+230	Heading 2	3.17 Màn hình form Tìm Kiếm 
+232	Hình ảnh	Hình 1.13 Màn hình form Tìm Kiếm
+233	Normal	frmTimKiem: từ khóa ghi chú, loại giao dịch (Tất cả/Thu/Chi), khoảng ngày, khoảng tiền, loại, ví; lưới kết quả gộp thu và chi với cột Loại giao dịch; tổng kết quả; nút Xuất Excel.
+234	Heading 2	3.18 Màn hình form Thống Kê
+236	Hình ảnh	Hình 1.14 Màn hình form Thống Kê
+237	Normal	Chọn kỳ báo cáo: ngày, tuần, tháng, quý, năm; kèm bộ chọn mốc thời gian.
+238	Normal		Bốn chỉ số: tổng thu, tổng chi, chênh lệch (thu − chi) và tỷ lệ tiết kiệm (chênh lệch / tổng thu).
+239	Normal	Top 5 khoản chi lớn nhất của kỳ; so sánh với kỳ trước (tăng/giảm bao nhiêu phần trăm, kèm mũi tên màu).
+240	Heading 2	3.19 Màn hình form Biểu Đồ 
+242	Hình ảnh	Hình 1.15 Màn hình form Biểu Đồ
+243	Normal	frmBieuDo: biểu đồ đường xu hướng chi tiêu theo ngày/tháng; biểu đồ tròn theo loại chi; biểu đồ cột thu – chi theo tháng; chú giải và tooltip hiển thị số tiền.
+244	Normal	Nút Xuất Excel và Xuất PDF ở cả hai form.
+245	Normal	Các form báo cáo và quản trị còn lại
+246	Heading 2	3.20 Màn hình form Báo Cáo tháng 
+248	Hình ảnh	Hình 1.16 Màn hình form Báo Cáo tháng
+249	Normal	frmBaoCaoThang: bảng tổng hợp theo loại chi trong tháng gồm hạn mức, đã chi, còn lại, phần trăm; phần tổng thu – chi – tiết kiệm; nút In và Xuất.
+250	Heading 2	3.21 Màn hình form Xuất Báo Cáo
+252	Hình ảnh	Hình 1.17 Màn hình form Xuất Báo Cáo
+253	Normal	frmXuatBaoCao: chọn loại báo cáo (giao dịch, thống kê, ngân sách), kỳ báo cáo, định dạng (Excel/PDF), thư mục lưu; nút Xuất và mở tệp sau khi xuất.
+254	Heading 2	3.22 Màn hình form Người Dùng 
+256	Hình ảnh	Hình 1.18 Màn hình form Người Dùng
+257	Normal	frmNguoiDung (Admin): lưới tài khoản, ô tìm kiếm; nút Khóa/Mở khóa, Đặt lại mật khẩu, Đổi quyền; 
+258	Heading 2	3.23 Màn hình form Phân Quyền 
+260	Hình ảnh	Hình 1.19 Màn hình form Phân Quyền
+261	Normal	frmPhanQuyen (Admin): chọn tài khoản và gán quyền Admin/User.
+262	Heading 2	3.24 Màn hình form Sao Lưu
+264	Hình ảnh	Hình 1.20 Màn hình form Sao Lưu
+265	Normal	frmSaoLuu: chọn thư mục, nút Sao lưu ngay, danh sách bản sao lưu đã có, nút Phục hồi (có xác nhận mạnh, cảnh báo ghi đè dữ liệu hiện tại).
+266	Heading 2	3.25 Màn hình form Cấu Hình 
+268	Hình ảnh	Hình 1.21 Màn hình form Cấu Hình
+269	Normal	frmCauHinh: thư mục sao lưu mặc định, ngưỡng cảnh báo ngân sách (mặc định 80%), tự động sao lưu khi thoát.
+270	Heading 2	3.26 Màn hình form Thông Tin Cá Nhân 
+272	Hình ảnh	Hình 1.22 Màn hình form Thông Tin Cá Nhân
+273	Normal	frmThongTinCaNhan: xem và sửa họ tên, email.
+274	Heading 2	3.27 Màn hình form Hướng Dẫn 
+276	Hình ảnh	Hình 1.23 Màn hình form Hướng Dẫn
+277	Heading 2	3.28 Màn hình form Giới Thiệu
+279	Hình ảnh	Hình 1.24 Màn hình form Giới Thiệu
+280	Normal	frmHuongDan, frmGioiThieu: hướng dẫn sử dụng theo từng chức năng; thông tin phiên bản, nhóm thực hiện, giảng viên hướng dẫn.
+281	Heading 2	3.29 Màn hình form Mục Tiêu Tiết Kiệm
+283	Hình ảnh	Hình 1.25 Màn hình form Mục Tiêu Tiết Kiệm
+284	Normal	frmMucTieuTietKiem: bên trái là danh sách mục tiêu dạng thẻ (UserControl ucMucTieuItem) gồm tên, số đã tiết kiệm / số mục tiêu, phần trăm, thanh tiến độ, ngày đích và số tiền còn thiếu; màu xanh dương cho mục tiêu đang thực hiện, xanh lá khi hoàn thành, xám khi đã hủy.
+285	Normal	Bên phải là khung nhập: tên mục tiêu, số tiền mục tiêu, ngày bắt đầu, ngày đích (không bắt buộc), ghi chú; nút Thêm, Sửa, Hủy mục tiêu, Mới. Dưới thẻ đang chọn có ô số tiền và hai nút Nạp tiền, Rút bớt.
+286	Normal	Nếu mục tiêu có ngày đích, form hiển thị gợi ý “Mỗi tháng cần để dành …” bằng số tiền còn thiếu chia cho số tháng còn lại (làm tròn lên); khi đạt mục tiêu hiển thị thông báo chúc mừng.
+287	Heading 2	3.30 Màn hình form Giao Dịch Định Kỳ 
+289	Hình ảnh	Hình 1.26 Màn hình form Giao Dịch Định Kỳ
+290	Normal	frmGiaoDichDinhKy: khung nhập gồm loại giao dịch (Thu/Chi, đổi loại thì ComboBox danh mục đổi theo), danh mục, ví, số tiền, tần suất (hằng ngày, tuần, tháng, năm), ngày bắt đầu, ngày kết thúc (không bắt buộc), ghi chú; nút Thêm, Sửa, Tạm dừng/Tiếp tục, Xóa.
+293	Heading 1	Chương 4. Kết luận và định hướng phát triển
+294	Heading 2	4.1 Kết quả đạt được 
+295	Normal	Chúng ta đã phân tích và thiết kế một ứng dụng quản lý chi tiêu cá nhân hoàn chỉnh trên nền Windows Forms: xác định 16 nhóm chức năng, 26 form, thiết kế giao diện cho các form chính, cơ sở dữ liệu 12 bảng và các quy tắc nghiệp vụ, bảo mật, kiểm thử. Kiến trúc 3 lớp giúp phân tách rõ giao diện, nghiệp vụ và truy cập dữ liệu, thuận lợi cho việc chia việc trong nhóm và bảo trì sau này
+296	Normal	Tuy nhiên còn gập một số hạn chế nhất định như :
+297	Normal	Ứng dụng chạy trên một máy, chưa đồng bộ dữ liệu giữa nhiều thiết bị.
+298	Normal	Chưa hỗ trợ đa tiền tệ; mục tiêu tiết kiệm chỉ lưu tổng số đã dành, chưa lưu lịch sử từng lần nạp/rút.
+299	Normal	Nhập liệu hoàn toàn thủ công, chưa tự đọc sao kê ngân hàng.
+300	Heading 2	4.2 Định hướng phát triển 
+301	Normal	Quản lý khoản vay và cho vay (Debt Management): Bổ sung phân hệ theo dõi các khoản nợ phải trả và nợ cần thu, tự động tính lãi suất (nếu có) và tích hợp chuông nhắc hẹn khi đến kỳ hạn tất toán.
+302	Normal	Chi tiết hóa dòng tiền mục tiêu tiết kiệm: Xây dựng bảng lưu vết lịch sử cho từng lần nạp/rút tiền của các mục tiêu tiết kiệm, giúp người dùng nắm rõ tiến trình và phân tích hành vi tích lũy tài sản theo thời gian.
+303	Normal	Tự động hóa gợi ý và lập ngân sách: Ứng dụng các thuật toán phân tích xu hướng chi tiêu từ lịch sử dữ liệu quá khứ để đưa ra gợi ý hạn mức ngân sách thông minh và cảnh báo rủi ro thâm hụt tài chính sớm hơn cho tháng tiếp theo. Nâng cấp trải nghiệm người dùng và tự động hóa nhập liệu:
+304	Normal	Nhận diện dữ liệu hóa đơn (OCR): Tích hợp công nghệ nhận dạng ký tự quang học để trích xuất thông tin tự động từ ảnh chụp hóa đơn, biên lai thanh toán hoặc vé điện tử, giúp giảm thiểu tối đa thao tác nhập tay.
+305	Normal	Tương thích sao kê ngân hàng: Hỗ trợ nhập liệu hàng loạt (Import) từ tệp Excel/CSV xuất ra từ các ứng dụng ngân hàng phổ biến (Vietcombank, Techcombank, MoMo,...), đồng thời tự động phân loại giao dịch vào đúng nhóm chi tiêu.
+306	Normal	Hỗ trợ đa tiền tệ và tỷ giá tự động: Mở rộng cơ chế lưu trữ để hỗ trợ các giao dịch ngoại tệ (USD, EUR, JPY...), cập nhật tỷ giá quy đổi thời gian thực về VND để phục vụ người dùng có nhu cầu chi tiêu quốc tế.
+307	Normal	Cải tiến kiến trúc công nghệ và đa nền tảng:
+308	Normal	Đồng bộ hóa đám mây (Cloud Sync): Xây dựng RESTful API và chuyển đổi cơ sở dữ liệu lên dịch vụ máy chủ đám mây (Cloud Database), đảm bảo dữ liệu luôn được sao lưu an toàn và có thể truy cập tức thời.
+309	Normal	Phát triển phiên bản di động (Mobile App): Mở rộng hệ thống sang nền tảng di động (sử dụng .NET MAUI hoặc Flutter) để người dùng có thể ghi chép chi tiêu ngay tại thời điểm phát sinh giao dịch mọi lúc, mọi nơi.
+310	Normal	Nâng cao an toàn và bảo mật dữ liệu: Bổ sung cơ chế xác thực hai yếu tố (2FA), mã hóa dữ liệu nhạy cảm ở mức cơ sở dữ liệu (Database Encryption) và hoàn thiện phân quyền kiểm soát chi tiết hơn cho từng thao tác của người dùng.
+313	Heading 1	Tài Liệu Tham Khảo 
+314	List Paragraph	Desigenr Figma Giao Diện https://www.figma.com/design/Yx866ZH2estFJuibhPumUv/Untitled?node-id=0-1&t=tkfUcKKrpIU4DQTp-1
+315	List Paragraph	Microsoft Learn, Windows Forms Documentation – Desktop App Development, https://learn.microsoft.com/en-us/dotnet/desktop/winforms/
+316	List Paragraph	Microsoft Learn, SQL Server Technical Documentation & Transact-SQL Reference, https://learn.microsoft.com/en-us/sql/sql-server/
+
+SECTIONS
+0 header='' footer=['']
+1 header='' footer=['']
+2 header='' footer=['Chương 1. Tổng Quan']
+3 header='' footer=['', 'Chương 2. Phân tích và thiết kế']
+4 header='' footer=['', 'Chương 3.Xây Dựng Chương Trình']
+5 header='' footer=['', 'Chương 4. Kết luận và định hướng phát triển']
+6 header='' footer=['', 'Tài Liệu Tham Khảo']

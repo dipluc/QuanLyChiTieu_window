@@ -1,7 +1,9 @@
+using DuLieu;
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
-using DuLieu;
 
 namespace LTWIN_N05_QLCT.Forms.QuanTri
 {
@@ -32,33 +34,16 @@ namespace LTWIN_N05_QLCT.Forms.QuanTri
         {
             if (string.IsNullOrEmpty(_duongDan) || !File.Exists(_duongDan))
             {
-                MessageBox.Show("Không tìm thấy tệp bản sao lưu đã chọn.", "Lỗi phục hồi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không tìm thấy bản sao lưu.");
                 return;
             }
 
-            // Tìm file MDF đích của dự án
-            string[] cacDuongDanMdf = new string[]
+            if (MessageBox.Show(
+                "Phục hồi sẽ thay thế toàn bộ dữ liệu hiện tại. Tiếp tục?",
+                "Xác nhận phục hồi",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning) != DialogResult.Yes)
             {
-                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Database\QLChiTieu.mdf")),
-                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\LTWIN_N05_QLCT\Database\QLChiTieu.mdf")),
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database", "QLChiTieu.mdf"),
-            };
-
-            string mdfDich = null;
-            foreach (var p in cacDuongDanMdf)
-            {
-                if (File.Exists(p))
-                {
-                    mdfDich = p;
-                    break;
-                }
-            }
-
-            if (mdfDich == null)
-            {
-                MessageBox.Show("Không tìm thấy đường dẫn tệp cơ sở dữ liệu hiện tại để phục hồi.",
-                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -67,47 +52,117 @@ namespace LTWIN_N05_QLCT.Forms.QuanTri
 
             try
             {
-                // Ngắt kết nối để copy
-                string thuMucMdf = Path.GetDirectoryName(mdfDich);
-                string ldfDich = Path.Combine(thuMucMdf, "QLChiTieu_log.ldf");
+                string tenDatabase;
+                SqlConnectionStringBuilder builder;
 
-                File.Copy(_duongDan, mdfDich, true);
-
-                // Nếu có file log tương ứng
-                string ldfNguon = _duongDan.Replace(".bak", "_log.bak");
-                if (File.Exists(ldfNguon) && File.Exists(ldfDich))
+                // Xác định database thực tế mà ứng dụng đang dùng.
+                using (SqlConnection conn = KetNoiCSDL.LayKetNoi())
                 {
-                    File.Copy(ldfNguon, ldfDich, true);
+                    tenDatabase = conn.Database;
+                    builder = new SqlConnectionStringBuilder(
+                        conn.ConnectionString);
                 }
 
-                // Đồng bộ luôn sang thư mục bin\Debug nếu khác
-                string mdfBin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database", "QLChiTieu.mdf");
-                string ldfBin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database", "QLChiTieu_log.ldf");
-                if (File.Exists(mdfBin) && !mdfBin.Equals(mdfDich, StringComparison.OrdinalIgnoreCase))
+                if (string.IsNullOrWhiteSpace(tenDatabase) ||
+                    tenDatabase.Equals("master",
+                        StringComparison.OrdinalIgnoreCase))
                 {
+                    throw new InvalidOperationException(
+                        "Không xác định được database cần phục hồi.");
+                }
+
+                // Kết nối tới master, không tự attach file MDF.
+                builder.Remove("AttachDbFilename");
+                builder.InitialCatalog = "master";
+                builder.Pooling = false;
+
+                SqlConnection.ClearAllPools();
+
+                string tenSql = "[" + tenDatabase.Replace("]", "]]") + "]";
+
+                using (SqlConnection conn =
+                    new SqlConnection(builder.ConnectionString))
+                {
+                    conn.Open();
+
+                    // Kiểm tra file trước khi ngắt kết nối database.
+                    using (SqlCommand cmd = new SqlCommand(
+                        "RESTORE VERIFYONLY FROM DISK = @tep;", conn))
+                    {
+                        cmd.CommandTimeout = 300;
+                        cmd.Parameters.Add(
+                            "@tep", SqlDbType.NVarChar, 4000
+                        ).Value = Path.GetFullPath(_duongDan);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    bool daChuyenSingleUser = false;
+
                     try
                     {
-                        File.Copy(mdfDich, mdfBin, true);
-                        if (File.Exists(ldfDich)) File.Copy(ldfDich, ldfBin, true);
+                        using (SqlCommand cmd = new SqlCommand(
+                            "ALTER DATABASE " + tenSql +
+                            " SET SINGLE_USER WITH ROLLBACK IMMEDIATE;",
+                            conn))
+                        {
+                            cmd.CommandTimeout = 300;
+                            cmd.ExecuteNonQuery();
+                            daChuyenSingleUser = true;
+                        }
+
+                        using (SqlCommand cmd = new SqlCommand(
+                            "RESTORE DATABASE " + tenSql +
+                            " FROM DISK = @tep WITH REPLACE, RECOVERY;",
+                            conn))
+                        {
+                            cmd.CommandTimeout = 300;
+                            cmd.Parameters.Add(
+                                "@tep", SqlDbType.NVarChar, 4000
+                            ).Value = Path.GetFullPath(_duongDan);
+
+                            cmd.ExecuteNonQuery();
+                        }
                     }
-                    catch { }
+                    finally
+                    {
+                        if (daChuyenSingleUser)
+                        {
+                            using (SqlCommand cmd = new SqlCommand(
+                                "ALTER DATABASE " + tenSql +
+                                " SET MULTI_USER WITH ROLLBACK IMMEDIATE;",
+                                conn))
+                            {
+                                cmd.CommandTimeout = 300;
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
                 }
 
-                MessageBox.Show("Phục hồi cơ sở dữ liệu thành công!\n\nToàn bộ dữ liệu đã được khôi phục từ bản sao lưu.",
-                    "Phục hồi thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Phục hồi thành công!\n" +
+                    "Hãy đóng và mở lại ứng dụng để tải lại dữ liệu.",
+                    "Phục hồi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi trong quá trình phục hồi: " + ex.Message + "\n\n(Nếu tệp đang bị khóa, hãy khởi động lại ứng dụng và thử lại).",
-                    "Lỗi phục hồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                btnPhucHoi.Enabled = true;
+                MessageBox.Show(
+                    "Không thể phục hồi: " + ex.Message,
+                    "Lỗi phục hồi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             finally
             {
+                SqlConnection.ClearAllPools();
                 Cursor = Cursors.Default;
+                btnPhucHoi.Enabled = true;
             }
         }
     }

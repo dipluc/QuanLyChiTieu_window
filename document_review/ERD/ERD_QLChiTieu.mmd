@@ -1,0 +1,134 @@
+erDiagram
+    direction LR
+    CauHinh {
+        int MaND PK,FK
+        nvarchar(260) ThuMucSaoLuu
+        int NguongCanhBao
+        bit TuDongSaoLuu
+    }
+    ChiTieu {
+        int MaChi PK
+        int MaND FK
+        int MaVi FK
+        int MaLoaiChi FK
+        date NgayChi
+        decimal(18_0) SoTien
+        nvarchar(255) GhiChu
+        datetime NgayTao
+    }
+    ChuyenTien {
+        int MaCT PK
+        int MaND FK
+        int ViNguon FK
+        int ViDich FK
+        date NgayChuyen
+        decimal(18_0) SoTien
+        nvarchar(255) GhiChu
+    }
+    GiaoDichDinhKy {
+        int MaGDDK PK
+        int MaND FK
+        nvarchar(4) LoaiGiaoDich
+        int MaVi FK
+        int MaLoaiThu FK
+        int MaLoaiChi FK
+        decimal(18_0) SoTien
+        nvarchar(10) TanSuat
+        date NgayBatDau
+        date NgayKetThuc
+        date NgayDenHanTiepTheo
+        nvarchar(255) GhiChu
+        bit TrangThai
+    }
+    LoaiChi {
+        int MaLoaiChi PK
+        int MaNhom FK
+        int MaND FK
+        nvarchar(100) TenLoaiChi
+        nvarchar(255) GhiChu
+        bit TrangThai
+    }
+    LoaiThu {
+        int MaLoaiThu PK
+        int MaND FK
+        nvarchar(100) TenLoaiThu
+        nvarchar(255) GhiChu
+        bit TrangThai
+    }
+    MucTieu {
+        int MaMT PK
+        int MaND FK
+        nvarchar(100) TenMucTieu
+        decimal(18_0) SoTienMucTieu
+        decimal(18_0) SoTienDaTietKiem
+        date NgayBatDau
+        date NgayDich
+        nvarchar(15) TrangThai
+        nvarchar(255) GhiChu
+    }
+    NganSach {
+        int MaNS PK
+        int MaND FK
+        int MaLoaiChi FK
+        tinyint Thang
+        smallint Nam
+        decimal(18_0) HanMuc
+    }
+    NguoiDung {
+        int MaND PK
+        nvarchar(50) TenDangNhap
+        nvarchar(200) MatKhauHash
+        nvarchar(100) HoTen
+        nvarchar(100) Email
+        nvarchar(10) QuyenHan
+        bit TrangThai
+        datetime NgayTao
+    }
+    NhomChi {
+        int MaNhom PK
+        int MaND FK
+        nvarchar(100) TenNhom
+        nvarchar(7) MauSac
+        bit TrangThai
+    }
+    ThuNhap {
+        int MaThu PK
+        int MaND FK
+        int MaVi FK
+        int MaLoaiThu FK
+        date NgayThu
+        decimal(18_0) SoTien
+        nvarchar(255) GhiChu
+        datetime NgayTao
+    }
+    ViTien {
+        int MaVi PK
+        int MaND FK
+        nvarchar(100) TenVi
+        nvarchar(20) LoaiVi
+        decimal(18_0) SoDuBanDau
+        nvarchar(255) GhiChu
+        bit TrangThai
+    }
+    NguoiDung ||--o| CauHinh : MaND
+    LoaiChi ||--o{ ChiTieu : MaLoaiChi
+    NguoiDung ||--o{ ChiTieu : MaND
+    ViTien ||--o{ ChiTieu : MaVi
+    NguoiDung ||--o{ ChuyenTien : MaND
+    ViTien ||--o{ ChuyenTien : ViDich
+    ViTien ||--o{ ChuyenTien : ViNguon
+    LoaiChi |o--o{ GiaoDichDinhKy : MaLoaiChi
+    LoaiThu |o--o{ GiaoDichDinhKy : MaLoaiThu
+    NguoiDung ||--o{ GiaoDichDinhKy : MaND
+    ViTien ||--o{ GiaoDichDinhKy : MaVi
+    NguoiDung ||--o{ LoaiChi : MaND
+    NhomChi ||--o{ LoaiChi : MaNhom
+    NguoiDung ||--o{ LoaiThu : MaND
+    NguoiDung ||--o{ MucTieu : MaND
+    LoaiChi ||--o{ NganSach : MaLoaiChi
+    NguoiDung ||--o{ NganSach : MaND
+    NguoiDung ||--o{ NhomChi : MaND
+    LoaiThu ||--o{ ThuNhap : MaLoaiThu
+    NguoiDung ||--o{ ThuNhap : MaND
+    ViTien ||--o{ ThuNhap : MaVi
+    NguoiDung ||--o{ ViTien : MaND

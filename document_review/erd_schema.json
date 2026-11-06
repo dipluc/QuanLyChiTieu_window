@@ -1,0 +1,1074 @@
+{
+  "foreign_keys": [
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "CauHinh",
+      "name": "FK__CauHinh__MaND__151B244E"
+    },
+    {
+      "parent_table": "LoaiChi",
+      "child_column": "MaLoaiChi",
+      "parent_column": "MaLoaiChi",
+      "child_table": "ChiTieu",
+      "name": "FK__ChiTieu__MaLoaiC__02FC7413"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "ChiTieu",
+      "name": "FK__ChiTieu__MaND__01142BA1"
+    },
+    {
+      "parent_table": "ViTien",
+      "child_column": "MaVi",
+      "parent_column": "MaVi",
+      "child_table": "ChiTieu",
+      "name": "FK__ChiTieu__MaVi__02084FDA"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "ChuyenTien",
+      "name": "FK__ChuyenTien__MaND__07C12930"
+    },
+    {
+      "parent_table": "ViTien",
+      "child_column": "ViDich",
+      "parent_column": "MaVi",
+      "child_table": "ChuyenTien",
+      "name": "FK__ChuyenTie__ViDic__09A971A2"
+    },
+    {
+      "parent_table": "ViTien",
+      "child_column": "ViNguon",
+      "parent_column": "MaVi",
+      "child_table": "ChuyenTien",
+      "name": "FK__ChuyenTie__ViNgu__08B54D69"
+    },
+    {
+      "parent_table": "LoaiChi",
+      "child_column": "MaLoaiChi",
+      "parent_column": "MaLoaiChi",
+      "child_table": "GiaoDichDinhKy",
+      "name": "FK__GiaoDichD__MaLoa__29221CFB"
+    },
+    {
+      "parent_table": "LoaiThu",
+      "child_column": "MaLoaiThu",
+      "parent_column": "MaLoaiThu",
+      "child_table": "GiaoDichDinhKy",
+      "name": "FK__GiaoDichD__MaLoa__282DF8C2"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "GiaoDichDinhKy",
+      "name": "FK__GiaoDichDi__MaND__25518C17"
+    },
+    {
+      "parent_table": "ViTien",
+      "child_column": "MaVi",
+      "parent_column": "MaVi",
+      "child_table": "GiaoDichDinhKy",
+      "name": "FK__GiaoDichDi__MaVi__2739D489"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "LoaiChi",
+      "name": "FK__LoaiChi__MaND__76969D2E"
+    },
+    {
+      "parent_table": "NhomChi",
+      "child_column": "MaNhom",
+      "parent_column": "MaNhom",
+      "child_table": "LoaiChi",
+      "name": "FK__LoaiChi__MaNhom__75A278F5"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "LoaiThu",
+      "name": "FK__LoaiThu__MaND__6B24EA82"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "MucTieu",
+      "name": "FK__MucTieu__MaND__1BC821DD"
+    },
+    {
+      "parent_table": "LoaiChi",
+      "child_column": "MaLoaiChi",
+      "parent_column": "MaLoaiChi",
+      "child_table": "NganSach",
+      "name": "FK__NganSach__MaLoai__10566F31"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "NganSach",
+      "name": "FK__NganSach__MaND__0F624AF8"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "NhomChi",
+      "name": "FK__NhomChi__MaND__6FE99F9F"
+    },
+    {
+      "parent_table": "LoaiThu",
+      "child_column": "MaLoaiThu",
+      "parent_column": "MaLoaiThu",
+      "child_table": "ThuNhap",
+      "name": "FK__ThuNhap__MaLoaiT__7C4F7684"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "ThuNhap",
+      "name": "FK__ThuNhap__MaND__7A672E12"
+    },
+    {
+      "parent_table": "ViTien",
+      "child_column": "MaVi",
+      "parent_column": "MaVi",
+      "child_table": "ThuNhap",
+      "name": "FK__ThuNhap__MaVi__7B5B524B"
+    },
+    {
+      "parent_table": "NguoiDung",
+      "child_column": "MaND",
+      "parent_column": "MaND",
+      "child_table": "ViTien",
+      "name": "FK__ViTien__MaND__6477ECF3"
+    }
+  ],
+  "columns": [
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "CauHinh",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "ThuMucSaoLuu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "CauHinh",
+      "max_length": 520,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NguongCanhBao",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "CauHinh",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 1,
+      "is_pk": 0,
+      "column_name": "TuDongSaoLuu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "CauHinh",
+      "max_length": 1,
+      "data_type": "bit"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaChi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChiTieu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChiTieu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaVi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChiTieu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaLoaiChi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChiTieu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayChi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChiTieu",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "SoTien",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChiTieu",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "ChiTieu",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 23,
+      "is_pk": 0,
+      "column_name": "NgayTao",
+      "scale": 3,
+      "is_nullable": false,
+      "table_name": "ChiTieu",
+      "max_length": 8,
+      "data_type": "datetime"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaCT",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChuyenTien",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChuyenTien",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "ViNguon",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChuyenTien",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "ViDich",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChuyenTien",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayChuyen",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChuyenTien",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "SoTien",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ChuyenTien",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "ChuyenTien",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaGDDK",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "LoaiGiaoDich",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 8,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaVi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaLoaiThu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaLoaiChi",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "SoTien",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TanSuat",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 20,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayBatDau",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayKetThuc",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayDenHanTiepTheo",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 1,
+      "is_pk": 0,
+      "column_name": "TrangThai",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "GiaoDichDinhKy",
+      "max_length": 1,
+      "data_type": "bit"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaLoaiChi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiChi",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaNhom",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiChi",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiChi",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TenLoaiChi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiChi",
+      "max_length": 200,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "LoaiChi",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 1,
+      "is_pk": 0,
+      "column_name": "TrangThai",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiChi",
+      "max_length": 1,
+      "data_type": "bit"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaLoaiThu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiThu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiThu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TenLoaiThu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiThu",
+      "max_length": 200,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "LoaiThu",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 1,
+      "is_pk": 0,
+      "column_name": "TrangThai",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "LoaiThu",
+      "max_length": 1,
+      "data_type": "bit"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaMT",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "MucTieu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "MucTieu",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TenMucTieu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "MucTieu",
+      "max_length": 200,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "SoTienMucTieu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "MucTieu",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "SoTienDaTietKiem",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "MucTieu",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayBatDau",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "MucTieu",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayDich",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "MucTieu",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TrangThai",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "MucTieu",
+      "max_length": 30,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "MucTieu",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaNS",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NganSach",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NganSach",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaLoaiChi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NganSach",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 3,
+      "is_pk": 0,
+      "column_name": "Thang",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NganSach",
+      "max_length": 1,
+      "data_type": "tinyint"
+    },
+    {
+      "precision": 5,
+      "is_pk": 0,
+      "column_name": "Nam",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NganSach",
+      "max_length": 2,
+      "data_type": "smallint"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "HanMuc",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NganSach",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NguoiDung",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TenDangNhap",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NguoiDung",
+      "max_length": 100,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "MatKhauHash",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NguoiDung",
+      "max_length": 400,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "HoTen",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NguoiDung",
+      "max_length": 200,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "Email",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "NguoiDung",
+      "max_length": 200,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "QuyenHan",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NguoiDung",
+      "max_length": 20,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 1,
+      "is_pk": 0,
+      "column_name": "TrangThai",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NguoiDung",
+      "max_length": 1,
+      "data_type": "bit"
+    },
+    {
+      "precision": 23,
+      "is_pk": 0,
+      "column_name": "NgayTao",
+      "scale": 3,
+      "is_nullable": false,
+      "table_name": "NguoiDung",
+      "max_length": 8,
+      "data_type": "datetime"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaNhom",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NhomChi",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NhomChi",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TenNhom",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NhomChi",
+      "max_length": 200,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "MauSac",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "NhomChi",
+      "max_length": 14,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 1,
+      "is_pk": 0,
+      "column_name": "TrangThai",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "NhomChi",
+      "max_length": 1,
+      "data_type": "bit"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaThu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ThuNhap",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ThuNhap",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaVi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ThuNhap",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaLoaiThu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ThuNhap",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "NgayThu",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ThuNhap",
+      "max_length": 3,
+      "data_type": "date"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "SoTien",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ThuNhap",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "ThuNhap",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 23,
+      "is_pk": 0,
+      "column_name": "NgayTao",
+      "scale": 3,
+      "is_nullable": false,
+      "table_name": "ThuNhap",
+      "max_length": 8,
+      "data_type": "datetime"
+    },
+    {
+      "precision": 10,
+      "is_pk": 1,
+      "column_name": "MaVi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ViTien",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 10,
+      "is_pk": 0,
+      "column_name": "MaND",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ViTien",
+      "max_length": 4,
+      "data_type": "int"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "TenVi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ViTien",
+      "max_length": 200,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "LoaiVi",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ViTien",
+      "max_length": 40,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 18,
+      "is_pk": 0,
+      "column_name": "SoDuBanDau",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ViTien",
+      "max_length": 9,
+      "data_type": "decimal"
+    },
+    {
+      "precision": 0,
+      "is_pk": 0,
+      "column_name": "GhiChu",
+      "scale": 0,
+      "is_nullable": true,
+      "table_name": "ViTien",
+      "max_length": 510,
+      "data_type": "nvarchar"
+    },
+    {
+      "precision": 1,
+      "is_pk": 0,
+      "column_name": "TrangThai",
+      "scale": 0,
+      "is_nullable": false,
+      "table_name": "ViTien",
+      "max_length": 1,
+      "data_type": "bit"
+    }
+  ],
+  "unique_columns": [
+    {
+      "column_name": "MaCT",
+      "table_name": "ChuyenTien"
+    },
+    {
+      "column_name": "MaNS",
+      "table_name": "NganSach"
+    },
+    {
+      "column_name": "MaND",
+      "table_name": "CauHinh"
+    },
+    {
+      "column_name": "MaMT",
+      "table_name": "MucTieu"
+    },
+    {
+      "column_name": "MaGDDK",
+      "table_name": "GiaoDichDinhKy"
+    },
+    {
+      "column_name": "MaND",
+      "table_name": "NguoiDung"
+    },
+    {
+      "column_name": "TenDangNhap",
+      "table_name": "NguoiDung"
+    },
+    {
+      "column_name": "MaVi",
+      "table_name": "ViTien"
+    },
+    {
+      "column_name": "MaLoaiThu",
+      "table_name": "LoaiThu"
+    },
+    {
+      "column_name": "MaNhom",
+      "table_name": "NhomChi"
+    },
+    {
+      "column_name": "MaLoaiChi",
+      "table_name": "LoaiChi"
+    },
+    {
+      "column_name": "MaChi",
+      "table_name": "ChiTieu"
+    },
+    {
+      "column_name": "MaThu",
+      "table_name": "ThuNhap"
+    }
+  ]
+}
