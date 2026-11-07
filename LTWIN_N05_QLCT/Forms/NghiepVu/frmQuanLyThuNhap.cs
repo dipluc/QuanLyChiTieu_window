@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using LTWIN_N05_QLCT.Models;
 using LTWIN_N05_QLCT.Services;
+using NghiepVu;
 
 namespace LTWIN_N05_QLCT.Forms.NghiepVu
 {
@@ -28,7 +29,6 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
             lblThang.Text = "Bạn đang xem tháng: " +_thangHienTai.ToString("MM/yyyy");
             LoadData();
-            UpdateCoCauThuNhap();
         }
 
         public frmQuanLyThuNhap()
@@ -41,22 +41,11 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             try
             {
 
-                cboLoaiThu.Items.Clear();
-                cboLoaiThu.Items.AddRange(DataService.DanhSachLoaiThu);
-                if (cboLoaiThu.Items.Count > 0) cboLoaiThu.SelectedIndex = 0;
-
-                cboLocLoaiThu.Items.Clear();
-                cboLocLoaiThu.Items.Add("Tất cả");
-                cboLocLoaiThu.Items.AddRange(DataService.DanhSachLoaiThu);
-                cboLocLoaiThu.SelectedIndex = 0;
-
                 LoadWallets();
 
                 var now = DateTime.Today;
                 dtpTuNgay.Value = new DateTime(now.Year, now.Month, 1);
                 dtpDenNgay.Value = now;
-
-                txtSoTien.Leave += (s, ev) => FormatTextBoxMoney(txtSoTien);
 
                 LoadData();
 
@@ -72,7 +61,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
         {
             _danhSachVi = DataService.GetDanhSachVi();
             cboViThu.Items.Clear();
-            foreach (var vi in _danhSachVi)
+            foreach (Vi vi in _danhSachVi)
             {
                 cboViThu.Items.Add(string.Format("{0} — {1:N0} đ", vi.Ten, vi.SoDu));
             }
@@ -81,6 +70,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
         public void LoadData()
         {
+            LoadDanhSachLoaiThu();
             var tuNgay = dtpTuNgay.Value.Date;
             var denNgay = dtpDenNgay.Value.Date.AddDays(1).AddTicks(-1);
             var loaiThu = cboLocLoaiThu.SelectedItem != null ? cboLocLoaiThu.SelectedItem.ToString() : null;
@@ -88,60 +78,122 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             _danhSachThuNhap = DataService.GetThuNhap(tuNgay, denNgay, loaiThu);
 
             dgvThuNhap.Rows.Clear();
-            foreach (var item in _danhSachThuNhap)
+            decimal tongThu = 0;
+            foreach (ThuNhap item in _danhSachThuNhap)
             {
-                var vi = _danhSachVi.FirstOrDefault(v => v.Id == item.ViId);
+                string tenVi = "";
+                foreach (Vi vi in _danhSachVi)
+                {
+                    if (vi.Id == item.ViId)
+                    {
+                        tenVi = vi.Ten;
+                        break;
+                    }
+                }
                 int idx = dgvThuNhap.Rows.Add(
                     item.Ngay.ToString("dd/MM/yyyy"),
                     item.LoaiThu,
-                    vi != null ? vi.Ten : "",
+                    tenVi,
                     item.SoTien.ToString("N0") + " đ",
                     item.GhiChu
                 );
                 dgvThuNhap.Rows[idx].Tag = item.Id;
                 dgvThuNhap.Rows[idx].Cells["colSoTien"].Style.ForeColor = Color.FromArgb(46, 125, 50);
                 dgvThuNhap.Rows[idx].Cells["colSoTien"].Style.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+                tongThu += item.SoTien;
             }
 
             lblSoGiaoDich.Text = string.Format("Chỉ đọc • Số giao dịch: {0} • Hiển thị toàn bộ kết quả", _danhSachThuNhap.Count);
 
-            decimal tongThu = _danhSachThuNhap.Sum(x => x.SoTien);
             lblTongThu.Text = string.Format("{0:N0} đ", tongThu);
 
-            UpdateCoCauThuNhap();
+            LoadCoCauThuNhap();
         }
 
-        private void UpdateCoCauThuNhap()
+        // Nạp lại danh mục mỗi khi làm mới dữ liệu.
+        private void LoadDanhSachLoaiThu()
         {
-            int thang = _thangHienTai.Month;
-            int nam = _thangHienTai.Year;
+            string loaiDangChon = cboLoaiThu.Text;
+            string loaiDangLoc = cboLocLoaiThu.Text;
+            string loi;
+            DataTable bangLoaiThu = LoaiThuNV.LayDanhSach(out loi);
+            if (!string.IsNullOrEmpty(loi))
+                throw new Exception(loi);
 
-            lblCoCauThuNhapThang10.Text = string.Format("Cơ cấu thu nhập tháng {0}", thang);
+            cboLoaiThu.Items.Clear();
+            cboLocLoaiThu.Items.Clear();
+            cboLocLoaiThu.Items.Add("Tất cả");
 
-            var dauThang = new DateTime(nam, thang, 1);
-            var thangThuNhap = DataService.GetThuNhap(dauThang, dauThang.AddMonths(1).AddDays(-1));
-            decimal tongThang = thangThuNhap.Sum(x => x.SoTien);
-
-            decimal luong = thangThuNhap.Where(x => x.LoaiThu == "Lương").Sum(x => x.SoTien);
-            decimal thuong = thangThuNhap.Where(x => x.LoaiThu == "Thưởng").Sum(x => x.SoTien);
-            decimal khac = thangThuNhap.Where(x => x.LoaiThu == "Thu nhập khác").Sum(x => x.SoTien);
-
-            lblLuong2.Text = string.Format("{0:N0} đ", luong);
-            lblThuong2.Text = string.Format("{0:N0} đ", thuong);
-            lblThuNhapKhac2.Text = string.Format("{0:N0} đ", khac);
-
-            if (tongThang > 0)
+            foreach (DataRow dong in bangLoaiThu.Rows)
             {
-                lblLuong3.Text = string.Format("{0:N1}%", (luong / tongThang * 100));
-                lblThuong3.Text = string.Format("{0:N1}%", (thuong / tongThang * 100));
-                lblThuNhapKhac3.Text = string.Format("{0:N1}%", (khac / tongThang * 100));
+                string tenLoai = dong["TenLoaiThu"].ToString();
+                // Bộ lọc có cả loại ngừng dùng để xem các khoản thu cũ.
+                cboLocLoaiThu.Items.Add(tenLoai);
+                if (Convert.ToBoolean(dong["TrangThai"]))
+                    cboLoaiThu.Items.Add(tenLoai);
             }
+
+            if (cboLoaiThu.Items.Contains(loaiDangChon))
+                cboLoaiThu.SelectedItem = loaiDangChon;
+            else if (loaiDangChon == "" && _selectedId == null && cboLoaiThu.Items.Count > 0)
+                cboLoaiThu.SelectedIndex = 0;
+
+            if (cboLocLoaiThu.Items.Contains(loaiDangLoc))
+                cboLocLoaiThu.SelectedItem = loaiDangLoc;
             else
+                cboLocLoaiThu.SelectedIndex = 0;
+
+            if (cboLoaiThu.Items.Count > 0)
+                lblLoaiThu2.Text = "Chọn loại thu trong danh mục đang sử dụng.";
+            else
+                lblLoaiThu2.Text = "Hãy thêm loại thu tại Danh mục > Loại thu.";
+        }
+
+        // Cộng tiền theo từng loại thu rồi đưa bảng kết quả lên DataGridView.
+        private void LoadCoCauThuNhap()
+        {
+            lblCoCauThuNhapThang10.Text = "Cơ cấu thu nhập tháng " + _thangHienTai.ToString("MM/yyyy");
+            DateTime dauThang = new DateTime(_thangHienTai.Year, _thangHienTai.Month, 1);
+            DateTime cuoiThang = dauThang.AddMonths(1).AddDays(-1);
+            List<ThuNhap> danhSachThang = DataService.GetThuNhap(dauThang, cuoiThang);
+
+            DataTable bangCoCau = new DataTable();
+            bangCoCau.Columns.Add("LoaiThu", typeof(string));
+            bangCoCau.Columns.Add("SoTien", typeof(decimal));
+            bangCoCau.Columns.Add("TyLe", typeof(decimal));
+            foreach (string tenLoai in cboLoaiThu.Items)
+                bangCoCau.Rows.Add(tenLoai, 0m, 0m);
+
+            decimal tongThang = 0;
+            foreach (ThuNhap thuNhap in danhSachThang)
             {
-                lblLuong3.Text = "0,0%";
-                lblThuong3.Text = "0,0%";
-                lblThuNhapKhac3.Text = "0,0%";
+                DataRow dongLoai = null;
+                foreach (DataRow dong in bangCoCau.Rows)
+                {
+                    if (dong["LoaiThu"].ToString() == thuNhap.LoaiThu)
+                    {
+                        dongLoai = dong;
+                        break;
+                    }
+                }
+                if (dongLoai == null)
+                {
+                    dongLoai = bangCoCau.NewRow();
+                    dongLoai["LoaiThu"] = thuNhap.LoaiThu;
+                    dongLoai["SoTien"] = 0m;
+                    dongLoai["TyLe"] = 0m;
+                    bangCoCau.Rows.Add(dongLoai);
+                }
+                dongLoai["SoTien"] = Convert.ToDecimal(dongLoai["SoTien"]) + thuNhap.SoTien;
+                tongThang += thuNhap.SoTien;
             }
+
+            foreach (DataRow dong in bangCoCau.Rows)
+            {
+                if (tongThang > 0)
+                    dong["TyLe"] = Convert.ToDecimal(dong["SoTien"]) * 100 / tongThang;
+            }
+            dgvCoCauThuNhap.DataSource = bangCoCau;
         }
 
         private void dgvThuNhap_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -150,15 +202,30 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
 
             var row = dgvThuNhap.Rows[e.RowIndex];
             _selectedId = row.Tag as string;
-            var item = _danhSachThuNhap.FirstOrDefault(x => x.Id == _selectedId);
+            ThuNhap item = null;
+            foreach (ThuNhap thuNhap in _danhSachThuNhap)
+            {
+                if (thuNhap.Id == _selectedId)
+                {
+                    item = thuNhap;
+                    break;
+                }
+            }
             if (item != null)
             {
                 dtpNgay.Value = item.Ngay;
-                cboLoaiThu.SelectedItem = item.LoaiThu;
+                // Không giữ loại mặc định khi khoản thu dùng loại đã ngừng sử dụng.
+                cboLoaiThu.SelectedIndex = cboLoaiThu.Items.IndexOf(item.LoaiThu);
 
-                var viIndex = _danhSachVi.FindIndex(v => v.Id == item.ViId);
-                if (viIndex >= 0 && viIndex < cboViThu.Items.Count)
-                    cboViThu.SelectedIndex = viIndex;
+                cboViThu.SelectedIndex = -1;
+                for (int i = 0; i < _danhSachVi.Count; i++)
+                {
+                    if (_danhSachVi[i].Id == item.ViId)
+                    {
+                        cboViThu.SelectedIndex = i;
+                        break;
+                    }
+                }
 
                 txtSoTien.Text = item.SoTien.ToString("N0");
                 txtGhiChu.Text = item.GhiChu;
@@ -177,7 +244,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
                 var item = new ThuNhap
                 {
                     Ngay = dtpNgay.Value,
-                    LoaiThu = cboLoaiThu.SelectedItem != null ? cboLoaiThu.SelectedItem.ToString() : "Lương",
+                    LoaiThu = cboLoaiThu.SelectedItem.ToString(),
                     ViId = viId,
                     SoTien = soTien,
                     GhiChu = txtGhiChu.Text.Trim()
@@ -216,7 +283,7 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
                 {
                     Id = _selectedId,
                     Ngay = dtpNgay.Value,
-                    LoaiThu = cboLoaiThu.SelectedItem != null ? cboLoaiThu.SelectedItem.ToString() : "Lương",
+                    LoaiThu = cboLoaiThu.SelectedItem.ToString(),
                     ViId = viId,
                     SoTien = soTien,
                     GhiChu = txtGhiChu.Text.Trim()
@@ -286,6 +353,14 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             soTien = 0;
             viId = "";
 
+            if (cboLoaiThu.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn loại thu đang sử dụng. Bạn có thể thêm hoặc kích hoạt lại tại Danh mục > Loại thu.",
+                    "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboLoaiThu.Focus();
+                return false;
+            }
+
             string rawMoney = txtSoTien.Text.Replace(".", "").Replace(",", "").Replace("đ", "").Trim();
             if (!decimal.TryParse(rawMoney, out soTien) || soTien <= 0)
             {
@@ -312,6 +387,11 @@ namespace LTWIN_N05_QLCT.Forms.NghiepVu
             {
                 tb.Text = val.ToString("N0");
             }
+        }
+
+        private void txtSoTien_Leave(object sender, EventArgs e)
+        {
+            FormatTextBoxMoney(txtSoTien);
         }
 
         private void btnLoc_Click(object sender, EventArgs e)

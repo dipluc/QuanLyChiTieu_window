@@ -1,4 +1,4 @@
-﻿namespace LTWIN_N05_QLCT.Forms.NghiepVu
+namespace LTWIN_N05_QLCT.Forms.NghiepVu
 {
     partial class frmQuanLyThuNhap
     {
@@ -19,6 +19,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblQuanLyThuNhap = new System.Windows.Forms.Label();
             this.lblThang = new System.Windows.Forms.Label();
@@ -36,15 +38,6 @@
             this.lblTongThu = new System.Windows.Forms.Label();
             this.pnlCoCauThuNhap = new System.Windows.Forms.Panel();
             this.lblCoCauThuNhapThang10 = new System.Windows.Forms.Label();
-            this.lblLuong = new System.Windows.Forms.Label();
-            this.lblLuong2 = new System.Windows.Forms.Label();
-            this.lblLuong3 = new System.Windows.Forms.Label();
-            this.lblThuong = new System.Windows.Forms.Label();
-            this.lblThuong2 = new System.Windows.Forms.Label();
-            this.lblThuong3 = new System.Windows.Forms.Label();
-            this.lblThuNhapKhac = new System.Windows.Forms.Label();
-            this.lblThuNhapKhac2 = new System.Windows.Forms.Label();
-            this.lblThuNhapKhac3 = new System.Windows.Forms.Label();
             this.pnlBoLoc = new System.Windows.Forms.Panel();
             this.lblTuNgay = new System.Windows.Forms.Label();
             this.dtpTuNgay = new System.Windows.Forms.DateTimePicker();
@@ -72,7 +65,10 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.lblChonMotDongDeSuaHoac = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvCoCauThuNhap = new System.Windows.Forms.DataGridView();
+            this.colCoCauLoaiThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCoCauSoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCoCauTyLe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlHeader.SuspendLayout();
             this.pnlNoiDung.SuspendLayout();
             this.pnlRight.SuspendLayout();
@@ -81,7 +77,7 @@
             this.pnlCoCauThuNhap.SuspendLayout();
             this.pnlBoLoc.SuspendLayout();
             this.pnlQuanLyGiaoDich.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCoCauThuNhap)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -285,7 +281,7 @@
             // 
             this.pnlCoCauThuNhap.BackColor = System.Drawing.Color.White;
             this.pnlCoCauThuNhap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlCoCauThuNhap.Controls.Add(this.tableLayoutPanel1);
+            this.pnlCoCauThuNhap.Controls.Add(this.dgvCoCauThuNhap);
             this.pnlCoCauThuNhap.Controls.Add(this.lblCoCauThuNhapThang10);
             this.pnlCoCauThuNhap.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlCoCauThuNhap.Location = new System.Drawing.Point(12, 441);
@@ -302,102 +298,6 @@
             this.lblCoCauThuNhapThang10.Size = new System.Drawing.Size(205, 21);
             this.lblCoCauThuNhapThang10.TabIndex = 0;
             this.lblCoCauThuNhapThang10.Text = "Cơ cấu thu nhập tháng 10";
-            // 
-            // lblLuong
-            // 
-            this.lblLuong.AutoSize = true;
-            this.lblLuong.Location = new System.Drawing.Point(3, 0);
-            this.lblLuong.Name = "lblLuong";
-            this.lblLuong.Size = new System.Drawing.Size(51, 20);
-            this.lblLuong.TabIndex = 1;
-            this.lblLuong.Text = "Lương";
-            // 
-            // lblLuong2
-            // 
-            this.lblLuong2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLuong2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblLuong2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
-            this.lblLuong2.Location = new System.Drawing.Point(543, 0);
-            this.lblLuong2.Name = "lblLuong2";
-            this.lblLuong2.Size = new System.Drawing.Size(160, 30);
-            this.lblLuong2.TabIndex = 2;
-            this.lblLuong2.Text = "23.000.000 đ";
-            this.lblLuong2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblLuong3
-            // 
-            this.lblLuong3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLuong3.ForeColor = System.Drawing.Color.Gray;
-            this.lblLuong3.Location = new System.Drawing.Point(714, 0);
-            this.lblLuong3.Name = "lblLuong3";
-            this.lblLuong3.Size = new System.Drawing.Size(65, 30);
-            this.lblLuong3.TabIndex = 3;
-            this.lblLuong3.Text = "92,0%";
-            this.lblLuong3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblThuong
-            // 
-            this.lblThuong.AutoSize = true;
-            this.lblThuong.Location = new System.Drawing.Point(3, 30);
-            this.lblThuong.Name = "lblThuong";
-            this.lblThuong.Size = new System.Drawing.Size(60, 20);
-            this.lblThuong.TabIndex = 4;
-            this.lblThuong.Text = "Thưởng";
-            // 
-            // lblThuong2
-            // 
-            this.lblThuong2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThuong2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblThuong2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
-            this.lblThuong2.Location = new System.Drawing.Point(543, 30);
-            this.lblThuong2.Name = "lblThuong2";
-            this.lblThuong2.Size = new System.Drawing.Size(160, 30);
-            this.lblThuong2.TabIndex = 5;
-            this.lblThuong2.Text = "0 đ";
-            this.lblThuong2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblThuong3
-            // 
-            this.lblThuong3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThuong3.ForeColor = System.Drawing.Color.Gray;
-            this.lblThuong3.Location = new System.Drawing.Point(714, 30);
-            this.lblThuong3.Name = "lblThuong3";
-            this.lblThuong3.Size = new System.Drawing.Size(65, 30);
-            this.lblThuong3.TabIndex = 6;
-            this.lblThuong3.Text = "0,0%";
-            this.lblThuong3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblThuNhapKhac
-            // 
-            this.lblThuNhapKhac.AutoSize = true;
-            this.lblThuNhapKhac.Location = new System.Drawing.Point(3, 60);
-            this.lblThuNhapKhac.Name = "lblThuNhapKhac";
-            this.lblThuNhapKhac.Size = new System.Drawing.Size(104, 20);
-            this.lblThuNhapKhac.TabIndex = 7;
-            this.lblThuNhapKhac.Text = "Thu nhập khác";
-            // 
-            // lblThuNhapKhac2
-            // 
-            this.lblThuNhapKhac2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThuNhapKhac2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblThuNhapKhac2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
-            this.lblThuNhapKhac2.Location = new System.Drawing.Point(543, 60);
-            this.lblThuNhapKhac2.Name = "lblThuNhapKhac2";
-            this.lblThuNhapKhac2.Size = new System.Drawing.Size(160, 31);
-            this.lblThuNhapKhac2.TabIndex = 8;
-            this.lblThuNhapKhac2.Text = "2.000.000 đ";
-            this.lblThuNhapKhac2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblThuNhapKhac3
-            // 
-            this.lblThuNhapKhac3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThuNhapKhac3.ForeColor = System.Drawing.Color.Gray;
-            this.lblThuNhapKhac3.Location = new System.Drawing.Point(714, 60);
-            this.lblThuNhapKhac3.Name = "lblThuNhapKhac3";
-            this.lblThuNhapKhac3.Size = new System.Drawing.Size(65, 31);
-            this.lblThuNhapKhac3.TabIndex = 9;
-            this.lblThuNhapKhac3.Text = "8,0%";
-            this.lblThuNhapKhac3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlBoLoc
             // 
@@ -587,7 +487,7 @@
             this.lblLoaiThu2.Name = "lblLoaiThu2";
             this.lblLoaiThu2.Size = new System.Drawing.Size(200, 17);
             this.lblLoaiThu2.TabIndex = 5;
-            this.lblLoaiThu2.Text = "Lương • Thưởng • Thu nhập khác";
+            this.lblLoaiThu2.Text = "Chọn loại thu trong danh mục đang sử dụng.";
             // 
             // lblViThu
             // 
@@ -709,32 +609,59 @@
             this.lblChonMotDongDeSuaHoac.TabIndex = 16;
             this.lblChonMotDongDeSuaHoac.Text = "Chọn một dòng để sửa hoặc xóa khoản thu.";
             // 
-            // tableLayoutPanel1
+            // dgvCoCauThuNhap
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvCoCauThuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.16113F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.590793F));
-            this.tableLayoutPanel1.Controls.Add(this.lblLuong, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblThuong, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblThuong3, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblLuong3, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblLuong2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblThuong2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblThuNhapKhac, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblThuNhapKhac2, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblThuNhapKhac3, 2, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 35);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(782, 91);
-            this.tableLayoutPanel1.TabIndex = 10;
+            this.dgvCoCauThuNhap.AllowUserToAddRows = false;
+            this.dgvCoCauThuNhap.AllowUserToDeleteRows = false;
+            this.dgvCoCauThuNhap.AllowUserToResizeRows = false;
+            this.dgvCoCauThuNhap.AutoGenerateColumns = false;
+            this.dgvCoCauThuNhap.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCoCauThuNhap.BackgroundColor = System.Drawing.Color.White;
+            this.dgvCoCauThuNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvCoCauThuNhap.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvCoCauThuNhap.ColumnHeadersVisible = false;
+            this.dgvCoCauThuNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colCoCauLoaiThu, this.colCoCauSoTien, this.colCoCauTyLe});
+            this.dgvCoCauThuNhap.Location = new System.Drawing.Point(14, 35);
+            this.dgvCoCauThuNhap.MultiSelect = false;
+            this.dgvCoCauThuNhap.Name = "dgvCoCauThuNhap";
+            this.dgvCoCauThuNhap.ReadOnly = true;
+            this.dgvCoCauThuNhap.RowHeadersVisible = false;
+            this.dgvCoCauThuNhap.RowTemplate.Height = 30;
+            this.dgvCoCauThuNhap.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCoCauThuNhap.Size = new System.Drawing.Size(782, 91);
+            this.dgvCoCauThuNhap.TabIndex = 10;
+            //
+            // colCoCauLoaiThu
+            //
+            this.colCoCauLoaiThu.DataPropertyName = "LoaiThu";
+            this.colCoCauLoaiThu.FillWeight = 50F;
+            this.colCoCauLoaiThu.HeaderText = "Loại thu";
+            this.colCoCauLoaiThu.Name = "colCoCauLoaiThu";
+            //
+            // colCoCauSoTien
+            //
+            this.colCoCauSoTien.DataPropertyName = "SoTien";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(46, 125, 50);
+            dataGridViewCellStyle3.Format = "#,##0 'đ'";
+            this.colCoCauSoTien.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colCoCauSoTien.FillWeight = 30F;
+            this.colCoCauSoTien.HeaderText = "Số tiền";
+            this.colCoCauSoTien.Name = "colCoCauSoTien";
+            //
+            // colCoCauTyLe
+            //
+            this.colCoCauTyLe.DataPropertyName = "TyLe";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "0.0'%'";
+            this.colCoCauTyLe.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colCoCauTyLe.FillWeight = 20F;
+            this.colCoCauTyLe.HeaderText = "Tỷ lệ";
+            this.colCoCauTyLe.Name = "colCoCauTyLe";
             // 
             // frmQuanLyThuNhap
             // 
@@ -760,8 +687,7 @@
             this.pnlBoLoc.PerformLayout();
             this.pnlQuanLyGiaoDich.ResumeLayout(false);
             this.pnlQuanLyGiaoDich.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCoCauThuNhap)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -821,15 +747,9 @@
         private System.Windows.Forms.Label lblTongThu;
         private System.Windows.Forms.Panel pnlCoCauThuNhap;
         private System.Windows.Forms.Label lblCoCauThuNhapThang10;
-        private System.Windows.Forms.Label lblLuong;
-        private System.Windows.Forms.Label lblLuong2;
-        private System.Windows.Forms.Label lblLuong3;
-        private System.Windows.Forms.Label lblThuong;
-        private System.Windows.Forms.Label lblThuong2;
-        private System.Windows.Forms.Label lblThuong3;
-        private System.Windows.Forms.Label lblThuNhapKhac;
-        private System.Windows.Forms.Label lblThuNhapKhac2;
-        private System.Windows.Forms.Label lblThuNhapKhac3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataGridView dgvCoCauThuNhap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCoCauLoaiThu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCoCauSoTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCoCauTyLe;
     }
 }
